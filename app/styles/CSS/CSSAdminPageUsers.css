@@ -1,0 +1,25 @@
+h1
+{
+	font-size: 30px;
+	text-align: center;
+}
+
+div#choice
+{
+	padding: 10px;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+
+div#preview
+{
+	padding: 10px;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+
+button.showUser
+{
+	min-height: 50px;
+	background-color: #e67e22;
+}

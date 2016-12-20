@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html ng-app="Suricat">
+	<head>
+		  <meta charset="utf-8">
+	      <title>Suricat Network</title>
+	      <meta name="description" content="Suricat is a intranet community for larges entreprises"/>
+	      <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+	      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
+	      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-resource.js"></script>
+	      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-sanitize.js"></script>
+	      <script src="../scripts/resources/RESTConnexion.js"></script>
+	      <script src="../scripts/controllers/angularEngine.js"></script>
+	      <script src="../scripts/controllers/angularPages.js"></script>
+	      <script src="../scripts/controllers/KanbanEngine.js"></script>
+	      <script src="../scripts/controllers/teamManagementEngine.js"></script>
+	      <link href="../styles/CSS/dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	      <link href="../styles/bootstrap/bootstrap.min.css" rel="stylesheet">
+	      <link rel="stylesheet" type="text/css" href="../styles/CSS/CSSKanbanDetaille.css">
+	      <link rel="stylesheet" type="text/css" href="../styles/CSS/CSSTeamManagement.css">
+	      <link rel="stylesheet" type="text/css" href="../styles/CSS/animate.css">
+	      <link href="../styles/CSS/dist/css/flat-ui.css" rel="stylesheet">
+	      <link rel="stylesheet" type="text/css" href="../styles/CSS/dist/css/mainSuricat.css">
+	      <link rel="shortcut icon" href="../images/favicon.ico">
+	      <script src="../styles/CSS/dist/js/vendor/jquery.min.js"></script>
+	      <script src="../styles/CSS/dist/js/flat-ui.min.js"></script>
+	</head>
+	<body>
+
+		<!-- Form to modify team informations -->
+		<div class="container-fluid" ng-controller="TeamManagementPage">
+			<div row class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-12">
+				<form id="formTeam">
+					<h1 id="teamTitle">Gestion des équipes</h1>
+					<h6>Veuillez sélectionner l'équipe à modifier</h6>
+					<select ng-options="team.teamName for team in teams" ng-model="selected" class="form-control" ng-change="showTeamDetail(selected)"></select>
+					<label class="labelFormTeam" for="teamName">Nom de l'équipe</label>
+					<input id="teamName" type="text" ng-model="team.teamName" class="form-control" ng-change="testChanges()"/>
+					<label class="labelFormTeam" for="projectName">Nom du projet</label>
+					<input id="projectName" type="text" ng-model="team.projectName" class="form-control" ng-change="testChanges()"/>
+					<label class="labelFormTeam" for="projectDescription">Description du projet</label>
+					<textarea id="projectDescription" ng-model="team.projectDescription" class="form-control" ng-change="testChanges()"></textarea>
+					<div class="row">
+						<button class="btnChangeForm btn btn-danger col-lg-offset-1 col-lg-5" ng-hide="changesToSave" ng-click="resetModifications()">Annuler les changements</button>
+						<button class="btnChangeForm btn btn-success col-lg-5" ng-hide="changesToSave">Sauvegarder les changements</button>
+					</div>
+				</form>
+			</div>
+
+			<!-- Part to show all users available to be add to the team -->
+			<div id="userTableOthers" class="userTable col-lg-offset-1 col-lg-10 col-lg-offset-1 animated fadeInDown container-fluid" ng-show="addMember">
+				<h3>Membres disponibles</h3>
+				<div class="btnAddMember">
+					<button ng-model="addMember" class="btn btn-danger btnAddMember" ng-click="endAdd()">Equipe complète !</button>
+				</div>
+				<select ng-options="department.departmentName for department in departments" ng-model="selectedDepartment">
+				</select>
+				<div class="row">
+					<div ng-repeat="user in usersnotinteam | filter : {idDepartment: selectedDepartment.idDepartment, idTeam: '!'+selected.idTeam}" class="row userinrow">
+						<button class="btn btn-default col-lg-offset-1 col-lg-3 col-xs-offset-1 col-xs-8">{{user.email}}</button>
+						<label class="btn btn-success col-lg-1 col-xs-1" ng-click="addUserInTeam(user, selected)">ADD</label>
+					</div>
+				</div>
+			</div>
+
+			<!-- Part to show all users in the team -->
+			<div id="userTable" class="userTable col-lg-offset-1 col-lg-10 col-lg-offset-1 animated fadeInDown container-fluid" ng-show="selected.idTeam">
+				<h3>Membres de l'équipe par service</h3>
+				<div class="btnAddMember">
+					<button ng-model="addMember" class="btn btn-primary" ng-click="showMembersNotInTheTeam(selected)">Ajouter un membre</button>
+				</div>
+				<div ng-repeat="department in departments" class="col-lg-3 col-md-6 col-sm-6 col-xs-12 department">
+					<h6>{{department.departmentName}}</h6>
+					<div ng-repeat="user in usersbyteams | filter : {idDepartment: department.idDepartment, idTeam: selected.idTeam}" class="row userinrow">
+						<button class="btn btn-default col-lg-offset-1 col-lg-8 col-xs-offset-1 col-xs-8">{{user.email}}</button>
+						<label class="btn btn-danger col-lg-2 col-xs-2" ng-click="removeUserFromTeam(user)">X</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+	<title></title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-resource.js"></script>
+	<script src="scripts/resources/RESTConnexion.js"></script>
+	<script src="scripts/controllers/angularEngine.js"></script>
+	<link rel="stylesheet" type="text/css" href="styles/CSS/CSSLoginStyle.css">
+</head>
+<body ng-app="MonApp" ng-controller="PostsCtrl">
+	Liste des Users
+	<br>
+	<div ng-repeat="user in users">
+		- {{user.firstname}} {{user.lastname}}
+	</div>
+	<br><br>
+	Veuillez choisir le membre :
+	<br><br>
+	Filtre <input type="text" ng-model="filtre1">
+	<br>
+	<select ng-model="choix">
+		<option ng-repeat="user in users | filter:filtre1" value={{user.idUser}}> {{user.firstname}} {{user.lastname}} </option>
+	</select>
+	<br><br>
+
+	<div ng-show="choix=='1'">
+		User par id
+		<br>
+		{{user.firstname}} {{user.lastname}}
+	</div>
+	<br><br>
+	Test de connexion
+	<div ng-controller="CheckLogin">
+		<form>
+			<input type="text" ng-model="email">
+			<br>
+			<input type="text" ng-model="password">
+			<br>
+			<button type="submit" ng-click="verify()">Connexion</button>
+		</form>
+		<label ng-bind="message"></label>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+
+
+        <!--Actuality Flow and Kanban and burndown-->
+        <div class="row" style="margin-top: 120px">
+        <div id="monaccordeon" class="panel-group col-lg-10 col-md-10 col-sm-12 col-xs-12 text-center" >
+            <div class="panel panel-default">
+              <div class="panel-heading" href="#item1" data-toggle="collapse"> 
+                <h3 class="panel-title">
+                  <a> BurndownChart </a> 
+                </h3>
+              </div>
+              <div id="item1" class="panel-collapse collapse">
+                <div class="panel-body"> partie à remplir</div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" href="#kanban" data-toggle="collapse"> 
+                <h3 class="panel-title">
+                  <a>Kanban</a> 
+                </h3>
+              </div>
+              <div id="kanban" class="panel-collapse collapse container-fluid" ng-app="Suricat" ng-controller="Kanban">
+                <div class="panel-body">
+                  <ng-include src="'kanban2.html'"></ng-include></div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" href="#item3" data-toggle="collapse"> 
+                <h3 class="panel-title">
+                  <a> Actualités </a> 
+                </h3>
+              </div>
+              <div id="item3" class="panel-collapse collapse">
+                <ng-include src="'teamActuality.html'"></ng-include></div>
+              </div>
+            </div>
+          </div>
+
+          <!--Add shortcut button-->
+          <div class="col-lg-2 col-md-2 hidden-sm hidden-xs pull-right">
+            <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-cog"></span> Ajouter un raccourci</button>
+          </div>
+        </div>

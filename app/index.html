@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="Suricat" ng-controller="PageOptions">
+<head>
+    <title>Suricat</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-resource.js"></script>
+    <script src="scripts/resources/RESTConnexion.js"></script>
+    <script src="scripts/controllers/angularPages.js"></script>
+    <script src="scripts/controllers/angularEngine.js"></script>
+    <link href="styles/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles/CSS/CSSLoginStyle.css">
+    <link rel="stylesheet" type="text/css" href="styles/CSS/animate.css">
+</head>
+<body id="body" ng-style="{'background-image': 'url({{ path }})'}">
+    <a ng-controller="Pages" href={{paths[0].path}} id="changePage"></a>
+    <div ng-view></div>
+
+    <div id="cont" class="container animated fadeInDown">
+        <div class="card card-container" ng-controller="CheckLogin">
+            <img id="logo-img" class="logo-img" src="images/MeerkatsEstampe.png"/>
+            <form class="form-signin">
+                <input type="email" ng-model="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
+                <input type="password" ng-model="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
+                <button type="submit" ng-click="verify()" class="btn btn-lg btn-primary btn-block btn-signin">Se connecter</button>
+            </form>
+            <!-- WILL BE DEVELOP FOR FURTURE VERSION : The administrator will help the employee
+            <div class="signin-help">
+                <p>Mot de passe oublié ?<a href="setSelectedItem($index)" ng-click="expression" data-toggle="modal" data-target="#detailsModal"> Cliquez ici</a></p>
+            </div>
+            -->
+            <br>
+            <label ng-bind="message"></label>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="Suricat">
+<head>
+    <title>Suricat</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-resource.js"></script>
+    <script src="../scripts/resources/RESTConnexion.js"></script>
+    <script src="../scripts/controllers/angularEngine.js"></script>
+    <script src="../scripts/controllers/KanbanEngine.js"></script>
+    <link href="../styles/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../styles/CSS/CSSKanbanDetaille.css">
+</head>
+<body ng-controller="Kanban" class="container-fluid">
+
+    <div>
+        <div id="formTask">
+            
+        </div>
+        <div id="options" class="row pull-right">
+            <button class="btn btn-primary buttonKanban col-lg-6">Modifier une tâche</button>
+            <button class="btn btn-primary buttonKanban col-lg-6 ">Ajouter une tâche</button>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+    <div class="frame col-lg-3 col-md-6 col-sm-6 col-xs-12">
+        <div class="text-center status">
+            <div class="titre">
+                To Do
+            </div>
+            <div id="ToDo" class="task" ng-repeat="task in tasksOfTheTeam | filter: 'To Do'">
+                {{task.taskName}} {{task.duration}}
+            </div>
+        </div>
+    </div>
+    <div class="frame col-lg-3 col-md-6 col-sm-6 col-xs-12">
+        <div class="text-center status">
+            <div class="titre">
+                In Progress
+            </div>
+            <div id="InProgress" class="task" ng-repeat="task in tasksOfTheTeam | filter: 'In Progress'">
+                {{task.taskName}} {{task.duration}}
+            </div>
+        </div>
+    </div>
+    <div class="frame col-lg-3 col-md-6 col-sm-6 col-xs-12">
+        <div class="text-center status">
+            <div class="titre">
+                To Verify
+            </div>
+            <div id="ToVerify" class="task" ng-repeat="task in tasksOfTheTeam | filter: 'To Verify'">
+                {{task.taskName}} {{task.duration}}
+            </div>
+        </div>
+    </div>
+    <div class="frame col-lg-3 col-md-6 col-sm-6 col-xs-12">
+        <div class="text-center status">
+            <div class="titre">
+                Done
+            </div>
+            <div id="Done" class="task" ng-repeat="task in tasksOfTheTeam | filter: 'Done'">
+                {{task.taskName}} {{task.duration}}
+            </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

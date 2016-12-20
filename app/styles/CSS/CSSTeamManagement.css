@@ -1,0 +1,44 @@
+form#formTeam
+{
+	margin-top: 20px;
+	border: 2px solid black;
+	border-radius: 5px;
+	padding: 0px 10px 10px 10px;
+	background-color: #708090;
+}
+
+h1#teamTitle
+{
+	text-align: center;
+}
+
+label.labelFormTeam
+{
+	font-size: 20px;
+}
+
+div.userTable
+{
+	margin-top: 20px;
+	padding: 0px 0px 10px 0px;
+	text-align: center;
+	vertical-align: center;
+	background-color: #708090;
+	border-radius: 10px;
+	background-color: #708090;
+}
+
+div.btnAddMember
+{
+	text-align: right;
+}
+
+div.userinrow
+{
+	margin-bottom: 10px;
+}
+
+div.department
+{
+	text-align: center;
+}

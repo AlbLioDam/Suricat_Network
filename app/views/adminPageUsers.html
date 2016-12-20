@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="Suricat">
+<head>
+    <title>Suricat</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-resource.js"></script>
+    <script src="../scripts/resources/RESTConnexion.js"></script>
+    <script src="../scripts/controllers/AdminEngine.js"></script>
+    <link href="../styles/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="../styles/CSS/CSSAdminPageUsers.css" rel="stylesheet">
+    <link href="../styles/CSS/dist/css/flat-ui.css" rel="stylesheet">
+</head>
+<body ng-controller="adminCtrler" class="container">
+    
+    <h1>Gestion des profils</h1>
+    <div class="row">
+        <div id="choice" class="col-lg-4">
+            <h1>Sélection</h1>
+            <select class="form-control" id="ControlService" ng-model="selected" ng-options="department.departmentName for department in departments">
+            </select>
+            <input class="form-control" type="text" ng-model="search">
+            <button class="btn btn-success form-control" ng-model="addAMember">
+                AJOUTER UN MEMBRE
+            </button>
+            <button ng-hide="addAMember" ng-click="showToModify(user)" class="showUser form-control" ng-repeat="user in users | filter : {idDepartment:selected.idDepartment} | filter : search">
+                {{user.email}} - {{user.firstname}} {{user.lastname}}
+            </button>
+
+        </div>
+        <div id="preview" class="col-lg-8">
+            <h1>Informations</h1>
+            <ng-include src="'updateUser.html'"></ng-include>
+        </div>
+    </div>
+    
+
+</body>
+</html>

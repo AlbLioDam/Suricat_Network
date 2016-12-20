@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Suricat">
+  <head>
+      <meta charset="utf-8">
+      <title>Suricat Network</title>
+      <meta name="description" content="Suricat is a intranet community for larges entreprises"/>
+      <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-resource.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-sanitize.js"></script>
+      <script src="../scripts/resources/RESTConnexion.js"></script>
+      <script src="../scripts/controllers/angularEngine.js"></script>
+      <script src="../scripts/controllers/angularPages.js"></script>
+      <script src="../scripts/controllers/KanbanEngine.js"></script>
+      <link href="../styles/CSS/dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <link href="../styles/bootstrap/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="../styles/CSS/CSSKanbanDetaille.css">
+      <link href="../styles/CSS/dist/css/flat-ui.css" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="../styles/CSS/dist/css/mainSuricat.css">
+      <link rel="shortcut icon" href="../images/favicon.ico">
+      <script src="../styles/CSS/dist/js/vendor/jquery.min.js"></script>
+      <script src="../styles/CSS/dist/js/flat-ui.min.js"></script>
+  </head>
+    <body>
+
+      <div class="container-fluid">
+        <!--Navbar-->
+        <div class="row demo-row">
+          <div class="col-xs-12">
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                  <span class="sr-only text-left">Toggle navigation</span>
+                </button>
+                <a href="#" class="navbar-left"><img src="../images/MeerkatsEstampe.png" style="width:50px"></a>
+                <a class="navbar-brand" href="#">Suricat</a>
+              </div>
+              <div class="collapse navbar-collapse" id="navbar-collapse-01">
+                <ul class="nav navbar-nav" id="nav">
+                  <li><a href="#fakelink">EQUIPE</a></li>
+                  <li><a href="#fakelink">VIE ENTREPRISE</a></li>
+                  <li><a href="#fakelink">CE</a></li>
+                  <li><a href="#fakelink">LOISIR</a></li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">PARAMETRES<b class="caret"></b></a>
+                    <span class="dropdown-arrow"></span>
+                    <ul class="dropdown-menu">
+                      <li><a ng-controller="Pages" href={{paths[4].path}}>Gestion profil</a></li>
+                      <li><a href="#">Gestion équipe</a></li>
+                      <li><a href="#">Something else here</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div><!-- /.navbar-collapse -->
+              
+
+            </nav><!-- /navbar -->
+          </div>
+        </div> <!-- /row -->
+
+        <!--Actuality Flow and Kanban and burndown-->
+        <div class="row" style="margin-top: 120px">
+        <div id="monaccordeon" class="panel-group col-lg-10 col-md-10 col-sm-12 col-xs-12 text-center" >
+            <div class="panel panel-default">
+              <div class="panel-heading" href="#item1" data-toggle="collapse"> 
+                <h3 class="panel-title">
+                  <a> BurndownChart </a> 
+                </h3>
+              </div>
+              <div id="item1" class="panel-collapse collapse">
+                <div class="panel-body"> partie à remplir</div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" href="#kanban" data-toggle="collapse"> 
+                <h3 class="panel-title">
+                  <a>Kanban</a> 
+                </h3>
+              </div>
+              <div id="kanban" class="panel-collapse collapse container-fluid" ng-app="Suricat" ng-controller="Kanban">
+                <div class="panel-body">
+                  <ng-include src="'kanban2.html'"></ng-include></div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading" href="#item3" data-toggle="collapse"> 
+                <h3 class="panel-title">
+                  <a> Actualités </a> 
+                </h3>
+              </div>
+              <div id="item3" class="panel-collapse collapse">
+                <div class="panel-body"> Partie à remplir </div>
+              </div>
+            </div>
+          </div>
+
+          <!--Add shortcut button-->
+          <div class="col-lg-2 col-md-2 hidden-sm hidden-xs pull-right">
+            <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-cog"></span> Ajouter un raccourci</button>
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+      <!--Scriptjequery-->
+
+    </body>
+
+    </html>

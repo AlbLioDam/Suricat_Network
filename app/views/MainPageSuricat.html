@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="Suricat">
+  <head>
+      <title>Suricat Network</title>
+      <meta charset="utf-8">
+      <meta name="description" content="Suricat is a intranet community for larges entreprises"/>
+      <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-resource.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-sanitize.js"></script>
+      <script src="../scripts/resources/RESTConnexion.js"></script>
+      <script src="../scripts/controllers/angularEngine.js"></script>
+      <script src="../scripts/controllers/angularPages.js"></script>
+      <script src="../scripts/controllers/mainPageEngine.js"></script>
+      <script src="../scripts/controllers/KanbanEngine.js"></script>
+      <script src="../scripts/controllers/ActualityEngine.js"></script>
+      <script src="../styles/CSS/dist/js/vendor/jquery.min.js"></script>
+      <script src="../styles/CSS/dist/js/flat-ui.min.js"></script>
+      
+      <link href="../styles/CSS/dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+      <link href="../styles/bootstrap/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="../styles/CSS/CSSKanbanDetaille.css">
+      <link rel="stylesheet" type="text/css" href="../styles/CSS/CSSActualityStyle.css">
+      <link href="../styles/CSS/dist/css/flat-ui.css" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="../styles/CSS/dist/css/mainSuricat.css">
+      <link rel="shortcut icon" href="../images/favicon.ico">
+  </head>
+  <body>
+  <div class="container-fluid" ng-controller="MainPage">
+        <!--Navbar-->
+        <div class="row demo-row">
+          <div class="col-xs-12">
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                  <span class="sr-only text-left">Toggle navigation</span>
+                </button>
+                <a href="#" class="navbar-left"><img src="../images/MeerkatsEstampe.png" style="width:50px"></a>
+                <a class="navbar-brand" href="#">Suricat</a>
+              </div>
+              <div class="collapse navbar-collapse" id="navbar-collapse-01">
+                <ul class="nav navbar-nav" id="nav">
+                  <li><a href="#fakelink">EQUIPE</a></li>
+                  <li><a href="#fakelink">VIE ENTREPRISE</a></li>
+                  <li><a href="#fakelink">CE</a></li>
+                  <li><a href="#fakelink">LOISIR</a></li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">PARAMETRES<b class="caret"></b></a>
+                    <span class="dropdown-arrow"></span>
+                    <ul class="dropdown-menu">
+                      <li><a ng-controller="Pages" href={{paths[4].path}}>Gestion profil</a></li>
+                      <li><a ng-href="changePage('teamManagement')">Gestion équipe</a></li>
+                      <li><a href="#">Something else here</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div><!-- /.navbar-collapse -->
+            </nav><!-- /navbar -->
+          </div>
+        </div> <!-- /row -->
+
+      <ng-include id="includeMainPage" src="'team.html'"></ng-include>
+
+    </div> 
+  </body>
+</html>

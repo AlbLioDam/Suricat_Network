@@ -1,0 +1,28 @@
+@media(min-width:980px){
+
+
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+}
+
+li{
+	margin-right: 10px;
+}
+
+}
+
+div.errorMessage
+{
+	background-color: #e74c3c;
+	text-align: center;
+	border-radius: 20px;
+}
+
+img{
+	margin-left: 5px;
+}

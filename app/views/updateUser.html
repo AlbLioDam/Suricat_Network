@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html ng-app="Suricat">
+<head>
+  <title>Suricat</title>
+  <meta charset="utf-8">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-resource.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-sanitize.js"></script>
+  <script src="../scripts/resources/RESTConnexion.js"></script>
+  <script src="../scripts/controllers/angularEngine.js"></script>
+  <script src="../scripts/controllers/angularPages.js"></script>
+  <script src="../scripts/controllers/passwordEngine.js"></script>
+  <link href="../styles/CSS/dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../styles/CSS/dist/css/flat-ui.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="../styles/CSS/dist/css/mainSuricat.css">
+  <link rel="shortcut icon" href="../images/favicon.ico">
+  <script src="../styles/CSS/dist/js/vendor/jquery.min.js"></script>
+  <script src="../styles/CSS/dist/js/flat-ui.min.js"></script>
+
+</head>
+<body class="container" ng-controller="passwordCtrl">
+
+  <form class="row">
+    <h3 class="text-center">Modification du profil</h3>
+    <div class="col-md-offset-2 col-md-4">
+      
+
+      <div class="form-group">
+        <label for="email">Login (adresse interne)</label>
+        <input type="email" class="form-control" ng-model="infosUser.email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="pw1">Mot de passe</label>
+        <input type="password" class="form-control" id="pw1" ng-model="infosUser.password" placeholder="Enter password" required/>
+      </div>
+
+      <div class="form-group">
+        <label for="pw2">Vérification du mot de passe</label>
+        <input type="password" class="form-control" id="pw2" name="pw2" ng-model="pw2" pw-check="pw1" placeholder="Enter password"required/>
+      </div>
+
+      <div ng-show="showmsg" class="errorMessage">
+        <span class="msg-error">Passwords don't match.</span>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleSelect1">Service</label>
+        <select class="form-control" id="ControlService" ng-model="selected" ng-options="department.departmentName for department in departments">
+        </select>
+      </div>
+      <div class="form-group">
+          <label for="active">Actif ?</label>
+          <input type="checkbox" id="active">
+      </div>
+
+      
+    </div>
+
+    <div class="col-md-4">
+      
+
+      <div class="form-group">
+        <label for="lastName">Nom</label>
+        <input type="text" class="form-control" ng-model="infosUser.lastName" id="lastName" aria-describedby="emailHelp" placeholder="Enter lastname" required>
+      </div>
+
+      <div class="form-group">
+        <label for="firstName">Prénom</label>
+        <input type="text" class="form-control" id="firstName" ng-model="infosUser.firstName" placeholder="Enter firstname" required/>
+      </div>
+
+      <div class="form-group">
+        <label for="adress">Adresse</label>
+        <input type="text" class="form-control" id="adress" ng-model="infosUser.adress" placeholder="Enter Address" required/>
+      </div>
+
+      <div class="form-group">
+        <label for="town">Ville</label>
+        <input type="text" class="form-control" id="town" ng-model="infosUser.town" placeholder="Enter City" required/>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleSelect1">Avez-vous une voiture ?</label>
+        <select class="form-control" id="car">
+          <option>Oui</option>
+          <option>Non</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleSelect1">Etes-vous ouvert au covoiturage ?</label>
+        <select class="form-control" id="carSharing">
+            <option>Non</option>
+            <option>Oui</option>
+        </select>
+      </div>
+
+      
+    </div>
+  </form>
+
+  <div class="row">
+
+    <div class="col-xs-6 col-lg-offset-3 col-lg-4">
+      <button type="" class="btn btn-danger myButton">Annuler</button>
+    </div>
+
+    <div class="col-xs-6 col-md-6 col-lg-5">
+      <button type="submit" class="btn btn-primary myButton" ng-click="saveModifications()">Valider modifications</button>
+    </div>
+
+  </div>
+
+    </body>
+    </html>

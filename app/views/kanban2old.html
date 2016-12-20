@@ -1,0 +1,52 @@
+    <div ng-app="Suricat" ng-controller="Kanban" class="container-fluid" id="containerKanban">
+        <div id="formTask">
+            
+        </div>
+        <div id="options" class="row">
+            <button class="btn btn-primary buttonKanban col-lg-offset-8 col-lg-2">Modifier une tâche</button>
+            <button class="btn btn-primary buttonKanban col-lg-2">Ajouter une tâche</button>
+        </div>
+    </div>
+    <br>
+    <div class="row" id="rowKanban">
+    <div class="frame col-lg-3 col-md-6 col-sm-6 col-xs-12">
+        <div class="text-center status">
+            <div class="titre">
+                To Do
+            </div>
+            <div id="ToDo" class="task" ng-repeat="task in tasksOfTheTeam | filter: 'To Do'">
+                {{task.taskName}}
+            </div>
+        </div>
+    </div>
+    <div class="frame col-lg-3 col-md-6 col-sm-6 col-xs-12">
+        <div class="text-center status">
+            <div class="titre">
+                In Progress
+            </div>
+            <div id="InProgress" class="task" ng-repeat="task in tasksOfTheTeam | filter: 'In Progress'">
+                {{task.taskName}}
+            </div>
+        </div>
+    </div>
+    <div class="frame col-lg-3 col-md-6 col-sm-6 col-xs-12">
+        <div class="text-center status">
+            <div class="titre">
+                To Verify
+            </div>
+            <div id="ToVerify" class="task" ng-repeat="task in tasksOfTheTeam | filter: 'To Verify'">
+                {{task.taskName}}
+            </div>
+        </div>
+    </div>
+    <div class="frame col-lg-3 col-md-6 col-sm-6 col-xs-12">
+        <div class="text-center status">
+            <div class="titre">
+                Done
+            </div>
+            <div id="Done" class="task" ng-repeat="task in tasksOfTheTeam | filter: 'Done'">
+                {{task.taskName}}
+            </div>
+            </div>
+        </div>
+    </div>
