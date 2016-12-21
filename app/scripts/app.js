@@ -17,8 +17,15 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ngCookies'
   ])
+
+  .run(function($rootScope){
+  
+  $rootScope.pro='scribe';
+  console.log($rootScope.pro);
+});
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

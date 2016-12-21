@@ -7,6 +7,7 @@
       <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
 
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-cookies.min.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-resource.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-sanitize.js"></script>
       <script src="../scripts/resources/RESTConnexion.js"></script>
@@ -46,7 +47,7 @@
                   <li><a href="#fakelink">CE</a></li>
                   <li><a href="#fakelink">LOISIR</a></li>
                   <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">PARAMETRES<b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">PARAMETRES <b class="caret"></b></a>
                     <span class="dropdown-arrow"></span>
                     <ul class="dropdown-menu">
                       <li><a ng-controller="Pages" href={{paths[4].path}}>Gestion profil</a></li>
@@ -59,9 +60,11 @@
             </nav><!-- /navbar -->
           </div>
         </div> <!-- /row -->
-
+ <div>Bonjour : {{firstname}} {{lastname}}</div>
       <ng-include id="includeMainPage" src="'team.html'"></ng-include>
-
+     Bonjour et bienvenue  :  {{firstname}} {{lastname}}
     </div> 
+  
+    
   </body>
 </html>

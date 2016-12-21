@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html ng-app="Suricat" ng-controller="PageOptions">
+<html >
 <head>
     <title>Suricat</title>
     <meta charset="utf-8">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-resource.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-cookies.js"></script>
     <script src="scripts/resources/RESTConnexion.js"></script>
     <script src="scripts/controllers/angularPages.js"></script>
     <script src="scripts/controllers/angularEngine.js"></script>
@@ -12,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="styles/CSS/CSSLoginStyle.css">
     <link rel="stylesheet" type="text/css" href="styles/CSS/animate.css">
 </head>
-<body id="body" ng-style="{'background-image': 'url({{ path }})'}">
+<body id="body" ng-style="{'background-image': 'url({{ path }})'}"  ng-app="Suricat" ng-controller="PageOptions">
     <a ng-controller="Pages" href={{paths[0].path}} id="changePage"></a>
     <div ng-view></div>
 
