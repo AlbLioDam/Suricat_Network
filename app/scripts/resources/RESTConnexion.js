@@ -1,6 +1,6 @@
 /*-- CONNEXION MODULE TO THE DATABASE THROUGH THE NODEJS REST SERVER --*/
 
-var app = angular.module('Suricat', ['ngResource']);
+var app = angular.module('Suricat');
 
 //app.constant('BaseURL', 'http://majesticneo.ddns.net:3000/');
 //app.constant('BaseURL', 'http://192.168.0.29:3000');

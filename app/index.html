@@ -1,37 +1,56 @@
 <!DOCTYPE html>
-<html ng-app="Suricat" ng-controller="PageOptions">
+<html>
 <head>
-    <title>Suricat</title>
+    <title>Suricat Network</title>
     <meta charset="utf-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-resource.js"></script>
-    <script src="scripts/resources/RESTConnexion.js"></script>
-    <script src="scripts/controllers/angularPages.js"></script>
-    <script src="scripts/controllers/angularEngine.js"></script>
-    <link href="styles/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="styles/CSS/CSSLoginStyle.css">
-    <link rel="stylesheet" type="text/css" href="styles/CSS/animate.css">
-</head>
-<body id="body" ng-style="{'background-image': 'url({{ path }})'}">
-    <a ng-controller="Pages" href={{paths[0].path}} id="changePage"></a>
-    <div ng-view></div>
+    <meta name="description" content="Suricat is a intranet community for larges entreprises"/>
+    <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
 
-    <div id="cont" class="container animated fadeInDown">
-        <div class="card card-container" ng-controller="CheckLogin">
-            <img id="logo-img" class="logo-img" src="images/MeerkatsEstampe.png"/>
-            <form class="form-signin">
-                <input type="email" ng-model="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
-                <input type="password" ng-model="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required>
-                <button type="submit" ng-click="verify()" class="btn btn-lg btn-primary btn-block btn-signin">Se connecter</button>
-            </form>
-            <!-- WILL BE DEVELOP FOR FURTURE VERSION : The administrator will help the employee
-            <div class="signin-help">
-                <p>Mot de passe oublié ?<a href="setSelectedItem($index)" ng-click="expression" data-toggle="modal" data-target="#detailsModal"> Cliquez ici</a></p>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js">             </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-resource.js">    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-route.js">       </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-sanitize.js">    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-cookies.min.js"> </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="scripts/app.js">                           </script>
+    <script src="scripts/resources/RESTConnexion.js">       </script>
+    <script src="scripts/controllers/angularEngine.js">     </script>
+    <script src="scripts/controllers/mainPageEngine.js">    </script>
+    <script src="scripts/controllers/KanbanEngine.js">      </script>
+    <script src="scripts/controllers/ActualityEngine.js">   </script>
+    <script src="scripts/controllers/passwordEngine.js">    </script>
+    <script src="styles/CSS/dist/js/vendor/jquery.min.js">  </script>
+    <script src="styles/CSS/dist/js/flat-ui.min.js">        </script>
+      
+    <link rel="stylesheet" type="text/css" href="styles/CSS/dist/css/flat-ui.css">
+    <link rel="stylesheet" type="text/css" href="styles/CSS/dist/css/mainSuricat.css">
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="styles/CSS/CSSKanbanDetaille.css">
+    <link rel="stylesheet" type="text/css" href="styles/CSS/CSSAdminPageUsers.css">
+    <link rel="stylesheet" type="text/css" href="styles/CSS/CSSTeamManagement.css">
+    <link rel="stylesheet" type="text/css" href="styles/CSS/CSSActualityStyle.css">
+    <link rel="stylesheet" type="text/css" href="styles/CSS/animate.css">
+    <link rel="stylesheet" type="text/css" href="styles/CSS/CSSLoginStyle.css">
+
+</head>
+<body>
+    <div ng-app="Suricat" ng-controller="PageOptions">
+            <div ng-switch on="page">
+                <div ng-switch-when="login">
+                    <ng-include src="'views/login.html'"></ng-include>
+                </div>
+                <div ng-switch-when="createUser">
+                    <ng-include src="'views/createUser.html'"></ng-include>
+                </div>
+<!--                 <div ng-switch-when="teamManagement">
+                    <ng-include src="'views/teamManagement.html'"></ng-include>
+                </div>
+                <div ng-switch-when="team">
+                    <ng-include src="'views/team.html'"></ng-include>
+                </div> -->
             </div>
-            -->
-            <br>
-            <label ng-bind="message"></label>
-        </div>
+            <input type="text" ng-model="page"/>
     </div>
 </body>
 </html>

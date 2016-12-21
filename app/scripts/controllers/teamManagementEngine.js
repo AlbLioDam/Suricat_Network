@@ -73,8 +73,13 @@ app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkD
 	{
 		LinkDBNotBelongToByTeam.getUsersNotInTeam({idTeam: selected.idTeam}).$promise.then(function(response)
 		{
-				console.log(response);
-				$scope.usersnotinteam = response;
+			console.log(response);
+			$scope.usersnotinteam = response;
+/*			var size = $scope.usersnotinteam.length;
+			console.log(size);
+			var size1 = Math.round(($scope.usersnotinteam.length/3) * 10) / 10;
+			console.log(size1);*/
+
 		});
 
 		$scope.addMember = true;

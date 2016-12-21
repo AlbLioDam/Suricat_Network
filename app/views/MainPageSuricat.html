@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="Suricat">
+<html lang="en">
   <head>
       <title>Suricat Network</title>
       <meta charset="utf-8">
@@ -8,7 +8,10 @@
 
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-resource.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-route.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-sanitize.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-cookies.min.js"></script>
+      <script src="../scripts/app.js"></script>
       <script src="../scripts/resources/RESTConnexion.js"></script>
       <script src="../scripts/controllers/angularEngine.js"></script>
       <script src="../scripts/controllers/angularPages.js"></script>
@@ -26,7 +29,7 @@
       <link rel="stylesheet" type="text/css" href="../styles/CSS/dist/css/mainSuricat.css">
       <link rel="shortcut icon" href="../images/favicon.ico">
   </head>
-  <body>
+  <body ng-app="Suricat">
   <div class="container-fluid" ng-controller="MainPage">
         <!--Navbar-->
         <div class="row demo-row">
@@ -49,8 +52,8 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">PARAMETRES<b class="caret"></b></a>
                     <span class="dropdown-arrow"></span>
                     <ul class="dropdown-menu">
-                      <li><a ng-controller="Pages" href={{paths[4].path}}>Gestion profil</a></li>
-                      <li><a ng-href="changePage('teamManagement')">Gestion équipe</a></li>
+                      <li><a ng-href="#createUser">Gestion profil</a></li>
+                      <li><a ng-href="#teamManagement">Gestion équipe</a></li>
                       <li><a href="#">Something else here</a></li>
                     </ul>
                   </li>

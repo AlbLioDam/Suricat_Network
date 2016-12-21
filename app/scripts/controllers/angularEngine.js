@@ -7,6 +7,8 @@ app.controller('PageOptions', function($scope){
 
 	// Put the number of the picture into the path. 
 	$scope.path = "images/" + randomPicture + ".jpg";
+
+	$scope.page = "createUser";
 });
 
 
@@ -24,9 +26,9 @@ app.controller('CheckLogin', function($scope, LinkDBCheckLogin, $timeout){
 			{
 				$scope.message = "Connexion établie";
 				document.getElementById("cont").className = "container animated fadeOutDown";
-				$timeout(function(){
+/*				$timeout(function(){
 					document.getElementById("changePage").click();
-				}, 1000);
+				}, 1000);*/
 			}
 			else
 			{
