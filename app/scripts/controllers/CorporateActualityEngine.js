@@ -11,9 +11,7 @@ var app = angular.module('Suricat');
 
 app.controller('CorporateActualities',function($interval, $scope, LinkDBCorpActualities){
 	$scope.listOfCorpActualities = LinkDBCorpActualities.query();
-	$scope.update = function(){
-		$scope.listOfCorpActualities = LinkDBCorpActualities.query();
-	}
+	
 
 	/*-----------------------------------------
 	 Prepare Json to Post with Team Actuality 
@@ -55,19 +53,19 @@ app.controller('CorporateActualities',function($interval, $scope, LinkDBCorpActu
 	 Json Object to post
 	 ------------------*/
 
-	$scope.postTeamActu=function(selected)
+	$scope.postTeamActu=function()
 	{
-		console.log('idTeam : ', selected.idTeam);		
+			
 		$scope.newActu.photo = $scope.newActu.photo.base64;
 		console.log('file is : ' );
 		console.dir($scope.newActu.photo);
 
 
-		$scope.newActu.idTeam=selected.idTeam;
+		//$scope.newActu.idTeam=selected.idTeam;
 		console.log('********************* JSON TO POST *************************' );
 		console.dir($scope.newActu);
 
-		console.log("scope : " + $scope.newActu.idTeam);
+		//console.log("scope : " + $scope.newActu.idTeam);
 		LinkDBCorpActualities.post($scope.newActu).$promise.then(function(response){
 			if(response.status == 0)
 			{

@@ -131,5 +131,6 @@ app.factory('LinkDBActualityId', function($resource, BaseURL, Actuality){
 app.factory('LinkDBCorpActualities', function($resource, BaseURL, CorporateActualities){
 	return $resource(BaseURL + CorporateActualities, null,{
 		//'update':{method:'PUT',params:{idActuality:"@idActuality"}}
+		'post': {method: 'POST'}
 	});
 });
