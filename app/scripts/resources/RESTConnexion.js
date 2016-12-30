@@ -1,27 +1,40 @@
 /*-- CONNEXION MODULE TO THE DATABASE THROUGH THE NODEJS REST SERVER --*/
 
-var app = angular.module('Suricat', ['ngResource','ngCookies']);
+var app = angular.module('Suricat');
 
 //app.constant('BaseURL', 'http://majesticneo.ddns.net:3000/');
-//app.constant('BaseURL', 'http://192.168.0.29:3000');
-app.constant('BaseURL', 'http://127.0.0.1:3000');
-app.constant('ConnexionUsers', '/user/:id');
+app.constant('BaseURL', 'http://localhost:3000');
+//app.constant('BaseURL', 'http://127.0.0.1:3000');
+//app.constant('BaseURL', 'http://10.111.61.81:3000');
+app.constant('ConnexionUsers', '/user/:idUser');
 app.constant('CheckLogin', '/user/login');
 app.constant('Kanban', '/todo/:id');
-app.constant('Department', '/department/:id');
+app.constant('Department', '/department/:idDepartment');
 app.constant('Teams', '/team');
-app.constant('BelongTo', '/belongto/:id');
+app.constant('BelongTo', '/belongto');
+app.constant('BelongToRemove', '/belongto/remove');
 app.constant('BelongToByTeam', '/belongto/usersinteam/:idTeam');
 app.constant('NotBelongToByTeam', '/belongto/usersnotinteam/:idTeam');
 app.constant('TeamActualities', '/teamActuality');
-app.constant('Actuality', '/actuality/:id');
+app.constant('CorporateActualities', '/corpActuality');
+app.constant('Actuality', '/actuality/:idActuality');
 app.constant('Actualities', '/actuality');
+app.constant('Task', '/task');
 
 // Connexion to users's datas
 app.factory('LinkDB', function($resource, BaseURL, ConnexionUsers)
 {
 	return $resource(BaseURL + ConnexionUsers, null, {
 		'update': {method:'PUT', params: {idUser: "@idUser"}},
+		'getUserById': {method:'GET', params: {idUser: "@idUser"}}
+	});
+});
+
+// Connexion to task's datas
+app.factory('LinkDBTask', function($resource, BaseURL, Task)
+{
+	return $resource(BaseURL + Task, null, {
+		//'update': {method:'PUT', params: {idUser: "@idUser"}},
 	});
 });
 
@@ -57,7 +70,7 @@ app.factory('LinkDBDepartment', function($resource, BaseURL, Department){
 // Connexion to get teams 
 app.factory('LinkDBTeams', function($resource, BaseURL, Teams){
 	return $resource(BaseURL + Teams, null,{
-		//'update':{method:'PUT',params:{idActuality:"@idActuality"}}
+		'update': { method:'PUT' }
 	});
 });
 
@@ -65,10 +78,18 @@ app.factory('LinkDBTeams', function($resource, BaseURL, Teams){
 app.factory('LinkDBBelongTo', function($resource, BaseURL, BelongTo){
 	return $resource(BaseURL + BelongTo, null, {
 		//'update': {method:'PUT', params: {idMessage: "@idMessage"}}
-		//'removeUserFromTeam': {method:'DELETE', params: {idUser: "@idUser", idTeam: "@idTeam"}}
-		'save': {method:'POST', params: {idUser: "@idUser", idTeam: "@idTeam"}}
+		'removeUser': {method:'DELETE', params: {idUser: "@idUser", idTeam: "@idTeam"}},
+		'save'		: {method:'POST'	, params: {idUser: "@idUser", idTeam: "@idTeam"}}
+		//'removeUser': {method:'DELETE'	, params: {idUser: "@idUser", idTeam: "@idTeam"}}
 	});
 });
+
+// Connexion to BelongTo's datas for remove
+app.factory('LinkDBBelongToRemove', function($resource, BaseURL, BelongToRemove){
+	return $resource(BaseURL + BelongToRemove, null, {
+		'removeUser': {method:'POST'	, params: {idUser: "@idUser", idTeam: "@idTeam"}}
+	});
+})
 
 // Connexion to BelongTo's datas
 app.factory('LinkDBBelongToByTeam', function($resource, BaseURL, BelongToByTeam){
@@ -106,3 +127,9 @@ app.factory('LinkDBActualityId', function($resource, BaseURL, Actuality){
 	});
 });
 
+// Connexion to Corporate Actuality datas
+app.factory('LinkDBCorpActualities', function($resource, BaseURL, CorporateActualities){
+	return $resource(BaseURL + CorporateActualities, null,{
+		//'update':{method:'PUT',params:{idActuality:"@idActuality"}}
+	});
+});

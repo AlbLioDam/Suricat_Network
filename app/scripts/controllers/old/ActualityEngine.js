@@ -1,22 +1,14 @@
 var app = angular.module('Suricat');
 
-	/*---------------
-	  Get Team List 
-	 ---------------*/
 app.controller('Teams',function($scope, LinkDBTeams){	
 	$scope.listOfTeams = LinkDBTeams.query();
 	
 });
 
 app.controller('TeamActualities',function($interval, $scope, LinkDBTeamActualities){
-	
-	$scope.update = function(){
-		$scope.listOfTeamActualities = LinkDBTeamActualities.query();
-	}
+	$scope.listOfTeamActualities = LinkDBTeamActualities.query();
 
-	/*-----------------------------------------
-	 Prepare Json to Post with Team Actuality 
-	 -----------------------------------------*/		
+	//-- Prepare Json to Post with Team Actuality --//		
 	$scope.newActu=
 		{
 			title:"",
@@ -26,12 +18,8 @@ app.controller('TeamActualities',function($interval, $scope, LinkDBTeamActualiti
 			idUser: 1
 		};
 
-	/*-----------------------------------------
-	 Here is the image management for actuality
-	 @@
-	 @ only use @ V2 (next software release) 
-	 -----------------------------------------*/
-	/*
+
+	/*	V2
 	$scope.imageUpload = function(event){ 
 	   var files = event.target.files; //FileList object 
 	   var file = files[files.length-1];  
@@ -47,13 +35,8 @@ app.controller('TeamActualities',function($interval, $scope, LinkDBTeamActualiti
 		$scope.step = e.target.result; 
 	   });
 	} */
-	/*-----------------------------------------*/
 
-
-	/*------------------
-	 Json Object to post
-	 ------------------*/
-
+	//-- Post Json --//
 	$scope.postTeamActu=function(selected)
 	{
 		console.log('idTeam : ', selected.idTeam);		
@@ -84,27 +67,25 @@ app.controller('TeamActualities',function($interval, $scope, LinkDBTeamActualiti
 			else
 			{
 				console.log("Erreur dans le post");
+
 			}
 		});
+
 	};
+
+	$interval(function(){
+		var currentdate = new Date(); 
+		var datetime = currentdate.getDate() + "/"
+                + (currentdate.getMonth()+1)  + "/" 
+                + currentdate.getFullYear() + " @ "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+		$scope.message="Dernière actualisation le " + datetime;
+		$scope.listOfTeamActualities = LinkDBTeamActualities.query();
+	},10000);	
+
 });
 
-/*----------------------------------------------
- Controller used to refresh the actuality flow
- ---------------------------------------------*/
-app.controller('refresh',function($interval, $scope, LinkDBTeamActualities){
-	$interval(function(){
-		setTimeout(function(){
-			var currentdate = new Date(); 
-			var datetime = currentdate.getDate() + "/"
-	                + (currentdate.getMonth()+1)  + "/" 
-	                + currentdate.getFullYear() + " @ "  
-	                + currentdate.getHours() + ":"  
-	                + currentdate.getMinutes() + ":" 
-	                + currentdate.getSeconds();
-			$scope.message="Dernière actualisation le " + datetime;
-			//$scope.listOfTeamActualities = LinkDBTeamActualities.query();
-			$scope.$apply();
-		},3000);
-	},10000);	
-});
+
+

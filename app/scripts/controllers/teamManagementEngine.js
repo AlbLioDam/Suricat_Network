@@ -1,36 +1,37 @@
 var app = angular.module('Suricat');
 
 // CONTROLLER : Random turnover of background picture 
-app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkDBDepartment, LinkDBBelongTo, LinkDBBelongToByTeam, LinkDBNotBelongToByTeam)
+app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkDBDepartment, LinkDBBelongTo, LinkDBNotBelongToByTeam, NotBelongToByTeam, LinkDBBelongToRemove)
 {
-	$scope.teams = LinkDBTeams.query();
-	$scope.departments = LinkDBDepartment.query();
-	//$scope.usersbyteams = LinkDBBelongTo.query();
+	$scope.teams 		= LinkDBTeams.query();
+	$scope.departments 	= LinkDBDepartment.query();
+	$scope.usersbyteams = LinkDBBelongTo.query();
 
 	$scope.addMember = false;
-	$scope.team = {};
-	$scope.teamVerif = {};
 
 	$scope.changesToSave = angular.equals($scope.team, $scope.teamVerif);
 
 	$scope.showTeamDetail = function(selected)
 	{
-		console.log(selected);
-		$scope.addMember = false;
-		$scope.usersbyteams = LinkDBBelongTo.query();
+		if(selected.idTeam != null)
+		{
+			$scope.addMember = false;
 
-		$scope.team = {
-			idTeam: selected.idTeam,
-			teamName: selected.teamName,
-			projectName: selected.projectName,
-			projectDescription: selected.projectDescription
-		}
+			$scope.teamSelected = selected;
 
-		$scope.teamVerif = {
-			idTeam: selected.idTeam,
-			teamName: selected.teamName,
-			projectName: selected.projectName,
-			projectDescription: selected.projectDescription
+			$scope.team = {
+				idTeam: $scope.teamSelected.idTeam,
+				teamName: $scope.teamSelected.teamName,
+				projectName: $scope.teamSelected.projectName,
+				projectDescription: $scope.teamSelected.projectDescription
+			}
+
+			$scope.teamVerif = {
+				idTeam: $scope.teamSelected.idTeam,
+				teamName: $scope.teamSelected.teamName,
+				projectName: $scope.teamSelected.projectName,
+				projectDescription: $scope.teamSelected.projectDescription
+			}
 		}
 	}
 
@@ -45,36 +46,62 @@ app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkD
 		$scope.changesToSave = angular.equals($scope.team, $scope.teamVerif);
 	}
 
-	$scope.addUserInTeam = function(user, selected)
+	$scope.saveTeamInformations = function()
 	{
-		LinkDBBelongTo.save({idUser: user.idUser, idTeam: selected.idTeam}).$promise.then(function(response)
+		LinkDBTeams.update($scope.team).$promise.then(function(response)
 		{
-				console.log(response);
-				$scope.usersnotinteam = response;
-
-/*				LinkDBNotBelongToByTeam.getUsersNotInTeam({idTeam: selected.idTeam}).$promise.then(function(response)
-				{
-						console.log(response);
-						$scope.usersnotinteam = response;
-				});*/
-
-				$scope.usersbyteams = LinkDBBelongTo.query();
+			console.log(response);
 		});
 	}
 
-	$scope.removeUserFromTeam = function(user)
+	$scope.addUserInTeam = function(user)
 	{
-		console.log(user);
-		//LinkDBBelongTo.removeUserFromTeam({idUser:user.idUser, idTeam: user.idTeam});
-		//$scope.usersbyteams = LinkDBBelongTo.query();
+		//console.log(user.idUser);
+		//console.log($scope.teamSelected.idTeam);
+		LinkDBBelongTo.save({idUser: user.idUser, idTeam: $scope.teamSelected.idTeam}).$promise.then(function(response)
+		{
+			if(response.status == 0)
+			{
+				$scope.usersbyteams = LinkDBBelongTo.query();
+				LinkDBNotBelongToByTeam.getUsersNotInTeam({idTeam: $scope.teamSelected.idTeam}).$promise.then(function(response)
+				{
+					//console.log(response);
+					$scope.usersnotinteam = response;
+				});
+			}
+		})
 	}
 
-	$scope.showMembersNotInTheTeam = function(selected)
+	$scope.removeUser = function(user)
 	{
-		LinkDBNotBelongToByTeam.getUsersNotInTeam({idTeam: selected.idTeam}).$promise.then(function(response)
+		console.log("user delete : ");
+		console.log(user);
+		//var obj = {idUser: user.idUser, idTeam: user.idTeam}
+
+		LinkDBBelongToRemove.removeUser({idUser: user.idUser, idTeam: user.idTeam}).$promise.then(function(response)
 		{
-				console.log(response);
-				$scope.usersnotinteam = response;
+			if(response.status == 0)
+			{//console.log(obj.idUser);
+			//console.log(obj.idTeam);
+			console.log("response delete : ");
+			console.log(response);
+			$scope.usersbyteams = LinkDBBelongTo.query();
+		}
+		});
+	}
+
+	$scope.showMembersNotInTheTeam = function()
+	{
+		LinkDBNotBelongToByTeam.getUsersNotInTeam({idTeam: $scope.teamSelected.idTeam}).$promise.then(function(response)
+		{
+			//console.log(response);
+			$scope.usersnotinteam = response;
+			/*			
+			var size = $scope.usersnotinteam.length;
+			console.log(size);
+			var size1 = Math.round(($scope.usersnotinteam.length/3) * 10) / 10;
+			console.log(size1);
+			*/
 		});
 
 		$scope.addMember = true;

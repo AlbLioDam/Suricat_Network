@@ -3,15 +3,16 @@ var app = angular.module('Suricat');
 	/*---------------
 	  Get Team List 
 	 ---------------*/
-app.controller('Teams',function($scope, LinkDBTeams){	
+/*app.controller('Teams',function($scope, LinkDBTeams){	
 	$scope.listOfTeams = LinkDBTeams.query();
 	
 });
+*/
 
-app.controller('TeamActualities',function($interval, $scope, LinkDBTeamActualities){
-	
+app.controller('CorporateActualities',function($interval, $scope, LinkDBCorpActualities){
+	$scope.listOfCorpActualities = LinkDBCorpActualities.query();
 	$scope.update = function(){
-		$scope.listOfTeamActualities = LinkDBTeamActualities.query();
+		$scope.listOfCorpActualities = LinkDBCorpActualities.query();
 	}
 
 	/*-----------------------------------------
@@ -67,11 +68,11 @@ app.controller('TeamActualities',function($interval, $scope, LinkDBTeamActualiti
 		console.dir($scope.newActu);
 
 		console.log("scope : " + $scope.newActu.idTeam);
-		LinkDBTeamActualities.post($scope.newActu).$promise.then(function(response){
+		LinkDBCorpActualities.post($scope.newActu).$promise.then(function(response){
 			if(response.status == 0)
 			{
 				console.log("post message ok");
-				$scope.listOfTeamActualities = LinkDBTeamActualities.query();
+				$scope.listOfCorpActualities = LinkDBCorpActualities.query();
 				$scope.newActu=
 				{
 					title:"",
@@ -92,7 +93,7 @@ app.controller('TeamActualities',function($interval, $scope, LinkDBTeamActualiti
 /*----------------------------------------------
  Controller used to refresh the actuality flow
  ---------------------------------------------*/
-app.controller('refresh',function($interval, $scope, LinkDBTeamActualities){
+app.controller('refresh',function($interval, $scope, LinkDBCorpActualities){
 	$interval(function(){
 		setTimeout(function(){
 			var currentdate = new Date(); 

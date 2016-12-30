@@ -9,6 +9,7 @@ div#choice
 	padding: 10px;
 	border: 1px solid black;
 	border-radius: 10px;
+	background-color: #708090;
 }
 
 div#preview
@@ -16,10 +17,17 @@ div#preview
 	padding: 10px;
 	border: 1px solid black;
 	border-radius: 10px;
+	background-color: #708090;
 }
 
 button.showUser
 {
 	min-height: 50px;
 	background-color: #e67e22;
+}
+
+.containerUpdateUser
+{
+	background-color: white;
+	border-radius: 10px;
 }
