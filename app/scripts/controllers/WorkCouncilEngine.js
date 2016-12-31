@@ -9,9 +9,8 @@ var app = angular.module('Suricat');
 });
 */
 
-app.controller('CorporateActualities',function($interval, $scope, LinkDBCorpActualities){
-	$scope.listOfCorpActualities = LinkDBCorpActualities.query();
-	
+app.controller('WorkCouncilActualities',function($interval, $scope, LinkDBWorkCouncilActualities){
+	$scope.listOfWorkCouncilActualities = LinkDBWorkCouncilActualities.query();
 
 	/*-----------------------------------------
 	 Prepare Json to Post with Team Actuality 
@@ -21,7 +20,6 @@ app.controller('CorporateActualities',function($interval, $scope, LinkDBCorpActu
 			title:"",
 			publication:"",
 			photo :[],
-			idTeam : "",
 			idUser: 1
 		};
 
@@ -58,7 +56,7 @@ app.controller('CorporateActualities',function($interval, $scope, LinkDBCorpActu
 			
 		$scope.newActu.photo = $scope.newActu.photo.base64;
 		console.log('file is : ' );
-		console.dir($scope.newActu.photo);
+		//console.dir($scope.newActu.photo);
 
 
 		//$scope.newActu.idTeam=selected.idTeam;
@@ -66,17 +64,16 @@ app.controller('CorporateActualities',function($interval, $scope, LinkDBCorpActu
 		console.dir($scope.newActu);
 
 		//console.log("scope : " + $scope.newActu.idTeam);
-		LinkDBCorpActualities.post($scope.newActu).$promise.then(function(response){
+		LinkDBWorkCouncilActualities.post($scope.newActu).$promise.then(function(response){
 			if(response.status == 0)
 			{
 				console.log("post message ok");
-				$scope.listOfCorpActualities = LinkDBCorpActualities.query();
+				$scope.listOfWorkCouncilActualities = LinkDBWorkCouncilActualities.query();
 				$scope.newActu=
 				{
 					title:"",
 					publication:"",
 					photo : [],
-					idTeam : "",
 					idUser: 1
 				};
 			}
@@ -91,10 +88,10 @@ app.controller('CorporateActualities',function($interval, $scope, LinkDBCorpActu
 /*----------------------------------------------
  Controller used to refresh the actuality flow
  ---------------------------------------------*/
-app.controller('refresh',function($interval, $scope, LinkDBCorpActualities){
+app.controller('refresh',function($interval, $scope, LinkDBWorkCouncilActualities){
 	$interval(function(){
 		setTimeout(function(){
-			var currentdate = new Date(); 
+			var currentdate = new Date();
 			var datetime = currentdate.getDate() + "/"
 	                + (currentdate.getMonth()+1)  + "/" 
 	                + currentdate.getFullYear() + " @ "  

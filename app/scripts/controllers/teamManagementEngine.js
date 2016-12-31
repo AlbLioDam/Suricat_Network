@@ -56,8 +56,6 @@ app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkD
 
 	$scope.addUserInTeam = function(user)
 	{
-		//console.log(user.idUser);
-		//console.log($scope.teamSelected.idTeam);
 		LinkDBBelongTo.save({idUser: user.idUser, idTeam: $scope.teamSelected.idTeam}).$promise.then(function(response)
 		{
 			if(response.status == 0)
@@ -65,7 +63,6 @@ app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkD
 				$scope.usersbyteams = LinkDBBelongTo.query();
 				LinkDBNotBelongToByTeam.getUsersNotInTeam({idTeam: $scope.teamSelected.idTeam}).$promise.then(function(response)
 				{
-					//console.log(response);
 					$scope.usersnotinteam = response;
 				});
 			}
@@ -76,17 +73,19 @@ app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkD
 	{
 		console.log("user delete : ");
 		console.log(user);
-		//var obj = {idUser: user.idUser, idTeam: user.idTeam}
 
 		LinkDBBelongToRemove.removeUser({idUser: user.idUser, idTeam: user.idTeam}).$promise.then(function(response)
 		{
 			if(response.status == 0)
-			{//console.log(obj.idUser);
-			//console.log(obj.idTeam);
-			console.log("response delete : ");
-			console.log(response);
-			$scope.usersbyteams = LinkDBBelongTo.query();
-		}
+			{
+				console.log("response delete : ");
+				console.log(response);
+				$scope.usersbyteams = LinkDBBelongTo.query();
+				LinkDBNotBelongToByTeam.getUsersNotInTeam({idTeam: $scope.teamSelected.idTeam}).$promise.then(function(response)
+				{
+					$scope.usersnotinteam = response;
+				});
+			}
 		});
 	}
 
@@ -94,14 +93,7 @@ app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkD
 	{
 		LinkDBNotBelongToByTeam.getUsersNotInTeam({idTeam: $scope.teamSelected.idTeam}).$promise.then(function(response)
 		{
-			//console.log(response);
 			$scope.usersnotinteam = response;
-			/*			
-			var size = $scope.usersnotinteam.length;
-			console.log(size);
-			var size1 = Math.round(($scope.usersnotinteam.length/3) * 10) / 10;
-			console.log(size1);
-			*/
 		});
 
 		$scope.addMember = true;

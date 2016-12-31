@@ -4,6 +4,7 @@ var app = angular.module('Suricat');
 
 //app.constant('BaseURL', 'http://majesticneo.ddns.net:3000/');
 app.constant('BaseURL', 'http://localhost:3000');
+//app.constant('BaseURL', 'http://192.168.0.29:3000');
 //app.constant('BaseURL', 'http://127.0.0.1:3000');
 //app.constant('BaseURL', 'http://10.111.61.81:3000');
 app.constant('ConnexionUsers', '/user/:idUser');
@@ -17,6 +18,8 @@ app.constant('BelongToByTeam', '/belongto/usersinteam/:idTeam');
 app.constant('NotBelongToByTeam', '/belongto/usersnotinteam/:idTeam');
 app.constant('TeamActualities', '/teamActuality');
 app.constant('CorporateActualities', '/corpActuality');
+app.constant('WorkCouncilActualities', '/workCouncilActuality');
+app.constant('LeisureActualities', '/leisureActuality');
 app.constant('Actuality', '/actuality/:idActuality');
 app.constant('Actualities', '/actuality');
 app.constant('Task', '/task');
@@ -131,5 +134,22 @@ app.factory('LinkDBActualityId', function($resource, BaseURL, Actuality){
 app.factory('LinkDBCorpActualities', function($resource, BaseURL, CorporateActualities){
 	return $resource(BaseURL + CorporateActualities, null,{
 		//'update':{method:'PUT',params:{idActuality:"@idActuality"}}
+		'post': {method: 'POST'}
+	});
+});
+
+// Connexion to Corporate Actuality datas
+app.factory('LinkDBWorkCouncilActualities', function($resource, BaseURL, WorkCouncilActualities){
+	return $resource(BaseURL + WorkCouncilActualities, null,{
+		//'update':{method:'PUT',params:{idActuality:"@idActuality"}}
+		'post': {method: 'POST'}
+	});
+});
+
+// Connexion to Corporate Actuality datas
+app.factory('LinkDBLeisureActualities', function($resource, BaseURL, LeisureActualities){
+	return $resource(BaseURL + LeisureActualities, null,{
+		//'update':{method:'PUT',params:{idActuality:"@idActuality"}}
+		'post': {method: 'POST'}
 	});
 });
