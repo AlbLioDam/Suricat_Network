@@ -1,3 +1,35 @@
-<div>
-  <h1>Leisure Page In Progress</h1>
+<div ng-controller="LeisureActualities">
+	<h1>Actualités de loisir</h1>
+
+    <div>
+        <div>
+
+    		<!-- ACTUALITY FORM -->
+            <div id="containerTeamActualityForm" class=" containerTeamActuality">
+                <H4>Formulaire de saisie d'actualité de loisir</H4>
+                <label>Titre :</label>
+                <input class="form-control" id="TitleEquipeTextarea" rows="1" ng-model="newActu.title"></input><br>
+                <label>Contenu d'actualité</label>
+                <textarea class="form-control" id="ActuEquipeTextarea" rows="3" ng-model="newActu.publication"></textarea><br>
+                <select ng-model="newActu.categorySelected">
+                    <option value="Cuisine">Cuisine         </option>
+                    <option value="Sport">Sport             </option>
+                    <option value="Covoiturage">Covoiturage </option>
+                    <option value="Services">Services       </option>
+                </select><br><br>
+                <button id="formbutton" type="submit" class="btn btn-primary" ng-click="postTeamActu()">Publier cette actualité</button>
+            </div>
+
+    		<!-- DISPLAY CORPORATE ACTUALITIES -->
+    	        
+            <div ng-controller="refresh">
+            <center>{{message}}</center> 
+                <div id="containerTeamActualityList" class="containerTeamActuality" ng-repeat="actu in listOfLeisureActualities ">            
+                            <div class="contain_title">     <H4>{{actu.title}}</H4>     </div>
+                            <div class="contain_date">      {{actu.dateActuality}}      </div><br><br>
+                            <div class="contain_content">   {{actu.publication}}        </div><br>
+                </div>
+            </div>
+        </div>
+     </div>       
 </div>

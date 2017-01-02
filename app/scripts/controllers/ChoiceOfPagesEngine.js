@@ -4,6 +4,11 @@ var app = angular.module('Suricat');
 app.controller('choiceOfPages', function($scope){
 	$scope.page = "login";
 
+/*	$scope.firstname 	= $cookieStore.get('UserFirstname');
+	$scope.lastname 	= $cookieStore.get('UserLastname');
+	$scope.idUser 	= $cookieStore.get('UserIdUser');
+	$scope.status 	= $cookieStore.get('UserStatus');*/
+
 	$scope.modifyPage = function(newPage)
 	{
 		$scope.page = newPage;
