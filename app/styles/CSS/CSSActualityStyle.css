@@ -1,4 +1,14 @@
-.card-container.card {
+#containerTeamActualityChoice {
+    max-width: 800px;
+    padding: 00px 10px;
+}
+
+#containerTeamActualityForm {
+    max-width: 800px;
+    padding: 00px 10px;
+}
+
+#containerTeamActualityList {
     max-width: 800px;
     padding: 00px 10px;
 }
@@ -19,7 +29,7 @@
 /*
  * Card
  */
-.card {
+.containerTeamActuality {
     background-color: #F7F7F7;
     /* just in case there no content*/
     padding: 20px 25px 30px;

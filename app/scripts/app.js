@@ -8,25 +8,35 @@
  *
  * Main module of the application.
  */
-angular
-  .module('suricatApp', [
-    'ngAnimate',
-    'ngAria',
+var app = angular
+  .module('Suricat', [
     'ngCookies',
-    'ngMessages',
     'ngResource',
     'ngRoute',
-    'ngSanitize',
-    'ngTouch'
-  ])
-  .config(function ($routeProvider) {
+    'ngSanitize'
+  ]);
+  
+/*  app.directive('login', function () 
+  {
+    return({
+            templateUrl: "views/login.html"
+        });
+  });
+  app.directive('createUser', function () 
+  {
+    return({
+            templateUrl: "views/createUser.html"
+        });
+  });*/
+/*  .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+      .when('/createUser', {
+        templateUrl: 'views/createUser.html',
+      })
+      .when('/teamManagement', {
+        templateUrl: 'views/teamManagement.html',
       })
       .otherwise({
         redirectTo: '/'
       });
-  });
+  });*/

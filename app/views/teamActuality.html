@@ -2,12 +2,12 @@
 <!-- SELECT TEAM -->
     <div ng-controller="Teams">
         <div ng-controller="TeamActualities">
-            <div class="card card-container">Veuillez sélectionner une équipe  
-                <select ng-options="team.teamName for team in listOfTeams" ng-model="selected"></select>
+            <div id="containerTeamActualityChoice" class="containerTeamActuality">Veuillez sélectionner une équipe  
+                <select ng-options="team.teamName for team in listOfTeams" ng-model="selected" ng-change="update()"></select>
             </div>
 
     <!-- ACTUALITY FORM -->
-            <div class="card card-container">
+            <div id="containerTeamActualityForm" class=" containerTeamActuality">
                 <H4>Formulaire de saisie d'actualité équipe</H4>
                 <label>Titre :</label>
                 <input class="form-control" id="TitleEquipeTextarea" rows="1" ng-model="newActu.title"></input><br>
@@ -19,12 +19,15 @@
             </div>
 
     <!-- DISPLAY TEAM ACTUALITIES -->
+            
+            <div ng-controller="refresh">
             {{message}} 
-            <div class="card card-container" ng-repeat="actu in listOfTeamActualities | filter: {idTeam:selected.idTeam}">            
-                        <div class="contain_title">     <H4>{{actu.title}}    </H4></div>
-                        <div class="contain_date">      {{actu.dateActuality}}  </div><br><br>
-                        <div class="contain_content">   {{actu.publication}}    </div><br>
-                        <div class="contain_content">   id team : {{actu.idTeam}}  </div>           
+                <div id="containerTeamActualityList" class="containerTeamActuality" ng-repeat="actu in listOfTeamActualities | filter: {idTeam:selected.idTeam}">            
+                            <div class="contain_title">     <H4>{{actu.title}}</H4>     </div>
+                            <div class="contain_date">      {{actu.dateActuality}}      </div><br><br>
+                            <div class="contain_content">   {{actu.publication}}        </div><br>
+                            <div class="contain_content">   id team : {{actu.idTeam}}   </div>           
+                </div>
             </div>
         </div>
      </div>       

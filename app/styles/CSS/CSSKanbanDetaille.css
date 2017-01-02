@@ -1,7 +1,16 @@
 div#kanban
 {
-	background: url('../../images/1.jpg') fixed;
-    background-size: cover;
+	background-color: #E6E6FA;
+}
+
+div#teamActuality
+{
+	background-color: #E6E6FA;
+}
+
+div#burndownChart
+{
+	background-color: #E6E6FA;
 }
 
 div#formTask
