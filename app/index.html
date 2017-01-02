@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Suricat Network</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Suricat is a intranet community for larges entreprises"/>
+    <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.js">             </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-resource.js">    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-route.js">       </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-sanitize.js">    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular-cookies.min.js"> </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="scripts/app.js">                           </script>
+    <script src="scripts/resources/RESTConnexion.js">       </script>
+    <script src="scripts/controllers/angularEngine.js">     </script>
+    <script src="scripts/controllers/mainPageEngine.js">    </script>
+    <script src="scripts/controllers/KanbanEngine.js">      </script>
+    <script src="scripts/controllers/ActualityEngine.js">   </script>
+    <script src="scripts/controllers/passwordEngine.js">    </script>
+    <script src="styles/CSS/dist/js/vendor/jquery.min.js">  </script>
+    <script src="styles/CSS/dist/js/flat-ui.min.js">        </script>
+      
+    <link rel="stylesheet" type="text/css" href="styles/CSS/dist/css/flat-ui.css">
+    <link rel="stylesheet" type="text/css" href="styles/CSS/dist/css/mainSuricat.css">
+    <link rel="shortcut icon" href="images/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="styles/CSS/CSSKanbanDetaille.css">
+    <link rel="stylesheet" type="text/css" href="styles/CSS/CSSAdminPageUsers.css">
+    <link rel="stylesheet" type="text/css" href="styles/CSS/CSSTeamManagement.css">
+    <link rel="stylesheet" type="text/css" href="styles/CSS/CSSActualityStyle.css">
+    <link rel="stylesheet" type="text/css" href="styles/CSS/animate.css">
+    <link rel="stylesheet" type="text/css" href="styles/CSS/CSSLoginStyle.css">
+
+</head>
+<body>
+    <div ng-app="Suricat" ng-controller="PageOptions">
+            <div ng-switch on="page">
+                <div ng-switch-when="login">
+                    <ng-include src="'views/login.html'"></ng-include>
+                </div>
+                <div ng-switch-when="createUser">
+                    <ng-include src="'views/createUser.html'"></ng-include>
+                </div>
+<!--                 <div ng-switch-when="teamManagement">
+                    <ng-include src="'views/teamManagement.html'"></ng-include>
+                </div>
+                <div ng-switch-when="team">
+                    <ng-include src="'views/team.html'"></ng-include>
+                </div> -->
+            </div>
+            <input type="text" ng-model="page"/>
+    </div>
+</body>
+</html>
