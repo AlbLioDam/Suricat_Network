@@ -1,11 +1,6 @@
 
 <!-- SELECT TEAM -->
-    <div ng-controller="Teams">
-        <div ng-controller="TeamActualities">
-            <div id="containerTeamActualityChoice" class="containerTeamActuality">Veuillez sélectionner une équipe  
-                <select ng-options="team.teamName for team in listOfTeams" ng-model="selected" ng-change="update()"></select>
-            </div>
-
+        <div>
     <!-- ACTUALITY FORM -->
             <div id="containerTeamActualityForm" class=" containerTeamActuality">
                 <H4>Formulaire de saisie d'actualité équipe</H4>
@@ -29,5 +24,4 @@
                             <div class="contain_content">   id team : {{actu.idTeam}}   </div>           
                 </div>
             </div>
-        </div>
-     </div>       
+        </div>   

@@ -1,17 +1,22 @@
 var app = angular.module('Suricat');
 
 // CONTROLLER : Switch between login page and main page
-app.controller('choiceOfPages', function($scope){
+app.controller('choiceOfPages', function($scope, $cookieStore){
 	$scope.page = "login";
-
-/*	$scope.firstname 	= $cookieStore.get('UserFirstname');
-	$scope.lastname 	= $cookieStore.get('UserLastname');
-	$scope.idUser 	= $cookieStore.get('UserIdUser');
-	$scope.status 	= $cookieStore.get('UserStatus');*/
 
 	$scope.modifyPage = function(newPage)
 	{
 		$scope.page = newPage;
+	}
+
+	$scope.loadCookieInformations = function()
+	{
+		$scope.firstname 					= $cookieStore.get('UserFirstname');
+		$scope.lastname 					= $cookieStore.get('UserLastname');
+		$scope.idUser 						= $cookieStore.get('UserIdUser');
+		$scope.status 						= $cookieStore.get('UserStatus');
+		$scope.corporatelifeRepresentative 	= $cookieStore.get('UserCorporatelifeRepresentative');
+		$scope.workCouncilRepresentative 	= $cookieStore.get('UserWorkCouncilRepresentative');
 	}
 });
 

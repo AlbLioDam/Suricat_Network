@@ -12,6 +12,7 @@ app.constant('Kanban', '/todo/:id');
 app.constant('Department', '/department/:idDepartment');
 app.constant('Teams', '/team');
 app.constant('BelongTo', '/belongto');
+app.constant('BelongToIdUser', '/belongto/getAllTeamsById/:idUser');
 app.constant('BelongToRemove', '/belongto/remove');
 app.constant('BelongToByTeam', '/belongto/usersinteam/:idTeam');
 app.constant('NotBelongToByTeam', '/belongto/usersnotinteam/:idTeam');
@@ -80,8 +81,19 @@ app.factory('LinkDBTeams', function($resource, BaseURL, Teams){
 app.factory('LinkDBBelongTo', function($resource, BaseURL, BelongTo){
 	return $resource(BaseURL + BelongTo, null, {
 		//'update': {method:'PUT', params: {idMessage: "@idMessage"}}
-		'removeUser': {method:'DELETE', params: {idUser: "@idUser", idTeam: "@idTeam"}},
-		'save'		: {method:'POST'	, params: {idUser: "@idUser", idTeam: "@idTeam"}}
+		'removeUser'	: {method:'DELETE', params: {idUser: "@idUser", idTeam: "@idTeam"}},
+		'save'			: {method:'POST'	, params: {idUser: "@idUser", idTeam: "@idTeam"}},
+		//'removeUser': {method:'DELETE'	, params: {idUser: "@idUser", idTeam: "@idTeam"}}
+	});
+});
+
+// Connexion to BelongTo's datas
+app.factory('LinkDBBelongToByUser', function($resource, BaseURL, BelongToIdUser){
+	return $resource(BaseURL + BelongToIdUser, null, {
+		//'update': {method:'PUT', params: {idMessage: "@idMessage"}}
+		'removeUser'	: {method:'DELETE', params: {idUser: "@idUser", idTeam: "@idTeam"}},
+		'save'			: {method:'POST'	, params: {idUser: "@idUser", idTeam: "@idTeam"}},
+		'getTeamsOfUser': {method:'GET'	, params: {idUser: "@idUser"}, isArray:true}
 		//'removeUser': {method:'DELETE'	, params: {idUser: "@idUser", idTeam: "@idTeam"}}
 	});
 });
@@ -91,7 +103,7 @@ app.factory('LinkDBBelongToRemove', function($resource, BaseURL, BelongToRemove)
 	return $resource(BaseURL + BelongToRemove, null, {
 		'removeUser': {method:'POST'	, params: {idUser: "@idUser", idTeam: "@idTeam"}}
 	});
-})
+});
 
 // Connexion to BelongTo's datas
 app.factory('LinkDBBelongToByTeam', function($resource, BaseURL, BelongToByTeam){

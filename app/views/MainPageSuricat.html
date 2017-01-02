@@ -12,17 +12,18 @@
               </div>
               <div class="collapse navbar-collapse" id="navbar-collapse-01">
                 <ul class="nav navbar-nav animated bounceInDown">
-                  <li><a ng-click="modifyPageInside('team')">EQUIPE</a></li>
-                  <li><a ng-click="modifyPageInside('corporatelife')">VIE ENTREPRISE</a></li>
-                  <li><a ng-click="modifyPageInside('workscouncil')">CE</a></li>
-                  <li><a ng-click="modifyPageInside('leisure')">LOISIR</a></li>
+                  <li><a ng-click="modifyPageInside('team')">          EQUIPE          </a></li>
+                  <li><a ng-click="modifyPageInside('corporatelife')"> VIE ENTREPRISE  </a></li>
+                  <li><a ng-click="modifyPageInside('workscouncil')">  CE              </a></li>
+                  <li><a ng-click="modifyPageInside('leisure')">       LOISIR          </a></li>
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">PARAMETRES<b class="caret"></b></a>
                     <span class="dropdown-arrow"></span>
                     <ul class="dropdown-menu" class="animated fadeInRight">
-                      <li><a ng-click="modifyPageInside('updateUser')">Modification de votre profil</a></li>
-                      <li><a ng-click="modifyPageInside('adminPageUsers')">Gestion des profils (admin)</a></li>
-                      <li><a ng-click="modifyPageInside('teamManagement')">Gestion équipe</a></li>
+                      <li><a ng-click="modifyPageInside('updateUser')">     Modification de votre profil  </a></li>
+                      <li><a ng-click="modifyPageInside('adminPageUsers')"> Gestion des profils (admin)   </a></li>
+                      <li><a ng-click="modifyPageInside('teamManagement')"> Gestion équipe                </a></li>
+                      <li><a ng-click="modifyPageInside('login')">          Déconnexion                   </a></li>
                     </ul>
                   </li>
                 </ul>
@@ -33,26 +34,12 @@
         
       <br><br><br>
       <div ng-switch on="inside">
-          <div ng-switch-when="team">
-            <ng-include src="'views/team.html'" class="animated bounceIn"></ng-include>
-          </div>
-          <div ng-switch-when="corporatelife">
-            <ng-include src="'views/corporatelife.html'"></ng-include>
-          </div>
-          <div ng-switch-when="workscouncil">
-            <ng-include src="'views/workscouncil.html'"></ng-include>
-          </div>
-          <div ng-switch-when="leisure">
-            <ng-include src="'views/leisure.html'"></ng-include>
-          </div>
-          <div ng-switch-when="adminPageUsers">
-            <ng-include src="'views/adminPageUsers.html'"></ng-include>
-          </div>
-          <div ng-switch-when="updateUser">
-            <ng-include src="'views/updateUser.html'"></ng-include>
-          </div>
-           <div ng-switch-when="teamManagement">
-            <ng-include src="'views/teamManagement.html'"></ng-include>
-          </div>
+          <div ng-switch-when="team">           <ng-include src="'views/team.html'">          </ng-include></div>
+          <div ng-switch-when="corporatelife">  <ng-include src="'views/corporatelife.html'"> </ng-include></div>
+          <div ng-switch-when="workscouncil">   <ng-include src="'views/workscouncil.html'">  </ng-include></div>
+          <div ng-switch-when="leisure">        <ng-include src="'views/leisure.html'">       </ng-include></div>
+          <div ng-switch-when="adminPageUsers"> <ng-include src="'views/adminPageUsers.html'"></ng-include></div>
+          <div ng-switch-when="updateUser">     <ng-include src="'views/updateUser.html'">    </ng-include></div>
+          <div ng-switch-when="teamManagement"> <ng-include src="'views/teamManagement.html'"></ng-include></div>
       </div>
     </div> 

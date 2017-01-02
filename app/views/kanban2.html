@@ -13,7 +13,7 @@
             <div class="titre">
                 To Do
             </div>
-            <div id="ToDo" class="task" ng-repeat="task in tasksOfTheTeam | filter: 'To Do'">
+            <div id="ToDo" class="task" ng-repeat="task in tasksOfTheTeam | filter: {status: 'To Do', idTeam: selected.idTeam}">
                 {{task.taskName}}
             </div>
         </div>
@@ -23,7 +23,7 @@
             <div class="titre">
                 In Progress
             </div>
-            <div id="InProgress" class="task" ng-repeat="task in tasksOfTheTeam | filter: 'In Progress'">
+            <div id="InProgress" class="task" ng-repeat="task in tasksOfTheTeam | filter: {status: 'In Progress', idTeam: selected.idTeam}">
                 {{task.taskName}}
             </div>
         </div>
@@ -33,7 +33,7 @@
             <div class="titre">
                 To Verify
             </div>
-            <div id="ToVerify" class="task" ng-repeat="task in tasksOfTheTeam | filter: 'To Verify'">
+            <div id="ToVerify" class="task" ng-repeat="task in tasksOfTheTeam | filter: {status: 'To Verify', idTeam: selected.idTeam}">
                 {{task.taskName}}
             </div>
         </div>
@@ -43,7 +43,7 @@
             <div class="titre">
                 Done
             </div>
-            <div id="Done" class="task" ng-repeat="task in tasksOfTheTeam | filter: 'Done'">
+            <div id="Done" class="task" ng-repeat="task in tasksOfTheTeam | filter: {status: 'Done', idTeam: selected.idTeam}">
                 {{task.taskName}}
             </div>
             </div>

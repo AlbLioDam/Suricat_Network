@@ -6,7 +6,7 @@ app.controller('taskManagementCtrl', function($scope, LinkDBTeams, LinkDBTask, L
 	$scope.departments 	= LinkDBDepartment.query();
 	$scope.durations 	= [1,2,3,4,5,6,7];
 	$scope.weights 		= [1,2,3,4,5,6,7,8,9,10];
-	$scope.states 		= ["ToDo","InProgress","ToVerify","Done"];
+	$scope.states 		= ["To Do","In Progress","To Verify","Done"];
 	
 	$scope.task =
 	{

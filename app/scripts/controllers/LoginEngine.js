@@ -23,6 +23,11 @@ app.controller('CheckLogin',['$scope','LinkDBCheckLogin','$timeout','$cookies','
 				$cookieStore.put('UserFirstname', response.user.firstname);
 				$cookieStore.put('UserLastname', response.user.lastname);
 				$cookieStore.put('UserStatus', response.user.status);
+				$cookieStore.put('UserCorporatelifeRepresentative', response.user.corporatelifeRepresentative);
+				$cookieStore.put('UserWorkCouncilRepresentative', response.user.workCouncilRepresentative);
+
+				$scope.loadCookieInformations();
+
 				/*$cookieStore.put('Useremail', response.user.email);
 				$cookieStore.put('UserCar', response.user.car);
 				$cookieStore.put('UserCarsharing', response.user.carsharing);

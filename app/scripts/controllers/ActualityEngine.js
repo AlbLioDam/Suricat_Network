@@ -3,9 +3,11 @@ var app = angular.module('Suricat');
 	/*---------------
 	  Get Team List 
 	 ---------------*/
-app.controller('Teams',function($scope, LinkDBTeams){	
-	$scope.listOfTeams = LinkDBTeams.query();
-	
+app.controller('Teams',function($scope, LinkDBBelongToByUser){	
+	console.log($scope.idUser);
+	LinkDBBelongToByUser.getTeamsOfUser({idUser: $scope.idUser}).$promise.then(function(response){
+		$scope.listOfTeams = angular.copy(response);
+	});
 });
 
 app.controller('TeamActualities',function($interval, $scope, LinkDBTeamActualities){
@@ -23,7 +25,7 @@ app.controller('TeamActualities',function($interval, $scope, LinkDBTeamActualiti
 			publication:"",
 			photo :[],
 			idTeam : "",
-			idUser: 1
+			idUser: $scope.idUser
 		};
 
 	/*-----------------------------------------
@@ -78,7 +80,7 @@ app.controller('TeamActualities',function($interval, $scope, LinkDBTeamActualiti
 					publication:"",
 					photo : [],
 					idTeam : "",
-					idUser: 1
+					idUser: $scope.idUser
 				};
 			}
 			else
