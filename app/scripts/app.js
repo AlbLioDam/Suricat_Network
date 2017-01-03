@@ -9,11 +9,14 @@
  * Main module of the application.
  */
 var app = angular
-  .module('Suricat', [
-    'ngCookies',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize'
+  .module('Suricat'   , [
+          'ngCookies' ,
+          'ngResource',
+          'ngRoute'   ,
+          'ngSanitize',
+          'ngMaterial',
+          'ngMessages',
+          'material.svgAssetsCache'
   ]);
   
 /*  app.directive('login', function () 

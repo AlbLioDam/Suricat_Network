@@ -1,4 +1,4 @@
-  <div class="container-fluid" ng-controller="choiceOfInside">
+  <div  ng-controller="choiceOfInside">
         <!--Navbar-->
         <div class="row demo-row">
           <div class="col-xs-12">
@@ -23,7 +23,7 @@
                       <li><a ng-click="modifyPageInside('updateUser')">     Modification de votre profil  </a></li>
                       <li><a ng-click="modifyPageInside('adminPageUsers')"> Gestion des profils (admin)   </a></li>
                       <li><a ng-click="modifyPageInside('teamManagement')"> Gestion équipe                </a></li>
-                      <li><a ng-click="disconnect('login')">          Déconnexion                   </a></li>
+                      <li><a ng-click="showConfirm($event)">          Déconnexion                   </a></li>
                     </ul>
                   </li>
                 </ul>
@@ -42,4 +42,7 @@
           <div ng-switch-when="updateUser">     <ng-include src="'views/updateUser.html'">    </ng-include></div>
           <div ng-switch-when="teamManagement"> <ng-include src="'views/teamManagement.html'"></ng-include></div>
       </div>
-    </div> 
+
+
+
+</div> 
