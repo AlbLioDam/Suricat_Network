@@ -9,6 +9,18 @@ app.controller('choiceOfPages', function($scope, $cookieStore){
 		$scope.page = newPage;
 	}
 
+	$scope.disconnect = function(newPage)
+	{
+		$cookieStore.remove('UserFirstname');
+		$cookieStore.remove('UserLastname');
+		$cookieStore.remove('UserIdUser');
+		$cookieStore.remove('UserStatus');
+		$cookieStore.remove('UserCorporatelifeRepresentative');
+		$cookieStore.remove('UserWorkCouncilRepresentative');
+		
+		$scope.page = newPage;
+	}
+
 	$scope.loadCookieInformations = function()
 	{
 		$scope.firstname 					= $cookieStore.get('UserFirstname');
