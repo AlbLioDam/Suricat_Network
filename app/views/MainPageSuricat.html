@@ -1,4 +1,4 @@
-  <div class="container-fluid" ng-controller="choiceOfInside">
+  <div class="container-fluid" class="dialog-demo-content" layout="row" layout-wrap layout-margin layout-align="center" ng-controller="choiceOfInside">
         <!--Navbar-->
         <div class="row demo-row">
           <div class="col-xs-12">
@@ -23,7 +23,7 @@
                       <li><a ng-click="modifyPageInside('updateUser')">     Modification de votre profil  </a></li>
                       <li><a ng-click="modifyPageInside('adminPageUsers')"> Gestion des profils (admin)   </a></li>
                       <li><a ng-click="modifyPageInside('teamManagement')"> Gestion équipe                </a></li>
-                      <li><a ng-click="disconnect('login')">          Déconnexion                   </a></li>
+                      <li><a ng-click="showConfirm($event)">          Déconnexion                   </a></li>
                     </ul>
                   </li>
                 </ul>
@@ -42,4 +42,23 @@
           <div ng-switch-when="updateUser">     <ng-include src="'views/updateUser.html'">    </ng-include></div>
           <div ng-switch-when="teamManagement"> <ng-include src="'views/teamManagement.html'"></ng-include></div>
       </div>
-    </div> 
+
+      <md-button class="md-primary md-raised" ng-click="showConfirm($event)" >
+      Confirm Dialog
+    </md-button>
+    <div style="visibility: hidden" id="popupContainer">
+    <div class="md-dialog-container" id="myDialog">
+      <md-dialog layout-padding>
+        <h2>Pre-Rendered Dialog</h2>
+        <p>
+          This is a pre-rendered dialog, which means that <code>$mdDialog</code> doesn't compile its
+          template on each opening.
+          <br/><br/>
+          The Dialog Element is a static element in the DOM, which is just visually hidden.<br/>
+          Once the dialog opens, we just fetch the element from the DOM into our dialog and upon close
+          we restore the element back into its old DOM position.
+        </p>
+      </md-dialog>
+    </div>
+  </div>
+</div> 

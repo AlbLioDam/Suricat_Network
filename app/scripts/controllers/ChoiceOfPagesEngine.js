@@ -1,13 +1,32 @@
 var app = angular.module('Suricat');
 
 // CONTROLLER : Switch between login page and main page
-app.controller('choiceOfPages', function($scope, $cookieStore){
+app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
 	$scope.page = "login";
 
 	$scope.modifyPage = function(newPage)
 	{
 		$scope.page = newPage;
 	}
+
+	$scope.showConfirm = function(ev) 
+	{
+    	var confirm = $mdDialog.confirm()
+          .title('Veuillez confirmer')
+          .textContent('Souhaitez-vous vous déconnecter ?')
+          .ariaLabel('Lucky day')
+          .targetEvent(ev)
+          .ok('Oui')
+          .cancel('Non');
+
+    	$mdDialog.show(confirm).then(function() 
+    	{
+      		$scope.disconnect('login');
+    	}, function() 
+    	{
+	      //only close the dialog box.
+	    });
+  };
 
 	$scope.disconnect = function(newPage)
 	{
