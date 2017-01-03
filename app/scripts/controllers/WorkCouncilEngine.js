@@ -20,7 +20,7 @@ app.controller('WorkCouncilActualities',function($interval, $scope, LinkDBWorkCo
 			title:"",
 			publication:"",
 			photo :[],
-			idUser: 1
+			idUser: $scope.idUser
 		};
 
 	/*-----------------------------------------
@@ -74,7 +74,7 @@ app.controller('WorkCouncilActualities',function($interval, $scope, LinkDBWorkCo
 					title:"",
 					publication:"",
 					photo : [],
-					idUser: 1
+					idUser: $scope.idUser
 				};
 			}
 			else

@@ -15,8 +15,10 @@ app.controller('choiceOfPages', function($scope, $cookieStore){
 		$scope.lastname 					= $cookieStore.get('UserLastname');
 		$scope.idUser 						= $cookieStore.get('UserIdUser');
 		$scope.status 						= $cookieStore.get('UserStatus');
-		$scope.corporatelifeRepresentative 	= $cookieStore.get('UserCorporatelifeRepresentative');
+		$scope.corporateLifeRepresentative 	= $cookieStore.get('UserCorporatelifeRepresentative');
 		$scope.workCouncilRepresentative 	= $cookieStore.get('UserWorkCouncilRepresentative');
+		console.log($scope.corporateLifeRepresentative);
+		console.log($scope.workCouncilRepresentative);
 	}
 });
 

@@ -21,7 +21,7 @@ app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureAct
 			publication:"",
 			photo :[],
 			category:"",
-			idUser: 1
+			idUser: $scope.idUser
 		};
 
 	/*-----------------------------------------
@@ -76,7 +76,7 @@ app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureAct
 					publication:"",
 					photo : [],
 					category:"",
-					idUser: 1
+					idUser: $scope.idUser
 				};
 			}
 			else
