@@ -23,7 +23,7 @@
                       <li><a ng-click="modifyPageInside('updateUser')">     Modification de votre profil  </a></li>
                       <li><a ng-click="modifyPageInside('adminPageUsers')"> Gestion des profils (admin)   </a></li>
                       <li><a ng-click="modifyPageInside('teamManagement')"> Gestion équipe                </a></li>
-                      <li><a ng-click="disconnect('login')">          Déconnexion                   </a></li>
+                      <li><a ng-click="disconnect('login')">                Déconnexion                   </a></li>
                     </ul>
                   </li>
                 </ul>
@@ -32,14 +32,14 @@
           </div>
         </div> <!-- /row -->
         
-      <br><br><br>
-      <div ng-switch on="inside">
-          <div ng-switch-when="team">           <ng-include src="'views/team.html'">          </ng-include></div>
-          <div ng-switch-when="corporatelife">  <ng-include src="'views/corporatelife.html'"> </ng-include></div>
-          <div ng-switch-when="workscouncil">   <ng-include src="'views/workscouncil.html'">  </ng-include></div>
-          <div ng-switch-when="leisure">        <ng-include src="'views/leisure.html'">       </ng-include></div>
-          <div ng-switch-when="adminPageUsers"> <ng-include src="'views/adminPageUsers.html'"></ng-include></div>
-          <div ng-switch-when="updateUser">     <ng-include src="'views/updateUser.html'">    </ng-include></div>
-          <div ng-switch-when="teamManagement"> <ng-include src="'views/teamManagement.html'"></ng-include></div>
-      </div>
+        <br><br><br>
+        <div ng-switch on="inside" ng-controller="MainPage">
+            <div ng-switch-when="team">           <ng-include src="'views/team.html'">          </ng-include></div>
+            <div ng-switch-when="corporatelife">  <ng-include src="'views/corporatelife.html'"> </ng-include></div>
+            <div ng-switch-when="workscouncil">   <ng-include src="'views/workscouncil.html'">  </ng-include></div>
+            <div ng-switch-when="leisure">        <ng-include src="'views/leisure.html'">       </ng-include></div>
+            <div ng-switch-when="adminPageUsers"> <ng-include src="'views/adminPageUsers.html'"></ng-include></div>
+            <div ng-switch-when="updateUser">     <ng-include src="'views/updateUser.html'">    </ng-include></div>
+            <div ng-switch-when="teamManagement"> <ng-include src="'views/teamManagement.html'"></ng-include></div>
+        </div>
     </div> 
