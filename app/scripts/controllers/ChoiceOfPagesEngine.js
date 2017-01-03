@@ -15,8 +15,18 @@ app.controller('choiceOfPages', function($scope, $cookieStore){
 		$scope.lastname 					= $cookieStore.get('UserLastname');
 		$scope.idUser 						= $cookieStore.get('UserIdUser');
 		$scope.status 						= $cookieStore.get('UserStatus');
+		$scope.access = null;
 		$scope.corporateLifeRepresentative 	= $cookieStore.get('UserCorporatelifeRepresentative');
 		$scope.workCouncilRepresentative 	= $cookieStore.get('UserWorkCouncilRepresentative');
+		if($scope.status == "Chef de projet" || $scope.status == "Admin")
+		{
+			$scope.access = true;
+		}
+		else
+		{
+			$scope.access = false;
+		}
+
 		console.log($scope.corporateLifeRepresentative);
 		console.log($scope.workCouncilRepresentative);
 	}
