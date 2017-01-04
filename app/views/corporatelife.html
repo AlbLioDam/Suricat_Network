@@ -2,7 +2,7 @@
 	<h1>Actualités Vie d'Entreprise</h1>
         <div>
     		<!-- ACTUALITY FORM -->
-            <div id="containerTeamActualityForm" class="containerTeamActuality" ng-show="corporateLifeRepresentative">
+            <div id="containerTeamActualityForm" class="containerTeamActuality" ng-show="corporateLifeRepresentative || status == 'Admin'">
                 <H4>Formulaire de saisie d'actualité d'entreprise</H4>
                 <label>Titre :</label>
                 <input class="form-control" id="TitleEquipeTextarea" rows="1" ng-model="newActu.title"></input><br>

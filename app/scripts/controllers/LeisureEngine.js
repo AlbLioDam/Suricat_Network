@@ -11,7 +11,7 @@ var app = angular.module('Suricat');
 
 app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureActualities){
 	$scope.listOfLeisureActualities = LinkDBLeisureActualities.query();
-        
+    console.log($scope.listOfLeisureActualities);
         
 	/*-----------------------------------------
 	 Prepare Json to Post with Team Actuality 
