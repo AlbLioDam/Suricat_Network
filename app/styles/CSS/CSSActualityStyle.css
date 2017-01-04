@@ -13,6 +13,7 @@
 #containerTeamActualityList {
     max-width: 800px;
     padding: 00px 00px;
+    margin: 0 auto 25px;
 }
 
 .formIntern{
@@ -96,8 +97,31 @@
     box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
 }
 
-#actuHead {
-    background-color: #428bca;
+/*every category is recover with the help of the json actu.category*/
+
+#Sport {
+    background-color: #d35400;
+    padding: 0px;
+    border-top-left-radius : 10px;
+    border-top-right-radius : 10px;
+}
+
+#Cuisine {
+    background-color: #16a085;
+    padding: 0px;
+    border-top-left-radius : 10px;
+    border-top-right-radius : 10px;
+}
+
+#Services {
+    background-color: #663399;
+    padding: 0px;
+    border-top-left-radius : 10px;
+    border-top-right-radius : 10px;
+}
+
+#Covoiturage {
+    background-color: #22313F;
     padding: 0px;
     border-top-left-radius : 10px;
     border-top-right-radius : 10px;
