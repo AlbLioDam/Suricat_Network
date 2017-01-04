@@ -17,7 +17,7 @@ app.controller('CheckLogin',['$scope','LinkDBCheckLogin','$timeout','$cookies','
 				document.getElementById("cont").className = "container animated fadeOutDown";
 
 				/*------------------------------------
-				Store users details in cookie
+				     Store user details in cookie
 				-------------------------------------*/
 				$cookieStore.put('UserIdUser', response.user.idUser);
 				$cookieStore.put('UserFirstname', response.user.firstname);

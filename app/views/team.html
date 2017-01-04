@@ -1,14 +1,14 @@
         <!--Actuality Flow and Kanban and burndown-->
-        <div class="row" style="margin-top: 120px" ng-controller="Teams">
+        <div class="row" style="margin-top: 50px" ng-controller="Kanban">
           <div  ng-controller="TeamActualities">
-            <div id="monaccordeon" class="panel-group col-lg-10 col-md-10 col-sm-12 col-xs-12 text-center" >
+            <div ng-controller="Teams" id="monaccordeon" class="panel-group col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-12 col-xs-12 text-center">
 
               <div id="containerTeamActualityChoice" class="containerTeamActuality">Veuillez sélectionner une équipe  
-                  <select ng-options="team.teamName for team in listOfTeams" ng-model="selected" ng-change="update()"></select>
+                  <select ng-options="team.teamName for team in listOfTeams" ng-model="selected" ng-change="updateKanbanTasks(selected); updateTeamActualities()" ng-mouseenter="updateList()"></select>
               </div>
 
               <div class="panel panel-default">
-                <div class="panel-heading" href="#burndownChart" data-toggle="collapse"> 
+                <div class="panel-heading" href="#burndownChart" data-toggle="collapse">
                   <h3 class="panel-title">
                     <a> BurndownChart </a>
                   </h3>

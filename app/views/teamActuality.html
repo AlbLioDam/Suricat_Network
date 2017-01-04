@@ -1,8 +1,11 @@
 
 <!-- SELECT TEAM -->
-        <div>
+        <div ng-hide="choiceOfTeam.idTeam" class="text-center">
+            En attente de sélection
+        </div>
+        <div ng-hide="!choiceOfTeam.idTeam">
     <!-- ACTUALITY FORM -->
-            <div id="containerTeamActualityForm" class=" containerTeamActuality" ng-show="access">
+            <div id="containerTeamActualityForm" class="containerTeamActuality" ng-show="access">
                 <H4>Formulaire de saisie d'actualité équipe</H4>
                 <label>Titre :</label>
                 <input class="form-control" id="TitleEquipeTextarea" rows="1" ng-model="newActu.title"></input><br>
@@ -10,18 +13,18 @@
                 <textarea class="form-control" id="ActuEquipeTextarea" rows="3" ng-model="newActu.publication"></textarea><br>
 
      <!-- Bower - bower install angular-base64-upload-->
-                <button id="formbutton" type="submit" class="btn btn-primary" ng-click="postTeamActu(selected)">Publier cette actualité</button>
+                <button id="formbutton" type="submit" class="btn btn-primary" ng-click="postTeamActu(choiceOfTeam)">Publier cette actualité</button>
             </div>
 
     <!-- DISPLAY TEAM ACTUALITIES -->
             
             <div ng-controller="refresh">
             {{message}} 
-                <div id="containerTeamActualityList" class="containerTeamActuality" ng-repeat="actu in listOfTeamActualities | filter: {idTeam:selected.idTeam}">            
+                <div id="containerTeamActualityList" class="containerTeamActuality" ng-repeat="actu in listOfTeamActualities | filter: {idTeam: choiceOfTeam.idTeam}">            
                             <div class="contain_title">     <H4>{{actu.title}}</H4>     </div>
                             <div class="contain_date">      {{actu.dateActuality}}      </div><br><br>
                             <div class="contain_content">   {{actu.publication}}        </div><br>
-                            <div class="contain_content">   id team : {{actu.idTeam}}   </div>           
+                            <div class="contain_content">   id team : {{actu.idTeam}}   </div>         
                 </div>
             </div>
         </div>   
