@@ -19,7 +19,7 @@
                     <textarea class="form-control" id="ActuEquipeTextarea" rows="3" ng-model="newActu.publication"></textarea><br>
 
                     <label class="titleLabel">Categorie</label>
-                    <select ng-model="newActu.categorySelected">
+                    <select ng-model="newActu.category">
                         <option value="Cuisine">    Cuisine         </option>
                         <option value="Sport">      Sport             </option>
                         <option value="Covoiturage">Covoiturage </option>
@@ -34,10 +34,10 @@
             <div ng-controller="refresh" class="container">
                 <center>{{message}}</center> 
                 <div id="containerTeamActualityList" class="containerTeamActuality row" ng-repeat="actu in listOfLeisureActualities">   
-                    <div class="col-xs-12" id="actuHead">
+                    <div class="col-xs-12" id={{actu.category}}>
 
                         <div id="contain_title" class="col-xs-6">
-                            <H4 class="actuTitle"><span id="glyph" class="glyphicon glyphicon-music"></span> {{actu.title}}</H4>     
+                            <H4 class="actuTitle"><span id="glyph" ng-class="glyphicon glyphicon-music"></span> {{actu.title}}</H4>     
                         </div>
 
                         <div id="contain_date" class="col-xs-6">
@@ -45,7 +45,8 @@
                         </div>
                     </div>
 
-                    <div class="contain_content col-xs-12">   {{actu.publication}}     
+
+                    <div class="contain_content col-xs-12">   {{actu.publication}}  
                     </div><br>
 
                     <i>Auteur : {{actu.lastname}} {{actu.firstname}}</i>
