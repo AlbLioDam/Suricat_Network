@@ -58,8 +58,7 @@ app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
 			$scope.access = false;
 		}
 
-		console.log($scope.corporateLifeRepresentative);
-		console.log($scope.workCouncilRepresentative);
+		console.log("access : ", $scope.access);
 	}
 });
 
