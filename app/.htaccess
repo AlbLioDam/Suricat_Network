@@ -46,6 +46,7 @@
 
 Options All -Indexes
 ErrorDocument 403 http://localhost:8081/suricat_network/app/error/error_403.html
+ErrorDocument 404 http://localhost:8081/suricat_network/app/error/error_404.html
 
 
 
