@@ -1,0 +1,53 @@
+#===================================================================================
+# 
+#                                                                               
+#                                  `-```                                         
+#                       ` o/s+/+++++syo:  `                                      
+#                      /yoNmdhhhhhhydddyhy+-`                                    
+#              `:/oos/+NNmdhhhhhhyyyyhdddmmys:`                                  
+#    .`       /so+//o+syyssyyyssyysssosssyyyhsso.                                
+#    :o/`    +ssyhhddhyyyyydhhdsshyyyhhysyyyyhdd-                                
+#     `+yo+/oshhso+smmmddhds//yyoyhsysyyyyyyyhhhh+.              .:.`            
+#        -+oss+:`  -mdddhyh/o++ssho/hhysyyyyysyyhdd/      ...``:syyysoooo/-`     
+#                  +hss++soossssys--s:oysyhhhyhddmdds-`    .:os+o/.`     ./s+.   
+#                 .mhyo++oooy:.:-..-:..:osyyhhymmmmddhhyso/-`              `/y:  
+#                 :dhysyhhddy::-::://-..../hhsshmmmmdhyyhhhdddh+.            /h. 
+#                  .+syhs::ys//////+ss+//--oyhhhdddsyssyyyyhhdddhs-          .d: 
+#                    `:h. .+sssssssyhhs/-..`/yhhhyssysyysssyyhhhyhmy-       `od` 
+#                     `` `-//oshddddddo:----:/hmmdhhhhdhsoossyyysymmmo.    :hh-  
+#                       `.//+ssymmmmmmd:.-:-ohdmmddmdmNmysssssyyssdhdmmdyydh+`   
+#                     `.://+syhhdho+ooh+.-//shddMNNNNNNNdsooosysss//-o+do+-      
+#                    .-./+sshds/.    `-..-+//yydMNNNNNNNNdssoooooso`             
+#                  `-:-:/osydo      `-..:-.-+oydmmNNNmhsmmysssssssy+:+/`         
+#                ::/:::osyyy:       --:-..-/oho-oyNNNNmo..``oyssosyyssss-        
+#               .s//++ooso:```     .::--::+ss-   .dNNNmh.    +syyyyyyyyys`       
+#              -/o++oss:`  /y+:.``.:--:/+ss/`    +NNNd:        `-`.+yhyyy+`      
+#              :h//:+y+    -`-:-/::://+sy/`     .mNNNd.             `ohyyys:     
+#             `:++/+sy. `oo`.-//++/+shhho`     /dNNNm+`              .dhhhhy-    
+#            :oyy/oy+`  .osoyysyyhhhhhs-      +dddo::                 ohdhdh-    
+#            .:/o+:.      ./ydddhhhs:``                               :yyyyy.    
+#                            -//:-.`                                    `.`                      
+# 
+# 			 _            __  __ _             _                       
+# 			| |          |  \/  (_)           | |                      
+# 			| |     ___  | \  / |_ _ __   ___ | |_ __ _ _   _ _ __ ___ 
+# 			| |    / _ \ | |\/| | | '_ \ / _ \| __/ _` | | | | '__/ _ \
+# 			| |___|  __/ | |  | | | | | | (_) | || (_| | |_| | | |  __/
+# 			|______\___| |_|  |_|_|_| |_|\___/ \__\__,_|\__,_|_|  \___|                                                         
+#
+#
+#							Suricat Protection system
+#
+#
+#							 Lionel / Damien / Alban
+#
+#================================================================================
+
+
+Options All -Indexes
+ErrorDocument 403 http://localhost:8081/suricat_network/app/error/error_403.html
+ErrorDocument 404 http://localhost:8081/suricat_network/app/error/error_404.html
+
+
+
+

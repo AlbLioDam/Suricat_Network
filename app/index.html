@@ -6,30 +6,44 @@
         <meta name="description" content="Suricat is a intranet community for larges entreprises"/>
         <meta name="viewport" content="width=1000, initial-scale=1.0, maximum-scale=1.0">
 
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.js">             </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-resource.js">    </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-route.js">       </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-sanitize.js">    </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-cookies.min.js"> </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.js">                     </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-resource.js">            </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-route.js">               </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-sanitize.js">            </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-cookies.min.js">         </script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js">  </script>
+
+
+
+        
+        <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"">  </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js">  </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js">  </script>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js">  </script>
+
+
+
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-        <script src="scripts/app.js">                                               </script>
-        <script src="scripts/resources/RESTConnexion.js">                           </script>
-        <script src="scripts/controllers/ChoiceOfPagesEngine.js">                   </script>
-        <script src="scripts/controllers/LoginBackgroundEngine.js">                 </script>
-        <script src="scripts/controllers/LoginEngine.js">                           </script>
-        <script src="scripts/controllers/TaskEngine.js">                            </script>
-        <script src="scripts/controllers/KanbanEngine.js">                          </script>
-        <script src="scripts/controllers/ActualityEngine.js">                       </script>
-        <script src="scripts/controllers/CorporateActualityEngine.js">              </script>
-        <script src="scripts/controllers/WorkCouncilEngine.js">                     </script>
-        <script src="scripts/controllers/LeisureEngine.js">                         </script>
-        <script src="scripts/controllers/TeamManagementEngine.js">                  </script>
-        <script src="scripts/controllers/UpdateUserEngine.js">                      </script>
-        <script src="scripts/controllers/AdminEngine.js">                           </script>
-        <script src="styles/CSS/dist/js/vendor/jquery.min.js">                      </script>
-        <script src="styles/CSS/dist/js/flat-ui.min.js">                            </script>
+        <script src="scripts/app.js">                                                   </script>
+        <script src="scripts/resources/RESTConnexion.js">                               </script>
+        <script src="scripts/controllers/ChoiceOfPagesEngine.js">                       </script>
+        <script src="scripts/controllers/LoginBackgroundEngine.js">                     </script>
+        <script src="scripts/controllers/LoginEngine.js">                               </script>
+        <script src="scripts/controllers/mainPageEngine.js">                            </script>
+        <script src="scripts/controllers/TaskEngine.js">                                </script>
+        <script src="scripts/controllers/KanbanEngine.js">                              </script>
+        <script src="scripts/controllers/ActualityEngine.js">                           </script>
+        <script src="scripts/controllers/CorporateActualityEngine.js">                  </script>
+        <script src="scripts/controllers/WorkCouncilEngine.js">                         </script>
+        <script src="scripts/controllers/LeisureEngine.js">                             </script>
+        <script src="scripts/controllers/TeamManagementEngine.js">                      </script>
+        <script src="scripts/controllers/UpdateUserEngine.js">                          </script>
+        <script src="scripts/controllers/AdminEngine.js">                               </script>
+        <script src="styles/CSS/dist/js/vendor/jquery.min.js">                          </script>
+        <script src="styles/CSS/dist/js/flat-ui.min.js">                                </script>
           
 
         <link rel="stylesheet" type="text/css" href="styles/CSS/CSSKanbanDetaille.css">
@@ -37,16 +51,23 @@
         <link rel="stylesheet" type="text/css" href="styles/CSS/CSSTeamManagement.css">
         <link rel="stylesheet" type="text/css" href="styles/CSS/CSSActualityStyle.css">
         <link rel="stylesheet" type="text/css" href="styles/CSS/CSSLoginStyle.css">
+        <link rel="stylesheet" type="text/css" href="styles/CSS/CSSUpdateUser.css">
         <link rel="stylesheet" type="text/css" href="styles/CSS/CSSIndex.css">
         <link rel="stylesheet" type="text/css" href="styles/CSS/CSSAdminPageUsers.css">
         <link rel="stylesheet" type="text/css" href="styles/CSS/animate.css">
         <link rel="stylesheet" type="text/css" href="styles/CSS/dist/css/flat-ui.css">
         <link rel="stylesheet" type="text/css" href="styles/CSS/dist/css/mainSuricat.css">
         <link rel="stylesheet" type="text/css" href="styles/CSS/dist/css/vendor/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="styles/font-awesome-4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="styles/CSS/dialog.css">
+        <link rel="stylesheet" type="text/css" href="../node_modules/angular-material/angular-material.min.css">
+
+
+
         <link rel="shortcut icon" href="images/favicon.ico">
 
     </head>
-    <body ng-app="Suricat" ng-switch on="page" ng-controller="choiceOfPages">
+    <body ng-app="Suricat" ng-switch on="page" ng-controller="choiceOfPages" ng-cloak>
         <div id="mainSpace">
             <div ng-switch-when="login">
                 <ng-include src="'views/login.html'"></ng-include>

@@ -17,12 +17,17 @@ app.controller('CheckLogin',['$scope','LinkDBCheckLogin','$timeout','$cookies','
 				document.getElementById("cont").className = "container animated fadeOutDown";
 
 				/*------------------------------------
-				Store users details in cookie
+				     Store user details in cookie
 				-------------------------------------*/
 				$cookieStore.put('UserIdUser', response.user.idUser);
 				$cookieStore.put('UserFirstname', response.user.firstname);
 				$cookieStore.put('UserLastname', response.user.lastname);
-				$cookieStore.put('Userstatus', response.user.status);
+				$cookieStore.put('UserStatus', response.user.status);
+				$cookieStore.put('UserCorporatelifeRepresentative', response.user.corporatelifeRepresentative);
+				$cookieStore.put('UserWorkCouncilRepresentative', response.user.workCouncilRepresentative);
+
+				$scope.loadCookieInformations();
+
 				/*$cookieStore.put('Useremail', response.user.email);
 				$cookieStore.put('UserCar', response.user.car);
 				$cookieStore.put('UserCarsharing', response.user.carsharing);

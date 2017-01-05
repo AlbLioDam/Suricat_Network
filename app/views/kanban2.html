@@ -1,4 +1,7 @@
-<div ng-controller="Kanban">
+<div ng-hide="choiceOfTeam.idTeam" class="text-center">
+    En attente de sélection
+</div>
+<div ng-controller="Kanban" ng-hide="!choiceOfTeam.idTeam">
     <div class="container-fluid" id="containerKanban">
         <div id="options" class="row">
             <button class="btn btn-primary buttonKanban col-lg-offset-8 col-lg-2">Modifier une tâche</button>
@@ -13,7 +16,7 @@
             <div class="titre">
                 To Do
             </div>
-            <div id="ToDo" class="task" ng-repeat="task in tasksOfTheTeam | filter: 'To Do'">
+            <div id="ToDo" class="task" ng-repeat="task in tasksOfTheTeam | filter: {status: 'To Do', idTeam: choiceOfTeam.idTeam}">
                 {{task.taskName}}
             </div>
         </div>
@@ -23,7 +26,7 @@
             <div class="titre">
                 In Progress
             </div>
-            <div id="InProgress" class="task" ng-repeat="task in tasksOfTheTeam | filter: 'In Progress'">
+            <div id="InProgress" class="task" ng-repeat="task in tasksOfTheTeam | filter: {status: 'In Progress', idTeam: choiceOfTeam.idTeam}">
                 {{task.taskName}}
             </div>
         </div>
@@ -33,7 +36,7 @@
             <div class="titre">
                 To Verify
             </div>
-            <div id="ToVerify" class="task" ng-repeat="task in tasksOfTheTeam | filter: 'To Verify'">
+            <div id="ToVerify" class="task" ng-repeat="task in tasksOfTheTeam | filter: {status: 'To Verify', idTeam: choiceOfTeam.idTeam}">
                 {{task.taskName}}
             </div>
         </div>
@@ -43,7 +46,7 @@
             <div class="titre">
                 Done
             </div>
-            <div id="Done" class="task" ng-repeat="task in tasksOfTheTeam | filter: 'Done'">
+            <div id="Done" class="task" ng-repeat="task in tasksOfTheTeam | filter: {status: 'Done', idTeam: choiceOfTeam.idTeam}">
                 {{task.taskName}}
             </div>
             </div>

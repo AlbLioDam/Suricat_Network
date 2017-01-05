@@ -11,7 +11,6 @@ var app = angular.module('Suricat');
 
 app.controller('CorporateActualities',function($interval, $scope, LinkDBCorpActualities){
 	$scope.listOfCorpActualities = LinkDBCorpActualities.query();
-	
 
 	/*-----------------------------------------
 	 Prepare Json to Post with Team Actuality 
@@ -22,7 +21,7 @@ app.controller('CorporateActualities',function($interval, $scope, LinkDBCorpActu
 			publication:"",
 			photo :[],
 			idTeam : "",
-			idUser: 1
+			idUser: $scope.idUser
 		};
 
 	/*-----------------------------------------
@@ -55,11 +54,9 @@ app.controller('CorporateActualities',function($interval, $scope, LinkDBCorpActu
 
 	$scope.postTeamActu=function()
 	{
-			
 		$scope.newActu.photo = $scope.newActu.photo.base64;
 		console.log('file is : ' );
 		console.dir($scope.newActu.photo);
-
 
 		//$scope.newActu.idTeam=selected.idTeam;
 		console.log('********************* JSON TO POST *************************' );
@@ -77,7 +74,7 @@ app.controller('CorporateActualities',function($interval, $scope, LinkDBCorpActu
 					publication:"",
 					photo : [],
 					idTeam : "",
-					idUser: 1
+					idUser: $scope.idUser
 				};
 			}
 			else

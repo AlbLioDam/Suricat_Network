@@ -11,7 +11,8 @@ var app = angular.module('Suricat');
 
 app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureActualities){
 	$scope.listOfLeisureActualities = LinkDBLeisureActualities.query();
-	
+        
+        
 	/*-----------------------------------------
 	 Prepare Json to Post with Team Actuality 
 	 -----------------------------------------*/		
@@ -21,7 +22,7 @@ app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureAct
 			publication:"",
 			photo :[],
 			category:"",
-			idUser: 1
+			idUser: $scope.idUser
 		};
 
 	/*-----------------------------------------
@@ -58,7 +59,7 @@ app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureAct
 		$scope.newActu.photo = $scope.newActu.photo.base64;
 		console.log('file is : ' );
 		//console.dir($scope.newActu.photo);
-
+                
 
 		//$scope.newActu.idTeam=selected.idTeam;
 		console.log('********************* JSON TO POST *************************' );
@@ -76,8 +77,10 @@ app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureAct
 					publication:"",
 					photo : [],
 					category:"",
-					idUser: 1
+					idUser: $scope.idUser
 				};
+                                
+                                console.log($scope.listOfLeisureActualities);
 			}
 			else
 			{
@@ -85,6 +88,22 @@ app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureAct
 			}
 		});
 	};
+        
+        /*------------------
+	 function returninga glyphicon for every category
+	 ------------------*/
+    
+         $scope.glyphicon =function(){
+            switch ($scope.newActu.category) {
+            case "Covoiturage":
+                return "glyphicon glyphicon-road";
+                break;
+                
+            default:
+                
+                break;
+        }
+         };
 });
 
 /*----------------------------------------------

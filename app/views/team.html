@@ -1,49 +1,57 @@
         <!--Actuality Flow and Kanban and burndown-->
-        <div class="row" style="margin-top: 120px">
-          <div id="monaccordeon" class="panel-group col-lg-10 col-md-10 col-sm-12 col-xs-12 text-center" >
+        <div class="row" style="margin-top: 50px" ng-controller="Kanban">
+          <div  ng-controller="TeamActualities">
+            <div ng-controller="Teams" id="monaccordeon" class="panel-group col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-12 col-xs-12 text-center">
 
-            <div class="panel panel-default">
-              <div class="panel-heading" href="#burndownChart" data-toggle="collapse"> 
-                <h3 class="panel-title">
-                  <a> BurndownChart </a> 
-                </h3>
+              <div id="containerTeamActualityChoice" class="containerTeamActuality">Veuillez sélectionner une équipe  
+                  <select ng-options="team.teamName for team in listOfTeams" ng-model="selected" ng-change="updateKanbanTasks(selected); updateTeamActualities()" ng-mouseenter="updateList()"></select>
               </div>
-              <div id="burndownChart" class="panel-collapse collapse">
-                <div class="panel-body"> 
-                  partie à remplir
+
+              <div class="panel panel-default">
+                <div class="panel-heading" href="#burndownChart" data-toggle="collapse">
+                  <h3 class="panel-title">
+                    <a> BurndownChart </a>
+                  </h3>
+                </div>
+                <div id="burndownChart" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    partie à remplir
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading" href="#kanban" data-toggle="collapse">
+                  <h3 class="panel-title">
+                    <a> Kanban </a>
+                  </h3>
+                </div>
+                <div id="kanban" class="panel-collapse collapse container-fluid">
+                  <div class="panel-body">
+                    <ng-include src="'views/kanban2.html'"></ng-include>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading" href="#teamActuality" data-toggle="collapse">
+                  <h3 class="panel-title">
+                    <a> Actualités </a> 
+                  </h3>
+                </div>
+                <div id="teamActuality" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <ng-include src="'views/teamActuality.html'"></ng-include>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="panel panel-default">
-              <div class="panel-heading" href="#kanban" data-toggle="collapse"> 
-                <h3 class="panel-title">
-                  <a> Kanban </a>
-                </h3>
-              </div>
-              <div id="kanban" class="panel-collapse collapse container-fluid">
-                <div class="panel-body">
-                  <ng-include src="'views/kanban2.html'"></ng-include>
-                </div>
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading" href="#teamActuality" data-toggle="collapse"> 
-                <h3 class="panel-title">
-                  <a> Actualités </a> 
-                </h3>
-              </div>
-              <div id="teamActuality" class="panel-collapse collapse">
-                <div class="panel-body">
-                  <ng-include src="'views/teamActuality.html'"></ng-include>
-                </div>
-              </div>
-            </div>
-          </div>
             <!--Add shortcut button-->
+            <!--             
             <div class="col-lg-2 col-md-2 hidden-sm hidden-xs">
               <button class="btn btn-primary" type="submit">
                 <span class="glyphicon glyphicon-cog"></span> Ajouter un raccourci
               </button>
-            </div>
+            </div> 
+            -->
+          </div>
         </div>
 
