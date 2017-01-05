@@ -23,6 +23,16 @@ app.constant('LeisureActualities', '/leisureActuality');
 app.constant('Actuality', '/actuality/:idActuality');
 app.constant('Actualities', '/actuality');
 app.constant('Task', '/task');
+app.constant('Todo', '/todo');
+
+
+// connexion to todo datas
+app.factory('LinDBTodo', function($resource, BaseURL, Todo)
+{
+	return $resource(BaseURL + Todo, null, {
+			'post' : {method: 'POST'}
+	});
+}); 
 
 // Connexion to users's datas
 app.factory('LinkDB', function($resource, BaseURL, ConnexionUsers)
