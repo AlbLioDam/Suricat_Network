@@ -37,6 +37,7 @@ app.factory('LinkDB', function($resource, BaseURL, ConnexionUsers)
 app.factory('LinkDBTask', function($resource, BaseURL, Task)
 {
 	return $resource(BaseURL + Task, null, {
+                'post' : {method: 'POST'}
 		//'update': {method:'PUT', params: {idUser: "@idUser"}},
 	});
 });

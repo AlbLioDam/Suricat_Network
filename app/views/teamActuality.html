@@ -19,12 +19,25 @@
     <!-- DISPLAY TEAM ACTUALITIES -->
             
             <div ng-controller="refresh">
-            {{message}} 
-                <div id="containerTeamActualityList" class="containerTeamActuality" ng-repeat="actu in listOfTeamActualities | filter: {idTeam: choiceOfTeam.idTeam}">            
-                            <div class="contain_title">     <H4>{{actu.title}}</H4>     </div>
-                            <div class="contain_date">      {{actu.dateActuality}}      </div><br><br>
-                            <div class="contain_content">   {{actu.publication}}        </div><br>
-                            <div class="contain_content">   id team : {{actu.idTeam}}   </div>         
+            {{message}}    
+                <div id="containerTeamActualityList" class="containerTeamActuality row" ng-repeat="actu in listOfTeamActualities | filter: {idTeam: choiceOfTeam.idTeam}">   
+                    <div class="col-xs-12" id="dd">
+
+                        <div id="contain_title" class="col-xs-6">
+                            <H4 class="actuTitle"><span id="glyph"></span> {{actu.title}}</H4>             
+                        </div>
+
+                        <div id="contain_date" class="col-xs-6">
+                            {{actu.dateActuality}}
+                        </div>
+                    </div>
+
+
+                    <div class="contain_content col-xs-12">   {{actu.publication}}  
+                    </div><br>
+
+                    <i class="pull-right"> id team : {{actu.idTeam}}</i>
                 </div>
+            
             </div>
         </div>   
