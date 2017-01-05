@@ -43,8 +43,22 @@
 #
 #================================================================================
 
+#===========================
+# Protect the htaccess file
+#===========================
+<Files .htaccess>
+Order Allow,Deny
+Deny from all
+</Files>
 
+#========================================================
+# Protect the navigation  by disabling directory browsing
+#========================================================
 Options All -Indexes
+
+#==================
+# Errors management
+#==================
 ErrorDocument 403 http://localhost:8081/suricat_network/app/error/error_403.html
 ErrorDocument 404 http://localhost:8081/suricat_network/app/error/error_404.html
 
