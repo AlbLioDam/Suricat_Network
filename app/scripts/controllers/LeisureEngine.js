@@ -10,9 +10,18 @@ var app = angular.module('Suricat');
 */
 
 app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureActualities){
-	$scope.listOfLeisureActualities = LinkDBLeisureActualities.query();
-    console.log($scope.listOfLeisureActualities);
-        
+	listOfLeisureActualities = LinkDBLeisureActualities.query();
+	//$scope.l = LinkDBLeisureActualities.query();
+	/*console.log($scope.l[i].length);
+	for (var i = 0; i < $scope.l.length; i++) 
+	{
+		console.log(i);
+		console.log($scope.l[i].publication);
+		$scope.l[i].publication = $scope.l[i].publication.replace(/\n/g, '<br/>');
+		console.log($scope.l[i].publication);
+  	}
+
+  	$scope.listOfLeisureActualities = $scope.l;*/
 	/*-----------------------------------------
 	 Prepare Json to Post with Team Actuality 
 	 -----------------------------------------*/		

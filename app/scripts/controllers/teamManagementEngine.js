@@ -21,6 +21,20 @@ app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkD
 		projectDescription: ""
 	}
 
+	$scope.team = {
+		idTeam: "",
+		teamName: "",
+		projectName: "",
+		projectDescription: ""
+	}
+
+	$scope.teamVerif = {
+		idTeam: "",
+		teamName: "",
+		projectName: "",
+		projectDescription: ""
+	}
+
 	$scope.changesToSave = angular.equals($scope.team, $scope.teamVerif);
 
 	$scope.showTeamDetail = function(selected)
@@ -72,6 +86,8 @@ app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkD
 			$scope.teamVerif = angular.copy($scope.team);
 			$scope.changesToSave = angular.equals($scope.team, $scope.teamVerif);
 			$scope.blockedTeamChoice = false;
+
+			$scope.resetListOfTeams();
 		});
 	}
 
@@ -134,6 +150,19 @@ app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkD
 		LinkDBTeams.query().$promise.then(function(response)
 		{
 			$scope.teams = angular.copy(response);
+			var indice = 0;
+
+			if($scope.team.idTeam != "")
+			{
+				for(var i = 0; i < $scope.teams.length; i++)
+				{
+					if($scope.teams[i].idTeam == $scope.team.idTeam)
+					{
+						indice = i;
+					}
+				}
+				$scope.selected = $scope.teams[indice];
+			}
 		});
 	}
 

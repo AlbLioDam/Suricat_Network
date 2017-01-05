@@ -4,14 +4,19 @@
 			<div row class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-12">
 				<form id="formTeam">
 					<h1 id="teamTitle">Gestion des équipes</h1>
+
 					<h3>Veuillez sélectionner l'équipe à modifier</h3>
 					<select ng-options="team.teamName for team in teams" ng-model="selected" class="form-control" ng-change="showTeamDetail(selected)" ng-disabled="blockedTeamChoice" ng-mouseenter="resetListOfTeams()"></select>
+
 					<label class="labelFormTeam" for="teamName">Nom de l'équipe</label>
 					<input ng-disabled="blockedTeamDetail" id="teamName" type="text" ng-model="team.teamName" class="form-control" ng-change="testChanges()"/>
+
 					<label class="labelFormTeam" for="projectName">Nom du projet</label>
 					<input ng-disabled="blockedTeamDetail" id="projectName" type="text" ng-model="team.projectName" class="form-control" ng-change="testChanges()"/>
+
 					<label class="labelFormTeam" for="projectDescription">Description du projet</label>
 					<textarea ng-disabled="blockedTeamDetail" id="projectDescription" ng-model="team.projectDescription" class="form-control" ng-change="testChanges()"></textarea>
+					
 					<div class="row">
 						<button class="btnChangeForm btn btn-danger col-lg-offset-1 col-lg-5" ng-hide="changesToSave" ng-click="resetModifications()">Annuler les changements</button>
 						<button class="btnChangeForm btn btn-success col-lg-5" ng-hide="changesToSave" ng-click="saveTeamInformations()">Sauvegarder les changements</button>
