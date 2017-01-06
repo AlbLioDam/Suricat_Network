@@ -1,31 +1,46 @@
 <div ng-controller="WorkCouncilActualities">
-	<h1>Actualités Comité d'Entreprise</h1>
-
+	
     <div>
         <div >
 
     		<!-- ACTUALITY FORM -->
             <div id="containerTeamActualityForm" class=" containerTeamActuality" ng-show="workCouncilRepresentative || status == 'Admin'">
 
-                <H4>Formulaire de saisie d'actualité de comité d'entreprise</H4>
+                <H4 class="formTitle">actualité du CE</H4>
 
-                <label>Titre :</label>
-                <input class="form-control" id="TitleEquipeTextarea" rows="1" ng-model="newActu.title"></input><br>
-                <label>Contenu d'actualité</label>
-                <textarea class="form-control" id="ActuEquipeTextarea" rows="3" ng-model="newActu.publication"></textarea><br>
-                <button id="formbutton" type="submit" class="btn btn-primary" ng-click="postTeamActu()">Publier cette actualité</button>
+                <div class="formIntern">
+                    <label class="titleLabel">Titre</label>
+                    <input class="form-control" id="TitleEquipeTextarea" rows="1" ng-model="newActu.title"></input><br>
 
+                    <label class="titleLabel">Contenu d'actualité</label>
+                    <textarea class="form-control" id="ActuEquipeTextarea" rows="3" ng-model="newActu.publication"></textarea><br>
+
+     
+                    <button id="formbutton" type="submit" class="btn btn-primary" ng-click="postTeamActu()">Publier cette actualité</button>
+                </div>
             </div>
 
     		<!-- DISPLAY CORPORATE ACTUALITIES -->
     	        
             <div ng-controller="refresh">
-            <center>{{message}}</center>  
-                <div id="containerTeamActualityList" class="containerTeamActuality" ng-repeat="actu in listOfWorkCouncilActualities ">            
-                            <div class="contain_title">     <H4>{{actu.title}}</H4>     </div>
-                            <div class="contain_date">      {{actu.dateActuality}}      </div><br><br>
-                            <div class="contain_content">   {{actu.publication}}        </div><br>
-                            <i>Auteur : {{actu.lastname}} {{actu.firstname}}</i>
+            <center>{{message}}</center>             
+                <div id="containerTeamActualityList" class="containerTeamActuality row" ng-repeat="actu in listOfWorkCouncilActualities">   
+                    <div class="col-xs-12" id="dd">
+
+                        <div id="contain_title" class="col-xs-6">
+                            <H4 class="actuTitle"><span id="glyph"></span> {{actu.title}}</H4>             
+                        </div>
+
+                        <div id="contain_date" class="col-xs-6">
+                            {{actu.dateActuality}}
+                        </div>
+                    </div>
+
+
+                    <div class="contain_content col-xs-12">   {{actu.publication}}  
+                    </div><br>
+
+                    <i class="pull-right"> {{actu.lastname}} {{actu.firstname}}</i>
                 </div>
             </div>
         </div>

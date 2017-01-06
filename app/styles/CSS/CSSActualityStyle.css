@@ -20,6 +20,16 @@
     padding: 00px 10px;
 }
 
+#containerTeamActualityForm {
+    max-width: 800px;
+    padding: 00px 10px;
+}
+
+#containerTeamActualityList {
+    max-width: 800px;
+    padding: 00px 10px;
+}
+
 #texte{
     width: 100px;
     height: 100px;
@@ -125,4 +135,15 @@
     padding: 0px;
     border-top-left-radius : 10px;
     border-top-right-radius : 10px;
+}
+
+#dd {
+    background-color: black;
+    padding: 0px;
+    border-top-left-radius : 10px;
+    border-top-right-radius : 10px;
+}
+
+i{
+    padding-right: 5px;
 }

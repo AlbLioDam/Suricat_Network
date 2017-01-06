@@ -3,6 +3,7 @@
 var app = angular.module('Suricat');
 
 //app.constant('BaseURL', 'http://majesticneo.ddns.net:3000/');
+app.constant('BaseURL', 'http://localhost:3000');
 //app.constant('BaseURL', 'http://192.168.0.29:3000');
 app.constant('BaseURL', 'http://localhost:3000');
 //app.constant('BaseURL', 'http://10.111.61.81:3000');
@@ -37,6 +38,7 @@ app.factory('LinkDB', function($resource, BaseURL, ConnexionUsers)
 app.factory('LinkDBTask', function($resource, BaseURL, Task)
 {
 	return $resource(BaseURL + Task, null, {
+                'post' : {method: 'POST'}
 		//'update': {method:'PUT', params: {idUser: "@idUser"}},
 	});
 });
@@ -86,6 +88,13 @@ app.factory('LinkDBBelongTo', function($resource, BaseURL, BelongTo){
 		//'removeUser': {method:'DELETE'	, params: {idUser: "@idUser", idTeam: "@idTeam"}}
 	});
 });
+
+// Connexion to BelongTo's datas for remove
+app.factory('LinkDBBelongToRemove', function($resource, BaseURL, BelongToRemove){
+	return $resource(BaseURL + BelongToRemove, null, {
+		'removeUser': {method:'POST'	, params: {idUser: "@idUser", idTeam: "@idTeam"}}
+	});
+})
 
 // Connexion to BelongTo's datas
 app.factory('LinkDBBelongToByUser', function($resource, BaseURL, BelongToIdUser){
