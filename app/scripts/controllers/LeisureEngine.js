@@ -10,7 +10,7 @@ var app = angular.module('Suricat');
 */
 
 app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureActualities){
-	listOfLeisureActualities = LinkDBLeisureActualities.query();
+	$scope.listOfLeisureActualities = LinkDBLeisureActualities.query();
 	//$scope.l = LinkDBLeisureActualities.query();
 	/*console.log($scope.l[i].length);
 	for (var i = 0; i < $scope.l.length; i++) 
