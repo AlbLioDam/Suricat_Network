@@ -7,23 +7,33 @@ app.constant('BaseURL', 'http://localhost:3000');
 //app.constant('BaseURL', 'http://192.168.0.29:3000');
 app.constant('BaseURL', 'http://localhost:3000');
 //app.constant('BaseURL', 'http://10.111.61.81:3000');
-app.constant('ConnexionUsers', '/user/:idUser');
-app.constant('CheckLogin', '/user/login');
-app.constant('Kanban', '/todo/:id');
-app.constant('Department', '/department/:idDepartment');
-app.constant('Teams', '/team');
-app.constant('BelongTo', '/belongto');
-app.constant('BelongToIdUser', '/belongto/getAllTeamsById/:idUser');
-app.constant('BelongToRemove', '/belongto/remove');
-app.constant('BelongToByTeam', '/belongto/usersinteam/:idTeam');
-app.constant('NotBelongToByTeam', '/belongto/usersnotinteam/:idTeam');
-app.constant('TeamActualities', '/teamActuality');
-app.constant('CorporateActualities', '/corpActuality');
-app.constant('WorkCouncilActualities', '/workCouncilActuality');
-app.constant('LeisureActualities', '/leisureActuality');
-app.constant('Actuality', '/actuality/:idActuality');
-app.constant('Actualities', '/actuality');
-app.constant('Task', '/task');
+app.constant('ConnexionUsers', 			'/user/:idUser');
+app.constant('CheckLogin', 				'/user/login');
+app.constant('Kanban', 					'/todo/:id');
+app.constant('Department', 				'/department/:idDepartment');
+app.constant('Teams', 					'/team');
+app.constant('BelongTo', 				'/belongto');
+app.constant('BelongToIdUser', 			'/belongto/getAllTeamsById/:idUser');
+app.constant('BelongToRemove', 			'/belongto/remove');
+app.constant('BelongToByTeam', 			'/belongto/usersinteam/:idTeam');
+app.constant('NotBelongToByTeam', 		'/belongto/usersnotinteam/:idTeam');
+app.constant('TeamActualities', 		'/teamActuality');
+app.constant('CorporateActualities', 	'/corpActuality');
+app.constant('WorkCouncilActualities', 	'/workCouncilActuality');
+app.constant('LeisureActualities', 		'/leisureActuality');
+app.constant('Actuality', 				'/actuality/:idActuality');
+app.constant('Actualities', 			'/actuality');
+app.constant('Task', 					'/task');
+app.constant('Todo', 					'/todo');
+
+
+// connexion to todo datas
+app.factory('LinDBTodo', function($resource, BaseURL, Todo)
+{
+	return $resource(BaseURL + Todo, null, {
+			'post' : {method: 'POST'}
+	});
+}); 
 
 // Connexion to users's datas
 app.factory('LinkDB', function($resource, BaseURL, ConnexionUsers)
