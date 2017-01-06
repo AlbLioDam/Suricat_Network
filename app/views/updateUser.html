@@ -29,7 +29,7 @@
                 <select class="form-control" id="ControlService" ng-model="selected" ng-options="department.departmentName for department in departments">
                 </select>
             </div>
-            
+
             <div class="form-group">
                 <label for="status">Status</label>
                 <select class="form-control" id="status">
@@ -38,24 +38,30 @@
                     <option value="admin">Administrateur</option>
                 </select>
             </div>
-            
+
             <div class="form-group">
                 <label for="CE">Membre du Comité d'entreprise</label>
                 <input type="checkbox" id="CE" class="pull-right">
             </div>
-            
+
             <div class="form-group">
                 <label for="VE">Membre du service Vie d'entreprise</label>
                 <input type="checkbox" id="VE" class="pull-right">
             </div>
-            
-            <div class="form-group text-center" ng-controller="checkboxCtrl" aria-label="activeCheckbox">
+
+            <div class="form-group text-center" ng-controller="checkboxCtrl" >
                 <label>Actif ?</label>
-                <md-checkbox class="red" ng-model="data.activeCheckbox">
+                <md-checkbox class="red" ng-model="data.activeCheckbox" aria-label="activeCheckbox">
                 </md-checkbox>    
             </div>
-            
-            
+
+            <div>
+                <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
+                    Checkbox 1: {{ data.cb1}}
+                </md-checkbox>
+            </div>
+
+
         </div>
 
         <div class="col-md-offset-2 col-md-5 containerUpdateUser">
