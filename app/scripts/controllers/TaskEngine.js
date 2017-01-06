@@ -1,6 +1,6 @@
 var app = angular.module('Suricat');
 
-app.controller('taskManagementCtrl', function($scope, LinkDBTask, LinkDBTodo, LinkDBDepartment){
+app.controller('taskManagementCtrl', function($scope, LinkDBTask, LinkDBDepartment){
 
 	//$scope.teams 		= LinkDBTeams.query();
 	$scope.departments 	= LinkDBDepartment.query();
@@ -30,9 +30,5 @@ app.controller('taskManagementCtrl', function($scope, LinkDBTask, LinkDBTodo, Li
                         console.log($scope.task);
 		});
                 
-                LinkDBTodo.save($scope.task).$promise.then(function(response){
-                        console.log(response);
-                        console.log($scope.task);
-                });
 	};
 });
