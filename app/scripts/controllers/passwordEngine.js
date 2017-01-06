@@ -39,5 +39,6 @@ app.controller('passwordCtrl',function($scope, LinkDBDepartment, LinkDB){
 app.controller('checkboxCtrl', function($scope){
     $scope.date = {};
     $scope.data.activeCheckbox = false;
+    $scope.data.cb1 = false;
 });
 
