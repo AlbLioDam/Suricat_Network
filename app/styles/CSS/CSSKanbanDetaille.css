@@ -18,14 +18,8 @@ div#formTask
 	padding-top: 10px;
 }
 
-div.frame
-{
-	height: 100%;
-}
-
 div.status
 {
-	height: 100%;
 	background-color: white;
 	border-style: solid;
 	border-radius: 2%;
