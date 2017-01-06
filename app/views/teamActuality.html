@@ -32,11 +32,12 @@
                         </div>
                     </div>
 
-
-                    <div class="contain_content col-xs-12">   {{actu.publication}}  
+                    <div class="contain_content col-xs-12"> 
+                    {{actu.publication}}  
+                    <span class="pull-right" ng-show="actu.idUser === idUser || status === 'Admin'"><span id="glyph" ng-class="'fa fa-trash'"></span></span>
                     </div><br>
 
-                    <i class="pull-right"> id team : {{actu.idTeam}}</i>
+                    <i class="pull-right">{{actu.lastname}} {{actu.firstname}}</i>
                 </div>
             
             </div>
