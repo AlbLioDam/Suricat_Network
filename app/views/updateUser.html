@@ -7,7 +7,7 @@
         <div class="col-md-5 containerUpdateUser" id="left_window">
             <div class="form-group">
                 <label for="email">Login (adresse interne)</label>
-                <input type="email" class="form-control" ng-model="infosUser.email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+                <input type="email" class="form-control" ng-model="infosUser.email" id="email" aria-describedby="emailHelp" placeholder="Enter email" required>
             </div>
 
             <div class="form-group">
@@ -25,30 +25,53 @@
             </div>
 
             <div class="form-group">
-                <label for="exampleSelect1">Service</label>
+                <label for="ControlService">Service</label>
                 <select class="form-control" id="ControlService" ng-model="selected" ng-options="department.departmentName for department in departments">
                 </select>
             </div>
+            
             <div class="form-group">
-                <label for="active">Actif ?</label>
-                <input type="checkbox" id="active">
+                <label for="status">Status</label>
+                <select class="form-control" id="status">
+                    <option value="user">Utilisateur</option>
+                    <option value="headProject">Chef de projet</option>
+                    <option value="admin">Administrateur</option>
+                </select>
             </div>
+            
+            <div class="form-group">
+                <label for="CE">Membre du Comité d'entreprise</label>
+                <input type="checkbox" id="CE" class="pull-right">
+            </div>
+            
+            <div class="form-group">
+                <label for="VE">Membre du service Vie d'entreprise</label>
+                <input type="checkbox" id="VE" class="pull-right">
+            </div>
+            
+            <div class="form-group text-center" ng-controller="checkboxCtrl" aria-label="activeCheckbox">
+                <label>Actif ?</label>
+                <md-checkbox class="red" ng-model="data.activeCheckbox">
+                </md-checkbox>    
+            </div>
+            
+            
         </div>
 
         <div class="col-md-offset-2 col-md-5 containerUpdateUser">
             <div class="form-group">
                 <label for="lastName">Nom</label>
-                <input type="text" class="form-control" id="lastname" ng-model="infosUser.lastname" aria-describedby="emailHelp" placeholder="Enter lastname" required>
+                <input type="text" class="form-control" id="lastName" ng-model="infosUser.lastname" aria-describedby="emailHelp" placeholder="Enter lastname" required>
             </div>
 
             <div class="form-group">
                 <label for="firstName">Prénom</label>
-                <input type="text" class="form-control" id="firstname" ng-model="infosUser.firstname" placeholder="Enter firstname" required/>
+                <input type="text" class="form-control" id="firstName" ng-model="infosUser.firstname" placeholder="Enter firstname" required/>
             </div>
 
             <div class="form-group">
                 <label for="adress">Adresse</label>
-                <input type="text" class="form-control" id="address" ng-model="infosUser.address" placeholder="Enter Address" required/>
+                <input type="text" class="form-control" id="adress" ng-model="infosUser.address" placeholder="Enter Address" required/>
             </div>
 
             <div class="form-group">
@@ -57,19 +80,13 @@
             </div>
 
             <div class="form-group">
-                <label for="exampleSelect1">Avez-vous une voiture ?</label>
-                <select class="form-control" id="car" ng-model="car">
-                    <option>Oui</option>
-                    <option>Non</option>
-                </select>
+                <label for="car">Avez vous voiture?</label>
+                <input type="checkbox" class="pull-right" id="car">
             </div>
 
             <div class="form-group">
-                <label for="exampleSelect1">Etes-vous ouvert au covoiturage ?</label>
-                <select class="form-control" id="carSharing" ng-model="covoit">
-                    <option>Non</option>
-                    <option>Oui</option>
-                </select>
+                <label for="carsharing">Etes-vous ouvert au covoiturage ?</label>
+                <input type="checkbox"  class="pull-right" id="carsharing">
             </div>
 
 
@@ -85,7 +102,7 @@
         <div class="col-xs-6 col-md-6 text-center">
             <button type="submit" class="btn btn-primary myButton" ng-click="showConfirmation($event)">Valider modifications</button>
         </div>
-        
+
     </div>
 
 </div>

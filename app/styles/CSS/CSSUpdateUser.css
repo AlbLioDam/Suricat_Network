@@ -1,3 +1,16 @@
 #buttonUpdateUser{
     margin-top: 10px;
 }
+
+#car, #carsharing , #VE , #CE {
+    margin-top: 10px;
+}
+
+#active{
+    margin-top: 10px;
+    border-color: #ff5152;
+}
+
+md-checkbox.md-checked[disabled].red .md-icon {
+  background-color: rgba(255, 0, 0, 0.26);
+}
