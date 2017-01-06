@@ -1,6 +1,6 @@
 var app = angular.module('Suricat');
 
-app.controller('taskManagementCtrl', function($scope, LinkDBTeams, LinkDBTask, LinkDBDepartment){
+app.controller('taskManagementCtrl', function($scope, LinkDBTask, LinkDBDepartment){
 
 	//$scope.teams 		= LinkDBTeams.query();
 	$scope.departments 	= LinkDBDepartment.query();
@@ -10,23 +10,25 @@ app.controller('taskManagementCtrl', function($scope, LinkDBTeams, LinkDBTask, L
 	
 	$scope.task =
 	{
-		taskName 				: "",
-		selectedDepartment		: "",
-		detail 					: "",
-		selectedDuration 		: "",
-		selectedWeight 			: "",
-		selectedState 			: ""
+		taskName            : "",
+		Department          : "",
+		detail              : "",
+		Duration            : "",
+		Weight              : "",
+		Status               : ""
 	};
 
 	$scope.createTask = function (selectedDepartment, selectedDuration, selectedWeight, selectedState)
 	{
-		$scope.task.selectedDepartment 	= selectedDepartment.idDepartment;
-		$scope.task.selectedDuration 	= selectedDuration;
-		$scope.task.selectedWeight 		= selectedWeight;
-		$scope.task.selectedState 		= selectedState;
+		$scope.task.Department 	= selectedDepartment.idDepartment;
+		$scope.task.Duration 	= selectedDuration;
+		$scope.task.Weight 	= selectedWeight;
+		$scope.task.Status 	= selectedState;
 
 		LinkDBTask.save($scope.task).$promise.then(function(response){
 			console.log(response);
+                        console.log($scope.task);
 		});
-	}
+                
+	};
 });
