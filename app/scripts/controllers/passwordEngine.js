@@ -34,11 +34,13 @@ app.controller('passwordCtrl',function($scope, LinkDBDepartment, LinkDB){
 	{
 		$scope.infosUser = angular.copy($scope.empty);
 	};
+        
+        
 });
 
 app.controller('checkboxCtrl', function($scope){
-    $scope.date = {};
-    $scope.data.activeCheckbox = false;
+    $scope.data = {};
+    $scope.data.activeCheckbox = true;
     $scope.data.cb1 = false;
 });
 

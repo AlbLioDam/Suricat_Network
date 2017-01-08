@@ -51,14 +51,9 @@
 
             <div class="form-group text-center" ng-controller="checkboxCtrl" >
                 <label>Actif ?</label>
-                <md-checkbox class="red" ng-model="data.activeCheckbox" aria-label="activeCheckbox">
+                <md-checkbox ng-model="data.activeCheckbox" aria-label="activeCheckbox">
+                    {{data.activeCheckbox}}
                 </md-checkbox>    
-            </div>
-
-            <div>
-                <md-checkbox ng-model="data.cb1" aria-label="Checkbox 1">
-                    Checkbox 1: {{ data.cb1}}
-                </md-checkbox>
             </div>
 
 
