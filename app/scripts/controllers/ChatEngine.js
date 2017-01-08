@@ -1,6 +1,6 @@
 var app = angular.module('Suricat');
 
-app.controller('chat',function($scope, LinkDB, LinkDBChat, LinkDBDepartment){
+app.controller('chat',function($scope, $interval, LinkDB, LinkDBChat, LinkDBDepartment){
 
 	$scope.departments 	= LinkDBDepartment.query();
 	$scope.users 		= LinkDB.query();
@@ -35,4 +35,11 @@ app.controller('chat',function($scope, LinkDB, LinkDBChat, LinkDBDepartment){
 		$scope.receiver 			= user.firstname + " " + user.lastname;
 		$scope.messages 			= LinkDBChat.query();
 	}
+
+	$interval(function(){
+		setTimeout(function(){
+			$scope.$apply();
+			console.log(new Date());
+		},3000);
+	},3000);
 })

@@ -134,5 +134,5 @@ app.controller('refresh',function($interval, $scope, LinkDBTeamActualities){
 			//$scope.listOfTeamActualities = LinkDBTeamActualities.query();
 			$scope.$apply();
 		},3000);
-	},10000);	
+	},10000);
 });
