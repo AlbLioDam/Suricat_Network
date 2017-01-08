@@ -1,0 +1,30 @@
+form#formMessage
+{
+    background-color: white;
+    padding: 10px 10px 10px 10px;
+    border-radius: 10px;
+}
+
+.receiver
+{
+	background-color: #CD5C5C;
+	border-radius: 10px;
+	text-align: left;
+	font-size: 20px;
+	width: auto;
+	position: relative;
+	float: left;
+	padding: 5px 8px 5px 8px;
+}
+
+.sender
+{
+	background-color: #6495ED;
+	border-radius: 10px;
+	text-align: right;
+	font-size: 20px;
+	width: auto;
+	position: relative;
+	float: right;
+	padding: 5px 8px 5px 8px;
+}

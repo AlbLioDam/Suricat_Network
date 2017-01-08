@@ -9,6 +9,20 @@ app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
 		$scope.page = newPage;
 	}
 
+	$scope.showTrademark = function(ev) 
+	{
+    	$mdDialog.show(
+      	$mdDialog.alert()
+        .parent(angular.element(document.querySelector('#popupContainer')))
+        .clickOutsideToClose(true)
+        .title('Future Registered trademarks')
+        .textContent('Alban / Lionel / Damien, AlbLioDam, and Suricat will be protected by intellectual property rights.')
+        .ariaLabel('Alert Dialog Demo')
+        .ok('ok !')
+        .targetEvent(ev)
+    );
+  };
+
 	$scope.showConfirm = function(ev) 
 	{
     	var confirm = $mdDialog.confirm()
@@ -58,8 +72,7 @@ app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
 			$scope.access = false;
 		}
 
-		console.log($scope.corporateLifeRepresentative);
-		console.log($scope.workCouncilRepresentative);
+		console.log("access : ", $scope.access);
 	}
 });
 

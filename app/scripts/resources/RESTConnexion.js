@@ -3,9 +3,7 @@
 var app = angular.module('Suricat');
 
 //app.constant('BaseURL', 'http://majesticneo.ddns.net:3000/');
-//app.constant('BaseURL', 'http://192.168.0.29:3000');
 app.constant('BaseURL', 'http://localhost:3000');
-//app.constant('BaseURL', 'http://10.111.61.81:3000');
 app.constant('ConnexionUsers', 			'/user/:idUser');
 app.constant('CheckLogin', 				'/user/login');
 app.constant('Kanban', 					'/todo/:id');
@@ -24,7 +22,7 @@ app.constant('Actuality', 				'/actuality/:idActuality');
 app.constant('Actualities', 			'/actuality');
 app.constant('Task', 					'/task');
 app.constant('Todo', 					'/todo');
-
+app.constant('Chat', 					'/message');
 
 // connexion to todo datas
 app.factory('LinDBTodo', function($resource, BaseURL, Todo)
@@ -70,14 +68,12 @@ app.factory('LinkDBChat', function($resource, BaseURL, Chat){
 // Connexion to Tasks's datas
 app.factory('LinkDBKanbanTasks', function($resource, BaseURL, Kanban){
 	return $resource(BaseURL + Kanban, null, {
-		//'update': {method:'PUT', params: {idMessage: "@idMessage"}}
 	});
 });
 
 // Connexion to Department's datas
 app.factory('LinkDBDepartment', function($resource, BaseURL, Department){
 	return $resource(BaseURL + Department, null, {
-		//'update': {method:'PUT', params: {idMessage: "@idMessage"}}
 	});
 });
 
@@ -91,17 +87,22 @@ app.factory('LinkDBTeams', function($resource, BaseURL, Teams){
 // Connexion to BelongTo's datas
 app.factory('LinkDBBelongTo', function($resource, BaseURL, BelongTo){
 	return $resource(BaseURL + BelongTo, null, {
-		//'update': {method:'PUT', params: {idMessage: "@idMessage"}}
 		'removeUser'	: {method:'DELETE', params: {idUser: "@idUser", idTeam: "@idTeam"}},
 		'save'			: {method:'POST'	, params: {idUser: "@idUser", idTeam: "@idTeam"}},
 		//'removeUser': {method:'DELETE'	, params: {idUser: "@idUser", idTeam: "@idTeam"}}
 	});
 });
 
+// Connexion to BelongTo's datas for remove
+app.factory('LinkDBBelongToRemove', function($resource, BaseURL, BelongToRemove){
+	return $resource(BaseURL + BelongToRemove, null, {
+		'removeUser': {method:'POST'	, params: {idUser: "@idUser", idTeam: "@idTeam"}}
+	});
+})
+
 // Connexion to BelongTo's datas
 app.factory('LinkDBBelongToByUser', function($resource, BaseURL, BelongToIdUser){
 	return $resource(BaseURL + BelongToIdUser, null, {
-		//'update': {method:'PUT', params: {idMessage: "@idMessage"}}
 		'removeUser'	: {method:'DELETE', params: {idUser: "@idUser", idTeam: "@idTeam"}},
 		'save'			: {method:'POST'	, params: {idUser: "@idUser", idTeam: "@idTeam"}},
 		'getTeamsOfUser': {method:'GET'	, params: {idUser: "@idUser"}, isArray:true}
@@ -119,7 +120,6 @@ app.factory('LinkDBBelongToRemove', function($resource, BaseURL, BelongToRemove)
 // Connexion to BelongTo's datas
 app.factory('LinkDBBelongToByTeam', function($resource, BaseURL, BelongToByTeam){
 	return $resource(BaseURL + BelongToByTeam, null, {
-		//'update': {method:'PUT', params: {idMessage: "@idMessage"}}
 		'getUsersInTeam': {method:'GET', params: {idTeam: "@idTeam"}, isArray:true}
 	});
 });

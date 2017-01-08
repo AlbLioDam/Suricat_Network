@@ -10,7 +10,7 @@
                 AJOUTER UN MEMBRE
             </button>
             <button ng-hide="addAMember" ng-click="showInformations(user)" class="showUser form-control" ng-repeat="user in users | filter : {idDepartment:selected.idDepartment} | filter : search">
-                {{user.email}} - {{user.firstname}} {{user.lastname}}
+                {{user.firstname}} {{user.lastname}}
             </button>
         </div>
 

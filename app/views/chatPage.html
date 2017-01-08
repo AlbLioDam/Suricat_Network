@@ -1,0 +1,39 @@
+<div ng-controller="chat" class="container">
+    <h1>Chat</h1>
+    <div class="row" ng-controller="choiceOfInsideAdminUsers">
+
+        <div id="choice" class="col-lg-3">
+            <h1>Liste de contacts</h1>
+            <select class="form-control" id="ControlService" ng-model="selectedDepartment" ng-options="department.departmentName for department in departments">
+            </select>
+            <input class="form-control" type="text" ng-model="search">
+            <button ng-hide="addAMember" ng-click="showMessages(user)" class="showUser form-control" ng-repeat="user in users | filter : {idDepartment : selectedDepartment.idDepartment}" ng-if="user.idUser != idSender">
+                {{user.firstname}} {{user.lastname}}
+            </button>
+        </div>
+
+        <div id="preview" class="col-lg-9" ng-show="receiver!=''">
+
+            <h1>Conversation avec {{receiver}}</h1>
+            <form id="formMessage">
+                Message : 
+                <input class="form-control" type="text" ng-model="send.message">
+                <br>
+                <button class="form-control btn btn-primary" ng-click="saveMessage()">Envoyer</button>
+            </form>
+            <br>
+
+            <div ng-repeat="message in messages" class="row">
+                <div class="col-lg-12">
+                    <div ng-if="message.idUser_Users == idSender && message.idUser == idReceiver" class="receiver">
+                        {{message.message}}
+                    </div>
+                    <div ng-if="message.idUser_Users == idReceiver && message.idUser == idSender" class="sender">
+                        {{message.message}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-// Generated on 2016-12-05 using generator-angular 0.15.1
+// Generated on 2017-01-05 using generator-angular 0.15.1
 'use strict';
 
 // # Globbing
@@ -338,7 +338,7 @@ module.exports = function (grunt) {
     ngtemplates: {
       dist: {
         options: {
-          module: 'suricatApp',
+          module: 'suricatNetworkApp',
           htmlmin: '<%= htmlmin.dist.options %>',
           usemin: 'scripts/scripts.js'
         },
