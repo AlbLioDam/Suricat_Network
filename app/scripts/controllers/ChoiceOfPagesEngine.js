@@ -77,7 +77,7 @@ app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
 });
 
 // CONTROLLER : Switch inside main page between all differents options
-app.controller('choiceOfInside', function($scope){
+app.controller('choiceOfInside', function($scope, $interval){
 	$scope.inside = "team";
 
 	$scope.modifyPageInside = function(newInside)

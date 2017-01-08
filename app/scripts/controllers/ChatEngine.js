@@ -36,10 +36,13 @@ app.controller('chat',function($scope, $interval, LinkDB, LinkDBChat, LinkDBDepa
 		$scope.messages 			= LinkDBChat.query();
 	}
 
-	$interval(function(){
-		setTimeout(function(){
-			$scope.$apply();
-			console.log(new Date());
-		},3000);
-	},3000);
+	var reload = $interval(function()
+				{
+					setTimeout(function()
+					{
+						$scope.$apply();
+						console.log(new Date());
+					},3000);
+				},3000);
+	// Penser à arrêter le reload quand on change de page
 })
