@@ -1,5 +1,5 @@
 <div ng-controller="LeisureActualities">
-   
+   <div class="titleActualitiesPages"><h1>Fil d'actualités Loisir</h1></div>
     <div>
         <div>
             <!-- ACTUALITY FORM -->
@@ -43,7 +43,7 @@
 
                     <div class="contain_content col-xs-12">
                         {{actu.publication}}
-                        <span class="pull-right" ng-show="actu.idUser === idUser || status === 'Admin'"><span id="glyph" ng-class="'fa fa-trash'"></span></span>
+                        <span class="pull-right" ng-show="actu.idUser === idUser || status === 'Admin'"><span id="glyph" ng-class="'fa fa-trash'" ng-click="removeLeisureActuality(actu.idActuality)"></span></span>
                     </div><br>
 
                     <i class="pull-right">{{actu.lastname}} {{actu.firstname}}</i>

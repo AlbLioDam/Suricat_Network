@@ -9,7 +9,7 @@ var app = angular.module('Suricat');
 });
 */
 
-app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureActualities){
+app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureActualities, LinkDBActualityId){
 	$scope.listOfLeisureActualities = LinkDBLeisureActualities.query();
 	//$scope.l = LinkDBLeisureActualities.query();
 	/*console.log($scope.l[i].length);
@@ -24,7 +24,7 @@ app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureAct
   	$scope.listOfLeisureActualities = $scope.l;*/
 	/*-----------------------------------------
 	 Prepare Json to Post with Team Actuality 
-	 -----------------------------------------*/		
+	 -----------------------------------------*/
 	$scope.newActu=
 		{
 			title:"",
@@ -61,10 +61,8 @@ app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureAct
 	/*------------------
 	 Json Object to post
 	 ------------------*/
-
 	$scope.postTeamActu=function()
 	{
-			
 		$scope.newActu.photo = $scope.newActu.photo.base64;
 		console.log('file is : ' );
 		//console.dir($scope.newActu.photo);
@@ -80,7 +78,7 @@ app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureAct
 			{
 				console.log("post message ok");
 				$scope.listOfLeisureActualities = LinkDBLeisureActualities.query();
-				$scope.newActu=
+				$scope.newActu =
 				{
 					title:"",
 					publication:"",
@@ -89,7 +87,7 @@ app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureAct
 					idUser: $scope.idUser
 				};
                                 
-                                console.log($scope.listOfLeisureActualities);
+                console.log($scope.listOfLeisureActualities);
 			}
 			else
 			{
@@ -97,6 +95,18 @@ app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureAct
 			}
 		});
 	};
+
+	$scope.removeLeisureActuality = function(idActuality)
+	{
+		LinkDBLeisureActualities.remove({idActuality: idActuality}).$promise.then(function(response){
+			console.log(response);
+
+			LinkDBActualityId.remove({idActuality: idActuality}).$promise.then(function(response2){
+				console.log(response2);
+				$scope.listOfLeisureActualities = LinkDBLeisureActualities.query();
+			});
+		});
+	}
         
         /*------------------
 	 function returninga glyphicon for every category

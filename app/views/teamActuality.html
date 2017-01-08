@@ -20,8 +20,9 @@
             
             <div ng-controller="refresh">
             {{message}}    
+            <div class="titleTeamActualitiesPages"><h1>Fil d'actualités de l'équipe</h1></div>
                 <div id="containerTeamActualityList" class="containerTeamActuality row" ng-repeat="actu in listOfTeamActualities | filter: {idTeam: choiceOfTeam.idTeam}">   
-                    <div class="col-xs-12" id="dd">
+                    <div class="col-xs-12">
 
                         <div id="contain_title" class="col-xs-6">
                             <H4 class="actuTitle"><span id="glyph"></span> {{actu.title}}</H4>             
@@ -34,7 +35,7 @@
 
                     <div class="contain_content col-xs-12"> 
                     {{actu.publication}}  
-                    <span class="pull-right" ng-show="actu.idUser === idUser || status === 'Admin'"><span id="glyph" ng-class="'fa fa-trash'"></span></span>
+                    <span class="pull-right" ng-show="actu.idUser === idUser || status === 'Admin'"><span id="glyph" ng-class="'fa fa-trash'" ng-click="removeTeamActuality(actu.idActuality)"></span></span>
                     </div><br>
 
                     <i class="pull-right">{{actu.lastname}} {{actu.firstname}}</i>

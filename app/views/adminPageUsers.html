@@ -4,6 +4,7 @@
         <div id="choice" class="col-lg-3">
             <h1>Sélection</h1>
             <select class="form-control" id="ControlService" ng-model="selected" ng-options="department.departmentName for department in departments">
+                <option></option>
             </select>
             <input class="form-control" type="text" ng-model="search">
             <button class="btn btn-success form-control" ng-model="addAMember" ng-click="modifyPageInsideAdminUsers('createUser')">
