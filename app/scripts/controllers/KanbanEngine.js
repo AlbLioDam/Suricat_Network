@@ -12,4 +12,9 @@ app.controller('Kanban', function($scope, LinkDBKanbanTasks){
 			$scope.tasksOfTheTeam = LinkDBKanbanTasks.query();
 		}
 	}
+
+	$scope.refreshKanban = function()
+	{
+		$scope.tasksOfTheTeam = LinkDBKanbanTasks.query();
+	}
 });

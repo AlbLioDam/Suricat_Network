@@ -15,19 +15,20 @@ app.controller('taskManagementCtrl', function($scope, LinkDBTask, LinkDBDepartme
 		detail              : "",
 		Duration            : "",
 		Weight              : "",
-		Status               : ""
+		Status              : ""
 	};
 
 	$scope.createTask = function (selectedDepartment, selectedDuration, selectedWeight, selectedState)
 	{
 		$scope.task.Department 	= selectedDepartment.idDepartment;
 		$scope.task.Duration 	= selectedDuration;
-		$scope.task.Weight 	= selectedWeight;
-		$scope.task.Status 	= selectedState;
+		$scope.task.Weight 		= selectedWeight;
+		$scope.task.Status 		= selectedState;
 
 		LinkDBTask.save($scope.task).$promise.then(function(response){
 			console.log(response);
-                        console.log($scope.task);
+            console.log($scope.task);
+            $scope.refreshKanban();
 		});
                 
 	};

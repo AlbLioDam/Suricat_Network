@@ -59,8 +59,8 @@ Options All -Indexes
 #==================
 # Errors management
 #==================
-ErrorDocument 403 http://localhost:8081/suricat_network/app/error/error_403.html
-ErrorDocument 404 http://localhost:8081/suricat_network/app/error/error_404.html
+ErrorDocument 403 http://localhost:8081/sss/suricat_network/app/error/error_403.html
+ErrorDocument 404 http://localhost:8081/sss/suricat_network/app/error/error_404.html
 
 
 
