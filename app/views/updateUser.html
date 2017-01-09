@@ -2,7 +2,7 @@
 <div class="container" ng-controller="passwordCtrl">
 
     <form class="row">
-        <h3 class="col-md-12 text-center">Modification du profil</h3>
+        <h3 class="col-md-12 text-center" id="modificationH3">Modification du profil</h3>
 
         <div class="col-md-5 containerUpdateUser" id="left_window">
             <div class="form-group">
@@ -49,11 +49,9 @@
                 <input type="checkbox" id="VE" class="pull-right">
             </div>
 
-            <div class="form-group text-center" ng-controller="checkboxCtrl" >
+            <div class="form-group text-center">
                 <label>Actif ?</label>
-                <md-checkbox ng-model="data.activeCheckbox" aria-label="activeCheckbox">
-                    {{data.activeCheckbox}}
-                </md-checkbox>    
+                 <input type="checkbox" id="active">   
             </div>
 
 

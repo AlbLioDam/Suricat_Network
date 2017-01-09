@@ -28,3 +28,11 @@ form#formMessage
 	float: right;
 	padding: 5px 8px 5px 8px;
 }
+
+#btnUser,#ControlService,#inputUser{
+    margin-bottom: 5px;
+    border: 1px solid #333;
+}
+
+
+

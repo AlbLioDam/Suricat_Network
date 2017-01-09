@@ -1,7 +1,7 @@
 <div ng-controller="passwordCtrl" class="container">
     <h1>Gestion des profils</h1>
     <div class="row" ng-controller="choiceOfInsideAdminUsers">
-        <div id="choice" class="col-lg-3">
+        <div id="choice" class="col-sm-3">
             <h1>Sélection</h1>
             <select class="form-control" id="ControlService" ng-model="selected" ng-options="department.departmentName for department in departments">
             </select>
@@ -14,7 +14,7 @@
             </button>
         </div>
 
-        <div id="preview" class="col-lg-9">
+        <div id="preview" class="col-sm-offset-1 col-sm-8">
             <div ng-switch on="insideAdminUser">
                 <div ng-switch-when="createUser">
                     <ng-include src="'views/createUser.html'"></ng-include>
