@@ -26,3 +26,8 @@ div.errorMessage
 img{
 	margin-left: 5px;
 }
+
+#chatIcon
+{
+	margin-top: 10px;
+}

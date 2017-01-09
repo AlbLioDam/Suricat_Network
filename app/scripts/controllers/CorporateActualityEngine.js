@@ -9,7 +9,7 @@ var app = angular.module('Suricat');
 });
 */
 
-app.controller('CorporateActualities',function($interval, $scope, LinkDBCorpActualities){
+app.controller('CorporateActualities',function($interval, $scope, LinkDBCorpActualities, LinkDBActualityId){
 	$scope.listOfCorpActualities = LinkDBCorpActualities.query();
 
 	/*-----------------------------------------
@@ -83,6 +83,18 @@ app.controller('CorporateActualities',function($interval, $scope, LinkDBCorpActu
 			}
 		});
 	};
+
+	$scope.removeCorporateLifeActuality = function(idActuality)
+	{
+		LinkDBCorpActualities.remove({idActuality: idActuality}).$promise.then(function(response){
+			console.log(response);
+
+			LinkDBActualityId.remove({idActuality: idActuality}).$promise.then(function(response2){
+				console.log(response2);
+				$scope.listOfCorpActualities = LinkDBCorpActualities.query();
+			});
+		});
+	}
 });
 
 /*----------------------------------------------

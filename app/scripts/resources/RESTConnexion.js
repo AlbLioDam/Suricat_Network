@@ -14,10 +14,10 @@ app.constant('BelongToIdUser', 			'/belongto/getAllTeamsById/:idUser');
 app.constant('BelongToRemove', 			'/belongto/remove');
 app.constant('BelongToByTeam', 			'/belongto/usersinteam/:idTeam');
 app.constant('NotBelongToByTeam', 		'/belongto/usersnotinteam/:idTeam');
-app.constant('TeamActualities', 		'/teamActuality');
-app.constant('CorporateActualities', 	'/corpActuality');
-app.constant('WorkCouncilActualities', 	'/workCouncilActuality');
-app.constant('LeisureActualities', 		'/leisureActuality');
+app.constant('TeamActualities', 		'/teamActuality/:idActuality');
+app.constant('CorporateActualities', 	'/corporatelifeactuality/:idActuality');
+app.constant('WorkCouncilActualities', 	'/workcouncilactuality/:idActuality');
+app.constant('LeisureActualities', 		'/leisureActuality/:idActuality');
 app.constant('Actuality', 				'/actuality/:idActuality');
 app.constant('Actualities', 			'/actuality');
 app.constant('Task', 					'/task');
@@ -45,7 +45,7 @@ app.factory('LinkDB', function($resource, BaseURL, ConnexionUsers)
 app.factory('LinkDBTask', function($resource, BaseURL, Task)
 {
 	return $resource(BaseURL + Task, null, {
-                'post' : {method: 'POST'}
+        'post' : {method: 'POST'}
 		//'update': {method:'PUT', params: {idUser: "@idUser"}},
 	});
 });
@@ -134,7 +134,8 @@ app.factory('LinkDBNotBelongToByTeam', function($resource, BaseURL, NotBelongToB
 // Connexion to get teamsActualities 
 app.factory('LinkDBTeamActualities', function($resource, BaseURL, TeamActualities){
 	return $resource(BaseURL + TeamActualities, null,{
-		'post': {method: 'POST'}
+		'post': {method: 'POST'},
+		'remove': {method: 'DELETE' , params: {idActuality: "@idActuality"}}
 	});
 });
 
@@ -142,6 +143,7 @@ app.factory('LinkDBTeamActualities', function($resource, BaseURL, TeamActualitie
 app.factory('LinkDBActualities', function($resource, BaseURL, Actualities){
 	return $resource(BaseURL + Actualities, null,{
 		//'update':{method:'PUT',params:{idActuality:"@idActuality"}}
+		'remove': {method: 'DELETE' , params: {idActuality: "@idActuality"}}
 	});
 });
 
@@ -156,7 +158,8 @@ app.factory('LinkDBActualityId', function($resource, BaseURL, Actuality){
 app.factory('LinkDBCorpActualities', function($resource, BaseURL, CorporateActualities){
 	return $resource(BaseURL + CorporateActualities, null,{
 		//'update':{method:'PUT',params:{idActuality:"@idActuality"}}
-		'post': {method: 'POST'}
+		'post'	: {method: 'POST'} ,
+		'remove': {method: 'DELETE', params: {idActuality: "@idActuality"}}
 	});
 });
 
@@ -164,7 +167,8 @@ app.factory('LinkDBCorpActualities', function($resource, BaseURL, CorporateActua
 app.factory('LinkDBWorkCouncilActualities', function($resource, BaseURL, WorkCouncilActualities){
 	return $resource(BaseURL + WorkCouncilActualities, null,{
 		//'update':{method:'PUT',params:{idActuality:"@idActuality"}}
-		'post': {method: 'POST'}
+		'post': {method: 'POST'},
+		'remove': {method: 'DELETE' , params: {idActuality: "@idActuality"}}
 	});
 });
 
@@ -172,6 +176,7 @@ app.factory('LinkDBWorkCouncilActualities', function($resource, BaseURL, WorkCou
 app.factory('LinkDBLeisureActualities', function($resource, BaseURL, LeisureActualities){
 	return $resource(BaseURL + LeisureActualities, null,{
 		//'update':{method:'PUT',params:{idActuality:"@idActuality"}}
-		'post': {method: 'POST'}
+		'post'	: {method: 'POST'},
+		'remove': {method: 'DELETE' , params: {idActuality: "@idActuality"}}
 	});
 });

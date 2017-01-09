@@ -16,7 +16,7 @@ app.controller('Teams',function($scope, LinkDBBelongToByUser){
 	}
 });
 
-app.controller('TeamActualities',function($interval, $scope, LinkDBTeamActualities, LinkDBBelongToByUser){
+app.controller('TeamActualities',function($interval, $scope, LinkDBTeamActualities, LinkDBBelongToByUser, LinkDBActualityId){
 	
 	$scope.updateTeamActualities = function()
 	{
@@ -103,6 +103,18 @@ app.controller('TeamActualities',function($interval, $scope, LinkDBTeamActualiti
 			}
 		});
 	};
+
+	$scope.removeTeamActuality = function(idActuality)
+	{
+		LinkDBTeamActualities.remove({idActuality: idActuality}).$promise.then(function(response){
+			console.log(response);
+
+			LinkDBActualityId.remove({idActuality: idActuality}).$promise.then(function(response2){
+				console.log(response2);
+				$scope.listOfTeamActualities = LinkDBTeamActualities.query();
+			});
+		});
+	}
 });
 
 /*----------------------------------------------
@@ -122,5 +134,5 @@ app.controller('refresh',function($interval, $scope, LinkDBTeamActualities){
 			//$scope.listOfTeamActualities = LinkDBTeamActualities.query();
 			$scope.$apply();
 		},3000);
-	},10000);	
+	},10000);
 });

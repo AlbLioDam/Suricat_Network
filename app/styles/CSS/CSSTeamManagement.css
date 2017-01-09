@@ -12,6 +12,17 @@ h1#teamTitle
 	text-align: center;
 }
 
+.titleActualitiesPages
+{
+	font-size: 40px;
+	color: white;
+}
+
+.titleTeamActualitiesPages
+{
+	font-size: 40px;
+}
+
 label.labelFormTeam
 {
 	font-size: 20px;
