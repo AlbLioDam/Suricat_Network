@@ -9,7 +9,7 @@ div#choice
 	padding: 10px;
 	border: 1px solid black;
 	border-radius: 10px;
-	background-color: #708090;
+	background-color: rgba(255,255,255,0.5);
 }
 
 div#preview
@@ -17,7 +17,7 @@ div#preview
 	padding: 10px;
 	border: 1px solid black;
 	border-radius: 10px;
-	background-color: #708090;
+	background-color: rgba(255,255,255,0.5);
 }
 
 button.showUser

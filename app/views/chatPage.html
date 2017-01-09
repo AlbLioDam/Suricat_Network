@@ -2,7 +2,7 @@
     <div id="titleChat"><h1>Chat</h1></div>
     <div class="row" ng-controller="choiceOfInsideAdminUsers">
 
-        <div id="choice" class="col-lg-3">
+        <div id="choice" class="col-sm-3">
             <h1>Liste de contacts</h1>
             <select class="form-control" id="ControlService" ng-model="selectedDepartment" ng-options="department.departmentName for department in departments">
                 <option></option>
@@ -13,7 +13,7 @@
             </button>
         </div>
 
-        <div id="preview" class="col-lg-9" ng-show="receiver!=''">
+        <div id="preview" class="col-sm-offset-1 col-sm-8" ng-show="receiver!=''">
 
             <h1>Conversation avec {{receiver}}</h1>
             <form id="formMessage">
