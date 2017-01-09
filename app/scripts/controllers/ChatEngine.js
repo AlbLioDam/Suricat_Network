@@ -43,7 +43,7 @@ app.controller('chat',function($scope, $interval, LinkDB, LinkDBChat, LinkDBDepa
 		{
 			LinkDBChat.query().$promise.then(function(response){
 				$scope.messages = response;
-			}
+			});
 		},1000);
 	},1000);
 	// Penser à arrêter le reload quand on change de page
