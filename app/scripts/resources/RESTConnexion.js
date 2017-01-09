@@ -22,7 +22,7 @@ app.constant('Actuality', 				'/actuality/:idActuality');
 app.constant('Actualities', 			'/actuality');
 app.constant('Task', 					'/task');
 app.constant('Todo', 					'/todo');
-app.constant('Chat', 					'/message');
+app.constant('Chat', 					'/message/:idMessage');
 
 // connexion to todo datas
 app.factory('LinDBTodo', function($resource, BaseURL, Todo)
@@ -61,7 +61,7 @@ app.factory('LinkDBCheckLogin', function($resource, BaseURL, CheckLogin){
 // Connexion to messages's datas
 app.factory('LinkDBChat', function($resource, BaseURL, Chat){
 	return $resource(BaseURL + Chat, null, {
-		//'update': {method:'PUT', params: {idMessage: "@idMessage"}}
+		'updateReadStatus': {method:'PUT', params: {idMessage: "@idMessage"}},
 	});
 });
 

@@ -39,11 +39,20 @@ form#formMessage
     border: 1px solid #333;
 }
 
-
-
-
-
 .spacing
 {
 	padding: 5px 5px 5px 5px;
+}
+
+.numberOfNotifications
+{
+	max-width: 100%;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: #da2e2e;
+	color: white;
+	float: left;
+	margin-left: 10px;
+	font-size: 30px;
 }

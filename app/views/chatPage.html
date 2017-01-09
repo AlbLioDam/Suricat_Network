@@ -8,7 +8,10 @@
                 <option></option>
             </select>
             <input class="form-control" type="text" ng-model="search" placeholder="Filtrer par saisie (2 lettres min)"><br>
-            <button ng-hide="addAMember" ng-click="showMessages(user)" class="showUser form-control" ng-repeat="user in users | filter : {idDepartment : selectedDepartment.idDepartment} | filter : search" ng-if="user.idUser != idSender">
+            <button ng-click="showMessages(user)" class="showUser form-control" ng-repeat="user in users | filter : {idDepartment : selectedDepartment.idDepartment} | filter : search" ng-if="user.idUser != idSender">
+                <div class="numberOfNotifications">
+                    {{(messages | filter : {idUser_Users : idSender, idUser : user.idUser, readStatus : 0}).length}}
+                </div>
                 {{user.firstname}} {{user.lastname}}
             </button>
         </div>
