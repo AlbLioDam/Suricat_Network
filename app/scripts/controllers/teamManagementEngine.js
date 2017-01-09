@@ -1,10 +1,9 @@
 var app = angular.module('Suricat');
 
 // CONTROLLER : Random turnover of background picture 
-app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkDBDepartment, LinkDBBelongTo, LinkDBNotBelongToByTeam, NotBelongToByTeam, LinkDBBelongToRemove)
+app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkDBDepartment, LinkDBBelongTo, LinkDBBelongToByUser, LinkDBNotBelongToByTeam, NotBelongToByTeam, LinkDBBelongToRemove)
 {
-	LinkDBTeams.query().$promise.then(function(response)
-	{
+	LinkDBBelongToByUser.getTeamsOfUser({idUser: $scope.idUser}).$promise.then(function(response){
 		$scope.teams = angular.copy(response);
 	});
 	$scope.departments 	= LinkDBDepartment.query();
@@ -147,7 +146,7 @@ app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkD
 
 	$scope.resetListOfTeams = function()
 	{
-		LinkDBTeams.query().$promise.then(function(response)
+		LinkDBBelongToByUser.getTeamsOfUser({idUser: $scope.idUser}).$promise.then(function(response)
 		{
 			$scope.teams = angular.copy(response);
 			var indice = 0;
