@@ -41,17 +41,20 @@
 
             <div class="form-group">
                 <label for="CE">Membre du Comité d'entreprise</label>
-                <input type="checkbox" id="CE" class="pull-right">
+                <md-checkbox ng-model="data.CE" aria-label="car" class="pull-right">
+                </md-checkbox>
             </div>
 
             <div class="form-group">
                 <label for="VE">Membre du service Vie d'entreprise</label>
-                <input type="checkbox" id="VE" class="pull-right">
+                <md-checkbox ng-model="data.VE" aria-label="car" class="pull-right">
+                </md-checkbox>
             </div>
 
             <div class="form-group text-center">
                 <label>Actif ?</label>
-                 <input type="checkbox" id="active">   
+                <md-checkbox ng-model="data.active" aria-label="car">
+                </md-checkbox>
             </div>
 
 
@@ -80,12 +83,14 @@
 
             <div class="form-group">
                 <label for="car">Avez vous voiture?</label>
-                <input type="checkbox" class="pull-right" id="car">
+                <md-checkbox ng-model="data.car" aria-label="car" class="pull-right">
+                </md-checkbox>
             </div>
-
+            
             <div class="form-group">
                 <label for="carsharing">Etes-vous ouvert au covoiturage ?</label>
-                <input type="checkbox"  class="pull-right" id="carsharing">
+                <md-checkbox ng-model="data.carsharing" aria-label="car" class="pull-right">
+                </md-checkbox>
             </div>
 
 
