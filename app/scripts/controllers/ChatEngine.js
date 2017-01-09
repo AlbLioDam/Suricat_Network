@@ -12,7 +12,8 @@ app.controller('chat',function($scope, $interval, LinkDB, LinkDBChat, LinkDBDepa
 	{
 		idUser 			: "",
 		idUser_Users 	: "",
-		message 		: ""
+		message 		: "",
+		read 			: false
 	}
 
 	$scope.saveMessage = function()
@@ -36,13 +37,14 @@ app.controller('chat',function($scope, $interval, LinkDB, LinkDBChat, LinkDBDepa
 		$scope.messages 			= LinkDBChat.query();
 	}
 
-	var reload = $interval(function()
-				{
-					setTimeout(function()
-					{
-						$scope.$apply();
-						console.log(new Date());
-					},3000);
-				},3000);
+	$interval(function()
+	{
+		setTimeout(function()
+		{
+			LinkDBChat.query().$promise.then(function(response){
+				$scope.messages = response;
+			}
+		},1000);
+	},1000);
 	// Penser à arrêter le reload quand on change de page
 })
