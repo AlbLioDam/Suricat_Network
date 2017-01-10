@@ -16,7 +16,7 @@ var app = angular
           'ngSanitize',
           'ngMaterial',
           'ngMessages',
-          'material.svgAssetsCache'
+          'material.svgAssetsCache',
   ]);
 
 /*  app.directive('login', function () 

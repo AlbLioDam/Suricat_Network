@@ -1,13 +1,19 @@
 <div ng-controller="LeisureActualities">
-   <div class="titleActualitiesPages"><h1>Fil d'actualités Loisir</h1></div>
+    <div class="titleActualitiesPages"><h1>Fil d'actualités Loisir</h1></div>
     <div>
         <div>
-            <!-- ACTUALITY FORM -->
-            <div id="containerTeamActualityForm" class=" containerTeamActuality">
 
-                <H4 class="formTitle">actualité de loisir</H4>
-
-                <div class="formIntern">
+            <div class="panel-group containerTeamActuality" id="containerTeamActualityForm">
+                <div class="panel panel-default formCard">
+                    <div class=" formTitle panel-heading" data-toggle="collapse" href="#collapse1" ng-model="collapsed" ng-click='!collapsed'>
+                        <h4 class="panel-title">
+                            <a>Ecrire une actualité de loisir</a>
+                        </h4>
+                        
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                           <div class="formIntern">
                     <label class="titleLabel">Titre</label>
                     <input class="form-control" id="TitleEquipeTextarea" rows="1" ng-model="newActu.title"></input><br>
 
@@ -21,7 +27,14 @@
                         <option value="Covoiturage">Covoiturage     </option>
                         <option value="Services">   Services        </option>
                     </select><br><br>
-                    <button id="formbutton" type="submit" class="btn btn-primary" ng-click="postTeamActu()">Publier cette actualité</button>
+                </div> 
+                            
+                            
+                        </div>
+                        <div class="panel-footer">
+                            <button id="formbutton" type="submit" class="btn btn-primary" ng-click="postTeamActu()">Publier cette actualité</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
