@@ -50,7 +50,8 @@ app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
 		$cookieStore.remove('UserStatus');
 		$cookieStore.remove('UserCorporatelifeRepresentative');
 		$cookieStore.remove('UserWorkCouncilRepresentative');
-		
+		$scope.stopRefreshChat();
+		$scope.stopRefreshChatNotifications();
 		$scope.page = newPage;
 	}
 
@@ -96,7 +97,8 @@ app.controller('choiceOfInsideAdminUsers', function($scope){
 	}
 });
 
-app.controller('chatNotifications', function($scope, LinkDBChat, $interval){
+/*app.controller('chatNotifications', function($scope, LinkDBChat, $interval){
+	document.getElementById('backChatIcon').style.backgroundColor = 'white';
 	$scope.messages = LinkDBChat.query();
 	$interval(function(){
 		setTimeout(function(){
@@ -122,7 +124,7 @@ app.controller('chatNotifications', function($scope, LinkDBChat, $interval){
 				{
 					document.getElementById('backChatIcon').style.backgroundColor = 'white';
 				}
-			}
+			}/*
 			else
 			{
 				document.getElementById('backChatIcon').style.backgroundColor = 'white';
@@ -131,4 +133,4 @@ app.controller('chatNotifications', function($scope, LinkDBChat, $interval){
 			$scope.messages = LinkDBChat.query();
 		},1000);
 	},1000);
-});
+});*/

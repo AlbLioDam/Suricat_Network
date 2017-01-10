@@ -38,6 +38,8 @@ app.controller('chat',function($scope, $interval, LinkDB, LinkDBChat, LinkDBDepa
 		$scope.messages 			= LinkDBChat.query();
 	}
 
+	$scope.startRefreshChat();
+
 /*	$scope.markMessagesToRead = function()
 	{
 		console.log("taille : ", $scope.messages.length);
@@ -52,7 +54,7 @@ app.controller('chat',function($scope, $interval, LinkDB, LinkDBChat, LinkDBDepa
 		$scope.messages = LinkDBChat.query();
 	}*/
 
-	$interval(function(){
+/*	$interval(function(){
 		setTimeout(function(){
 			if($scope.receiver != "")
 			{
@@ -61,7 +63,7 @@ app.controller('chat',function($scope, $interval, LinkDB, LinkDBChat, LinkDBDepa
 				{
 					if(($scope.messages[i].idUser == $scope.idReceiver) && ($scope.messages[i].idUser_Users == $scope.idSender) && ($scope.messages[i].readStatus == false))
 					{
-						//console.log("A changer : ", $scope.messages[i].message);
+						// Change status of messages to already read
 						LinkDBChat.updateReadStatus({idMessage : $scope.messages[i].idMessage});
 					}
 				}
@@ -100,12 +102,12 @@ app.controller('chat',function($scope, $interval, LinkDB, LinkDBChat, LinkDBDepa
 						//console.log($scope.result);
 						if($scope.result == false)
 						{*/
-							$scope.messages = response;
+							//$scope.messages = response;
 /*						}
-					}*/
+					}
 				}
 			});
 		},1000);
-	},1000);
+	},1000);*/
 	// Penser à arrêter le reload quand on change de page
 });

@@ -61,8 +61,8 @@
         <link rel="shortcut icon" href="images/favicon.ico">
 
     </head>
-    <body ng-app="Suricat" ng-switch on="page" ng-controller="choiceOfPages" ng-cloak>
-        <div id="mainSpace">
+    <body ng-app="Suricat" ng-controller="RefreshOverTime" ng-cloak>
+        <div id="mainSpace" ng-controller="choiceOfPages" ng-switch on="page">
             <div ng-switch-when="login">
                 <ng-include src="'views/login.html'">           </ng-include>
             </div>
