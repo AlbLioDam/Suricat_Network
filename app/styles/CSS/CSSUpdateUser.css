@@ -18,3 +18,7 @@ md-checkbox.md-checked[disabled].red .md-icon {
 #modificationH3{
     color: white;
 }
+
+#titleAdminPageUser{
+    font-size: 10px;
+}

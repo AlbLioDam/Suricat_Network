@@ -4,19 +4,29 @@
         <div >
 
     		<!-- ACTUALITY FORM -->
-            <div id="containerTeamActualityForm" class=" containerTeamActuality" ng-show="workCouncilRepresentative || status == 'Admin'">
-
-                <H4 class="formTitle">actualité du CE</H4>
-
-                <div class="formIntern">
+            <div class="panel-group containerTeamActuality" id="containerTeamActualityForm">
+                <div class="panel panel-default formCard">
+                    <div class=" formTitle panel-heading" data-toggle="collapse" href="#collapse1">
+                        <h4 class="panel-title">
+                            <a>Ecrire une actualité du comité d'entreprise</a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                           <div class="formIntern">
                     <label class="titleLabel">Titre</label>
                     <input class="form-control" id="TitleEquipeTextarea" rows="1" ng-model="newActu.title"></input><br>
 
                     <label class="titleLabel">Contenu d'actualité</label>
                     <textarea class="form-control" id="ActuEquipeTextarea" rows="3" ng-model="newActu.publication"></textarea><br>
-
-     
-                    <button id="formbutton" type="submit" class="btn btn-primary" ng-click="postTeamActu()">Publier cette actualité</button>
+                </div> 
+                            
+                            
+                        </div>
+                        <div class="panel-footer">
+                            <button id="formbutton" type="submit" class="btn btn-primary" ng-click="postTeamActu()">Publier cette actualité</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
