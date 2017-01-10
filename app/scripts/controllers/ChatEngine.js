@@ -96,6 +96,12 @@ app.controller('chat',function($scope, $interval, LinkDB, LinkDBChat, LinkDBDepa
 					{
 						$scope.messages = response;
 					}
+
+					$scope.result2 = angular.equals($scope.messages, response);
+					if($scope.result2 == false)
+					{
+						$scope.messages = response;
+					}
 				}
 			});
 		},1000);
