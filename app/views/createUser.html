@@ -1,21 +1,21 @@
 <div ng-controller="passwordCtrl">
   <form class="row">
-    <div class="col-md-offset1 col-md-8" id="createUserDiv">
+    <div class="col-md-offset1 col-md-12" id="createUserDiv"  >
       <h3 class="text-center">Création d'un profil</h3>
 
       <div class="form-group">
         <label for="email">Login/mail</label>
-        <input type="email" class="form-control" ng-model="infosUser.email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required>
+        <input type="email" class="form-control" ng-model="infosUser.email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" ng-disable="cancelButtonPressed" required />
       </div>
 
       <div class="form-group">
         <label for="pw1">Password</label>
-        <input type="password" class="form-control" id="pw1" ng-model="infosUser.password" required/>
+        <input type="password" class="form-control" id="pw1" ng-model="infosUser.password" ng-disable="cancelButtonPressed" required/>
       </div>
 
       <div class="form-group">
         <label for="pw2">Confirm password</label>
-        <input type="password" class="form-control" id="pw2" name="pw2" ng-model="pw2" pw-check="pw1" required/>
+        <input type="password" class="form-control" id="pw2" name="pw2" ng-model="pw2" pw-check="pw1" ng-disable="cancelButtonPressed" required/>
       </div>
 
       <div ng-show="showmsg" class="errorMessage">
@@ -30,7 +30,7 @@
 
       <div class="">
         <button type="submit" class="btn btn-primary pull-right" ng-click="verifyPass(selected)">Créer </button>
-        <button type="" class="btn btn-danger pull-left">Annuler</button>
+        <button ng-model="cancelButtonPressed" class="btn btn-danger pull-left" ng-click="emptyCreateUserForm()">Vider les champs</button>
         <div>
         </div>
       </form>
