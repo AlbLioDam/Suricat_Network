@@ -30,8 +30,8 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', function(
       $scope.messages = {};
       if(angular.isDefined(refreshChat)) return;
       refreshChat =
-      $interval(function()
-      {
+      $interval(function(){
+        setTimeout(function(){
           if($scope.receiver != "")
           {
             console.log("taille : ", $scope.messages.length);
@@ -74,6 +74,7 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', function(
             }
         });
       }, 1000);
+    }, 1000);
   }
 
   // STOP REFRESH OF CHAT
