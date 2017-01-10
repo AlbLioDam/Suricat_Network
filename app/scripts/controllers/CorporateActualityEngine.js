@@ -116,3 +116,11 @@ app.controller('refresh',function($interval, $scope, LinkDBCorpActualities){
 		},3000);
 	},10000);	
 });
+
+app.controller('toggleCtrl', function($scope) {
+  
+  // BUTTONS ======================
+
+  $scope.isCollapsed = false;
+  
+});

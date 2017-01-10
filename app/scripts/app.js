@@ -17,6 +17,8 @@ var app = angular
           'ngMaterial',
           'ngMessages',
           'material.svgAssetsCache',
+          'ui.bootstrap',
+          'ngAnimate'
   ]);
 
 /*  app.directive('login', function () 

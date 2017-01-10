@@ -43,4 +43,3 @@ app.controller('checkboxCtrl', function($scope){
     $scope.data.activeCheckbox = true;
     $scope.data.cb1 = false;
 });
-

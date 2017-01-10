@@ -1,35 +1,53 @@
 var app = angular.module('Suricat');
 
-app.controller('taskManagementCtrl', function($scope, LinkDBTask, LinkDBDepartment){
+app.controller('taskManagementCtrl', function ($scope, LinkDBTask, LinkDBDepartment, LinkDBBelongTo, LinkDBKanbanTasks, LinkDBAttributeTaskUser) {
 
-	//$scope.teams 		= LinkDBTeams.query();
-	$scope.departments 	= LinkDBDepartment.query();
-	$scope.durations 	= [1,2,3,4,5,6,7];
-	$scope.weights 		= [1,2,3,4,5,6,7,8,9,10];
-	$scope.states 		= ["To Do","In Progress","To Verify","Done"];
-	
-	$scope.task =
-	{
-		taskName            : "",
-		Department          : "",
-		detail              : "",
-		Duration            : "",
-		Weight              : "",
-		Status              : ""
-	};
+    //$scope.teams 		= LinkDBTeams.query();
+    $scope.departments = LinkDBDepartment.query();
+    $scope.users = LinkDBBelongTo.query();
+    $scope.team = {};
+    $scope.user = {};
+    //$scope.team = $scope.selected;
+    
+    console.log($scope.users);
 
-	$scope.createTask = function (selectedDepartment, selectedDuration, selectedWeight, selectedState)
-	{
-		$scope.task.Department 	= selectedDepartment.idDepartment;
-		$scope.task.Duration 	= selectedDuration;
-		$scope.task.Weight 		= selectedWeight;
-		$scope.task.Status 		= selectedState;
+    $scope.durations = [1, 2, 3, 4, 5, 6, 7];
+    $scope.weights = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    $scope.states = ["To Do", "In Progress", "To Verify", "Done"];
 
-		LinkDBTask.save($scope.task).$promise.then(function(response){
-			console.log(response);
+    $scope.task =
+            {
+                taskName: "",
+                detail: "",
+                Duration: "",
+                Weight: "",
+                Status: "",
+                idTeam: "",
+                idUser: $scope.user.idUser,
+                idTask:""
+            };
+
+    $scope.createTask = function ()
+    {
+        
+        $scope.task.idTeam = $scope.selected.idTeam;
+        $scope.task.idUser = $scope.user.idUser;
+        
+        
+        
+        LinkDBTask.save($scope.task).$promise.then(function (response) {
+            
+            console.log(response);
             console.log($scope.task);
-            $scope.refreshKanban();
-		});
-                
-	};
+           //$scope.refreshKanban();
+            $scope.task.idTask = response.idTask;
+            console.log($scope.task);
+            LinkDBKanbanTasks.save($scope.task);
+            
+            if ($scope.task.idUser!==""){
+                LinkDBAttributeTaskUser.save($scope.task);
+            }
+        });
+
+    };
 });

@@ -13,7 +13,7 @@ app.controller('Teams',function($scope, LinkDBBelongToByUser){
 		LinkDBBelongToByUser.getTeamsOfUser({idUser: $scope.idUser}).$promise.then(function(response){
 			$scope.listOfTeams = angular.copy(response);
 		});
-	}
+	};
 });
 
 app.controller('TeamActualities',function($interval, $scope, LinkDBTeamActualities, LinkDBBelongToByUser, LinkDBActualityId){
@@ -21,14 +21,14 @@ app.controller('TeamActualities',function($interval, $scope, LinkDBTeamActualiti
 	$scope.updateTeamActualities = function()
 	{
 		$scope.listOfTeamActualities = LinkDBTeamActualities.query();
-	}
+	};
 
 	$scope.updateListOfTeams = function()
 	{
 		LinkDBBelongToByUser.getTeamsOfUser({idUser: $scope.idUser}).$promise.then(function(response){
 			$scope.listOfTeams = angular.copy(response);
 		});
-	}
+	};
 
 	/*-----------------------------------------
 	 Prepare Json to Post with Team Actuality 
