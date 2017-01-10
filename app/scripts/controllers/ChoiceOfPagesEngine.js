@@ -12,16 +12,16 @@ app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
 	$scope.showTrademark = function(ev) 
 	{
     	$mdDialog.show(
-      	$mdDialog.alert()
-        .parent(angular.element(document.querySelector('#popupContainer')))
-        .clickOutsideToClose(true)
-        .title('Future Registered trademarks')
-        .textContent('Alban / Lionel / Damien, AlbLioDam, and Suricat will be protected by intellectual property rights.')
-        .ariaLabel('Alert Dialog Demo')
-        .ok('ok !')
-        .targetEvent(ev)
-    );
-  };
+	      	$mdDialog.alert()
+	        .parent(angular.element(document.querySelector('#popupContainer')))
+	        .clickOutsideToClose(true)
+	        .title('Future Registered trademarks')
+	        .textContent('Alban / Lionel / Damien, AlbLioDam, and Suricat will be protected by intellectual property rights.')
+	        .ariaLabel('Alert Dialog Demo')
+	        .ok('ok !')
+	        .targetEvent(ev)
+    	);
+  	};
 
 	$scope.showConfirm = function(ev) 
 	{
@@ -40,7 +40,7 @@ app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
     	{
 	      //only close the dialog box.
 	    });
-  };
+  	};
 
 	$scope.disconnect = function(newPage)
 	{
