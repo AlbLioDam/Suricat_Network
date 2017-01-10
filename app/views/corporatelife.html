@@ -1,57 +1,60 @@
 <div ng-controller="CorporateActualities">
-	 <div class="titleActualitiesPages"><h1>Fil d'actualités de la Vie d'Entreprise</h1></div>
-        <div>
-    		<!-- ACTUALITY FORM -->      
-            <div class="panel-group containerTeamActuality" id="containerTeamActualityForm">
-                <div class="panel panel-default formCard">
-                    <div class="formTitle panel-heading" data-toggle="collapse" href="#collapse1">
-                        <h4 class="panel-title">
-                            <a>Ecrire une actualité de vie d'entreprise</a>
-                        </h4>
-                    </div>
-                    <div id="collapse1" class="panel-collapse collapse">
-                        <div class="panel-body">
-                           <div class="formIntern">
-                    <label class="titleLabel">Titre</label>
-                    <input class="form-control" id="TitleEquipeTextarea" rows="1" ng-model="newActu.title"></input><br>
+    
+    
+    <div class="titleActualitiesPages"><h1>Fil d'actualités de la Vie d'Entreprise</h1></div>
+        <!-- ACTUALITY FORM -->
+        <uib-accordeon>
+        <uib-accordeon-group class="panel-group containerTeamActuality" id="containerTeamActualityForm" ng-controller="toggleCtrl">
+            <div class="panel panel-default formCard">
+                <uib-accordeon-heading class="formTitle panel-heading" ng-click="isCollapsed = !isCollapsed">
+                    <h4 class="panel-title">
+                        <a>Ecrire une actualité de vie d'entreprise</a>
+                    </h4>
+                </uib-accordeon-heading>
+                <div>
+                    <div class="panel-body">
+                        <div class="formIntern">
+                            <label class="titleLabel">Titre</label>
+                            <input class="form-control" id="TitleEquipeTextarea" rows="1" ng-model="newActu.title"></input><br>
 
-                    <label class="titleLabel">Contenu d'actualité</label>
-                    <textarea class="form-control" id="ActuEquipeTextarea" rows="3" ng-model="newActu.publication"></textarea><br>
-                </div> 
-                            
-                            
-                        </div>
-                        <div class="panel-footer">
-                            <button id="formbutton" type="submit" class="btn btn-primary" ng-click="postTeamActu()">Publier cette actualité</button>
-                        </div>
+                            <label class="titleLabel animate-if">Contenu d'actualité</label>
+                            <textarea class="form-control" id="ActuEquipeTextarea" rows="3" ng-model="newActu.publication"></textarea><br>
+                        </div> 
+
+
+                    </div>
+                    <div class="panel-footer">
+                        <button id="formbutton" type="submit" class="btn btn-primary" ng-click="postTeamActu()">Publier cette actualité</button>
                     </div>
                 </div>
             </div>
+        </uib-accordeon-group>
+        </uib-accordeon>
 
-    		<!-- DISPLAY CORPORATE ACTUALITIES -->
-    	        
-            <div ng-controller="refresh" class="container">
+        <!-- DISPLAY CORPORATE ACTUALITIES -->
+
+        <div ng-controller="refresh" class="container">
             <center>{{message}}</center> 
-            
-                <div id="containerTeamActualityList" class="containerTeamActuality row" ng-repeat="actu in listOfCorpActualities">   
-                    <div class="col-xs-12" id="dd">
 
-                        <div id="contain_title" class="col-xs-6">
-                            <H4 class="actuTitle"><span id="glyph"></span> {{actu.title}}</H4>
-                        </div>
+            <div id="containerTeamActualityList" class="containerTeamActuality row" ng-repeat="actu in listOfCorpActualities">   
+                <div class="col-xs-12" id="dd">
 
-                        <div id="contain_date" class="col-xs-6">
-                            {{actu.dateActuality}}
-                        </div>
+                    <div id="contain_title" class="col-xs-6">
+                        <H4 class="actuTitle"><span id="glyph"></span> {{actu.title}}</H4>
                     </div>
 
-                    <div class="contain_content col-xs-12">   
+                    <div id="contain_date" class="col-xs-6">
+                        {{actu.dateActuality}}
+                    </div>
+                </div>
+
+                <div class="contain_content col-xs-12">   
                     {{actu.publication}}  
                     <span class="pull-right" ng-show="actu.idUser === idUser || status === 'Admin'"><span id="glyph" ng-class="'fa fa-trash'" ng-click="removeCorporateLifeActuality(actu.idActuality)"></span></span>
-                    </div><br>
+                </div><br>
 
-                    <i class="pull-right">{{actu.lastname}} {{actu.firstname}}</i>
-                </div>
+                <i class="pull-right">{{actu.lastname}} {{actu.firstname}}</i>
             </div>
         </div>
+    </div>
 </div>

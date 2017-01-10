@@ -17,6 +17,8 @@ var app = angular
           'ngMaterial',
           'ngMessages',
           'material.svgAssetsCache',
+          'ui.bootstrap',
+          'ngAnimate'
   ]);
 
 app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', function($scope, $interval, LinkDBChat)
