@@ -32,16 +32,14 @@ app.controller('taskManagementCtrl', function ($scope, LinkDBTask, LinkDBDepartm
         
         $scope.task.idTeam = $scope.selected.idTeam;
         $scope.task.idUser = $scope.user.idUser;
-        
-        
-        
+
+        console.log("Avant save : ", $scope.task);
         LinkDBTask.save($scope.task).$promise.then(function (response) {
             
-            console.log(response);
-            console.log($scope.task);
+            console.log("Response : ", response);
            //$scope.refreshKanban();
             $scope.task.idTask = response.idTask;
-            console.log($scope.task);
+            console.log("Après save : ", $scope.task);
             LinkDBKanbanTasks.save($scope.task);
             
             if ($scope.task.idUser!==""){
