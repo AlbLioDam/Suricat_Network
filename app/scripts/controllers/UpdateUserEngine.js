@@ -18,6 +18,21 @@ app.controller('passwordCtrl',function($scope, LinkDBDepartment, LinkDB, $cookie
 	/*$scope.user = LinkDB.getUserById({idUser: 1});
 	console.log($scope.user);
 	showInformations($scope.user);*/
+	$scope.addAMember = function()
+	{
+		$scope.modifyUserClicked = !$scope.modifyUserClicked;
+	}
+
+	$scope.modifyUser = function()
+	{
+		$scope.modifyUserClicked = !$scope.modifyUserClicked;
+
+	}
+	$scope.emptyCreateUserForm = function()
+	{
+			$scope.reset();
+			$scope.pw2 = "";
+	}
 
 	$scope.verifyPass = function(selected)
 	{
