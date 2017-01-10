@@ -8,11 +8,17 @@
                 <option></option>
             </select>
             <input class="form-control" type="text" ng-model="search" placeholder="Filtrer par saisie (2 lettres min)"><br>
-            <button ng-click="showMessages(user)" class="showUser form-control" ng-repeat="user in users | filter : {idDepartment : selectedDepartment.idDepartment} | filter : search" ng-if="user.idUser != idSender">
-                <div class="numberOfNotifications">
-                    {{(messages | filter : {idUser_Users : idSender, idUser : user.idUser, readStatus : 0}).length}}
-                </div>
-                {{user.firstname}} {{user.lastname}}
+            <button ng-click="showMessages(user)" class="row showUser form-control regulMargin" ng-repeat="user in users | filter : {idDepartment : selectedDepartment.idDepartment} | filter : search" ng-if="user.idUser != idSender">
+                    <div class="col-md-1 numberOfNotifications regulMargin">
+                        {{(messages | filter : {idUser_Users : idSender, idUser : user.idUser, readStatus : 0}).length}}
+                    </div>
+                    <div class="col-md-4 hidden-sm hidden-xs regulMargin">
+                        {{user.firstname}}
+                     </div>
+                    <div class="col-md-7 col-sm-11 col-xs-11 regulMargin">
+                        {{user.lastname}}
+                    </div>
+ 
             </button>
         </div>
 

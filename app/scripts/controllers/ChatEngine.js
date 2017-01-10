@@ -68,6 +68,8 @@ app.controller('chat',function($scope, $interval, LinkDB, LinkDBChat, LinkDBDepa
 			}
 			//$scope.messages = LinkDBChat.query();
 			LinkDBChat.query().$promise.then(function(response){
+				console.log("response", response.length);
+				console.log("messages", $scope.messages.length);
 				if($scope.receiver != "")
 				{
 					$scope.FiltredResponse = [{}];
@@ -90,18 +92,17 @@ app.controller('chat',function($scope, $interval, LinkDB, LinkDBChat, LinkDBDepa
 						}
 					}
 
-					$scope.result = angular.equals($scope.FiltredMessages, $scope.FiltredResponse);
-					//console.log($scope.result);
-					if($scope.result == false)
-					{
-						$scope.messages = response;
-					}
-
-					$scope.result2 = angular.equals($scope.messages, response);
+/*					$scope.result2 = angular.equals($scope.messages, response);
 					if($scope.result2 == false)
 					{
 						$scope.messages = response;
-					}
+						$scope.result = angular.equals($scope.FiltredMessages, $scope.FiltredResponse);
+						//console.log($scope.result);
+						if($scope.result == false)
+						{*/
+							$scope.messages = response;
+/*						}
+					}*/
 				}
 			});
 		},1000);

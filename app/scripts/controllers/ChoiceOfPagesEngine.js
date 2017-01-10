@@ -95,3 +95,40 @@ app.controller('choiceOfInsideAdminUsers', function($scope){
 		$scope.insideAdminUser = newInsideAdminUser;
 	}
 });
+
+app.controller('chatNotifications', function($scope, LinkDBChat, $interval){
+	$scope.messages = LinkDBChat.query();
+	$interval(function(){
+		setTimeout(function(){
+			var number = 0;
+			var mySelf = $scope.idUser;
+			for (var i = 0; i < $scope.messages.length; i++)
+			{
+				if(($scope.messages[i].idUser_Users == mySelf) && ($scope.messages[i].readStatus == false))
+				{
+					number++;
+				}
+			}
+
+			console.log("number : ", number);
+
+			if(number != 0)
+			{
+				if(document.getElementById('backChatIcon').style.backgroundColor == 'white')
+				{
+					document.getElementById('backChatIcon').style.backgroundColor = 'red';
+				}
+				else
+				{
+					document.getElementById('backChatIcon').style.backgroundColor = 'white';
+				}
+			}
+			else
+			{
+				document.getElementById('backChatIcon').style.backgroundColor = 'white';
+			}
+
+			$scope.messages = LinkDBChat.query();
+		},1000);
+	},1000);
+});

@@ -24,6 +24,7 @@ form#formMessage
 {
 	background-color: #CD5C5C;
 	text-align: left;
+	margin-left: 10px; 
 	float: left;
 }
 
@@ -31,6 +32,7 @@ form#formMessage
 {
 	background-color: #6495ED;
 	text-align: right;
+	margin-right: 10px; 
 	float: right;
 }
 
@@ -46,13 +48,16 @@ form#formMessage
 
 .numberOfNotifications
 {
-	max-width: 100%;
-	width: 40px;
-	height: 40px;
-	border-radius: 50%;
-	background-color: #da2e2e;
 	color: white;
-	float: left;
-	margin-left: 10px;
-	font-size: 30px;
+	
+}
+
+.regulMargin
+{
+	padding: 0px 0px 0px 0px;
+}
+
+button.row
+{
+	margin:0px;
 }
