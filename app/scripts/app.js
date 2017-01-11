@@ -36,6 +36,8 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
   {
     $scope.receiver   = receiver;
     $scope.idReceiver = idReceiver;
+    console.log("1 ---- ", $scope.receiver);
+    console.log("2 ---- ", $scope.idReceiver);
   }
 
   $scope.updateMessages = function()
@@ -59,15 +61,17 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
       $interval(function(){
         setTimeout(function(){
           LinkDBChat.query().$promise.then(function(response){
+
             if($scope.receiver != "")
             {
+              /*              
               $scope.FiltredResponse = [{}];
               for (var i = 0; i < response.length; i++)
               {
                 if((response[i].idUser == $scope.idReceiver) && (response[i].idUser_Users == $scope.idSender) && (response[i].readStatus == false))
                 {
                   $scope.FiltredResponse.push(response[i]);
-                  //console.log($scope.FiltredResponse);
+                  console.log($scope.FiltredResponse.length);
                 }
               }
 
@@ -77,26 +81,36 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
                 if(($scope.messages[i].idUser == $scope.idReceiver) && ($scope.messages[i].idUser_Users == $scope.idSender) && ($scope.messages[i].readStatus == false))
                 {
                   $scope.FiltredMessages.push($scope.messages[i]);
-                  //console.log($scope.FiltredMessages);
+                  console.log($scope.FiltredMessages.length);
+                }
+              }*/
+              console.log("3 ---- ", $scope.receiver);
+              console.log("4 ---- ", $scope.idReceiver);
+
+              var numberOfChanges = 0;
+              for (var i = 0; i < response.length; i++)
+              {
+                if((response[i].idUser == $scope.idReceiver) && (response[i].idUser_Users == $scope.idSender) && (response[i].readStatus == false))
+                {
+                    console.log("5 --------- A METTRE EN LU");
+                    LinkDBChat.updateReadStatus({idMessage: response[i].idMessage});
+                    numberOfChanges++;
                 }
               }
 
-              $scope.result = angular.equals($scope.FiltredMessages, $scope.FiltredResponse);
-              //console.log($scope.result);
-              if($scope.result == false)
+              if(numberOfChanges > 0)
               {
-                $scope.FiltredMessages = $scope.FiltredResponse;
-                for (var i = 0; i < $scope.FiltredMessages.length; i++)
-                {
-                  if(($scope.FiltredMessages[i].idUser == $scope.idReceiver) && ($scope.FiltredMessages[i].idUser_Users == $scope.idSender) && ($scope.FiltredMessages[i].readStatus == false))
-                  {
-                    // Change status of messages to already read
-                    LinkDBChat.updateReadStatus({idMessage : $scope.FiltredMessages[i].idMessage});
-                  }
-                }
-                $scope.messages = LinkDBChat.query();
+                  $scope.messages = LinkDBChat.query();
               }
             }
+
+            // Update of the scope messages if there is more messages in the db
+            //$scope.result = angular.equals($scope.messages, response);
+            //console.log($scope.result);
+            //if($scope.result == false)
+            //{
+              //$scope.messages = response;
+            //}
         });
       }, 1000);
     }, 1000);
@@ -147,11 +161,11 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
             {
               document.getElementById('backChatIcon').style.backgroundColor = 'white';
             }
-          }/*
-          else
+          }
+          else if(number == 0)
           {
             document.getElementById('backChatIcon').style.backgroundColor = 'white';
-          }*/
+          }
 
           //$scope.messages = LinkDBChat.query();
         },1000);

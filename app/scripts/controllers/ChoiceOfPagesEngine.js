@@ -44,14 +44,14 @@ app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
 
 	$scope.disconnect = function(newPage)
 	{
+		$scope.stopRefreshChat();
+		$scope.stopRefreshChatNotifications();
 		$cookieStore.remove('UserFirstname');
 		$cookieStore.remove('UserLastname');
 		$cookieStore.remove('UserIdUser');
 		$cookieStore.remove('UserStatus');
 		$cookieStore.remove('UserCorporatelifeRepresentative');
 		$cookieStore.remove('UserWorkCouncilRepresentative');
-		$scope.stopRefreshChat();
-		$scope.stopRefreshChatNotifications();
 		$scope.page = newPage;
 	}
 

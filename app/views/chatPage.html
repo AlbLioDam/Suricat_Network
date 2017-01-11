@@ -28,7 +28,7 @@
             <h1>Conversation avec {{receiver}}</h1>
             <form id="formMessage">
                 Message : 
-                <input class="form-control" type="text" ng-model="send.message">
+                <input class="form-control" type="text" ng-model="send.message" maxlength="40">
                 <br>
                 <button class="form-control btn btn-primary" ng-click="saveMessage()">Envoyer</button>
             </form>
