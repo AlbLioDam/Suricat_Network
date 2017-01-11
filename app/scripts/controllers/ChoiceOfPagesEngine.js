@@ -74,6 +74,9 @@ app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
 		}
 
 		console.log("access : ", $scope.access);
+		console.log("idUser : ", $scope.idUser);
+		$scope.startRefreshChatNotifications();
+		$scope.startRefreshChat();
 	}
 });
 

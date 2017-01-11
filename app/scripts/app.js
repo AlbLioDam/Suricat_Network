@@ -21,35 +21,39 @@ var app = angular
           'ngAnimate'
   ]);
 
-app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', function($scope, $interval, LinkDBChat)
+app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieStore', function($scope, $interval, LinkDBChat, $cookieStore)
 {
   var refreshChat;
   var refreshChatNotifications;
 
+  $scope.messages   = LinkDBChat.query();
+  $scope.receiver   = "";
+  $scope.idReceiver = "";
+  $scope.idSender   = $cookieStore.get('UserIdUser');
+
+  $scope.fill = function(receiver, idReceiver)
+  {
+    $scope.receiver   = receiver;
+    $scope.idReceiver = idReceiver;
+    console.log("parent receiver", $scope.receiver);
+    console.log("parent idReceiver", $scope.idReceiver);
+  }
+
   // START REFRESH OF CHAT
   $scope.startRefreshChat = function()
   {
-      $scope.messages = {};
       if(angular.isDefined(refreshChat)) return;
+
+/*      LinkDBChat.query().$promise.then(function(response){
+          $scope.messages  = response;
+          //console.log("full : ",$scope.messages);
+          //console.log("full Taille : ",$scope.messages.length);
+      });*/
+     
       refreshChat =
       $interval(function(){
         setTimeout(function(){
-          if($scope.receiver != "")
-          {
-            console.log("taille : ", $scope.messages.length);
-            for (var i = 0; i < $scope.messages.length; i++)
-            {
-              if(($scope.messages[i].idUser == $scope.idReceiver) && ($scope.messages[i].idUser_Users == $scope.idSender) && ($scope.messages[i].readStatus == false))
-              {
-                // Change status of messages to already read
-                LinkDBChat.updateReadStatus({idMessage : $scope.messages[i].idMessage});
-              }
-            }
-          }
-          //$scope.messages = LinkDBChat.query();
           LinkDBChat.query().$promise.then(function(response){
-            console.log("response", response.length);
-            console.log("messages", $scope.messages.length);
             if($scope.receiver != "")
             {
               $scope.FiltredResponse = [{}];
@@ -71,8 +75,22 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', function(
                   //console.log($scope.FiltredMessages);
                 }
               }
-              
-              $scope.messages = response;
+
+              $scope.result = angular.equals($scope.FiltredMessages, $scope.FiltredResponse);
+              //console.log($scope.result);
+              if($scope.result == false)
+              {
+                $scope.FiltredMessages = $scope.FiltredResponse;
+                for (var i = 0; i < $scope.FiltredMessages.length; i++)
+                {
+                  if(($scope.FiltredMessages[i].idUser == $scope.idReceiver) && ($scope.FiltredMessages[i].idUser_Users == $scope.idSender) && ($scope.FiltredMessages[i].readStatus == false))
+                  {
+                    // Change status of messages to already read
+                    LinkDBChat.updateReadStatus({idMessage : $scope.FiltredMessages[i].idMessage});
+                  }
+                }
+                $scope.messages = LinkDBChat.query();
+              }
             }
         });
       }, 1000);
@@ -92,18 +110,17 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', function(
   // START REFRESH OF CHAT NOTIFICATIONS
   $scope.startRefreshChatNotifications = function()
   {
-      console.log("ici");
       if(angular.isDefined(refreshChatNotifications)) return;
-      console.log("ici 2");
-      document.getElementById('backChatIcon').style.backgroundColor = 'white';
+
+      //document.getElementById('backChatIcon').style.backgroundColor = 'white';
       $scope.messages = LinkDBChat.query();
       
       refreshChatNotifications =
       $interval(function(){
         setTimeout(function(){
           var number = 0;
-          var mySelf = $scope.idUser;
-          console.log("ici 3");
+          var mySelf = $cookieStore.get('UserIdUser');
+
           for (var i = 0; i < $scope.messages.length; i++)
           {
             if(($scope.messages[i].idUser_Users == mySelf) && ($scope.messages[i].readStatus == false))
@@ -114,7 +131,7 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', function(
 
           console.log("number : ", number);
 
-          if(number != 0)
+          if(number > 0)
           {
             if(document.getElementById('backChatIcon').style.backgroundColor == 'white')
             {

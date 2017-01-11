@@ -21,7 +21,7 @@ app.constant('LeisureActualities', '/leisureActuality/:idActuality');
 app.constant('Actuality', '/actuality/:idActuality');
 app.constant('Actualities', '/actuality');
 app.constant('Task', '/task');
-app.constant('Chat', '/message');
+app.constant('Chat', '/message/:idMessage');
 app.constant('AttributeTaskToUser', '/have');
 
 
@@ -30,7 +30,6 @@ app.constant('AttributeTaskToUser', '/have');
 app.factory('LinkDBAttributeTaskUser', function ($resource, BaseURL, AttributeTaskToUser)
 {
     return $resource(BaseURL + AttributeTaskToUser, null, {
-
     });
 });
 
