@@ -95,52 +95,13 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
 
       LinkDBChat.query().$promise.then(function(response){
           $scope.messages = response;
-          //console.log("First response : ", response);
-          //console.log("First size : ", response.length);
       });
 
       refreshChat =
       $interval(function(){
         setTimeout(function(){
-
-          LinkDBChat.query().$promise.then(function(response){
-            //if($scope.receiver != "")
-            //{
-            //console.log("Second response : ", response);
-            //console.log("Second size : ", response.length);
-           // if(angular.equals($scope.messages, response) == false)
-            //{
-              var toChargeTwo = false;
-              //console.log("response ---- ", response.length);
-              for (var i = 0; i < response.length; i++)
-              {
-                if((response[i].idUser == $scope.idReceiver) && (response[i].idUser_Users == $scope.idSender))
-                {
-                  //console.log("users OK");
-                  if(angular.equals(response[i].readStatus, 0))
-                  {
-                    toChargeTwo = true;
-                    //console.log("readStatus OK");
-                    LinkDBChat.updateReadStatus({idMessage: response[i].idMessage}).$promise.then(function(resp){
-                        console.log(resp);
-                    });
-                  }
-                }
-              }
-
-              if(toChargeTwo === true)
-              {
-                  LinkDBChat.query().$promise.then(function(resp){
-                      $scope.messages = resp;
-                      console.log("Third response : ", response);
-                      console.log("Third size : ", response.length);
-                  });
-                  //$scope.$parent.messages = LinkDBChat.query();
-              }
-            //}
-          //}
-        });
-
+          $scope.updateMessagesOnce();
+          $scope.updateMessages();
       }, 1000);
     }, 1000);
   }
