@@ -26,17 +26,22 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
   var refreshChat;
   var refreshChatNotifications;
 
-  $scope.messages   = LinkDBChat.query();
+  //$scope.messages   = LinkDBChat.query();
   $scope.receiver   = "";
   $scope.idReceiver = "";
   $scope.idSender   = $cookieStore.get('UserIdUser');
+  $scope.messages = {};
 
   $scope.fill = function(receiver, idReceiver)
   {
     $scope.receiver   = receiver;
     $scope.idReceiver = idReceiver;
-    console.log("parent receiver", $scope.receiver);
-    console.log("parent idReceiver", $scope.idReceiver);
+  }
+
+  $scope.updateMessages = function()
+  {
+    $scope.messages = LinkDBChat.query();
+    return $scope.messages;
   }
 
   // START REFRESH OF CHAT
@@ -112,14 +117,15 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
   {
       if(angular.isDefined(refreshChatNotifications)) return;
 
-      //document.getElementById('backChatIcon').style.backgroundColor = 'white';
       $scope.messages = LinkDBChat.query();
+      var mySelf = $cookieStore.get('UserIdUser');
+      //document.getElementById('backChatIcon').style.backgroundColor = 'white';
+      //$scope.messages = LinkDBChat.query();
       
       refreshChatNotifications =
       $interval(function(){
         setTimeout(function(){
           var number = 0;
-          var mySelf = $cookieStore.get('UserIdUser');
 
           for (var i = 0; i < $scope.messages.length; i++)
           {
@@ -147,7 +153,7 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
             document.getElementById('backChatIcon').style.backgroundColor = 'white';
           }*/
 
-          $scope.messages = LinkDBChat.query();
+          //$scope.messages = LinkDBChat.query();
         },1000);
       },1000);
   }

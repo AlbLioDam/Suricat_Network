@@ -4,7 +4,7 @@ app.controller('chat',function($scope, $interval, LinkDB, LinkDBChat, LinkDBDepa
 
 	$scope.departments 	= LinkDBDepartment.query();
 	$scope.users 		= LinkDB.query();
-	$scope.messages 	= LinkDBChat.query();
+	//$scope.messages 	= $scope.$parent.messages;
 	$scope.receiver 	= "";
 	$scope.idSender 	= $scope.idUser;
 	$scope.temp = [{}];
@@ -24,7 +24,7 @@ app.controller('chat',function($scope, $interval, LinkDB, LinkDBChat, LinkDBDepa
 			LinkDBChat.save($scope.send).$promise.then(function(response){
 				console.log(response);
 				$scope.send.message = "";
-				$scope.messages = LinkDBChat.query();
+				$scope.$parent.messages = $scope.updateMessages();
 			});
 		}
 	}
@@ -32,12 +32,9 @@ app.controller('chat',function($scope, $interval, LinkDB, LinkDBChat, LinkDBDepa
 	$scope.showMessages = function(user)
 	{
 		$scope.idReceiver 			= user.idUser;
-		//$scope.$parent.idReceiver 	= user.idUser;
 		$scope.send.idUser_Users 	= user.idUser;
 		$scope.send.idUser 			= $scope.idUser;
 		$scope.receiver 			= user.firstname + " " + user.lastname;
-		//$scope.$parent.receiver 	= user.firstname + " " + user.lastname;
-		$scope.messages 			= LinkDBChat.query();
 		$scope.fill($scope.receiver, $scope.idReceiver);
 	}
 
