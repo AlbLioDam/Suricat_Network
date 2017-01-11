@@ -31,7 +31,7 @@ app.controller('chat',function($scope, $interval, LinkDB, LinkDBChat, LinkDBDepa
 			LinkDBChat.save($scope.send).$promise.then(function(response){
 				console.log(response);
 				$scope.send.message = "";
-				$scope.$parent.messages = $scope.updateMessages();
+				$scope.updateMessages();
 			});
 		}
 	}
@@ -39,18 +39,21 @@ app.controller('chat',function($scope, $interval, LinkDB, LinkDBChat, LinkDBDepa
 	// METHOD : SHOW MESSAGES BETWEEN TWO PEOPLE
 	$scope.showMessages = function(user)
 	{
-		$scope.$parent.messages = $scope.updateMessages();
+		//$scope.updateMessages();
+		//$scope.$parent.messages = $scope.updateMessages();
 		$scope.idReceiver 			= user.idUser;
 		$scope.receiver 			= user.firstname + " " + user.lastname;
 		$scope.fill($scope.receiver, $scope.idReceiver);
 		$scope.send.idUser_Users 	= user.idUser;
 		$scope.send.idUser 			= $scope.idUser;
+		$scope.updateMessagesOnce();
+		//$scope.updateMessages();
 	}
 
-	$interval(function(){
+/*	$interval(function(){
         setTimeout(function(){
         	$scope.$parent.messages = $scope.updateMessages();
         },1000);
-      },1000);
+      },1000);*/
 
 });
