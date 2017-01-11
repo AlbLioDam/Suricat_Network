@@ -9,7 +9,7 @@ app.controller('taskManagementCtrl', function ($scope, LinkDBTask, LinkDBDepartm
     $scope.user = {};
     //$scope.team = $scope.selected;
     
-    console.log($scope.users);
+    //console.log($scope.users);
 
     $scope.durations = [1, 2, 3, 4, 5, 6, 7];
     $scope.weights = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -32,15 +32,12 @@ app.controller('taskManagementCtrl', function ($scope, LinkDBTask, LinkDBDepartm
         $scope.task.idTeam = $scope.selected.idTeam;
         $scope.task.idUser = $scope.user.idUser;
 
-        console.log("Avant save : ", $scope.task);
         LinkDBTask.save($scope.task).$promise.then(function (response) {
             
-            console.log("Response : ", response);
             $scope.task.idTask = response.idTask;
-            console.log("Après save : ", $scope.task);
             LinkDBKanbanTasks.save($scope.task);
             
-            if ($scope.task.idUser!==""){
+            if ($scope.task.idUser !== ""){
                 LinkDBAttributeTaskUser.save($scope.task);
             }
 

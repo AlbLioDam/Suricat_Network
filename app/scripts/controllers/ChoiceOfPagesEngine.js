@@ -2,6 +2,8 @@ var app = angular.module('Suricat');
 
 // CONTROLLER : Switch between login page and main page
 app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
+	
+	// DEFAULT PAGE
 	$scope.page = "login";
 
 	$scope.modifyPage = function(newPage)
@@ -44,14 +46,19 @@ app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
 
 	$scope.disconnect = function(newPage)
 	{
+		// STOP ALL REFRESHES RELATIVE TO THE CHAT
 		$scope.stopRefreshChat();
 		$scope.stopRefreshChatNotifications();
+
+		// REMOVE THE USER'S COOKIE
 		$cookieStore.remove('UserFirstname');
 		$cookieStore.remove('UserLastname');
 		$cookieStore.remove('UserIdUser');
 		$cookieStore.remove('UserStatus');
 		$cookieStore.remove('UserCorporatelifeRepresentative');
 		$cookieStore.remove('UserWorkCouncilRepresentative');
+
+		// RETURN ON LOGIN PAGE
 		$scope.page = newPage;
 	}
 
@@ -64,6 +71,7 @@ app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
 		$scope.access = null;
 		$scope.corporateLifeRepresentative 	= $cookieStore.get('UserCorporatelifeRepresentative');
 		$scope.workCouncilRepresentative 	= $cookieStore.get('UserWorkCouncilRepresentative');
+		
 		if($scope.status == "Chef de projet" || $scope.status == "Admin")
 		{
 			$scope.access = true;
@@ -75,8 +83,10 @@ app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
 
 		console.log("access : ", $scope.access);
 		console.log("idUser : ", $scope.idUser);
-		$scope.startRefreshChatNotifications();
+
+		// LAUNCH REFRESHES RELATIVE TO THE CHAT
 		$scope.startRefreshChat();
+		$scope.startRefreshChatNotifications();
 	}
 });
 
@@ -99,41 +109,3 @@ app.controller('choiceOfInsideAdminUsers', function($scope){
 		$scope.insideAdminUser = newInsideAdminUser;
 	}
 });
-
-/*app.controller('chatNotifications', function($scope, LinkDBChat, $interval){
-	document.getElementById('backChatIcon').style.backgroundColor = 'white';
-	$scope.messages = LinkDBChat.query();
-	$interval(function(){
-		setTimeout(function(){
-			var number = 0;
-			var mySelf = $scope.idUser;
-			for (var i = 0; i < $scope.messages.length; i++)
-			{
-				if(($scope.messages[i].idUser_Users == mySelf) && ($scope.messages[i].readStatus == false))
-				{
-					number++;
-				}
-			}
-
-			console.log("number : ", number);
-
-			if(number != 0)
-			{
-				if(document.getElementById('backChatIcon').style.backgroundColor == 'white')
-				{
-					document.getElementById('backChatIcon').style.backgroundColor = 'red';
-				}
-				else
-				{
-					document.getElementById('backChatIcon').style.backgroundColor = 'white';
-				}
-			}/*
-			else
-			{
-				document.getElementById('backChatIcon').style.backgroundColor = 'white';
-			}
-
-			$scope.messages = LinkDBChat.query();
-		},1000);
-	},1000);
-});*/

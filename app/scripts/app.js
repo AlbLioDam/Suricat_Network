@@ -30,20 +30,22 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
   $scope.receiver   = "";
   $scope.idReceiver = "";
   $scope.idSender   = $cookieStore.get('UserIdUser');
-  $scope.messages = {};
+  $scope.messages   = {};
+  $scope.messages2  = LinkDBChat.query();
 
   $scope.fill = function(receiver, idReceiver)
   {
     $scope.receiver   = receiver;
     $scope.idReceiver = idReceiver;
-    console.log("1 ---- ", $scope.receiver);
-    console.log("2 ---- ", $scope.idReceiver);
+    //console.log("1 ---- ", $scope.receiver);
+    //console.log("2 ---- ", $scope.idReceiver);
   }
 
   $scope.updateMessages = function()
   {
-    $scope.messages = LinkDBChat.query();
-    return $scope.messages;
+    $scope.messages = LinkDBChat.query().$promise.then(function(response){
+        return $scope.messages;
+    });
   }
 
   // START REFRESH OF CHAT
@@ -51,67 +53,55 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
   {
       if(angular.isDefined(refreshChat)) return;
 
-/*      LinkDBChat.query().$promise.then(function(response){
-          $scope.messages  = response;
-          //console.log("full : ",$scope.messages);
-          //console.log("full Taille : ",$scope.messages.length);
-      });*/
-     
+      LinkDBChat.query().$promise.then(function(response){
+          $scope.messages = response;
+          console.log("First response : ", response);
+          console.log("First size : ", response.length);
+      });
+
       refreshChat =
       $interval(function(){
         setTimeout(function(){
+
           LinkDBChat.query().$promise.then(function(response){
-
-            if($scope.receiver != "")
+            //if($scope.receiver != "")
+            //{
+            console.log("Second response : ", response);
+            console.log("Second size : ", response.length);
+            if(angular.equals($scope.messages, response) == false)
             {
-              /*              
-              $scope.FiltredResponse = [{}];
-              for (var i = 0; i < response.length; i++)
-              {
-                if((response[i].idUser == $scope.idReceiver) && (response[i].idUser_Users == $scope.idSender) && (response[i].readStatus == false))
-                {
-                  $scope.FiltredResponse.push(response[i]);
-                  console.log($scope.FiltredResponse.length);
-                }
-              }
-
-              $scope.FiltredMessages = [{}];
-              for (var i = 0; i < $scope.messages.length; i++) 
-              {
-                if(($scope.messages[i].idUser == $scope.idReceiver) && ($scope.messages[i].idUser_Users == $scope.idSender) && ($scope.messages[i].readStatus == false))
-                {
-                  $scope.FiltredMessages.push($scope.messages[i]);
-                  console.log($scope.FiltredMessages.length);
-                }
-              }*/
-              console.log("3 ---- ", $scope.receiver);
-              console.log("4 ---- ", $scope.idReceiver);
-
               var numberOfChanges = 0;
+              //console.log("response ---- ", response.length);
               for (var i = 0; i < response.length; i++)
               {
-                if((response[i].idUser == $scope.idReceiver) && (response[i].idUser_Users == $scope.idSender) && (response[i].readStatus == false))
+                if((response[i].idUser == $scope.idReceiver) && (response[i].idUser_Users == $scope.idSender))
                 {
-                    console.log("5 --------- A METTRE EN LU");
-                    LinkDBChat.updateReadStatus({idMessage: response[i].idMessage});
+                    console.log("users OK");
+                  if(angular.equals(response[i].readStatus, 0))
+                  {
+                    console.log("readStatus OK");
+                    LinkDBChat.updateReadStatus({idMessage: response[i].idMessage}).$promise.then(function(resp){
+                        console.log(resp);
+                    });
                     numberOfChanges++;
+                  }
                 }
               }
 
+              console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ", numberOfChanges);
               if(numberOfChanges > 0)
               {
-                  $scope.messages = LinkDBChat.query();
+                  LinkDBChat.query().$promise.then(function(resp){
+                      $scope.messages = resp;
+                      console.log("Third response : ", response);
+                      console.log("Third size : ", response.length);
+                  });
+                  //$scope.$parent.messages = LinkDBChat.query();
               }
             }
-
-            // Update of the scope messages if there is more messages in the db
-            //$scope.result = angular.equals($scope.messages, response);
-            //console.log($scope.result);
-            //if($scope.result == false)
-            //{
-              //$scope.messages = response;
-            //}
+          //}
         });
+
       }, 1000);
     }, 1000);
   }
@@ -131,19 +121,19 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
   {
       if(angular.isDefined(refreshChatNotifications)) return;
 
-      $scope.messages = LinkDBChat.query();
+      $scope.messages2 = LinkDBChat.query();
       var mySelf = $cookieStore.get('UserIdUser');
       //document.getElementById('backChatIcon').style.backgroundColor = 'white';
-      //$scope.messages = LinkDBChat.query();
+      //$scope.messages2 = LinkDBChat.query();
       
       refreshChatNotifications =
       $interval(function(){
         setTimeout(function(){
-          var number = 0;
 
-          for (var i = 0; i < $scope.messages.length; i++)
+          var number = 0;
+          for (var i = 0; i < $scope.messages2.length; i++)
           {
-            if(($scope.messages[i].idUser_Users == mySelf) && ($scope.messages[i].readStatus == false))
+            if(($scope.messages2[i].idUser_Users == mySelf) && ($scope.messages2[i].readStatus == false))
             {
               number++;
             }
@@ -167,7 +157,7 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
             document.getElementById('backChatIcon').style.backgroundColor = 'white';
           }
 
-          //$scope.messages = LinkDBChat.query();
+          //$scope.messages2 = LinkDBChat.query();
         },1000);
       },1000);
   }
