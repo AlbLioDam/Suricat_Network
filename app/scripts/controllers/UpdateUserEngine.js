@@ -94,4 +94,64 @@ app.controller('passwordCtrl',function($scope, LinkDBDepartment, LinkDB, $cookie
 
 });
 
+app.controller('userSelfModifications',function($scope, LinkDBDepartment, LinkDB, $cookieStore, $mdDialog){
+
+	$scope.departments = LinkDBDepartment.query();
+
+	$scope.infosUser =
+	{
+		email: "",
+		password: "",
+		pw2: "",
+		department: "",
+		status: "",
+		corporateLifeRepresentative: "",
+		workCouncilRepresentative: "",
+		active: "",
+		lastname: "",
+		firstname: "",
+		address: "",
+		city: "",
+		car: "",
+		carsharing: "",
+		department:""
+	}
+
+	$scope.listOfStatus = [{st:"Utilisateur"}, {st:"Chef de projet"}, {st:"Admin"}];
+
+	$scope.myself = $cookieStore.get('UserIdUser');
+
+	LinkDB.getUserById({idUser: $scope.myself}).$promise.then(function(response){
+		var indexDepartment = 0;
+		for (var i = 0; i < $scope.departments.length; i++)
+		{
+			if($scope.departments[i].idDepartment == response.idDepartment)
+			{
+				indexDepartment = i;
+			}
+		}
+
+		var indexStatus = 0;
+		for (var i = 0; i < $scope.listOfStatus.length; i++)
+		{
+			if($scope.listOfStatus[i].st == response.status)
+			{
+				indexStatus = i;
+			}
+		}
+
+		if(response.car == 1) 									document.getElementById("car").checked = true;
+		if(response.carsharing == 1) 							document.getElementById("carsharing").checked = true;
+		if(response.active == 1) 								document.getElementById("active").checked = true;
+		if(response.corporateLifeRepresentative == 1) 			document.getElementById("CE").checked = true;
+		if(response.workCouncilRepresentative == 1) 			document.getElementById("VE").checked = true;
+
+		$scope.infosUser = response;
+		$scope.infosUser.department = $scope.departments[indexDepartment];
+		$scope.infosUser.status = $scope.listOfStatus[indexStatus];
+	});
+
+	console.log($scope.infosUser);
+});
+
 

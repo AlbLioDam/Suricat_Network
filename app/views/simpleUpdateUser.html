@@ -1,0 +1,101 @@
+
+<div ng-controller="userSelfModifications">
+
+    <form class="row" id="createUserAdminForm">
+        <h3 class="text-center">Modification du profil</h3>
+
+        <div class="col-md-offset-1 col-md-5 containerUpdateUser" id="leftWindow">
+            <div class="form-group">
+                <label for="email">Login (adresse interne)</label>
+                <input type="email" class="form-control" ng-model="infosUser.email" id="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="pw1">Mot de passe</label>
+                <input type="password" class="form-control" id="pw1" ng-model="infosUser.password" placeholder="Enter password" required/>
+            </div>
+
+            <div class="form-group">
+                <label for="pw2">Vérification du mot de passe</label>
+                <input type="password" class="form-control" id="pw2" name="pw2" ng-model="pw2" pw-check="pw1" placeholder="Enter password"required/>
+            </div>
+
+            <div ng-show="showmsg" class="errorMessage">
+                <span class="msg-error">Passwords don't match.</span>
+            </div>
+
+            <div class="form-group">
+                <label for="status">Status</label>
+                <select class="form-control" id="status" ng-model="infosUser.status" ng-options="status.st for status in listOfStatus">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="service">Service</label>
+                <select class="form-control" id="service" ng-model="infosUser.department" ng-options="department.departmentName for department in departments">
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="CE">Membre du Comité d'entreprise</label>
+                <input type="checkbox" id="CE" class="pull-right" ng-model="infosUser.workCouncilRepresentative">
+            </div>
+
+            <div class="form-group">
+                <label for="VE">Membre du service Vie d'entreprise</label>
+                <input type="checkbox" id="VE" class="pull-right" ng-model="infosUser.corporateLifeRepresentative">
+            </div>
+            
+        </div>
+
+        <div class="col-md-5 text-left containerUpdateUser">
+            <div class="form-group">
+                <label for="lastName">Nom</label>
+                <input type="text" class="form-control" id="lastName" ng-model="infosUser.lastname" aria-describedby="emailHelp" placeholder="Enter lastname" required>
+            </div>
+
+            <div class="form-group">
+                <label for="firstName">Prénom</label>
+                <input type="text" class="form-control" id="firstName" ng-model="infosUser.firstname" placeholder="Enter firstname" required/>
+            </div>
+
+            <div class="form-group">
+                <label for="adress">Adresse</label>
+                <input type="text" class="form-control" id="address" ng-model="infosUser.address" placeholder="Enter Address" required/>
+            </div>
+
+            <div class="form-group">
+                <label for="city">Ville</label>
+                <input type="text" class="form-control" id="city" ng-model="infosUser.city" placeholder="Enter City" required/>
+            </div>
+
+            <div class="form-group">
+                <label for="car">Avez vous voiture?</label>
+                <input type="checkbox" class="pull-right" id="car" ng-model="infosUser.car" ng-checked="infosUser.car">
+            </div>
+
+            <div class="form-group">
+                <label for="carsharing">Etes-vous ouvert au covoiturage ?</label>
+                <input type="checkbox"  class="pull-right" id="carsharing" ng-model="infosUser.carsharing">
+            </div>
+
+            <div class="form-group text-center">
+                <label for="active">Actif ?</label>
+                <input type="checkbox" id="active" ng-model="infosUser.active">
+            </div>
+        </div>
+    </form>
+
+    <div class="row" id="buttonUpdateUser">
+
+        <div class="col-xs-4 col-md-4 text-center">
+            <button type="submit" class="btn btn-danger myButton" ng-click="">Annuler</button>
+        </div>
+
+        <div class="col-xs-4 col-md-4 text-center">
+            <button type="submit" class="btn btn-primary myButton" ng-click="showConfirmation($event)">Valider modifications</button>
+        </div>
+
+    </div>
+
+</div>

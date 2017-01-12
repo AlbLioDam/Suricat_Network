@@ -142,7 +142,7 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
 
           console.log("number : ", number);
 
-          if(number > 0)
+          if(number > 0 && document.getElementById('backChatIcon') !== null)
           {
             if(document.getElementById('backChatIcon').style.backgroundColor == 'white')
             {
@@ -153,7 +153,7 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
               document.getElementById('backChatIcon').style.backgroundColor = 'white';
             }
           }
-          else if(number == 0)
+          else if(number == 0 && document.getElementById('backChatIcon') !== null)
           {
             document.getElementById('backChatIcon').style.backgroundColor = 'white';
           }
