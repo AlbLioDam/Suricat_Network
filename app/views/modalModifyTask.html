@@ -1,0 +1,61 @@
+<!--Modal Window for a new task-->
+<div class="modal fade" id="myModal" role="dialog" ng-controller="taskManagementCtrl">
+    <div class="modal-dialog">
+        <!--Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4> d'une tâche</h4>    
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="title" class="pull-left">Intitulé</label>
+                        <input type="text" class="form-control" id="title" placeholder="Nom de la tâche" ng-model="task.taskName" id="title">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description"  class="pull-left">Description</label>
+                        <textarea type="text" ng-model="task.detail" class="form-control" id="description" placeholder="Nom de la tâche" style="resize:vertical"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="department" class="pull-left">Service</label>
+                        <select class="form-control" id="department" ng-model="Department" ng-options="department.departmentName for department in departments">
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="user" class="pull-left">Attribution</label>
+                        <select class="form-control" id="user" ng-model="user" ng-options="user.lastname for user in users | filter :{idTeam:selected.idTeam} | filter:{idDepartment:Department.idDepartment}" >
+                       
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="duration" class="pull-left">Durée</label>
+                        <select class="form-control" id="duration" ng-model="task.Duration" ng-options="duration for duration in durations">
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="weight" class="pull-left">Importance</label>
+                        <select class="form-control" id="weight" ng-model="task.Weight" ng-options="weight for weight in weights">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="state" class="pull-left">Etat</label>
+                        <select class="form-control" id="state" ng-model="task.Status" ng-options="state for state in states">
+                        </select>
+                    </div>
+                </form>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary pull-right" ng-click="createTask()">Créer</button>
+                    <button class="btn btn-danger pull-left">Annuler</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

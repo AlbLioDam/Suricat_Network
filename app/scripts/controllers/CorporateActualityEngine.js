@@ -123,4 +123,16 @@ app.controller('toggleCtrl', function($scope) {
 
   $scope.isCollapsed = false;
   
+  $scope.oneAtATime = true;
+
+  $scope.addItem = function() {
+    var newItemNo = $scope.items.length + 1;
+    $scope.items.push('Item ' + newItemNo);
+  };
+
+  $scope.status = {
+    isCustomHeaderOpen: false,
+    isFirstOpen: true,
+    isFirstDisabled: false
+  };
 });

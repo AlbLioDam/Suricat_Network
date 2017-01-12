@@ -1,41 +1,28 @@
 <div ng-controller="WorkCouncilActualities">
-	<div class="titleActualitiesPages"><h1>Fil d'actualités du Comité d'Entreprise</h1></div>
+    <div class="titleActualitiesPages"><h1>Fil d'actualités du Comité d'Entreprise</h1></div>
     <div>
         <div >
 
-    		<!-- ACTUALITY FORM -->
-            <div class="panel-group containerTeamActuality" id="containerTeamActualityForm">
-                <div class="panel panel-default formCard">
-                    <div class=" formTitle panel-heading" data-toggle="collapse" href="#collapse1">
-                        <h4 class="panel-title">
-                            <a>Ecrire une actualité du comité d'entreprise</a>
-                        </h4>
+            <div ng-controller="toggleCtrl">
+                <uib-accordion>
+                    <div uib-accordion-group heading="formTitle" class="panel-default containerTeamActuality formTitle" is-open="status.open" id="containerTeamActualityForm">
+                        <uib-accordion-heading heading="formTitle">
+                        Ecrire une actualité du comité d'entreprise<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                        </uib-accordion-heading>
+                        <label class="titleLabel">Titre</label>
+                        <input class="form-control" id="TitleEquipeTextarea" rows="1" ng-model="newActu.title"></input><br>
+                        <label class="titleLabel">Contenu d'actualité</label>
+                        <textarea class="form-control" id="ActuEquipeTextarea" rows="3" ng-model="newActu.publication"></textarea><br>
+                        <button id="formbutton" type="submit" class="btn btn-primary" ng-click="postTeamActu()">Publier cette actualité</button>
                     </div>
-                    <div id="collapse1" class="panel-collapse collapse">
-                        <div class="panel-body">
-                           <div class="formIntern">
-                    <label class="titleLabel">Titre</label>
-                    <input class="form-control" id="TitleEquipeTextarea" rows="1" ng-model="newActu.title"></input><br>
-
-                    <label class="titleLabel">Contenu d'actualité</label>
-                    <textarea class="form-control" id="ActuEquipeTextarea" rows="3" ng-model="newActu.publication"></textarea><br>
-                </div> 
-                            
-                            
-                        </div>
-                        <div class="panel-footer">
-                            <button id="formbutton" type="submit" class="btn btn-primary" ng-click="postTeamActu()">Publier cette actualité</button>
-                        </div>
-                    </div>
-                </div>
+                </uib-accordion>
             </div>
+            <!-- DISPLAY CORPORATE ACTUALITIES -->
 
-    		<!-- DISPLAY CORPORATE ACTUALITIES -->
-    	        
             <div ng-controller="refresh">
-            <center>{{message}}</center>             
+                <center>{{message}}</center>             
                 <div id="containerTeamActualityList" class="containerTeamActuality row" ng-repeat="actu in listOfWorkCouncilActualities">   
-                    <div class="col-xs-12" id="dd">
+                    <div class="col-xs-12" id="workCouncilTitle">
 
                         <div id="contain_title" class="col-xs-6">
                             <H4 class="actuTitle"><span id="glyph"></span> {{actu.title}}</H4>             
@@ -47,13 +34,13 @@
                     </div>
 
                     <div class="contain_content col-xs-12">   
-                    {{actu.publication}}  
-                    <span class="pull-right" ng-show="actu.idUser === idUser || status === 'Admin'"><span id="glyph" ng-class="'fa fa-trash'" ng-click="removeWorkCouncilActuality(actu.idActuality)"></span></span>
+                        {{actu.publication}}  
+                        <span class="pull-right" ng-show="actu.idUser === idUser || status === 'Admin'"><span id="glyph" ng-class="'fa fa-trash'" ng-click="removeWorkCouncilActuality(actu.idActuality)"></span></span>
                     </div><br>
 
                     <i class="pull-right"> {{actu.lastname}} {{actu.firstname}}</i>
                 </div>
             </div>
         </div>
-     </div>       
+    </div>       
 </div>
