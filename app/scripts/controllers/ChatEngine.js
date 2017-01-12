@@ -46,7 +46,7 @@ app.controller('chat',function($scope, $interval, LinkDB, LinkDBChat, LinkDBDepa
 		$scope.fill($scope.receiver, $scope.idReceiver);
 		$scope.send.idUser_Users 	= user.idUser;
 		$scope.send.idUser 			= $scope.idUser;
-		$scope.updateMessagesOnce();
+		//$scope.updateMessagesOnce();
 		//$scope.updateMessages();
 	}
 
