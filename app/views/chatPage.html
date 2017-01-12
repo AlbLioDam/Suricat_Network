@@ -37,10 +37,10 @@
             <div ng-repeat="message in $parent.messages" ng-class="{'row' : (message.idUser_Users == idSender && message.idUser == idReceiver) || (message.idUser_Users == idReceiver && message.idUser == idSender)}">
                 <div ng-class="{'col-lg-12 spacing' : (message.idUser_Users == idSender && message.idUser == idReceiver) || (message.idUser_Users == idReceiver && message.idUser == idSender)}">
                     <div ng-if="message.idUser_Users == idSender && message.idUser == idReceiver" class="basicClassMessage receiver">
-                        {{message.readStatus}} - {{message.message}}
+                        {{message.message}}
                     </div>
                     <div ng-if="message.idUser_Users == idReceiver && message.idUser == idSender" class="basicClassMessage sender">
-                        {{message.readStatus}} - {{message.message}}
+                        {{message.message}}
                     </div>
                 </div>
             </div>
