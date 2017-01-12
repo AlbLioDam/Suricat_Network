@@ -58,7 +58,7 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
               var toCharge = false;
               for (var i = 0; i < response.length; i++)
               {
-                if((response[i].idUser == $scope.idReceiver) && (response[i].idUser_Users == $scope.idSender))
+                if((response[i].id2 == $scope.idReceiver) && (response[i].id1 == $scope.idSender))
                 {
                     //console.log("users OK");
                   if(angular.equals(response[i].readStatus, 0))
@@ -134,7 +134,7 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
           var number = 0;
           for (var i = 0; i < $scope.messages.length; i++)
           {
-            if(($scope.messages[i].idUser_Users == mySelf) && ($scope.messages[i].readStatus == false))
+            if(($scope.messages[i].id1 == mySelf) && ($scope.messages[i].readStatus == false))
             {
               number++;
             }

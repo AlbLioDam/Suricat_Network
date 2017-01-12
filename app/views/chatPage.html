@@ -11,7 +11,7 @@
             <button ng-click="showMessages(user)" class="row showUser form-control regulMargin" ng-repeat="user in users | filter : {idDepartment : selectedDepartment.idDepartment} | filter : search" ng-if="user.idUser != idSender">
             
                     <div class="col-md-1 numberOfNotifications regulMargin">
-                        {{($parent.messages | filter : {idUser_Users : $parent.idSender, idUser : user.idUser, readStatus : 0}).length}}
+                        {{($parent.messages | filter : {id1 : $parent.idSender, id2 : user.idUser, readStatus : 0}).length}}
                     </div>
                     <div class="col-md-4 hidden-sm hidden-xs regulMargin">
                         {{user.firstname}}
@@ -37,11 +37,11 @@
             <div ng-repeat="message in $parent.messages" ng-class="{'row' : (message.id1 == idSender && message.id2 == idReceiver) || (message.id1 == idReceiver && message.id2 == idSender)}">
                 <div ng-class="{'spacing' : (message.id2 == idSender && message.id1 == idReceiver) || (message.id2 == idReceiver && message.id1 == idSender)}">
                     <div ng-if="message.id1 == idReceiver && message.id2 == idSender" class="basicClassMessage sender col-lg-offset-1 col-lg-11">
-                        <div class="authorMessage1">- {{message.f2}} -</div><br>
+                        <div class="authorMessage2">- {{message.f2}}-</div><br>
                         {{message.message}}
                     </div>
                     <div ng-if="message.id1 == idSender && message.id2 == idReceiver" class="basicClassMessage receiver col-lg-11">
-                        <div class="authorMessage2">- {{message.f2}} -</div><br>
+                        <div class="authorMessage1">- {{message.f2}}-</div><br>
                         {{message.message}}
                     </div>
                 </div>

@@ -69,6 +69,7 @@ app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
 		$scope.page = newPage;
 	}
 
+	// METHOD : GET INTEL FROM THE COOKIE
 	$scope.loadCookieInformations = function()
 	{
 		$scope.firstname 					= $cookieStore.get('UserFirstname');

@@ -67,9 +67,15 @@ button.row
 div.authorMessage1
 {
 	float: left;
+	font-size: 15px;
+	font-style: italic;
+	text-align: inter-word;
 }
 
 div.authorMessage2
 {
 	float: right;
+	font-size: 15px;
+	font-style: italic;
+	text-align: inter-word;
 }
