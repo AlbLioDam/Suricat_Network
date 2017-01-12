@@ -5,10 +5,17 @@ app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
 	
 	// DEFAULT PAGE
 	$scope.page = "login";
+	document.body.style.backgroundImage="url('/Suricat_Network/app/images/login.jpg')";
 
 	$scope.modifyPage = function(newPage)
 	{
+		
+
+		//document.body.style.backgroundImage="url('/Suricat_Network/app/images/"+newPage+".jpg')";
+		//document.body.style.backgroundImage="url('/Suricat_Network/app/images/team.jpg')";
+		//document.body.style.backgroundAttachment="fixed";
 		$scope.page = newPage;
+
 	}
 
 	$scope.showTrademark = function(ev) 
