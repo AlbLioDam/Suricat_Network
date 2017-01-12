@@ -18,7 +18,7 @@ var app = angular
           'ngMessages',
           'material.svgAssetsCache',
           'ui.bootstrap',
-          'ngAnimate',
+          'ngAnimate'
   ]);
 
 app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieStore', function($scope, $interval, LinkDBChat, $cookieStore)
@@ -37,7 +37,7 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
     $scope.idReceiver = idReceiver;
     console.log("parent receiver", $scope.receiver);
     console.log("parent idReceiver", $scope.idReceiver);
-  }
+  };
 
   // START REFRESH OF CHAT
   $scope.startRefreshChat = function()
