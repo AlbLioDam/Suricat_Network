@@ -3,8 +3,8 @@
 var app = angular.module('Suricat');
 
 //app.constant('BaseURL', 'http://majesticneo.ddns.net:3000/');
-app.constant('BaseURL', 'http://10.111.61.81:3000');
-//app.constant('BaseURL', 'http://localhost:3000');
+//app.constant('BaseURL', 'http://10.111.61.81:3000');
+app.constant('BaseURL', 'http://localhost:3000');
 app.constant('ConnexionUsers', '/user/:idUser');
 app.constant('CheckLogin', '/user/login');
 app.constant('Kanban', '/todo/:id');
