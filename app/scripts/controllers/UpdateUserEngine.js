@@ -149,8 +149,8 @@ app.controller('userSelfModifications',function($scope, LinkDBDepartment, LinkDB
 		$scope.infosUser = response;
 		$scope.infosUser.idDepartment = $scope.departments[indexDepartment];
 		$scope.infosUser.status = $scope.listOfStatus[indexStatus];
-		$scope.infosUser.status = $scope.infosUser.status.st;
-		$scope.infosUser.idDepartment = $scope.infosUser.idDepartment.idDepartment;
+		//$scope.infosUser.status = $scope.infosUser.status.st;
+		//$scope.infosUser.idDepartment = $scope.infosUser.idDepartment.idDepartment;
 	});
 
 	console.log($scope.infosUser);
