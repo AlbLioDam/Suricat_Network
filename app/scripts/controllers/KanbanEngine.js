@@ -9,7 +9,6 @@ app.controller('Kanban', function($scope, LinkDBKanbanTasks, $cookieStore){
 		{
 			$scope.choiceOfTeam = {};
 			$scope.choiceOfTeam = selected;
-            //$cookieStore.put('idTeam', selected.idTeam);
 			$scope.tasksOfTheTeam = LinkDBKanbanTasks.query();
 		}
 	};

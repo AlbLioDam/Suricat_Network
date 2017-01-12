@@ -3,22 +3,24 @@
     <div class="row" ng-controller="choiceOfInsideAdminUsers">
         <div id="choice" class="col-sm-4 col-md-3">
             <h1 class="titleAdminPageUser">Sélection</h1>
-            <button ng-hide="modifyUserClicked" class="btn btn-success form-control" ng-click=" addAMember() ; modifyPageInsideAdminUsers('createUser') ">
-                AJOUTER UN MEMBRE
-            </button>
-            <select class="form-control" id="ControlService" ng-model="selected" ng-options="department.departmentName for department in departments">
-                <option></option>
-            </select>
-            <input class="form-control" type="text" ng-model="search"/>
+            <div ng-hide="modifyUserClicked">
+                <button class="btn btn-success form-control" ng-click=" addAMember() ; modifyPageInsideAdminUsers('createUser') ">
+                    AJOUTER UN MEMBRE
+                </button>
+                <select class="form-control" id="ControlService" ng-model="selected" ng-options="department.departmentName for department in departments">
+                    <option></option>
+                </select>
+                <input class="form-control" type="text" ng-model="search"/>
 
+                <div>
+                    <button  ng-click="showInformations(user)" class="showUser form-control" ng-repeat="user in users | filter : {idDepartment:selected.idDepartment} | filter : search">
+                        {{user.firstname}} {{user.lastname}}
+                    </button>
+                </div>
+            </div>
             <button ng-hide="!modifyUserClicked" class="btn btn-success form-control" ng-click=" modifyUser() ; modifyPageInsideAdminUsers('updateUser') ">
                 MODIFIER UN MEMBRE
             </button>
-            <div ng-if="!modifyUserClicked">
-                <button  ng-click="showInformations(user)" class="showUser form-control" ng-repeat="user in users | filter : {idDepartment:selected.idDepartment} | filter : search">
-                    {{user.firstname}} {{user.lastname}}
-                </button>
-            </div>
         </div>
 
         <div id="preview" class="col-sm-8 col-md-offset-1 col-md-8">

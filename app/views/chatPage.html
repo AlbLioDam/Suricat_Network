@@ -11,11 +11,11 @@
             <button ng-click="showMessages(user)" class="row showUser form-control regulMargin" ng-repeat="user in users | filter : {idDepartment : selectedDepartment.idDepartment} | filter : search" ng-if="user.idUser != idSender">
             
                     <div class="col-md-1 numberOfNotifications regulMargin">
-                        {{(messages | filter : {idUser_Users : idSender, idUser : user.idUser, readStatus : 0}).length}}
+                        {{($parent.messages | filter : {idUser_Users : $parent.idSender, idUser : user.idUser, readStatus : 0}).length}}
                     </div>
                     <div class="col-md-4 hidden-sm hidden-xs regulMargin">
                         {{user.firstname}}
-                     </div>
+                    </div>
                     <div class="col-md-7 col-sm-11 col-xs-11 regulMargin">
                         {{user.lastname}}
                     </div>
@@ -28,13 +28,13 @@
             <h1>Conversation avec {{receiver}}</h1>
             <form id="formMessage">
                 Message : 
-                <input class="form-control" type="text" ng-model="send.message">
+                <input class="form-control" type="text" ng-model="send.message" maxlength="30">
                 <br>
                 <button class="form-control btn btn-primary" ng-click="saveMessage()">Envoyer</button>
             </form>
             <br>
 
-            <div ng-repeat="message in messages" ng-class="{'row' : (message.idUser_Users == idSender && message.idUser == idReceiver) || (message.idUser_Users == idReceiver && message.idUser == idSender)}">
+            <div ng-repeat="message in $parent.messages" ng-class="{'row' : (message.idUser_Users == idSender && message.idUser == idReceiver) || (message.idUser_Users == idReceiver && message.idUser == idSender)}">
                 <div ng-class="{'col-lg-12 spacing' : (message.idUser_Users == idSender && message.idUser == idReceiver) || (message.idUser_Users == idReceiver && message.idUser == idSender)}">
                     <div ng-if="message.idUser_Users == idSender && message.idUser == idReceiver" class="basicClassMessage receiver">
                         {{message.message}}

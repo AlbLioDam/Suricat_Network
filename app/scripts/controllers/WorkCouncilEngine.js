@@ -50,7 +50,6 @@ app.controller('WorkCouncilActualities',function($interval, $scope, LinkDBWorkCo
 	/*------------------
 	 Json Object to post
 	 ------------------*/
-
 	$scope.postTeamActu=function()
 	{
 			
