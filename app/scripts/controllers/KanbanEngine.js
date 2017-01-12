@@ -18,3 +18,13 @@ app.controller('Kanban', function($scope, LinkDBKanbanTasks, $cookieStore){
 		$scope.tasksOfTheTeam = LinkDBKanbanTasks.query();
 	};
 });
+
+app.controller('ModalCtrl', function($scope){
+    $scope.showModal = false;
+    $scope.task = {};
+    
+    $scope.toggleModal = function(task){
+        $scope.task = task;
+        $scope.showModal = !$scope.showModal;
+    };
+});

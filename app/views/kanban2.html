@@ -2,21 +2,21 @@
     En attente de sélection
 </div>
 <div ng-controller="Kanban" ng-hide="!choiceOfTeam.idTeam">
+    
     <div class="container-fluid" id="containerKanban">
         <div id="options" class="row">
-            <button type="button" class="btn btn-primary buttonKanban col-lg-offset-8 col-lg-2" data-toggle="modal" data-target="#myModal">Modifier une tâche</button>
-            <button type="button" class="btn btn-primary buttonKanban col-lg-2"                 data-toggle="modal" data-target="#createModal">Ajouter une tâche</button>
+            <button type="button" class="btn btn-info buttonKanban col-xs-offset-3 col-xs-6 text-center"   data-toggle="modal" data-target="#createModal">Ajouter une tâche</button>
         </div>
     </div>
 
     <br>
-    <div class="row" id="rowKanban">
+    <div class="row" id="rowKanban" ng-controller="ModalCtrl">
     <div class="frame col-lg-3 col-md-6 col-sm-6 col-xs-12">
         <div class="text-center status">
             <div class="titre">
                 To Do
             </div>
-            <div id="ToDo" class="task" ng-repeat="task in tasksOfTheTeam | filter: {status: 'To Do', idTeam: choiceOfTeam.idTeam}" data-toggle="modal" data-target="#modifyModal">
+            <div id="ToDo" class="task" ng-repeat="task in tasksOfTheTeam | filter: {status: 'To Do', idTeam: choiceOfTeam.idTeam}" ng-click="toggleModal('task')">
                 {{task.taskName}}
             </div>
         </div>

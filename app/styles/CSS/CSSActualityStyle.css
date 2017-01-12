@@ -146,6 +146,16 @@
     border-top-right-radius : 10px;
 }
 
+#titleMain{
+    color: white;
+}
+
+.panel-color>.panel-heading{
+    color:#fff;
+    background-color:#FF934F;
+    border-color:#ff934f;
+}
+
 i{
     padding-right: 5px;
 }

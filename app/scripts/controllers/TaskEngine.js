@@ -40,8 +40,8 @@ app.controller('taskManagementCtrl', function ($scope, LinkDBTask, LinkDBDepartm
             if ($scope.task.idUser !== ""){
                 LinkDBAttributeTaskUser.save($scope.task);
             }
-
-            $scope.refreshKanban();
+            $scope.$parent.tasksOfTheTeam = LinkDBKanbanTasks.query();
+            //$scope.refreshKanban();
         });
     };
 });

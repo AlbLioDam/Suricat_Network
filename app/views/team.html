@@ -2,47 +2,49 @@
         <div class="row" style="margin-top: 50px" ng-controller="Kanban">
           <div  ng-controller="TeamActualities">
             <div ng-controller="Teams" id="monaccordeon" class="panel-group col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-12 col-xs-12 text-center">
-
+                <h3 id="titleMain">Bonjour {{$parent.firstname}} {{$parent.lastname}}</h3>
               <div id="containerTeamActualityChoice" class="containerTeamActuality">Veuillez sélectionner une équipe  
                   <select ng-options="team.teamName for team in listOfTeams" ng-model="selected" ng-change="updateKanbanTasks(selected); updateTeamActualities();updateTeamCookie(selected)" ng-mouseenter="updateList()"></select>
               </div>
-
-              <div class="panel panel-default">
+              <div class="panel panel-default kanban" id="burdownChart">
                 <div class="panel-heading" href="#burndownChart" data-toggle="collapse">
                   <h3 class="panel-title">
-                    <a> BurndownChart </a>
+                    <a> BurndownChart</a>
                   </h3>
                 </div>
-                <div id="burndownChart" class="panel-collapse collapse">
+                <div id="burndownChart" class="panel-collapse collapse kanban">
                   <div class="panel-body">
                     partie à remplir
                   </div>
                 </div>
               </div>
-              <div class="panel panel-default">
+                
+              <div class="panel panel-default kanban">
                 <div class="panel-heading" href="#kanban" data-toggle="collapse">
                   <h3 class="panel-title">
                     <a> Kanban </a>
                   </h3>
                 </div>
-                <div id="kanban" class="panel-collapse collapse container-fluid">
+                <div id="kanban" class="panel-collapse collapse container-fluid kanban">
                   <div class="panel-body">
                     <ng-include src="'views/kanban2.html'"></ng-include>
                   </div>
                 </div>
               </div>
-              <div class="panel panel-default">
+                
+              <div class="panel panel-default kanban">
                 <div class="panel-heading" href="#teamActuality" data-toggle="collapse">
                   <h3 class="panel-title">
                     <a> Actualités </a> 
                   </h3>
                 </div>
-                <div id="teamActuality" class="panel-collapse collapse">
+                <div id="teamActuality" class="panel-collapse collapse kanban">
                   <div class="panel-body">
                     <ng-include src="'views/teamActuality.html'"></ng-include>
                   </div>
                 </div>
               </div>
+                
             </div>
             <!--Add shortcut button-->
             <!--             
