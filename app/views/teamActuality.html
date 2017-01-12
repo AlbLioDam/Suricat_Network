@@ -7,7 +7,7 @@
     <!-- ACTUALITY FORM -->
     <div ng-controller="toggleCtrl">
         <h1>Fil d'actualités de l'équipe {{selected.idteam}}</h1>
-        <uib-accordion>
+        <uib-accordion ng-show="$parent.access">
             <div uib-accordion-group heading="formTitle" class="panel-default containerTeamActuality formTitle panel-color" is-open="status.open" id="containerTeamActualityForm">
                 <uib-accordion-heading heading="formTitle" style="color: blue">
                 Formulaire de saisie d'actualité équipe<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>

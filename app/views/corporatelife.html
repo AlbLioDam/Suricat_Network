@@ -2,7 +2,7 @@
     <div ng-controller="toggleCtrl">
         <div class="titleActualitiesPages"><h1>Fil d'actualités de la Vie d'Entreprise</h1></div>
 
-        <uib-accordion ng-show="corporateLifeRepresentative || status == 'admin'">
+        <uib-accordion ng-show="$parent.corporateLifeRepresentative || $parent.status == 'Admin'">
             <div uib-accordion-group heading="formTitle" class="panel-default containerTeamActuality formTitle" is-open="status.open" id="containerTeamActualityForm">
                 <uib-accordion-heading heading="formTitle">
                     Ecrire une actualité de vie d'entreprise<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
