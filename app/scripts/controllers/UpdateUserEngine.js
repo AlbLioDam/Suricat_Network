@@ -114,7 +114,7 @@ app.controller('userSelfModifications',function($scope, LinkDBDepartment, LinkDB
 		city: "",
 		car: "",
 		carsharing: "",
-		department:""
+		idDepartment:""
 	}
 
 	$scope.listOfStatus = [{st:"Utilisateur"}, {st:"Chef de projet"}, {st:"Admin"}];
@@ -147,11 +147,19 @@ app.controller('userSelfModifications',function($scope, LinkDBDepartment, LinkDB
 		if(response.workCouncilRepresentative == 1) 			document.getElementById("VE").checked = true;
 
 		$scope.infosUser = response;
-		$scope.infosUser.department = $scope.departments[indexDepartment];
+		$scope.infosUser.idDepartment = $scope.departments[indexDepartment];
 		$scope.infosUser.status = $scope.listOfStatus[indexStatus];
+		$scope.infosUser.status = $scope.infosUser.status.st;
+		$scope.infosUser.idDepartment = $scope.infosUser.idDepartment.idDepartment;
 	});
 
 	console.log($scope.infosUser);
+
+	$scope.recordModifications = function()
+	{
+		console.log($scope.infosUser);
+		LinkDB.updateUser($scope.infosUser);
+	}
 });
 
 

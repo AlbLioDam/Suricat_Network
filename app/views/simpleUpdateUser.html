@@ -7,7 +7,7 @@
         <div class="col-md-offset-1 col-md-5 containerUpdateUser" id="leftWindow">
             <div class="form-group">
                 <label for="email">Login (adresse interne)</label>
-                <input type="email" class="form-control" ng-model="infosUser.email" id="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+                <input type="email" class="form-control" ng-model="infosUser.email" id="email" aria-describedby="emailHelp" placeholder="Enter email" required ng-disabled="status != 'Admin'">
             </div>
 
             <div class="form-group">
@@ -26,24 +26,24 @@
 
             <div class="form-group">
                 <label for="status">Status</label>
-                <select class="form-control" id="status" ng-model="infosUser.status" ng-options="status.st for status in listOfStatus">
+                <select class="form-control" id="status" ng-model="infosUser.status" ng-options="status.st for status in listOfStatus"  ng-disabled="status != 'Admin'">
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="service">Service</label>
-                <select class="form-control" id="service" ng-model="infosUser.department" ng-options="department.departmentName for department in departments">
+                <select class="form-control" id="service" ng-model="infosUser.department" ng-options="department.departmentName for department in departments" ng-disabled="status != 'Admin'">
                 </select>
             </div>
             
             <div class="form-group">
                 <label for="CE">Membre du Comité d'entreprise</label>
-                <input type="checkbox" id="CE" class="pull-right" ng-model="infosUser.workCouncilRepresentative">
+                <input type="checkbox" id="CE" class="pull-right" ng-model="infosUser.workCouncilRepresentative" ng-disabled="status != 'Admin'">
             </div>
 
             <div class="form-group">
                 <label for="VE">Membre du service Vie d'entreprise</label>
-                <input type="checkbox" id="VE" class="pull-right" ng-model="infosUser.corporateLifeRepresentative">
+                <input type="checkbox" id="VE" class="pull-right" ng-model="infosUser.corporateLifeRepresentative" ng-disabled="status != 'Admin'">
             </div>
             
         </div>
@@ -81,7 +81,7 @@
 
             <div class="form-group text-center">
                 <label for="active">Actif ?</label>
-                <input type="checkbox" id="active" ng-model="infosUser.active">
+                <input type="checkbox" id="active" ng-model="infosUser.active" ng-disabled="status != 'Admin'">
             </div>
         </div>
     </form>
@@ -93,7 +93,7 @@
         </div>
 
         <div class="col-xs-4 col-md-4 text-center">
-            <button type="submit" class="btn btn-primary myButton" ng-click="showConfirmation($event)">Valider modifications</button>
+            <button type="submit" class="btn btn-primary myButton" ng-click="recordModifications()">Valider modifications</button>
         </div>
 
     </div>
