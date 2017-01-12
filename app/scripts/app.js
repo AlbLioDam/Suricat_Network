@@ -19,7 +19,6 @@ var app = angular
           'material.svgAssetsCache',
           'ui.bootstrap',
           'ngAnimate',
-          'angularModalService'
   ]);
 
 app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieStore', function($scope, $interval, LinkDBChat, $cookieStore)
