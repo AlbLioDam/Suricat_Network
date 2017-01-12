@@ -14,7 +14,7 @@ form#formMessage
 .basicClassMessage
 {
 	border-radius: 10px;
-	font-size: 30px;
+	font-size: 20px;
 	width: auto;
 	position: relative;
 	padding: 5px 5px 5px 5px;
@@ -23,7 +23,6 @@ form#formMessage
 .receiver
 {
 	background-color: #CD5C5C;
-	text-align: left;
 	margin-left: 10px; 
 	float: left;
 }
@@ -31,7 +30,6 @@ form#formMessage
 .sender
 {
 	background-color: #6495ED;
-	text-align: right;
 	margin-right: 10px; 
 	float: right;
 }
@@ -49,7 +47,6 @@ form#formMessage
 .numberOfNotifications
 {
 	color: white;
-	
 }
 
 .regulMargin
@@ -60,4 +57,19 @@ form#formMessage
 button.row
 {
 	margin:0px;
+}
+
+#textareaChat
+{
+	resize: vertical;
+}
+
+div.authorMessage1
+{
+	float: left;
+}
+
+div.authorMessage2
+{
+	float: right;
 }

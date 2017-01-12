@@ -28,23 +28,24 @@
             <h1>Conversation avec {{receiver}}</h1>
             <form id="formMessage">
                 Message : 
-                <input class="form-control" type="text" ng-model="send.message" maxlength="30">
+                <textarea id="textareaChat" class="form-control" type="text" ng-model="send.message" maxlength="250"></textarea>
                 <br>
                 <button class="form-control btn btn-primary" ng-click="saveMessage()">Envoyer</button>
             </form>
             <br>
 
-            <div ng-repeat="message in $parent.messages" ng-class="{'row' : (message.idUser_Users == idSender && message.idUser == idReceiver) || (message.idUser_Users == idReceiver && message.idUser == idSender)}">
-                <div ng-class="{'col-lg-12 spacing' : (message.idUser_Users == idSender && message.idUser == idReceiver) || (message.idUser_Users == idReceiver && message.idUser == idSender)}">
-                    <div ng-if="message.idUser_Users == idSender && message.idUser == idReceiver" class="basicClassMessage receiver">
+            <div ng-repeat="message in $parent.messages" ng-class="{'row' : (message.id1 == idSender && message.id2 == idReceiver) || (message.id1 == idReceiver && message.id2 == idSender)}">
+                <div ng-class="{'spacing' : (message.id2 == idSender && message.id1 == idReceiver) || (message.id2 == idReceiver && message.id1 == idSender)}">
+                    <div ng-if="message.id1 == idReceiver && message.id2 == idSender" class="basicClassMessage sender col-lg-offset-1 col-lg-11">
+                        <div class="authorMessage1">- {{message.f2}} -</div><br>
                         {{message.message}}
                     </div>
-                    <div ng-if="message.idUser_Users == idReceiver && message.idUser == idSender" class="basicClassMessage sender">
+                    <div ng-if="message.id1 == idSender && message.id2 == idReceiver" class="basicClassMessage receiver col-lg-11">
+                        <div class="authorMessage2">- {{message.f2}} -</div><br>
                         {{message.message}}
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
