@@ -45,3 +45,11 @@ app.controller('taskManagementCtrl', function ($scope, LinkDBTask, LinkDBDepartm
         });
     };
 });
+
+app.controller('ModalCtrl', function($scope,$modal,$log){
+    $scope.open = function(){
+      var modelInstance = $modal.open({
+          controller:'ModalInstance'
+      })  
+    };
+});

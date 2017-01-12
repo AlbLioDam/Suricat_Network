@@ -1,45 +1,50 @@
 
 <!-- SELECT TEAM -->
-        <div ng-hide="choiceOfTeam.idTeam" class="text-center">
-            En attente de sélection
-        </div>
-        <div ng-hide="!choiceOfTeam.idTeam">
+<div ng-hide="choiceOfTeam.idTeam" class="text-center">
+    En attente de sélection
+</div>
+<div ng-hide="!choiceOfTeam.idTeam">
     <!-- ACTUALITY FORM -->
-            <div id="containerTeamActualityForm" class="containerTeamActuality" ng-show="access">
-                <H4>Formulaire de saisie d'actualité équipe</H4>
-                <label>Titre :</label>
+    <div ng-controller="toggleCtrl">
+        <div class="titleActualitiesPages"><h1>Fil d'actualités du comité d'entrprise</h1></div>
+        <uib-accordion>
+            <div uib-accordion-group heading="formTitle" class="panel-default containerTeamActuality formTitle" is-open="status.open" id="containerTeamActualityForm">
+                <uib-accordion-heading heading="formTitle">
+                    Formulaire de saisie d'actualité équipe<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                </uib-accordion-heading>
+                <label class="titleLabel">Titre</label>
                 <input class="form-control" id="TitleEquipeTextarea" rows="1" ng-model="newActu.title"></input><br>
-                <label>Contenu d'actualité</label>
+                <label class="titleLabel">Contenu d'actualité</label>
                 <textarea class="form-control" id="ActuEquipeTextarea" rows="3" ng-model="newActu.publication"></textarea><br>
-
-     <!-- Bower - bower install angular-base64-upload-->
                 <button id="formbutton" type="submit" class="btn btn-primary" ng-click="postTeamActu(choiceOfTeam)">Publier cette actualité</button>
             </div>
+        </uib-accordion>
+    </div>
 
     <!-- DISPLAY TEAM ACTUALITIES -->
-            
-            <div ng-controller="refresh">
-            {{message}}    
-            <div class="titleTeamActualitiesPages"><h1>Fil d'actualités de l'équipe</h1></div>
-                <div id="containerTeamActualityList" class="containerTeamActuality row" ng-repeat="actu in listOfTeamActualities | filter: {idTeam: choiceOfTeam.idTeam}">   
-                    <div class="col-xs-12" id="dd">
 
-                        <div id="contain_title" class="col-xs-6">
-                            <H4 class="actuTitle"><span id="glyph"></span> {{actu.title}}</H4>  
-                        </div>
+    <div ng-controller="refresh">
+        {{message}}    
+        <div class="titleTeamActualitiesPages"><h1>Fil d'actualités de l'équipe</h1></div>
+        <div id="containerTeamActualityList" class="containerTeamActuality row" ng-repeat="actu in listOfTeamActualities| filter: {idTeam: choiceOfTeam.idTeam}">   
+            <div class="col-xs-12" id="dd">
 
-                        <div id="contain_date" class="col-xs-6">
-                            {{actu.dateActuality}}
-                        </div>
-                    </div>
-
-                    <div class="contain_content col-xs-12"> 
-                    {{actu.publication}}  
-                    <span class="pull-right" ng-show="actu.idUser === idUser || status === 'Admin'"><span id="glyph" ng-class="'fa fa-trash'" ng-click="removeTeamActuality(actu.idActuality)"></span></span>
-                    </div><br>
-
-                    <i class="pull-right">{{actu.lastname}} {{actu.firstname}}</i>
+                <div id="contain_title" class="col-xs-6">
+                    <H4 class="actuTitle"><span id="glyph"></span> {{actu.title}}</H4>  
                 </div>
-            
+
+                <div id="contain_date" class="col-xs-6">
+                    {{actu.dateActuality}}
+                </div>
             </div>
-        </div>   
+
+            <div class="contain_content col-xs-12"> 
+                {{actu.publication}}  
+                <span class="pull-right" ng-show="actu.idUser === idUser || status === 'Admin'"><span id="glyph" ng-class="'fa fa-trash'" ng-click="removeTeamActuality(actu.idActuality)"></span></span>
+            </div><br>
+
+            <i class="pull-right">{{actu.lastname}} {{actu.firstname}}</i>
+        </div>
+
+    </div>
+</div>   

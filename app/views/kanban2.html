@@ -4,8 +4,8 @@
 <div ng-controller="Kanban" ng-hide="!choiceOfTeam.idTeam">
     <div class="container-fluid" id="containerKanban">
         <div id="options" class="row">
-            <button class="btn btn-primary buttonKanban col-lg-offset-8 col-lg-2">Modifier une tâche</button>
-            <button type="button" class="btn btn-primary buttonKanban col-lg-2" data-toggle="modal" data-target="#createModal">Ajouter une tâche</button>
+            <button type="button" class="btn btn-primary buttonKanban col-lg-offset-8 col-lg-2" data-toggle="modal" data-target="#myModal">Modifier une tâche</button>
+            <button type="button" class="btn btn-primary buttonKanban col-lg-2"                 data-toggle="modal" data-target="#createModal">Ajouter une tâche</button>
         </div>
     </div>
 
@@ -16,7 +16,7 @@
             <div class="titre">
                 To Do
             </div>
-            <div id="ToDo" class="task" ng-repeat="task in tasksOfTheTeam | filter: {status: 'To Do', idTeam: choiceOfTeam.idTeam}">
+            <div id="ToDo" class="task" ng-repeat="task in tasksOfTheTeam | filter: {status: 'To Do', idTeam: choiceOfTeam.idTeam}" data-toggle="modal" data-target="#modifyModal">
                 {{task.taskName}}
             </div>
         </div>
@@ -26,7 +26,7 @@
             <div class="titre">
                 In Progress
             </div>
-            <div id="InProgress" class="task" ng-repeat="task in tasksOfTheTeam | filter: {status: 'In Progress', idTeam: choiceOfTeam.idTeam}">
+            <div id="InProgress" class="task" data-toggle="modal" data-target="#myModal" ng-repeat="task in tasksOfTheTeam | filter: {status: 'In Progress', idTeam: choiceOfTeam.idTeam}">
                 {{task.taskName}}
             </div>
         </div>
@@ -36,7 +36,7 @@
             <div class="titre">
                 To Verify
             </div>
-            <div id="ToVerify" class="task" ng-repeat="task in tasksOfTheTeam | filter: {status: 'To Verify', idTeam: choiceOfTeam.idTeam}">
+            <div id="ToVerify" class="task" data-toggle="modal" data-target="#myModal" ng-repeat="task in tasksOfTheTeam | filter: {status: 'To Verify', idTeam: choiceOfTeam.idTeam}">
                 {{task.taskName}}
             </div>
         </div>
@@ -46,7 +46,7 @@
             <div class="titre">
                 Done
             </div>
-            <div id="Done" class="task" ng-repeat="task in tasksOfTheTeam | filter: {status: 'Done', idTeam: choiceOfTeam.idTeam}">
+            <div id="Done" class="task" data-toggle="modal" data-target="#myModal" ng-repeat="task in tasksOfTheTeam | filter: {status: 'Done', idTeam: choiceOfTeam.idTeam}">
                 {{task.taskName}}
             </div>
             </div>
@@ -55,3 +55,4 @@
 </div>
     
     <ng-include src="'views/modalCreateTask.html'"></ng-include>
+    <ng-include src="'views/modalModifyTask.html'"></ng-include>
