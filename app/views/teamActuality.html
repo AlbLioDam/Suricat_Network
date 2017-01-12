@@ -6,11 +6,11 @@
 <div ng-hide="!choiceOfTeam.idTeam">
     <!-- ACTUALITY FORM -->
     <div ng-controller="toggleCtrl">
-        <div class="titleActualitiesPages"><h1>Fil d'actualités du comité d'entrprise</h1></div>
+        <h1>Fil d'actualités de l'équipe {{selected.idteam}}</h1>
         <uib-accordion>
             <div uib-accordion-group heading="formTitle" class="panel-default containerTeamActuality formTitle" is-open="status.open" id="containerTeamActualityForm">
                 <uib-accordion-heading heading="formTitle">
-                    Formulaire de saisie d'actualité équipe<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                Formulaire de saisie d'actualité équipe<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
                 </uib-accordion-heading>
                 <label class="titleLabel">Titre</label>
                 <input class="form-control" id="TitleEquipeTextarea" rows="1" ng-model="newActu.title"></input><br>
@@ -25,12 +25,11 @@
 
     <div ng-controller="refresh">
         {{message}}    
-        <div class="titleTeamActualitiesPages"><h1>Fil d'actualités de l'équipe</h1></div>
         <div id="containerTeamActualityList" class="containerTeamActuality row" ng-repeat="actu in listOfTeamActualities| filter: {idTeam: choiceOfTeam.idTeam}">   
-            <div class="col-xs-12" id="dd">
+            <div class="col-xs-12" id="workCouncilTitle">
 
-                <div id="contain_title" class="col-xs-6">
-                    <H4 class="actuTitle"><span id="glyph"></span> {{actu.title}}</H4>  
+                <div id="contain_title" class="col-xs-6 text-left">
+                    <H5 class="actuTitle"><span id="glyph" class="fa fa-users" aria-hidden="true"></span> {{actu.title}}</H5>  
                 </div>
 
                 <div id="contain_date" class="col-xs-6">

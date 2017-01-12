@@ -146,6 +146,10 @@
     border-top-right-radius : 10px;
 }
 
+#titleMain{
+    color: white;
+}
+
 i{
     padding-right: 5px;
 }
