@@ -12,11 +12,14 @@
                 <uib-accordion-heading heading="formTitle" style="color: blue">
                 Formulaire de saisie d'actualité équipe<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
                 </uib-accordion-heading>
-                <label class="titleLabel">Titre</label>
-                <input class="form-control" id="TitleEquipeTextarea" rows="1" ng-model="newActu.title"></input><br>
-                <label class="titleLabel">Contenu d'actualité</label>
-                <textarea class="form-control" id="ActuEquipeTextarea" rows="3" ng-model="newActu.publication"></textarea><br>
-                <button id="formbutton" type="submit" class="btn btn-primary" ng-click="postTeamActu(choiceOfTeam)">Publier cette actualité</button>
+                <form name="myTeamActualitiesForm" novalidate ng-submit="myTeamActualitiesForm.$valid && postTeamActu(choiceOfTeam)" ng-class="{'has-error' : myTeamActualitiesForm.title.$error.maxlength}">
+                    <label class="titleLabel">Titre</label>
+                    <input name="title" ng-maxlength="50" placeholder="veuillez saisir ici le titre de votre actualité" class="form-control" id="TitleEquipeTextarea" rows="1" ng-model="newActu.title" required></input>
+                    <span ng-show="myTeamActualitiesForm.title.$error.maxlength">Titre trop long 50 caractères maximum</span><br><br>
+                    <label class="titleLabel">Contenu d'actualité</label>
+                    <textarea ng-maxlength="2000" placeholder="veuillez saisir ici le contenu de votre actualité" class="form-control" id="ActuEquipeTextarea" rows="3" ng-model="newActu.publication" required></textarea><br>
+                    <button id="formbutton" type="submit" class="btn btn-primary">Publier cette actualité</button>
+                </form>
             </div>
         </uib-accordion>
     </div>
