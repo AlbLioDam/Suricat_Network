@@ -21,11 +21,34 @@ app.controller('passwordCtrl',function($scope, LinkDBDepartment, LinkDB, $cookie
 	$scope.addAMember = function()
 	{
 		$scope.modifyUserClicked = !$scope.modifyUserClicked;
+		$scope.infosUser.email   ="";
+		$scope.infosUser.password="";
+		$scope.infosUser.pw2 	 ="";
+
 	}
 
 	$scope.modifyUser = function()
 	{
 		$scope.modifyUserClicked = !$scope.modifyUserClicked;
+	$scope.infosUser =
+	{
+		email: "",
+		password: "",
+		pw2: "",
+		department: "",
+		status: "",
+		corporateLifeRepresentative: "",
+		workCouncilRepresentative: "",
+		active: "",
+		lastname: "",
+		firstname: "",
+		address: "",
+		city: "",
+		car: "",
+		carsharing: "",
+		idDepartment:""
+	}
+
 
 	}
 	$scope.emptyCreateUserForm = function()
