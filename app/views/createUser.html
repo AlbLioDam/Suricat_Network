@@ -1,15 +1,18 @@
 <div ng-controller="passwordCtrl">
-  <form name="UserCreationForm" class="row" ng-submit="UserCreationForm.$valid && postTeamActu(choiceOfTeam)" ng-class="{'has-error' : UserCreationForm.email.$error.maxlength}">
+  <form name="UserCreationForm" class="row" ng-submit="UserCreationForm.$valid && postTeamActu(choiceOfTeam)" ng-class="{'has-error' : UserCreationForm.email.$error.maxlength || UserCreationForm.password.$error.maxlength || UserCreationForm.password.$error.minlength}">
     <div class="col-md-offset1 col-md-12" id="createUserDiv"  >
       <h3 class="text-center">Création d'un profil</h3>
       <div class="form-group">
         <label for="email">Login/mail</label>
-        <input name="email" ng-maxlength="50" type="email" class="form-control" ng-model="infosUser.email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez une adresse email" ng-disable="cancelButtonPressed" required />
+        <input name="email" ng-maxlength="50" type="email" class="form-control" ng-model="infosUser.email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez une adresse email" required />
+        <span ng-show="UserCreationForm.email.$error.maxlength">Email trop long, 50 caractères maximum</span><br>
       </div>
 
       <div class="form-group">
         <label for="pw1">Password</label>
-        <input name="password" ng-maxlength="20" type="password" class="form-control" id="pw1" ng-model="infosUser.password" placeholder="Entrez un mot de passe" ng-disable="cancelButtonPressed" required/>
+        <input name="password" ng-maxlength="20" ng-minlength="4" type="password" class="form-control" id="pw1" ng-model="infosUser.password" placeholder="Entrez un mot de passe" ng-disable="cancelButtonPressed" required/>
+        <span ng-show="UserCreationForm.password.$error.maxlength">Mot de passe trop long, 20 caractères maximum</span>
+        <span ng-show="UserCreationForm.password.$error.minlength">Mot de passe trop petit, 4 caractères maximum</span><br>
       </div>
 
       <div class="form-group">
