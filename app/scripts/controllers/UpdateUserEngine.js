@@ -183,6 +183,26 @@ app.controller('userSelfModifications',function($scope, LinkDBDepartment, LinkDB
 		console.log($scope.infosUser);
 		LinkDB.updateUser($scope.infosUser);
 	}
+
+		$scope.showConfirmation = function(ev) 
+	{
+	    // Appending dialog to document.body to cover sidenav in docs app
+	    var confirm = $mdDialog.confirm()
+	          .title('Attention !')
+	          .textContent('Confirmez-vous les modifications effectuées ?')
+	          .ariaLabel('Lucky day')
+	          .targetEvent(ev)
+	          .ok('Oui')
+	          .cancel('Non');
+
+	    $mdDialog.show(confirm).then(function() 
+	    {
+	      $scope.saveModifications();
+	    }, function() 
+	    {
+	      //nothing
+	    });
+  	};
 });
 
 

@@ -1,18 +1,21 @@
 
 <div ng-controller="userSelfModifications">
 
-    <form class="row" id="createUserAdminForm">
+    <form name="updateUserForm" novalidate class="row" id="createUserAdminForm" ng-submit="updateUserForm.$valid && showConfirmation($event) && recordModifications()" ng-class="{'has-error' : updateUserForm.email.$error.minlength ||  updateUserForm.email.$error.maxlength ||  updateUserForm.password.$error.maxlength || updateUserForm.password.$error.minlength}">
         <h3 class="text-center">Modification du profil</h3>
 
         <div class="col-md-offset-1 col-md-5 containerUpdateUser" id="leftWindow">
             <div class="form-group">
                 <label for="email">Login (adresse interne)</label>
-                <input type="email" class="form-control" ng-model="infosUser.email" id="email" aria-describedby="emailHelp" placeholder="Enter email" required ng-disabled="status != 'Admin'">
+                <input name="email" ng-maxlength="50" type="email" class="form-control" ng-model="infosUser.email" id="email" aria-describedby="emailHelp" placeholder="Enter email" required ng-disabled="status != 'Admin'">
+                <span ng-show="updateUserForm.email.$error.maxlength">Titre trop long 50 caractères maximum</span><br>
             </div>
 
             <div class="form-group">
                 <label for="pw1">Mot de passe</label>
-                <input type="password" class="form-control" id="pw1" ng-model="infosUser.password" placeholder="Enter password" required/>
+                <input name="password" ng-maxlength="20" ng-minlength="4" type="password" class="form-control" id="pw1" ng-model="infosUser.password" placeholder="Enter password" required/>
+                <span ng-show="updateUserForm.password.$error.maxlength">Mot de passe trop long, 20 caractères maximum</span>
+        <span ng-show="updateUserForm.password.$error.minlength">Mot de passe trop petit, 4 caractères maximum</span><br>
             </div>
 
             <div class="form-group">
@@ -51,22 +54,22 @@
         <div class="col-md-5 text-left containerUpdateUser">
             <div class="form-group">
                 <label for="lastName">Nom</label>
-                <input type="text" class="form-control" id="lastName" ng-model="infosUser.lastname" aria-describedby="emailHelp" placeholder="Enter lastname" required>
+                <input name="lastName" ng-maxlength="30" type="text" class="form-control" id="lastName" ng-model="infosUser.lastname" aria-describedby="emailHelp" placeholder="Enter lastname" required>
             </div>
 
             <div class="form-group">
                 <label for="firstName">Prénom</label>
-                <input type="text" class="form-control" id="firstName" ng-model="infosUser.firstname" placeholder="Enter firstname" required/>
+                <input name="firstName" ng-maxlength="30" type="text" class="form-control" id="firstName" ng-model="infosUser.firstname" placeholder="Enter firstname" required/>
             </div>
 
             <div class="form-group">
                 <label for="adress">Adresse</label>
-                <input type="text" class="form-control" id="address" ng-model="infosUser.address" placeholder="Enter Address" required/>
+                <input name="adress" ng-maxlength="100" type="text" class="form-control" id="address" ng-model="infosUser.address" placeholder="Enter Address" required/>
             </div>
 
             <div class="form-group">
                 <label for="city">Ville</label>
-                <input type="text" class="form-control" id="city" ng-model="infosUser.city" placeholder="Enter City" required/>
+                <input name="city" ng-maxlength="100" type="text" class="form-control" id="city" ng-model="infosUser.city" placeholder="Enter City" required/>
             </div>
 
             <div class="form-group">
@@ -84,18 +87,18 @@
                 <input type="checkbox" id="active" ng-model="infosUser.active" ng-disabled="status != 'Admin'">
             </div>
         </div>
-    </form>
+    
 
     <div class="row" id="buttonUpdateUser">
-
+    <!--
         <div class="col-xs-4 col-md-4 text-center">
-            <button type="submit" class="btn btn-danger myButton" ng-click="">Annuler</button>
+            <button type="submit" class="btn btn-danger myButton" >Annuler</button>
         </div>
-
+    -->
         <div class="col-xs-4 col-md-4 text-center">
-            <button type="submit" class="btn btn-primary myButton" ng-click="recordModifications()">Valider modifications</button>
+            <button type="submit" class="btn btn-primary myButton" ng-show="updateUserForm.$valid">Valider modifications</button>
         </div>
 
     </div>
-
+</form>
 </div>
