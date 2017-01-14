@@ -2,6 +2,19 @@ var app = angular.module('Suricat');
 
 // CONTROLLER : From the Login Page (index.html) send a post request 
 // 				to the rest to check the login and password of the user.
+/**
+*	@memberof 	Suricat
+*	@ngdoc 		controllers
+*	@name 		CheckLogin
+*	@param		{object} $scope
+*	@param		{object} LinkDBCheckLogin used to interract  with REST server
+*	@param		{object} $timeout
+*	@param		{object} $cookies
+*	@param		{object} $cookieStore
+*	@description
+*		Login Controller used to send object with user login and password infos too REST server
+*		From the Login Page (index.html)
+*/
 app.controller('CheckLogin',['$scope','LinkDBCheckLogin','$timeout','$cookies','$cookieStore', function($scope,LinkDBCheckLogin,$timeout,$cookies,$cookieStore){
 	// METHOD - VERIFY : Send the login and password to be verified in the database through the rest server
 	$scope.verify = function()
