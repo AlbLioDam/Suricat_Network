@@ -2,29 +2,33 @@
     <div class="titleActualitiesPages"><h1>Fil d'actualités Loisir</h1></div>
     <div>
         <div>
-
+        
             <div ng-controller="toggleCtrl">
                 <uib-accordion>
                     <div uib-accordion-group heading="formTitle" class="panel-default containerTeamActuality formTitle" is-open="status.open" id="containerTeamActualityForm">
                         <uib-accordion-heading heading="formTitle">
                             Formulaire de saisie d'actualité équipe<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
                         </uib-accordion-heading>
-                        <label class="titleLabel">Titre</label>
-                        <input class="form-control" id="TitleEquipeTextarea" rows="1" ng-model="newActu.title"></input><br>
-                        <label class="titleLabel">Contenu d'actualité</label>
-                        <textarea class="form-control" id="ActuEquipeTextarea" rows="3" ng-model="newActu.publication"></textarea><br>
-                        <label class="titleLabel">Categorie</label>
-                        <select ng-model="newActu.category">
-                            <option value="Cuisine">    Cuisine         </option>
-                            <option value="Sport">      Sport           </option>
-                            <option value="Covoiturage">Covoiturage     </option>
-                            <option value="Services">   Services        </option>
-                        </select><br><br>
-                        <button id="formbutton" type="submit" class="btn btn-primary" ng-click="postTeamActu(choiceOfTeam)">Publier cette actualité</button>
+                        <form name="myTeamActualityForm" ng-submit="myTeamActualityForm.$valid && postTeamActu(choiceOfTeam)" ng-class="{'has-error' : myTeamActualityForm.title.$error.maxlength}">
+                            <label class="titleLabel">Titre</label>
+                            <input name="title" ng-maxlength="50" placeholder="veuillez saisir ici le titre de votre actualité" class="form-control" id="TitleEquipeTextarea" rows="1" ng-model="newActu.title" placeholder="Entrez un titre" required></input>
+                            <span ng-show="myTeamActualityForm.title.$error.maxlength">Titre trop long 50 caractères maximum</span><br>
+                            <label class="titleLabel">Contenu d'actualité</label>
+                            <textarea ng-maxlength="2000" placeholder="veuillez saisir ici le contenu de votre actualité" class="form-control" id="ActuEquipeTextarea" rows="3" ng-model="newActu.publication" required></textarea><br>
+                            <label class="titleLabel">Categorie : </label>
+                            <select ng-model="newActu.category" placeholder="veuillez selectionnez une catégorie" required>
+                                <option value="" disabled selected>selectionnez une catégorie</option>
+                                <option value="Cuisine">    Cuisine         </option>
+                                <option value="Sport">      Sport           </option>
+                                <option value="Covoiturage">Covoiturage     </option>
+                                <option value="Services">   Services        </option>
+                            </select><br><br>
+                            <button id="formbutton" type="submit" class="btn btn-primary" ng-show="newActu.category">Publier cette actualité</button>
+                        </form>
                     </div>
                 </uib-accordion>
             </div>
-
+        
             <!-- DISPLAY LEISURE ACTUALITIES -->
 
             <div ng-controller="refresh">

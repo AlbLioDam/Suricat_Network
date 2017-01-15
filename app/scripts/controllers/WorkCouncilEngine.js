@@ -8,7 +8,23 @@ var app = angular.module('Suricat');
 	
 });
 */
-
+/**
+*	@memberof 	Suricat
+*	@ngdoc 		controllers
+*	@name 		WorkCouncilActualities
+*	@param		{object} $interval
+*	@param		{object} $scope
+*	@param		{object} LinkDBWorkCouncilActualities
+*	@param		{object} LinkDBActualityId
+*	@description
+*		Controller used for Enterprise work council actualities
+*
+*			this controller allow functions :
+*			 
+*			1- post work council actuality
+*			2- remove work council actuality
+*	
+**/
 app.controller('WorkCouncilActualities',function($interval, $scope, LinkDBWorkCouncilActualities, LinkDBActualityId){
 	$scope.listOfWorkCouncilActualities = LinkDBWorkCouncilActualities.query();
 
@@ -50,6 +66,14 @@ app.controller('WorkCouncilActualities',function($interval, $scope, LinkDBWorkCo
 	/*------------------
 	 Json Object to post
 	 ------------------*/
+	/**
+	*	@memberof 	WorkCouncilActualities
+	*	@ngdoc 		function
+	*	@description
+	*		
+	*		Post Work council actuality
+	*
+	**/
 	$scope.postTeamActu=function()
 	{
 			
@@ -82,7 +106,14 @@ app.controller('WorkCouncilActualities',function($interval, $scope, LinkDBWorkCo
 			}
 		});
 	};
-
+	/**
+	*	@memberof 	WorkCouncilActualities
+	*	@ngdoc 		function
+	*	@description
+	*		
+	*		Remove Work council actuality
+	*
+	**/
 	$scope.removeWorkCouncilActuality = function(idActuality)
 	{
 		LinkDBWorkCouncilActualities.remove({idActuality: idActuality}).$promise.then(function(response){
@@ -99,6 +130,21 @@ app.controller('WorkCouncilActualities',function($interval, $scope, LinkDBWorkCo
 /*----------------------------------------------
  Controller used to refresh the actuality flow
  ---------------------------------------------*/
+/**
+*	@memberof 	Suricat
+*	@ngdoc 		controllers
+*	@name 		refresh
+*	@param		{object} $scope
+*	@param		{object} $interval
+*	@param		{object} LinkDBWorkCouncilActualities
+*	@description
+*		Controller used for work council actuality refresh
+*
+*			this controller allow functions :
+*			 
+*			- refresh used every 10s
+*	
+**/
 app.controller('refresh',function($interval, $scope, LinkDBWorkCouncilActualities){
 	$interval(function(){
 		setTimeout(function(){

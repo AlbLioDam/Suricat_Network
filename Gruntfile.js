@@ -28,6 +28,19 @@ module.exports = function (grunt) {
   // Define the configuration for all the tasks
   grunt.initConfig({
 
+    jsdoc: {
+        dist: {
+          src: ['directives', 'services'],
+          options: {
+            destination: 'build/docs',
+            configure: 'node_modules/angular-jsdoc/common/conf.json',
+            template: 'node_modules/angular-jsdoc/angular-template',
+            tutorial: 'tutorials',
+            readme: './README.md'
+          }
+        }
+      },
+
     // Project settings
     yeoman: appConfig,
 

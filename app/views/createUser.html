@@ -1,21 +1,23 @@
 <div ng-controller="passwordCtrl">
-  <form class="row">
+  <form name="UserCreationForm" class="row" ng-submit="UserCreationForm.$valid && postTeamActu(choiceOfTeam)" ng-class="{'has-error' : UserCreationForm.email.$error.maxlength || UserCreationForm.password.$error.maxlength || UserCreationForm.password.$error.minlength}">
     <div class="col-md-offset1 col-md-12" id="createUserDiv"  >
       <h3 class="text-center">Création d'un profil</h3>
-
       <div class="form-group">
         <label for="email">Login/mail</label>
-        <input type="email" class="form-control" ng-model="infosUser.email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" ng-disable="cancelButtonPressed" required />
+        <input name="email" ng-maxlength="50" type="email" class="form-control" ng-model="infosUser.email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrez une adresse email" required />
+        <span ng-show="UserCreationForm.email.$error.maxlength">Email trop long, 50 caractères maximum</span><br>
       </div>
 
       <div class="form-group">
         <label for="pw1">Password</label>
-        <input type="password" class="form-control" id="pw1" ng-model="infosUser.password" ng-disable="cancelButtonPressed" required/>
+        <input name="password" ng-maxlength="20" ng-minlength="4" type="password" class="form-control" id="pw1" ng-model="infosUser.password" placeholder="Entrez un mot de passe" ng-disable="cancelButtonPressed" required/>
+        <span ng-show="UserCreationForm.password.$error.maxlength">Mot de passe trop long, 20 caractères maximum</span>
+        <span ng-show="UserCreationForm.password.$error.minlength">Mot de passe trop petit, 4 caractères maximum</span><br>
       </div>
 
       <div class="form-group">
         <label for="pw2">Confirm password</label>
-        <input type="password" class="form-control" id="pw2" name="pw2" ng-model="pw2" pw-check="pw1" ng-disable="cancelButtonPressed" required/>
+        <input name="confirmpassword" ng-maxlength="20" type="password" class="form-control" id="pw2" name="pw2" ng-model="pw2" pw-check="pw1" placeholder="Confirmez le mot de passe" ng-disable="cancelButtonPressed" required/>
       </div>
 
       <div ng-show="showmsg" class="errorMessage">
@@ -29,9 +31,9 @@
       </div>
 
       <div class="">
-        <button type="submit" class="btn btn-primary pull-right" ng-click="verifyPass(selected)">Créer </button>
+        <button type="submit" class="btn btn-primary pull-right" ng-show="infosUser.email && infosUser.password && pw2 && selected">Créer </button>
         <button ng-model="cancelButtonPressed" class="btn btn-danger pull-left" ng-click="emptyCreateUserForm()">Vider les champs</button>
         <div>
         </div>
-      </form>
+  </form>
 </div>
