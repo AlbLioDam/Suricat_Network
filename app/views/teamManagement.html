@@ -5,8 +5,9 @@
 				<form id="formTeam">
 					<h1 id="teamTitle">Gestion des équipes</h1>
 
-					<h3>Veuillez sélectionner l'équipe à modifier</h3>
-					<select ng-options="team.teamName for team in teams" ng-model="selected" class="form-control" ng-change="showTeamDetail(selected)" ng-disabled="blockedTeamChoice" ng-mouseenter="resetListOfTeams()"></select>
+					<select ng-options="team.teamName for team in teams" ng-model="selected" class="form-control" ng-change="showTeamDetail(selected)" ng-disabled="blockedTeamChoice" ng-mouseenter="resetListOfTeams()">
+						<option value="" disabled selected>Veuillez sélectionner l'équipe à modifier</option>	
+					</select>
 
 					<label class="labelFormTeam" for="teamName">Nom de l'équipe</label>
 					<input ng-disabled="blockedTeamDetail" id="teamName" type="text" ng-model="team.teamName" class="form-control" ng-change="testChanges()"/>

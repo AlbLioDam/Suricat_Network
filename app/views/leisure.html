@@ -15,8 +15,9 @@
                             <span ng-show="myTeamActualityForm.title.$error.maxlength">Titre trop long 50 caractères maximum</span><br>
                             <label class="titleLabel">Contenu d'actualité</label>
                             <textarea ng-maxlength="2000" placeholder="veuillez saisir ici le contenu de votre actualité" class="form-control" id="ActuEquipeTextarea" rows="3" ng-model="newActu.publication" required></textarea><br>
-                            <label class="titleLabel">Categorie</label>
-                            <select ng-model="newActu.category" required>
+                            <label class="titleLabel">Categorie : </label>
+                            <select ng-model="newActu.category" placeholder="veuillez selectionnez une catégorie" required>
+                                <option value="" disabled selected>selectionnez une catégorie</option>
                                 <option value="Cuisine">    Cuisine         </option>
                                 <option value="Sport">      Sport           </option>
                                 <option value="Covoiturage">Covoiturage     </option>
