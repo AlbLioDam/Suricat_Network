@@ -68,11 +68,12 @@ app.controller('Chat', function($scope, LinkDBChat){
 	*	@param		idUser_Users as user receiver
 	*	@description
 	*		the object send to REST server is composed :
-	*		=> message
-	*		=> id user sender
-	*		=> id user receiver
 	*
-	*/
+	*		1 => message
+	*		2 => id user sender
+	*		3 => id user receiver
+	*
+	**/
 	$scope.send = function(){
 		var mess = $scope.mess;
 

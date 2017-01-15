@@ -9,9 +9,9 @@ var app = angular.module('Suricat');
 *	@param		{object} $cookies
 *	@param		{object} $cookieStore
 *	@description
-*		MainPage Controller is used to give in 	ll the site, teams & infos about user
+*		MainPage Controller is used to give in 	all the site, teams & infos about user
 *	
-*/
+**/
 app.controller('MainPage',['$scope','$cookies','$cookieStore', 'LinkDBBelongToByUser', function($scope,$cookies,$cookieStore, LinkDBBelongToByUser)
 {
 	$scope.choiceOfTeam = {};
@@ -19,10 +19,12 @@ app.controller('MainPage',['$scope','$cookies','$cookieStore', 'LinkDBBelongToBy
 	*	@memberof 	MainPage
 	*	@ngdoc 		function
 	*	@name 		updateList
-	*	@description
-	*		get list of teams from user info liked to his id.
+	*	@description description :
 	*
-	*/
+	*		-1	 get list of teams from user info liked to his id.
+	*		-2	 updateList is used just after login
+			  	 it allow functionnalies linked to teams across the suricat application.
+	**/
 	$scope.updateList = function()
 	{
 		LinkDBBelongToByUser.getTeamsOfUser({idUser: $scope.idUser}).$promise.then(function(response){

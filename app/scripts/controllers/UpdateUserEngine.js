@@ -1,5 +1,27 @@
 var app = angular.module('Suricat');
-
+/**
+*	@memberof 	Suricat
+*	@ngdoc 		controllers
+*	@name 		passwordCtrl
+*	@param		{object} $scope
+*	@param		{object} LinkDBDepartment
+*	@param		{object} LinkDB
+*	@param		{object} $cookieStore
+*	@param		{object} $mdDialog
+*	@description
+*		Controller used for user form management
+*
+*			this controller allow functions :
+*			 
+*			1- add user
+*			2- modify user
+*			3- empty create user form
+*			4- verify user password
+*			5- show information
+*			6- reset
+*			7- show confirmation box
+*	
+**/
 app.controller('passwordCtrl',function($scope, LinkDBDepartment, LinkDB, $cookieStore, $mdDialog){
 
 	$scope.showmsg = false;
@@ -18,6 +40,13 @@ app.controller('passwordCtrl',function($scope, LinkDBDepartment, LinkDB, $cookie
 	/*$scope.user = LinkDB.getUserById({idUser: 1});
 	console.log($scope.user);
 	showInformations($scope.user);*/
+	/**
+	*	@memberof 	passwordCtrl
+	*	@ngdoc 		function
+	*	@description
+	*		add a user
+	*
+	**/
 	$scope.addAMember = function()
 	{
 		$scope.modifyUserClicked = !$scope.modifyUserClicked;
@@ -26,7 +55,13 @@ app.controller('passwordCtrl',function($scope, LinkDBDepartment, LinkDB, $cookie
 		$scope.infosUser.pw2 	 ="";
 
 	}
-
+	/**
+	*	@memberof 	passwordCtrl
+	*	@ngdoc 		function
+	*	@description
+	*		modify user information
+	*
+	**/
 	$scope.modifyUser = function()
 	{
 		$scope.modifyUserClicked = !$scope.modifyUserClicked;
@@ -51,12 +86,26 @@ app.controller('passwordCtrl',function($scope, LinkDBDepartment, LinkDB, $cookie
 
 
 	}
+	/**
+	*	@memberof 	passwordCtrl
+	*	@ngdoc 		function
+	*	@description
+	*		empty user form
+	*
+	**/
 	$scope.emptyCreateUserForm = function()
 	{
 			$scope.reset();
 			$scope.pw2 = "";
 	}
-
+	/**
+	*	@memberof 	passwordCtrl
+	*	@ngdoc 		function
+	*	@param		{object} selected
+	*	@description
+	*		verify user password
+	*
+	**/
 	$scope.verifyPass = function(selected)
 	{
 		var pw2 = $scope.pw2;
@@ -71,7 +120,14 @@ app.controller('passwordCtrl',function($scope, LinkDBDepartment, LinkDB, $cookie
 			$scope.showmsg = true;
 		}
 	}
-
+	/**
+	*	@memberof 	passwordCtrl
+	*	@ngdoc 		function
+	*	@param		{object} user
+	*	@description
+	*		show user information
+	*
+	**/
 	$scope.showInformations = function(user)
 	{
 		$scope.infosUser = 
@@ -89,12 +145,26 @@ app.controller('passwordCtrl',function($scope, LinkDBDepartment, LinkDB, $cookie
 		}
 		console.log($scope.infosUser);
 	}
-
+	/**
+	*	@memberof 	passwordCtrl
+	*	@ngdoc 		function
+	*	@param		{object} selected
+	*	@description
+	*		reset info user
+	*
+	**/
 	$scope.reset = function()
 	{
 		$scope.infosUser = angular.copy($scope.empty);
 	}
-
+	/**
+	*	@memberof 	passwordCtrl
+	*	@ngdoc 		function
+	*	@param		{object} ev
+	*	@description
+	*		show confirmation box
+	*
+	**/
 	$scope.showConfirmation = function(ev) 
 	{
 	    // Appending dialog to document.body to cover sidenav in docs app
@@ -116,7 +186,24 @@ app.controller('passwordCtrl',function($scope, LinkDBDepartment, LinkDB, $cookie
   	};
 
 });
-
+/**
+*	@memberof 	Suricat
+*	@ngdoc 		controllers
+*	@name 		userSelfModifications
+*	@param		{object} $scope
+*	@param		{object} LinkDBDepartment
+*	@param		{object} LinkDB
+*	@param		{object} $cookieStore
+*	@param		{object} $mdDialog
+*	@description
+*		Controller used for user form self management
+*
+*			this controller allow functions :
+*			 
+*			1- record user Modifications
+*			2- show confirmation box
+*	
+**/
 app.controller('userSelfModifications',function($scope, LinkDBDepartment, LinkDB, $cookieStore, $mdDialog){
 
 	$scope.departments = LinkDBDepartment.query();
@@ -177,14 +264,27 @@ app.controller('userSelfModifications',function($scope, LinkDBDepartment, LinkDB
 	});
 
 	console.log($scope.infosUser);
-
+	/**
+	*	@memberof 	userSelfModifications
+	*	@ngdoc 		function
+	*	@description
+	*		record user modifications ( adress, city, carsharing...)
+	*
+	**/
 	$scope.recordModifications = function()
 	{
 		console.log($scope.infosUser);
 		LinkDB.updateUser($scope.infosUser);
 	}
-
-		$scope.showConfirmation = function(ev) 
+	/**
+	*	@memberof 	userSelfModifications
+	*	@ngdoc 		function
+	*	@param		{object} ev
+	*	@description
+	*		show confirmation box
+	*
+	**/
+	$scope.showConfirmation = function(ev) 
 	{
 	    // Appending dialog to document.body to cover sidenav in docs app
 	    var confirm = $mdDialog.confirm()

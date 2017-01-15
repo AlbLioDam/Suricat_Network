@@ -8,7 +8,23 @@ var app = angular.module('Suricat');
 	
 });
 */
-
+/**
+*	@memberof 	Suricat
+*	@ngdoc 		controllers
+*	@name 		CorporateActualities
+*	@param		{object} $scope
+*	@param		{object} $interval
+*	@param		{object} LinkDBCorpActualities
+*	@param		{object} LinkDBActualityId
+*	@description
+*		Controller used for Corporate Actualities
+*			
+*			this controller allow :
+*			 
+*			1- post Actuality
+*			2- remove actuality
+*	
+**/
 app.controller('CorporateActualities',function($interval, $scope, LinkDBCorpActualities, LinkDBActualityId){
 	$scope.listOfCorpActualities = LinkDBCorpActualities.query();
 
@@ -51,7 +67,15 @@ app.controller('CorporateActualities',function($interval, $scope, LinkDBCorpActu
 	/*------------------
 	 Json Object to post
 	 ------------------*/
-
+	/**
+	*	@memberof 	CorporateActualities
+	*	@ngdoc 		function
+	*	@description description :
+	*
+	*		used to post Actuality
+	*		
+	*
+	**/
 	$scope.postTeamActu=function()
 	{
 		$scope.newActu.photo = $scope.newActu.photo.base64;
@@ -83,7 +107,15 @@ app.controller('CorporateActualities',function($interval, $scope, LinkDBCorpActu
 			}
 		});
 	};
-
+	/**
+	*	@memberof 	CorporateActualities
+	*	@ngdoc 		function
+	*	@description description :
+	*
+	*		used to remove Actuality
+	*		
+	*
+	**/
 	$scope.removeCorporateLifeActuality = function(idActuality)
 	{
 		LinkDBCorpActualities.remove({idActuality: idActuality}).$promise.then(function(response){
@@ -100,6 +132,19 @@ app.controller('CorporateActualities',function($interval, $scope, LinkDBCorpActu
 /*----------------------------------------------
  Controller used to refresh the actuality flow
  ---------------------------------------------*/
+ /**
+*	@memberof 	Suricat
+*	@ngdoc 		controllers
+*	@name 		refresh
+*	@param		{object} $scope
+*	@param		{object} $interval
+*	@param		{object} LinkDBCorpActualities
+*	@description
+*		Controller used for refresh Actualities
+*			
+*			this controller allow actualities flow refresh every 10s
+*	
+**/
 app.controller('refresh',function($interval, $scope, LinkDBCorpActualities){
 	$interval(function(){
 		setTimeout(function(){
@@ -116,7 +161,16 @@ app.controller('refresh',function($interval, $scope, LinkDBCorpActualities){
 		},3000);
 	},10000);	
 });
-
+ /**
+*	@memberof 	Suricat
+*	@ngdoc 		controllers
+*	@name 		toggleCtrl
+*	@param		{object} $scope
+*	@description
+*		Controller used for toggleCtrl management
+*			
+*	
+**/
 app.controller('toggleCtrl', function($scope) {
   
   // BUTTONS ======================

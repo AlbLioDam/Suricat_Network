@@ -1,5 +1,22 @@
 var app = angular.module('Suricat');
-
+/**
+*   @memberof   Suricat
+*   @ngdoc      controllers
+*   @name       taskManagementCtrl
+*   @param      {object} $scope
+*   @param      {object} LinkDBTask
+*   @param      {object} LinkDBDepartment
+*   @param      {object} LinkDBBelongTo
+*   @param      {object} LinkDBKanbanTasks
+*   @param      {object} LinkDBAttributeTaskUser
+*   @description
+*       Controller used for task management
+*           
+*           this controller allow :
+*            
+*           - create task
+*   
+**/
 app.controller('taskManagementCtrl', function ($scope, LinkDBTask, LinkDBDepartment, LinkDBBelongTo, LinkDBKanbanTasks, LinkDBAttributeTaskUser) {
 
     //$scope.teams 		= LinkDBTeams.query();
@@ -26,7 +43,13 @@ app.controller('taskManagementCtrl', function ($scope, LinkDBTask, LinkDBDepartm
                 idUser: $scope.user.idUser,
                 idTask:""
             };
-
+    /**
+    *   @memberof   taskManagementCtrl
+    *   @ngdoc      function
+    *   @description
+    *       used to create task for kanban used
+    *
+    */
     $scope.createTask = function ()
     {
         $scope.task.idTeam = $scope.selected.idTeam;
@@ -45,8 +68,29 @@ app.controller('taskManagementCtrl', function ($scope, LinkDBTask, LinkDBDepartm
         });
     };
 });
-
+/**
+*   @memberof   Suricat
+*   @ngdoc      controllers
+*   @name       ModalCtrl
+*   @param      {object} $scope
+*   @param      {object} $modal
+*   @param      {object} $log
+*   @description
+*       Controller used to open a modal
+*           
+*           this controller allow :
+*            
+*           - create Modal instance
+*   
+**/
 app.controller('ModalCtrl', function($scope,$modal,$log){
+        /**
+    *   @memberof   ModalCtrl
+    *   @ngdoc      function
+    *   @description
+    *       used to create modal instance
+    *
+    */
     $scope.open = function(){
       var modelInstance = $modal.open({
           controller:'ModalInstance'
