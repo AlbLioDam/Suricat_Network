@@ -140,7 +140,7 @@
 }
 
 #workCouncilTitle {
-    background-color: black;
+    background-color: #3498DB;
     padding: 0px;
     border-top-left-radius : 10px;
     border-top-right-radius : 10px;
@@ -152,9 +152,36 @@
 
 .panel-color>.panel-heading{
     color:#fff;
-    background-color:#FF934F;
-    border-color:#ff934f;
+    background-color:#3498DB;
 }
+
+.panel-color{
+    border-color: #3498DB;
+}
+
+.panel-team>.panel-heading{
+    background-color:#ECF0F1;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    background-color: #ECF0F1;
+    color: #ECF0F1;
+}
+
+#backChatIcon
+{
+	background-color: white;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	vertical-align: middle;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 0px;
+	float: right;
+	margin-right: 15px;
+}
+
 
 i{
     padding-right: 5px;
