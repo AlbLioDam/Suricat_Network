@@ -1,6 +1,35 @@
 var app = angular.module('Suricat');
 
 // CONTROLLER : Random turnover of background picture 
+/**
+*	@memberof 	Suricat
+*	@ngdoc 		controllers
+*	@name 		TeamManagementPage
+*	@param		{object} $scope
+*	@param		{object} LinkDBTeams
+*	@param		{object} LinkDB
+*	@param		{object} LinkDBDepartment
+*	@param		{object} LinkDBBelongTo
+*	@param		{object} LinkDBBelongToByUser
+*	@param		{object} LinkDBNotBelongToByTeam
+*	@param		{object} NotBelongToByTeam
+*	@param		{object} LinkDBBelongToRemove
+*	@description
+*		Controller used Team management
+*
+*			this controller allow functions :
+*			 
+*			1- Show team details
+*			2- check changes
+*			3- reset modifications
+*			4- save team info
+*			5- add user in team
+*			6- remove user
+*			7- show users not in the team
+*			8- stop add user
+*			9- reset list of team
+*	
+**/
 app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkDBDepartment, LinkDBBelongTo, LinkDBBelongToByUser, LinkDBNotBelongToByTeam, NotBelongToByTeam, LinkDBBelongToRemove)
 {
 	LinkDBBelongToByUser.getTeamsOfUser({idUser: $scope.idUser}).$promise.then(function(response){
@@ -35,7 +64,14 @@ app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkD
 	}
 
 	$scope.changesToSave = angular.equals($scope.team, $scope.teamVerif);
-
+	/**
+	*	@memberof 	TeamManagementPage
+	*	@ngdoc 		function
+	*	@param		{object} selected
+	*	@description
+	*		show team details
+	*
+	**/
 	$scope.showTeamDetail = function(selected)
 	{
 		if(selected != null)
@@ -60,7 +96,13 @@ app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkD
 			$scope.blockedTeamDetail = false;
 		}
 	}
-
+	/**
+	*	@memberof 	TeamManagementPage
+	*	@ngdoc 		function
+	*	@description
+	*		test team change
+	*
+	**/
 	$scope.testChanges = function()
 	{
 		$scope.changesToSave = angular.equals($scope.team, $scope.teamVerif);
@@ -69,14 +111,26 @@ app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkD
 			$scope.blockedTeamChoice = true;
 		}
 	}
-
+	/**
+	*	@memberof 	TeamManagementPage
+	*	@ngdoc 		function
+	*	@description
+	*		reset modifications
+	*
+	**/
 	$scope.resetModifications = function()
 	{
 		$scope.team = angular.copy($scope.teamVerif);
 		$scope.changesToSave = true;
 		$scope.blockedTeamChoice = false;
 	}
-
+	/**
+	*	@memberof 	TeamManagementPage
+	*	@ngdoc 		function
+	*	@description
+	*		save informations
+	*
+	**/
 	$scope.saveTeamInformations = function()
 	{
 		LinkDBTeams.update($scope.team).$promise.then(function(response)
@@ -89,7 +143,15 @@ app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkD
 			$scope.resetListOfTeams();
 		});
 	}
-
+	/**
+	*	@memberof 	TeamManagementPage
+	*	@ngdoc 		function
+	*	@param		{object} user
+	*	@description
+	*		
+	*	add user in team
+	*
+	**/
 	$scope.addUserInTeam = function(user)
 	{
 		LinkDBBelongTo.save({idUser: user.idUser, idTeam: $scope.teamSelected.idTeam}).$promise.then(function(response)
@@ -108,7 +170,15 @@ app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkD
 			}
 		})
 	}
-
+	/**
+	*	@memberof 	TeamManagementPage
+	*	@ngdoc 		function
+	*	@param		{object} user
+	*	@description
+	*		
+	*	remove user from team
+	*
+	**/
 	$scope.removeUser = function(user)
 	{
 		console.log("user delete : ");
@@ -128,7 +198,14 @@ app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkD
 			}
 		});
 	}
-
+	/**
+	*	@memberof 	TeamManagementPage
+	*	@ngdoc 		function
+	*	@description
+	*		
+	*	show user not in the team
+	*
+	**/
 	$scope.showMembersNotInTheTeam = function()
 	{
 		LinkDBNotBelongToByTeam.getUsersNotInTeam({idTeam: $scope.teamSelected.idTeam}).$promise.then(function(response)
@@ -138,12 +215,26 @@ app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkD
 
 		$scope.addMember = true;
 	}
-
+	/**
+	*	@memberof 	TeamManagementPage
+	*	@ngdoc 		function
+	*	@description
+	*		
+	*	stop add member
+	*
+	**/
 	$scope.endAdd = function()
 	{
 		$scope.addMember = false;
 	}
-
+	/**
+	*	@memberof 	TeamManagementPage
+	*	@ngdoc 		function
+	*	@description
+	*		
+	*	reset list of teams
+	*
+	**/
 	$scope.resetListOfTeams = function()
 	{
 		LinkDBBelongToByUser.getTeamsOfUser({idUser: $scope.idUser}).$promise.then(function(response)

@@ -10,6 +10,17 @@ const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
 var dev = true;
+var shell = require('gulp-shell');
+
+gulp.task('docs', shell.task([
+  'c:/wamp64/www/Suricat_Network/node_modules/.bin/jsdoc.cmd '+
+    '-c c:/wamp64/www/Suricat_Network/node_modules/angular-jsdoc/common/conf.json '+   // config file
+    '-t c:/wamp64/www/Suricat_Network/node_modules/angular-jsdoc/default '+            // template file
+    '-d docs '+                                                                       // output directory
+    './README.md ' +                                                                  // to include README.md as index contents
+    '-r c:/wamp64/www/Suricat_Network/app/scripts/controllers'                        // source code directory
+]));
+
 
 gulp.task('styles', () => {
   return gulp.src('app/styles/*.css')
@@ -154,3 +165,9 @@ gulp.task('default', () => {
     runSequence(['clean', 'wiredep'], 'build', resolve);
   });
 });
+/*
+gulp.task('docs', shell.task([
+  '  node_modules/jsdoc/jsdoc.js' 
+  /*-c node_modules/angular-jsdoc/common/conf.json -t node_modules/angular-jsdoc/angular-template -d docs ./README.md -r ../../app/scripts/resources  ../../app/scripts/controllers ' // source code directories
+  
+  ]));*/

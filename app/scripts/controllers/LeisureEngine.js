@@ -8,7 +8,23 @@ var app = angular.module('Suricat');
 	
 });
 */
-
+/**
+*	@memberof 	Suricat
+*	@ngdoc 		controllers
+*	@name 		LeisureActualities
+*	@param		{object} $scope
+*	@param		{object} $interval
+*	@param		{object} LinkDBLeisureActualities
+*	@param		{object} LinkDBActualityId
+*	@description
+*		Controller used for Leisure Actualities
+*
+*			this controller allow :
+*			 
+*			1- Post Leisure actuality
+*			2- Remove Leisure actuality
+*	
+**/
 app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureActualities, LinkDBActualityId){
 	$scope.listOfLeisureActualities = LinkDBLeisureActualities.query();
 	//$scope.l = LinkDBLeisureActualities.query();
@@ -61,6 +77,15 @@ app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureAct
 	/*------------------
 	 Json Object to post
 	 ------------------*/
+	/**
+	*	@memberof 	LeisureActualities
+	*	@ngdoc 		function
+	*	@description description :
+	*
+	*		used to post Actuality
+	*		
+	*
+	**/
 	$scope.postTeamActu=function()
 	{
 		$scope.newActu.photo = $scope.newActu.photo.base64;
@@ -95,7 +120,15 @@ app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureAct
 			}
 		});
 	};
-
+	/**
+	*	@memberof 	LeisureActualities
+	*	@ngdoc 		function
+	*	@description description :
+	*
+	*		used to remove Actuality
+	*		
+	*
+	**/
 	$scope.removeLeisureActuality = function(idActuality)
 	{
 		LinkDBLeisureActualities.remove({idActuality: idActuality}).$promise.then(function(response){
@@ -128,6 +161,20 @@ app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureAct
 /*----------------------------------------------
  Controller used to refresh the actuality flow
  ---------------------------------------------*/
+/**
+*	@memberof 	Suricat
+*	@ngdoc 		controllers
+*	@name 		refresh
+*	@param		{object} $scope
+*	@param		{object} $interval
+*	@param		{object} LinkDBLeisureActualities
+*	@description
+*		Controller used to refresh the actuality flow
+*
+*			the refresh run every 10s
+*			 
+*	
+**/
 app.controller('refresh',function($interval, $scope, LinkDBLeisureActualities){
 	$interval(function(){
 		setTimeout(function(){

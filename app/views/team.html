@@ -3,8 +3,10 @@
           <div  ng-controller="TeamActualities">
             <div ng-controller="Teams" id="monaccordeon" class="panel-group col-lg-offset-1 col-lg-10 col-md-offset-1 col-md-10 col-sm-12 col-xs-12 text-center">
                 <h3 id="titleMain">Bonjour {{$parent.firstname}} {{$parent.lastname}}</h3>
-              <div id="containerTeamActualityChoice" class="containerTeamActuality">Veuillez sélectionner une équipe  
-                  <select ng-options="team.teamName for team in listOfTeams" ng-model="selected" ng-change="updateKanbanTasks(selected); updateTeamActualities();updateTeamCookie(selected)" ng-mouseenter="updateList()"></select>
+              <div id="containerTeamActualityChoice" class="containerTeamActuality">Equipe : 
+                  <select ng-options="team.teamName for team in listOfTeams" ng-model="selected" ng-change="updateKanbanTasks(selected); updateTeamActualities();updateTeamCookie(selected)" ng-mouseenter="updateList()">
+                    <option value="" disable selected>Veuillez sélectionner une équipe</option>
+                  </select>
               </div>
               <div class="panel panel-default kanban panel-team" id="burdownChart">
                 <div class="panel-heading" href="#burndownChart" data-toggle="collapse">

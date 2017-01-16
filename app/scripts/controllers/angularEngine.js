@@ -47,9 +47,33 @@ app.controller('PageOptions', function($scope){
 }]);*/
 
 // V2
+/**
+*	@memberof 	Suricat
+*	@ngdoc 		controllers
+*	@name 		Chat
+*	@param		{object} $scope
+*	@param		{object} LinkDBChat
+*	@description
+*		Controller used for chat
+*
+*	
+**/
 app.controller('Chat', function($scope, LinkDBChat){
 	$scope.messages = LinkDBChat.query();
-
+	/**
+	*	@memberof 	Chat
+	*	@ngdoc 		function
+	*	@param		mess as message
+	*	@param		idUser as user sender
+	*	@param		idUser_Users as user receiver
+	*	@description
+	*		the object send to REST server is composed :
+	*
+	*		1 => message
+	*		2 => id user sender
+	*		3 => id user receiver
+	*
+	**/
 	$scope.send = function(){
 		var mess = $scope.mess;
 

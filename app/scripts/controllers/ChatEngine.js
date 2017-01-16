@@ -1,5 +1,23 @@
 var app = angular.module('Suricat');
 
+/**
+*	@memberof 	Suricat
+*	@ngdoc 		controllers
+*	@name 		chat
+*	@param		{object} $scope
+*	@param		{object} $interval
+*	@param		{object} LinkDB
+*	@param		{object} LinkDBChat
+*	@param		{object} LinkDBDepartment
+*	@description
+*		Controller used for chat
+*			this controller init the chat empty
+*			this controller allow 2 functions :
+*			 
+*			1- Save message in datablase
+*			2- show message to display the conversation between 2 people
+*	
+**/
 app.controller('chat',function($scope, $interval, LinkDB, LinkDBChat, LinkDBDepartment){
 
 	// LIST OF DEPARTMENTS (USED TO FILTER USERS)
@@ -23,7 +41,15 @@ app.controller('chat',function($scope, $interval, LinkDB, LinkDBChat, LinkDBDepa
 		readStatus		: false
 	}
 
-	// METHOD : SAVE THE MESSAGE IN THE DB
+	/**
+	*	@memberof 	chat
+	*	@ngdoc 		function
+	*	@param		response
+	*	@param		$scope.send
+	*	@description
+	*		this function is used to save the message in database
+	*
+	**/
 	$scope.saveMessage = function()
 	{
 		if($scope.send.message != "")
@@ -36,7 +62,15 @@ app.controller('chat',function($scope, $interval, LinkDB, LinkDBChat, LinkDBDepa
 		}
 	}
 
-	// METHOD : SHOW MESSAGES BETWEEN TWO PEOPLE
+	/**
+	*	@memberof 	chat
+	*	@ngdoc 		function
+	*	@param		user	
+	*	@description
+	*		this function is used to show the message in conversation
+	*		
+	*
+	**/
 	$scope.showMessages = function(user)
 	{
 		//$scope.updateMessages();

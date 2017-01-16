@@ -1,13 +1,27 @@
 var app = angular.module('Suricat');
 
-	/*---------------
-	  Get Team List 
-	 ---------------*/
+/**
+*	@memberof 	Suricat
+*	@ngdoc 		controllers
+*	@name 		Teams
+*	@param		{object} $scope
+*	@param		{object} LinkDBBelongToByUser used to interract  with REST server
+*	@description
+*		Controller used to get and manage team list actualities
+*	
+**/
 app.controller('Teams',function($scope, LinkDBBelongToByUser){	
 	console.log($scope.idUser);
 
 	$scope.updateListOfTeams();
-
+	/**
+	*	@memberof 	Teams
+	*	@ngdoc 		function
+	*	@name 		updateListOfTeams
+	*	@description
+	*		get list of teams and put the list in the scope for team selection in team page
+	*
+	**/
 	$scope.updateListOfTeams = function()
 	{
 		LinkDBBelongToByUser.getTeamsOfUser({idUser: $scope.idUser}).$promise.then(function(response){
@@ -15,14 +29,40 @@ app.controller('Teams',function($scope, LinkDBBelongToByUser){
 		});
 	};
 });
-
+/**
+*	@memberof 	Suricat
+*	@ngdoc 		controllers
+*	@name 		TeamActualities
+*	@param		{object} $interval
+*	@param		{object} $scope
+*	@param		{object} LinkDBTeamActualities
+*	@param		{object} LinkDBBelongToByUser
+*	@param		{object} LinkDBActualityId
+*	@description
+*		Controller used to get and manage team actualities
+*	
+**/
 app.controller('TeamActualities',function($interval, $scope, LinkDBTeamActualities, LinkDBBelongToByUser, LinkDBActualityId){
-	
+	/**
+	*	@memberof 	TeamActualities
+	*	@ngdoc 		function
+	*	@name 		updateTeamActualities
+	*	@description
+	*		used to update team actualities
+	*
+	**/
 	$scope.updateTeamActualities = function()
 	{
 		$scope.listOfTeamActualities = LinkDBTeamActualities.query();
 	};
-
+	/**
+	*	@memberof 	TeamActualities
+	*	@ngdoc 		function
+	*	@name 		updateListOfTeams
+	*	@description
+	*		used to update list of teams
+	*
+	**/
 	$scope.updateListOfTeams = function()
 	{
 		LinkDBBelongToByUser.getTeamsOfUser({idUser: $scope.idUser}).$promise.then(function(response){
@@ -69,7 +109,16 @@ app.controller('TeamActualities',function($interval, $scope, LinkDBTeamActualiti
 	/*------------------
 	 Json Object to post
 	 ------------------*/
-
+	/**
+	*	@memberof 	TeamActualities
+	*	@ngdoc 		function
+	*	@name 		postTeamActu
+	*	@description
+	*		used to get the scope info about team actuality
+	*		then after object created, post it to the REST server
+	*		through an http request (POST)
+	*
+	**/
 	$scope.postTeamActu=function(selected)
 	{
 		console.log('idTeam : ', selected.idTeam);		
@@ -103,7 +152,17 @@ app.controller('TeamActualities',function($interval, $scope, LinkDBTeamActualiti
 			}
 		});
 	};
-
+	/**
+	*	@memberof 	TeamActualities
+	*	@ngdoc 		function
+	*	@param		idActuality
+	*	@name 		removeTeamActuality
+	*	@description
+	*		used to remove an team actuality
+	*		post the request to the REST server
+	*		through an http request
+	*
+	*/
 	$scope.removeTeamActuality = function(idActuality)
 	{
 		LinkDBTeamActualities.remove({idActuality: idActuality}).$promise.then(function(response){
@@ -120,6 +179,17 @@ app.controller('TeamActualities',function($interval, $scope, LinkDBTeamActualiti
 /*----------------------------------------------
  Controller used to refresh the actuality flow
  ---------------------------------------------*/
+/**
+*	@memberof 	Suricat
+*	@ngdoc 		controllers
+*	@name 		refresh
+*	@param		{object} $interval
+*	@param		{object} $scope
+*	@param		{object} LinkDBTeamActualities
+*	@description
+*		Controller used to refresh team actualities every 10s
+*	
+**/
 app.controller('refresh',function($interval, $scope, LinkDBTeamActualities){
 	$interval(function(){
 		setTimeout(function(){

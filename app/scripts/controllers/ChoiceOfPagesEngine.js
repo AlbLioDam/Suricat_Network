@@ -1,12 +1,42 @@
 var app = angular.module('Suricat');
 
 // CONTROLLER : Switch between login page and main page
+/**
+*	@memberof 	Suricat
+*	@ngdoc 		controllers
+*	@name 		choiceOfPages
+*	@param		{object} $scope
+*	@param		{object} $cookieStore
+*	@param		{object} $mdDialog
+*	@description
+*		Controller used for page selection
+*			this controller init the background image
+*			this controller allow :change page function
+*			 
+*			1- change page function
+*			2- show trademark
+*			3- show confirmation dialogbox
+*			4- disconnection
+*			5- load cookies
+*			6- modify page inside page
+*			7- modify page inside page for Aministrators
+*	
+**/
 app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
 	
 	// DEFAULT PAGE
 	$scope.page = "login";
 	document.body.style.backgroundImage="url('/Suricat_Network/app/images/login.jpg')";
-
+	/**
+	*	@memberof 	choiceOfPages
+	*	@ngdoc 		function
+	*	@param		newPage	
+	*	@description description :
+	*
+	*		this function is used to modify page content
+	*		
+	*
+	**/
 	$scope.modifyPage = function(newPage)
 	{
 		
@@ -17,7 +47,16 @@ app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
 		$scope.page = newPage;
 
 	}
-
+	/**
+	*	@memberof 	choiceOfPages
+	*	@ngdoc 		function
+	*	@param		ev	
+	*	@description description :
+	*
+	*		this function is used to show trademark suricat and conceptors
+	*		
+	*
+	**/
 	$scope.showTrademark = function(ev) 
 	{
     	$mdDialog.show(
@@ -31,7 +70,16 @@ app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
 	        .targetEvent(ev)
     	);
   	};
-
+	/**
+	*	@memberof 	choiceOfPages
+	*	@ngdoc 		function
+	*	@param		ev	
+	*	@description description :
+	*
+	*		this function is used to show dialogbox with confirmation required
+	*		
+	*
+	**/
 	$scope.showConfirm = function(ev) 
 	{
     	var confirm = $mdDialog.confirm()
@@ -50,7 +98,17 @@ app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
 	      //only close the dialog box.
 	    });
   	};
-
+	/**
+	*	@memberof 	choiceOfPages
+	*	@ngdoc 		function
+	*	@param		newPage	
+	*	@description description :
+	*
+	*		this function is used to disconnect user from Suricat 
+	*		At user disconnection, cookies will be removed.
+	*		And navigation will be redirect to login page.
+	*
+	**/
 	$scope.disconnect = function(newPage)
 	{
 		// STOP ALL REFRESHES RELATIVE TO THE CHAT
@@ -70,6 +128,14 @@ app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
 	}
 
 	// METHOD : GET INTEL FROM THE COOKIE
+	/**
+	*	@memberof 	choiceOfPages
+	*	@ngdoc 		function	
+	*	@description description :
+	*
+	*		this function is used to load cookies.
+	*
+	**/
 	$scope.loadCookieInformations = function()
 	{
 		$scope.firstname 					= $cookieStore.get('UserFirstname');
@@ -98,20 +164,60 @@ app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
 	}
 });
 
-// CONTROLLER : Switch inside main page between all differents options
+
+/**
+*	@memberof 	Suricat
+*	@ngdoc 		controllers
+*	@name 		choiceOfInside
+*	@param		{object} $scope
+*	@param		{object} $interval
+*	@description
+*		Controller used for page selection inside main page. 
+*			
+*			this controller allow :change page function :
+*			 
+*			- modify page function inside main page between all differents options
+*	 
+**/
 app.controller('choiceOfInside', function($scope, $interval){
 	$scope.inside = "team";
-
+	/**
+	*	@memberof 	choiceOfInside
+	*	@ngdoc 		function
+	*	@param		newInside	
+	*	@description description :
+	*
+	*		modify page inside
+	*
+	**/
 	$scope.modifyPageInside = function(newInside)
 	{
 		$scope.inside = newInside;
 	}
 });
 
-// CONTROLLER : Switch inside main page between all differents options
+/**
+*	@memberof 	Suricat
+*	@ngdoc 		controllers
+*	@name 		choiceOfInsideAdminUsers
+*	@param		{object} $scope
+*	@description
+*		Controller used for page selection
+*			this controller is used to switch inside main page between all differents options
+*			 
+*	
+**/
 app.controller('choiceOfInsideAdminUsers', function($scope){
 	$scope.insideAdminUser = "updateUser";
-
+	/**
+	*	@memberof 	choiceOfInsideAdminUsers
+	*	@ngdoc 		function
+	*	@param		newInsideAdminUser	
+	*	@description description :
+	*
+	*		modify page inside admin user
+	*
+	**/
 	$scope.modifyPageInsideAdminUsers = function(newInsideAdminUser)
 	{
 		$scope.insideAdminUser = newInsideAdminUser;
