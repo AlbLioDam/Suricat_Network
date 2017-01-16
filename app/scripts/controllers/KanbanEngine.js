@@ -51,31 +51,3 @@ app.controller('Kanban', function($scope, LinkDBKanbanTasks, $cookieStore){
 		$scope.tasksOfTheTeam = LinkDBKanbanTasks.query();
 	};
 });
-/**
-*	@memberof 	Suricat
-*	@ngdoc 		controllers
-*	@name 		ModalCtrl
-*	@param		{object} $scope
-*	@description
-*		Controller used for modal 'kanban'
-*			
-*	
-**/
-app.controller('ModalCtrl', function($scope){
-    $scope.showModal = false;
-    $scope.task = {};
-    /**
-	*	@memberof 	ModalCtrl
-	*	@ngdoc 		function
-	*	@param		{object} task	
-	*	@description description :
-	*
-	*		this function is used to feel kanban content
-	*		
-	*
-	**/
-    $scope.toggleModal = function(task){
-        $scope.task = task;
-        $scope.showModal = !$scope.showModal;
-    };
-});

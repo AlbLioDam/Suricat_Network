@@ -68,32 +68,3 @@ app.controller('taskManagementCtrl', function ($scope, LinkDBTask, LinkDBDepartm
         });
     };
 });
-/**
-*   @memberof   Suricat
-*   @ngdoc      controllers
-*   @name       ModalCtrl
-*   @param      {object} $scope
-*   @param      {object} $modal
-*   @param      {object} $log
-*   @description
-*       Controller used to open a modal
-*           
-*           this controller allow :
-*            
-*           - create Modal instance
-*   
-**/
-app.controller('ModalCtrl', function($scope,$modal,$log){
-        /**
-    *   @memberof   ModalCtrl
-    *   @ngdoc      function
-    *   @description
-    *       used to create modal instance
-    *
-    */
-    $scope.open = function(){
-      var modelInstance = $modal.open({
-          controller:'ModalInstance'
-      })  
-    };
-});

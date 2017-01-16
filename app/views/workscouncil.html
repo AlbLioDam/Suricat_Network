@@ -5,7 +5,7 @@
 
             <div ng-controller="toggleCtrl">
                 <uib-accordion ng-show="$parent.workCouncilRepresentative || $parent.status == 'Admin'">
-                    <div uib-accordion-group heading="formTitle" class="panel-default containerTeamActuality formTitle" is-open="status.open" id="containerTeamActualityForm">
+                    <div uib-accordion-group heading="formTitle" class="panel-default containerTeamActuality formTitle panel-color" is-open="status.open" id="containerTeamActualityForm">
                         <uib-accordion-heading heading="formTitle">
                         Ecrire une actualité du comité d'entreprise<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
                         </uib-accordion-heading>

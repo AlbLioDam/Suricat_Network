@@ -34,9 +34,11 @@
         </div> <!-- /row -->
       
       <br><br><br>
-      <button id="backChatIcon" ng-click="modifyPageInside('chat')">
+      <div class="row">
+          <button class="col-xs-1 pull-right" id="backChatIcon" ng-click="modifyPageInside('chat')">
         <i class="fa fa-envelope-open-o fa-2x" aria-hidden="true"></i>
       </button>
+      </div>
       <br>
       <div ng-switch on="inside">
           <div ng-switch-when="team">           <ng-include src="'views/team.html'">                </ng-include></div>
