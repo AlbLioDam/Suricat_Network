@@ -28,6 +28,7 @@
 #containerTeamActualityList {
     max-width: 800px;
     padding: 00px 00px;
+    word-break: break-all;
 }
 
 #texte{

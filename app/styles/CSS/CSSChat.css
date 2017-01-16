@@ -18,6 +18,8 @@ form#formMessage
 	width: auto;
 	position: relative;
 	padding: 5px 5px 5px 5px;
+	resize: both;
+	word-break: break-all;
 }
 
 .receiver
