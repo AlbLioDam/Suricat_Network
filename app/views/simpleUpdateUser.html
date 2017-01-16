@@ -15,12 +15,12 @@
                 <label for="pw1">Mot de passe</label>
                 <input name="password" ng-maxlength="20" ng-minlength="4" type="password" class="form-control" id="pw1" ng-model="infosUser.password" placeholder="Enter password" required/>
                 <span ng-show="updateUserForm.password.$error.maxlength">Mot de passe trop long, 20 caractères maximum</span>
-        <span ng-show="updateUserForm.password.$error.minlength">Mot de passe trop petit, 4 caractères maximum</span><br>
+                <span ng-show="updateUserForm.password.$error.minlength">Mot de passe trop petit, 4 caractères maximum</span><br>
             </div>
 
             <div class="form-group">
                 <label for="pw2">Vérification du mot de passe</label>
-                <input type="password" class="form-control" id="pw2" name="pw2" ng-model="pw2" pw-check="pw1" placeholder="Enter password"required/>
+                <input type="password" class="form-control" id="pw2" name="pw2" ng-model="pw2" pw-check="pw1" placeholder="Enter password" required/>
             </div>
 
             <div ng-show="showmsg" class="errorMessage">
@@ -29,7 +29,7 @@
 
             <div class="form-group">
                 <label for="status">Status</label>
-                <select class="form-control" id="status" ng-model="infosUser.status" ng-options="status.st for status in listOfStatus"  ng-disabled="status != 'Admin'">
+                <select class="form-control" id="status" ng-model="infosUser.status" ng-options="status.st for status in listOfStatus" ng-disabled="status != 'Admin'">
                 </select>
             </div>
 
@@ -55,25 +55,29 @@
             <div class="form-group">
                 <label for="lastName">Nom</label>
                 <input name="lastName" ng-maxlength="30" type="text" class="form-control" id="lastName" ng-model="infosUser.lastname" aria-describedby="emailHelp" placeholder="Enter lastname" required>
+                <span ng-show="updateUserForm.lastName.$error.maxlength">Nom de famille trop long, 30 caractères maximum</span>
             </div>
 
             <div class="form-group">
                 <label for="firstName">Prénom</label>
                 <input name="firstName" ng-maxlength="30" type="text" class="form-control" id="firstName" ng-model="infosUser.firstname" placeholder="Enter firstname" required/>
+                <span ng-show="updateUserForm.firstname.$error.maxlength">Prénom trop long, 30 caractères maximum</span>
             </div>
 
             <div class="form-group">
                 <label for="adress">Adresse</label>
                 <input name="adress" ng-maxlength="100" type="text" class="form-control" id="address" ng-model="infosUser.address" placeholder="Enter Address" required/>
+                <span ng-show="updateUserForm.adress.$error.maxlength">Adresse trop longue, 100 caractères maximum</span>
             </div>
 
             <div class="form-group">
                 <label for="city">Ville</label>
                 <input name="city" ng-maxlength="100" type="text" class="form-control" id="city" ng-model="infosUser.city" placeholder="Enter City" required/>
+                <span ng-show="updateUserForm.city.$error.maxlength">Nom de ville trop longue, 100 caractères maximum</span>
             </div>
 
             <div class="form-group">
-                <label for="car">Avez vous voiture?</label>
+                <label for="car">Avez vous une voiture?</label>
                 <input type="checkbox" class="pull-right" id="car" ng-model="infosUser.car" ng-checked="infosUser.car">
             </div>
 

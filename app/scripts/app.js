@@ -26,7 +26,6 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
   var refreshChat;
   var refreshChatNotifications;
 
-  //$scope.messages   = LinkDBChat.query();
   $scope.receiver   = "";
   $scope.idReceiver = "";
   $scope.idSender   = $cookieStore.get('UserIdUser');
@@ -38,8 +37,6 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
     $scope.receiver   = receiver;
     $scope.idReceiver = idReceiver;
     $scope.idSender   = $cookieStore.get('UserIdUser');
-    //console.log("1 ---- ", $scope.receiver);
-    //console.log("2 ---- ", $scope.idReceiver);
   }
 
   $scope.updateMessages = function()
@@ -52,9 +49,6 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
   $scope.updateMessagesOnce = function()
   {
             LinkDBChat.query().$promise.then(function(response){
-
-              //console.log("response !!!!! ---- ", $scope.idReceiver);
-              //console.log("response !!!!! ---- ", $scope.idSender);
               var toCharge = false;
               for (var i = 0; i < response.length; i++)
               {
@@ -76,15 +70,8 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
               {
                   LinkDBChat.query().$promise.then(function(resp){
                       $scope.messages = resp;
-                      //console.log("Third response : ", resp);
-                      //console.log("Third size : ", resp.length);
                   });
-                  //$scope.updateMessages();
               }
-
-              /*LinkDBChat.query().$promise.then(function(response){
-                  $scope.messages = response;
-              });*/
             });
   }
 
@@ -121,11 +108,7 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
   {
       if(angular.isDefined(refreshChatNotifications)) return;
 
-      //$scope.messages = LinkDBChat.query();
-      //$scope.messages = $scope.messages;
       var mySelf = $cookieStore.get('UserIdUser');
-      //document.getElementById('backChatIcon').style.backgroundColor = 'white';
-      //$scope.messages = LinkDBChat.query();
       
       refreshChatNotifications =
       $interval(function(){
@@ -157,8 +140,6 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
           {
             document.getElementById('backChatIcon').style.backgroundColor = 'white';
           }
-
-          //$scope.messages = LinkDBChat.query();
         },1000);
       },1000);
   }

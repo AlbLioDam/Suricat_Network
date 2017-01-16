@@ -1,6 +1,6 @@
 <div ng-controller="passwordCtrl">
   <form name="UserCreationForm" class="row" ng-submit="UserCreationForm.$valid && postTeamActu(choiceOfTeam)" ng-class="{'has-error' : UserCreationForm.email.$error.maxlength || UserCreationForm.password.$error.maxlength || UserCreationForm.password.$error.minlength}">
-    <div class="col-md-offset1 col-md-12" id="createUserDiv"  >
+    <div class="col-md-offset1 col-md-12" id="createUserDiv">
       <h3 class="text-center">Création d'un profil</h3>
       <div class="form-group">
         <label for="email">Login/mail</label>
@@ -21,17 +21,17 @@
       </div>
 
       <div ng-show="showmsg" class="errorMessage">
-        <span class="msg-error">Passwords don't match.</span> 
+        <span class="msg-error">Passwords don't match.</span>
       </div>
 
       <div class="form-group">
-        <label for="exampleSelect1">Example select</label>
+        <label for="ControlService">Service</label>
         <select class="form-control" id="ControlService" ng-model="selected" ng-options="department.departmentName for department in departments">
         </select>
       </div>
 
       <div class="">
-        <button type="submit" class="btn btn-primary pull-right" ng-show="infosUser.email && infosUser.password && pw2 && selected">Créer </button>
+        <button type="submit" class="btn btn-primary pull-right" ng-show="UserCreationForm.$valid">Créer </button>
         <button ng-model="cancelButtonPressed" class="btn btn-danger pull-left" ng-click="emptyCreateUserForm()">Vider les champs</button>
         <div>
         </div>

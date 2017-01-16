@@ -65,24 +65,24 @@ app.controller('passwordCtrl',function($scope, LinkDBDepartment, LinkDB, $cookie
 	$scope.modifyUser = function()
 	{
 		$scope.modifyUserClicked = !$scope.modifyUserClicked;
-	$scope.infosUser =
-	{
-		email: "",
-		password: "",
-		pw2: "",
-		department: "",
-		status: "",
-		corporateLifeRepresentative: "",
-		workCouncilRepresentative: "",
-		active: "",
-		lastname: "",
-		firstname: "",
-		address: "",
-		city: "",
-		car: "",
-		carsharing: "",
-		idDepartment:""
-	}
+		$scope.infosUser =
+		{
+			email: "",
+			password: "",
+			pw2: "",
+			department: "",
+			status: "",
+			corporateLifeRepresentative: "",
+			workCouncilRepresentative: "",
+			active: "",
+			lastname: "",
+			firstname: "",
+			address: "",
+			city: "",
+			car: "",
+			carsharing: "",
+			idDepartment:""
+		}
 
 
 	}
@@ -224,7 +224,8 @@ app.controller('userSelfModifications',function($scope, LinkDBDepartment, LinkDB
 		city: "",
 		car: "",
 		carsharing: "",
-		idDepartment:""
+		idDepartment: "", 
+		idUser: $cookieStore.get('UserIdUser')
 	}
 
 	$scope.listOfStatus = [{st:"Utilisateur"}, {st:"Chef de projet"}, {st:"Admin"}];
@@ -254,7 +255,7 @@ app.controller('userSelfModifications',function($scope, LinkDBDepartment, LinkDB
 		if(response.carsharing == 1) 							document.getElementById("carsharing").checked = true;
 		if(response.active == 1) 								document.getElementById("active").checked = true;
 		if(response.corporateLifeRepresentative == 1) 			document.getElementById("CE").checked = true;
-		if(response.workCouncilRepresentative == 1) 			document.getElementById("VE").checked = true;
+		if(response.workCouncilRepresentative == 1)				document.getElementById("VE").checked = true;
 
 		$scope.infosUser = response;
 		$scope.infosUser.idDepartment = $scope.departments[indexDepartment];
@@ -274,7 +275,9 @@ app.controller('userSelfModifications',function($scope, LinkDBDepartment, LinkDB
 	$scope.recordModifications = function()
 	{
 		console.log($scope.infosUser);
-		LinkDB.updateUser($scope.infosUser);
+		LinkDB.updateUser($scope.infosUser).$promise.then(function(response){
+			console.log(response);
+		});
 	}
 	/**
 	*	@memberof 	userSelfModifications
@@ -284,7 +287,7 @@ app.controller('userSelfModifications',function($scope, LinkDBDepartment, LinkDB
 	*		show confirmation box
 	*
 	**/
-	$scope.showConfirmation = function(ev) 
+	$scope.showConfirmation = function(ev)
 	{
 	    // Appending dialog to document.body to cover sidenav in docs app
 	    var confirm = $mdDialog.confirm()
@@ -297,7 +300,7 @@ app.controller('userSelfModifications',function($scope, LinkDBDepartment, LinkDB
 
 	    $mdDialog.show(confirm).then(function() 
 	    {
-	      $scope.saveModifications();
+	      $scope.recordModifications();
 	    }, function() 
 	    {
 	      //nothing
