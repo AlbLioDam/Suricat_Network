@@ -4,12 +4,20 @@ var app = angular.module('Suricat');
 app.controller('ModCtrl', function ($scope, LinkDBTask, LinkDBDepartment, LinkDBBelongTo, LinkDBKanbanTasks, LinkDBAttributeTaskUser) {
     $scope.showModal = false;
     $scope.task = {};
+    $scope.durations = [1, 2, 3, 4, 5, 6, 7];
+    $scope.weights = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    $scope.states = ["To Do", "In Progress", "To Verify", "Done"];
+    
+    
     $scope.toggleModal = function(task){
         $scope.task = task;
         $scope.departments = LinkDBDepartment.query();
         $scope.users = LinkDBBelongTo.query();
+        $scope.attribute = LinkDBAttributeTaskUser.query();
         $scope.showModal = !$scope.showModal;
-        $scope.$parent.tasksOfTheTeam = LinkDBKanbanTasks.query();
+        $scope.tasksOfTheTeam = LinkDBKanbanTasks.query();
+        console.log($scope.task);
+        console.log($scope.attribute);
     };
   });
 

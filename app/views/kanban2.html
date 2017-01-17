@@ -79,25 +79,28 @@
                     
                     <div class="form-group">
                         <label for="user" class="pull-left">Attribution</label>
-                        <select class="form-control" id="user" ng-model="user" ng-options="user.lastname for user in users | filter :{idTeam:selected.idTeam} | filter:{idDepartment:Department.idDepartment}" >
-                       
+                        <select class="form-control" id="user" ng-model="user" ng-options="user.lastname for user in users | filter :{idTeam:selected.idTeam} | filter:{idDepartment:Department.idDepartment}" placeholder="user.lastname">
+                            <option value="" disable selected>{{user.lastname}}</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
                         <label for="duration" class="pull-left">Durée</label>
-                        <select class="form-control" id="duration" ng-model="task.Duration" ng-options="duration for duration in durations">
+                        <select class="form-control" id="duration" ng-model="task.duration"  ng-options="duration for duration in durations">
+                            <option value="" disable selected>{{task.duration}}</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
                         <label for="weight" class="pull-left">Importance</label>
-                        <select class="form-control" id="weight" ng-model="task.Weight" ng-options="weight for weight in weights">
+                        <select class="form-control" id="weight" ng-model="task.weight" ng-options="weight for weight in weights">
+                            <option value="" disable selected>{{task.weight}}</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="state" class="pull-left">Etat</label>
-                        <select class="form-control" id="state" ng-model="task.Status" ng-options="state for state in states">
+                        <select class="form-control" id="state" ng-model="task.status" ng-options="state for state in states">
+                            <option value="" disable selected>{{task.status}}</option>
                         </select>
                     </div>
                 </form>
