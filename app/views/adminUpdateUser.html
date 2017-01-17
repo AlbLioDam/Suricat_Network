@@ -1,5 +1,5 @@
 
-<div ng-controller="passwordCtrl">
+<div ng-controller="userAdminModifications">
 
     <form name="myAdminFormUpdateUser" class="row" id="createUserAdminForm" ng-submit="myAdminFormUpdateUser.$valid && showConfirmation($event)" ng-class="{'has-error' : myAdminFormUpdateUser.email.$error.maxlength || myAdminFormUpdateUser.password.$error.maxlength || myAdminFormUpdateUser.password.$error.minlength  || myAdminFormUpdateUser.lastName.$error.minlength  || myAdminFormUpdateUser.lastName.$error.maxlength  || myAdminFormUpdateUser.firstName.$error.maxlength   || myAdminFormUpdateUser.firstName.$error.minlength || myAdminFormUpdateUser.adress.$error.maxlength || myAdminFormUpdateUser.city.$error.maxlength}">
         <h3 class="text-center">Modification du profil</h3>
@@ -8,19 +8,19 @@
             <div class="form-group">
                 <label for="email">Login (adresse interne)</label>
                 <input name="email" ng-maxlength="50" type="email" class="form-control" ng-model="infosUser.email" id="email" aria-describedby="emailHelp" placeholder="Enter email" required>
-                <span ng-show="myAdminFormUpdateUser.email.$error.maxlength"><small>Email trop long 50 caractères maximum</small></span><br>
+                <span ng-show="myAdminFormUpdateUser.email.$error.maxlength"><small>Email trop long 50 caractères maximum</small></span>
             </div>
 
             <div class="form-group">
                 <label for="pw1">Mot de passe</label>
                 <input name="password" ng-minlength="4" ng-maxlength="20" type="password" class="form-control" id="pw1" ng-model="infosUser.password" placeholder="Entrez un mot de passe" required/>
-                <span ng-show="myAdminFormUpdateUser.password.$error.maxlength"><small>Mot de passe trop long 20 caractères maximum</small></span><br>
-                <span ng-show="myAdminFormUpdateUser.password.$error.minlength"><small>Mot de passe trop court 4 caractères maximum</small></span><br>
+                <span ng-show="myAdminFormUpdateUser.password.$error.maxlength"><small>Mot de passe trop long 20 caractères maximum</small></span>
+                <span ng-show="myAdminFormUpdateUser.password.$error.minlength"><small>Mot de passe trop court 4 caractères maximum</small></span>
             </div>
 
             <div class="form-group">
                 <label for="pw2">Vérification du mot de passe</label>
-                <input type="password" class="form-control" id="pw2" name="pw2" ng-model="pw2" pw-check="pw1" placeholder="Enter password"required/>
+                <input type="password" class="form-control" id="pw2" name="pw2" ng-model="pw2" pw-check="pw1" placeholder="Enter password" required/>
             </div>
 
             <div ng-show="showmsg" class="errorMessage">
@@ -28,24 +28,30 @@
             </div>
 
             <div class="form-group">
-                <label for="service">Service</label>
-                <select class="form-control" id="ControlService" ng-model="selected" ng-options="department.departmentName for department in departments">
+                <label for="status">Status</label>
+                <select class="form-control" id="status" ng-model="infosUser.status" ng-options="status.st for status in listOfStatus">
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="ControlService">Service</label>
+                <select class="form-control" id="ControlService" ng-model="infosUser.idDepartment" ng-options="department.departmentName for department in departments">
                 </select>
             </div>
             
             <div class="form-group">
                 <label for="CE">Membre du Comité d'entreprise</label>
-                <input type="checkbox" id="CE" class="pull-right">
+                <input type="checkbox" id="CE" class="pull-right" ng-model="infosUser.CE">
             </div>
 
             <div class="form-group">
                 <label for="VE">Membre du service Vie d'entreprise</label>
-                <input type="checkbox" id="VE" class="pull-right">
+                <input type="checkbox" id="VE" class="pull-right" ng-model="infosUser.VE">
             </div>
             
             <div class="form-group text-center">
                 <label for="active">Actif ?</label>
-                <input type="checkbox" id="active">
+                <input type="checkbox" id="active" ng-model="infosUser.active">
             </div>
         </div>
 
@@ -78,12 +84,12 @@
 
             <div class="form-group">
                 <label for="car">Avez vous voiture?</label>
-                <input type="checkbox" class="pull-right" id="car">
+                <input type="checkbox" class="pull-right" id="car" ng-model="infosUser.car">
             </div>
 
             <div class="form-group">
                 <label for="carsharing">Etes-vous ouvert au covoiturage ?</label>
-                <input type="checkbox"  class="pull-right" id="carsharing">
+                <input type="checkbox"  class="pull-right" id="carsharing" ng-model="infosUser.carsharing">
             </div>
 
 

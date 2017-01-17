@@ -1,4 +1,4 @@
-<div ng-controller="passwordCtrl" class="container">
+<div ng-controller="userAdminModifications" class="container">
     <h1>Gestion des profils</h1>
     <div class="row" ng-controller="choiceOfInsideAdminUsers">
         <div id="choice" class="col-sm-4 col-md-3">
@@ -29,7 +29,8 @@
                     <ng-include src="'views/createUser.html'"></ng-include>
                 </div>
                 <div ng-switch-when="updateUser">
-                    <ng-include src="'views/adminUpdateUser.html'"></ng-include>
+                    <!-- <ng-include src="'views/adminUpdateUser.html'"></ng-include> -->
+                    <ng-include src="'views/simpleUpdateUser2.html'"></ng-include>
                 </div>
             </div>
         </div>

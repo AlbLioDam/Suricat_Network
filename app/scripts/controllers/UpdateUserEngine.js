@@ -22,26 +22,19 @@ var app = angular.module('Suricat');
 *			7- show confirmation box
 *	
 **/
-app.controller('passwordCtrl',function($scope, LinkDBDepartment, LinkDB, $cookieStore, $mdDialog){
+app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkDB, $cookieStore, $mdDialog){
 
 	$scope.showmsg = false;
 	$scope.departments = LinkDBDepartment.query();
 	$scope.users = LinkDB.query();
-	//$scope.userToModify = LinkDB.get({idUser: $cookieStore.get})
 
 	$scope.empty = {};
-/*	$scope.infosUser = 
-	{
-		email: $scope.email,
-		password: $scope.pw1,
-		idDepartment: ""
-	}*/
 
-	/*$scope.user = LinkDB.getUserById({idUser: 1});
-	console.log($scope.user);
-	showInformations($scope.user);*/
+	$scope.listOfStatus = [{st:"Utilisateur"}, {st:"Chef de projet"}, {st:"Admin"}];
+
+
 	/**
-	*	@memberof 	passwordCtrl
+	*	@memberof 	userAdminModifications
 	*	@ngdoc 		function
 	*	@description
 	*		add a user
@@ -53,10 +46,9 @@ app.controller('passwordCtrl',function($scope, LinkDBDepartment, LinkDB, $cookie
 		$scope.infosUser.email   ="";
 		$scope.infosUser.password="";
 		$scope.infosUser.pw2 	 ="";
-
 	}
 	/**
-	*	@memberof 	passwordCtrl
+	*	@memberof 	userAdminModifications
 	*	@ngdoc 		function
 	*	@description
 	*		modify user information
@@ -87,7 +79,7 @@ app.controller('passwordCtrl',function($scope, LinkDBDepartment, LinkDB, $cookie
 
 	}
 	/**
-	*	@memberof 	passwordCtrl
+	*	@memberof 	userAdminModifications
 	*	@ngdoc 		function
 	*	@description
 	*		empty user form
@@ -99,7 +91,7 @@ app.controller('passwordCtrl',function($scope, LinkDBDepartment, LinkDB, $cookie
 			$scope.pw2 = "";
 	}
 	/**
-	*	@memberof 	passwordCtrl
+	*	@memberof 	userAdminModifications
 	*	@ngdoc 		function
 	*	@param		{object} selected
 	*	@description
@@ -116,12 +108,13 @@ app.controller('passwordCtrl',function($scope, LinkDBDepartment, LinkDB, $cookie
 			$scope.reset();
 			$scope.pw2 = "";
 		}
-		else{
+		else
+		{
 			$scope.showmsg = true;
 		}
 	}
 	/**
-	*	@memberof 	passwordCtrl
+	*	@memberof 	userAdminModifications
 	*	@ngdoc 		function
 	*	@param		{object} user
 	*	@description
@@ -130,23 +123,65 @@ app.controller('passwordCtrl',function($scope, LinkDBDepartment, LinkDB, $cookie
 	**/
 	$scope.showInformations = function(user)
 	{
-		$scope.infosUser = 
+/*		$scope.infosUser =
 		{
-			email: user.email,
-			password: user.password,
-			/*status: user.status,*/
-			firstname: user.firstname,
-			lastname: user.lastname,
-			address: user.address,
-			city: user.city,
-			/*car: user.car,
-			covoit: user.carsharing,
-			active: user.active*/
-		}
-		console.log($scope.infosUser);
+			email: "",
+			password: "",
+			pw2: "",
+			department: "",
+			status: {},
+			corporateLifeRepresentative: "",
+			workCouncilRepresentative: "",
+			active: "",
+			lastname: "",
+			firstname: "",
+			address: "",
+			city: "",
+			car: "",
+			carsharing: "",
+			idDepartment: {}, 
+			idUser: ""
+		}*/
+
+		LinkDB.getUserById({idUser: user.idUser}).$promise.then(function(response){
+			var indexDepartment = 0;
+			for (var i = 0; i < $scope.departments.length; i++)
+			{
+				if($scope.departments[i].idDepartment == response.idDepartment)
+				{
+					indexDepartment = i;
+					console.log(indexDepartment);
+				}
+			}
+
+			$scope.infosUser.idDepartment = $scope.departments[indexDepartment];
+			console.log("choix dans departments : ", $scope.departments[indexDepartment]);
+
+			var indexStatus = 0;
+			for (var i = 0; i < $scope.listOfStatus.length; i++)
+			{
+				if($scope.listOfStatus[i].st == response.status)
+				{
+					indexStatus = i;
+					console.log(indexStatus);
+				}
+			}
+
+			document.getElementById("car").checked 			= response.car;
+			document.getElementById("carsharing").checked 	= response.carsharing;
+			document.getElementById("active").checked 		= response.active;
+			document.getElementById("CE").checked 			= response.corporateLifeRepresentative;
+			document.getElementById("VE").checked 			= response.workCouncilRepresentative;
+
+			console.log("response", response);
+			$scope.infosUser = response;
+			console.log("$scope.infosUser", $scope.infosUser);
+			
+			$scope.infosUser.status = $scope.listOfStatus[indexStatus];
+		});
 	}
 	/**
-	*	@memberof 	passwordCtrl
+	*	@memberof 	userAdminModifications
 	*	@ngdoc 		function
 	*	@param		{object} selected
 	*	@description
@@ -157,14 +192,36 @@ app.controller('passwordCtrl',function($scope, LinkDBDepartment, LinkDB, $cookie
 	{
 		$scope.infosUser = angular.copy($scope.empty);
 	}
+
 	/**
-	*	@memberof 	passwordCtrl
+	*	@memberof 	userSelfModifications
+	*	@ngdoc 		function
+	*	@description
+	*		record user modifications ( adress, city, carsharing...)
+	*
+	**/
+	$scope.recordModifications = function()
+	{
+		$scope.infosUser.car 		= document.getElementById("car").checked;
+		$scope.infosUser.carsharing = document.getElementById("carsharing").checked;
+		$scope.infosUser.active 	= document.getElementById("active").checked;
+		$scope.infosUser.VE 		= document.getElementById("VE").checked;
+		$scope.infosUser.CE 		= document.getElementById("CE").checked;
+
+		console.log($scope.infosUser);
+		LinkDB.updateUser($scope.infosUser).$promise.then(function(response){
+			console.log(response);
+		});
+	}
+
+	/**
+	*	@memberof 	userAdminModifications
 	*	@ngdoc 		function
 	*	@param		{object} ev
 	*	@description
 	*		show confirmation box
 	*
-	**/
+	**/	
 	$scope.showConfirmation = function(ev) 
 	{
 	    // Appending dialog to document.body to cover sidenav in docs app
@@ -178,7 +235,7 @@ app.controller('passwordCtrl',function($scope, LinkDBDepartment, LinkDB, $cookie
 
 	    $mdDialog.show(confirm).then(function() 
 	    {
-	      $scope.saveModifications();
+	      $scope.recordModifications();
 	    }, function() 
 	    {
 	      //nothing
@@ -251,17 +308,15 @@ app.controller('userSelfModifications',function($scope, LinkDBDepartment, LinkDB
 			}
 		}
 
-		if(response.car == 1) 									document.getElementById("car").checked = true;
-		if(response.carsharing == 1) 							document.getElementById("carsharing").checked = true;
-		if(response.active == 1) 								document.getElementById("active").checked = true;
-		if(response.corporateLifeRepresentative == 1) 			document.getElementById("CE").checked = true;
-		if(response.workCouncilRepresentative == 1)				document.getElementById("VE").checked = true;
+		document.getElementById("car").checked 			= response.car;
+		document.getElementById("carsharing").checked 	= response.carsharing;
+		document.getElementById("active").checked 		= response.active;
+		document.getElementById("CE").checked 			= response.corporateLifeRepresentative;
+		document.getElementById("VE").checked 			= response.workCouncilRepresentative;
 
 		$scope.infosUser = response;
 		$scope.infosUser.idDepartment = $scope.departments[indexDepartment];
 		$scope.infosUser.status = $scope.listOfStatus[indexStatus];
-		//$scope.infosUser.status = $scope.infosUser.status.st;
-		//$scope.infosUser.idDepartment = $scope.infosUser.idDepartment.idDepartment;
 	});
 
 	console.log($scope.infosUser);
@@ -274,6 +329,12 @@ app.controller('userSelfModifications',function($scope, LinkDBDepartment, LinkDB
 	**/
 	$scope.recordModifications = function()
 	{
+		$scope.infosUser.car 		= document.getElementById("car").checked;
+		$scope.infosUser.carsharing = document.getElementById("carsharing").checked;
+		$scope.infosUser.active 	= document.getElementById("active").checked;
+		$scope.infosUser.VE 		= document.getElementById("VE").checked;
+		$scope.infosUser.CE 		= document.getElementById("CE").checked;
+
 		console.log($scope.infosUser);
 		LinkDB.updateUser($scope.infosUser).$promise.then(function(response){
 			console.log(response);
