@@ -7,7 +7,7 @@ var app = angular.module('Suricat');
 app.constant('BaseURL', 'http://localhost:3000');
 app.constant('ConnexionUsers', '/user/:idUser');
 app.constant('CheckLogin', '/user/login');
-app.constant('Kanban', '/todo/:id');
+app.constant('Kanban', '/todo/:idTask/:idTeam');
 app.constant('Department', '/department/:idDepartment');
 app.constant('Teams', '/team');
 app.constant('BelongTo', '/belongto');
@@ -23,7 +23,7 @@ app.constant('Actuality', '/actuality/:idActuality');
 app.constant('Actualities', '/actuality');
 app.constant('Task', '/task');
 app.constant('Chat', '/message/:idMessage');
-app.constant('AttributeTaskToUser', '/have');
+app.constant('AttributeTaskToUser', '/have/:id');
 
 
 
@@ -31,6 +31,7 @@ app.constant('AttributeTaskToUser', '/have');
 app.factory('LinkDBAttributeTaskUser', function ($resource, BaseURL, AttributeTaskToUser)
 {
     return $resource(BaseURL + AttributeTaskToUser, null, {
+        'removeUserFromTask': {method: 'PUT'}
     });
 });
 
@@ -71,6 +72,7 @@ app.factory('LinkDBChat', function($resource, BaseURL, Chat){
 // Connexion to Tasks's datas
 app.factory('LinkDBKanbanTasks', function ($resource, BaseURL, Kanban) {
     return $resource(BaseURL + Kanban, null, {
+        'removeTaskFromTeam': {method: 'DELETE', params: {idTask: "@idTask", idTeam: "@idTeam"}}
     });
 });
 
@@ -91,7 +93,7 @@ app.factory('LinkDBTeams', function ($resource, BaseURL, Teams) {
 app.factory('LinkDBBelongTo', function ($resource, BaseURL, BelongTo) {
     return $resource(BaseURL + BelongTo, null, {
         'removeUser': {method: 'DELETE', params: {idUser: "@idUser", idTeam: "@idTeam"}},
-        'save': {method: 'POST', params: {idUser: "@idUser", idTeam: "@idTeam"}},
+        'save': {method: 'POST', params: {idUser: "@idUser", idTeam: "@idTeam"}}
         //'removeUser': {method:'DELETE'	, params: {idUser: "@idUser", idTeam: "@idTeam"}}
     });
 });

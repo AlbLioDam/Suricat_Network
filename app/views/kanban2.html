@@ -5,7 +5,7 @@
     
     <div class="container-fluid" id="containerKanban">
         <div id="options" class="row">
-            <button type="button" class="btn btn-info buttonKanban col-xs-offset-3 col-xs-6 text-center"   data-toggle="modal" data-target="#createModal">Ajouter une tâche</button>
+            <button type="button" class="btn btn-info buttonKanban col-xs-offset-3 col-xs-6 text-center" data-toggle="modal" data-target="#createModal">Ajouter une tâche</button>
         </div>
     </div>
 
@@ -17,8 +17,9 @@
             <div class="titre">
                 To Do
             </div>
-            <div id="ToDo" class="task" ng-repeat="task in tasksOfTheTeam | filter: {status: 'To Do', idTeam: choiceOfTeam.idTeam}" ng-click="toggleModal(task)">
-                {{task.taskName}}
+            <div id="ToDo" class="task" ng-repeat="task in tasksOfTheTeam | filter: {status: 'To Do', idTeam: choiceOfTeam.idTeam}">
+                <div ng-click="toggleModal(task)">{{task.taskName}}</div>
+                <span id="glyph" ng-class="'fa fa-trash'" ng-click="deleteTask(task)"></span>
             </div>
         </div>
         
@@ -28,8 +29,9 @@
             <div class="titre">
                 In Progress
             </div>
-            <div id="InProgress" class="task" data-toggle="modal" data-target="#myModal" ng-repeat="task in tasksOfTheTeam | filter: {status: 'In Progress', idTeam: choiceOfTeam.idTeam}" ng-click="toggleModal(task)">
-                {{task.taskName}}
+            <div id="InProgress" class="task" data-toggle="modal" data-target="#myModal" ng-repeat="task in tasksOfTheTeam | filter: {status: 'In Progress', idTeam: choiceOfTeam.idTeam}">
+                <div ng-click="toggleModal(task)">{{task.taskName}}</div>
+                <span id="glyph" ng-class="'fa fa-trash'" ng-click="deleteTask(task)"></span>
             </div>
         </div>
     </div>
@@ -38,8 +40,9 @@
             <div class="titre">
                 To Verify
             </div>
-            <div id="ToVerify" class="task" data-toggle="modal" data-target="#myModal" ng-repeat="task in tasksOfTheTeam | filter: {status: 'To Verify', idTeam: choiceOfTeam.idTeam}" ng-click="toggleModal(task)">
-                {{task.taskName}}
+            <div id="ToVerify" class="task" data-toggle="modal" data-target="#myModal" ng-repeat="task in tasksOfTheTeam | filter: {status: 'To Verify', idTeam: choiceOfTeam.idTeam}">
+                <div ng-click="toggleModal(task)">{{task.taskName}}</div>
+                <span id="glyph" ng-class="'fa fa-trash'" ng-click="deleteTask(task)"></span>
             </div>
         </div>
     </div>
@@ -48,8 +51,9 @@
             <div class="titre">
                 Done
             </div>
-            <div id="Done" class="task" data-toggle="modal" data-target="#myModal" ng-repeat="task in tasksOfTheTeam | filter: {status: 'Done', idTeam: choiceOfTeam.idTeam}" ng-click="toggleModal(task)">
-                {{task.taskName}}
+            <div id="Done" class="task" data-toggle="modal" data-target="#myModal" ng-repeat="task in tasksOfTheTeam | filter: {status: 'Done', idTeam: choiceOfTeam.idTeam}">
+                <div ng-click="toggleModal(task)">{{task.taskName}}</div>
+                <span id="glyph" ng-class="'fa fa-trash'" ng-click="deleteTask(task)"></span>
             </div>
             </div>
         </div>
