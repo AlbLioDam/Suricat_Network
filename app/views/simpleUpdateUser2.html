@@ -1,5 +1,5 @@
 
-<div ng-controller="userSelfModifications">
+<div ng-controller="userAdminModifications">
 
     <form name="updateUserForm" novalidate class="row" id="createUserAdminForm" ng-submit="updateUserForm.$valid && showConfirmation($event) && recordModifications()" ng-class="{'has-error' : updateUserForm.email.$error.minlength ||  updateUserForm.email.$error.maxlength ||  updateUserForm.password.$error.maxlength || updateUserForm.password.$error.minlength}">
         <h3 class="text-center">Modification du profil</h3>
@@ -7,7 +7,7 @@
         <div class="col-md-offset-1 col-md-5 containerUpdateUser" id="leftWindow">
             <div class="form-group">
                 <label for="email">Login (adresse interne)</label>
-                <input name="email" ng-maxlength="50" type="email" class="form-control" ng-model="infosUser.email" id="email" aria-describedby="emailHelp" placeholder="Enter email" required ng-disabled="status != 'Admin'">
+                <input name="email" ng-maxlength="50" type="email" class="form-control" ng-model="infosUser.email" id="email" aria-describedby="emailHelp" placeholder="Enter email" required>
                 <span ng-show="updateUserForm.email.$error.maxlength">Titre trop long 50 caractères maximum</span><br>
             </div>
 
@@ -29,24 +29,24 @@
 
             <div class="form-group">
                 <label for="status">Status</label>
-                <select class="form-control" id="status" ng-model="infosUser.status" ng-options="status.st for status in listOfStatus" ng-disabled="status != 'Admin'">
+                <select class="form-control" id="status" ng-model="infosUser.status" ng-selected="infosUser.status" ng-options="status.st for status in listOfStatus track by listOfStatus.st">
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="service">Service</label>
-                <select class="form-control" id="service" ng-model="infosUser.idDepartment" ng-options="department.departmentName for department in departments" ng-disabled="status != 'Admin'">
+                <select class="form-control" id="service" ng-model="infosUser.idDepartment" ng-selected="infosUser.idDepartment" ng-options="department.departmentName for department in departments track by departments.idDepartment">
                 </select>
             </div>
             
             <div class="form-group">
                 <label for="CE">Membre du Comité d'entreprise</label>
-                <input type="checkbox" id="CE" class="pull-right" ng-model="infosUser.workCouncilRepresentative" ng-disabled="status != 'Admin'">
+                <input type="checkbox" id="CE" class="pull-right" ng-model="infosUser.workCouncilRepresentative">
             </div>
 
             <div class="form-group">
                 <label for="VE">Membre du service Vie d'entreprise</label>
-                <input type="checkbox" id="VE" class="pull-right" ng-model="infosUser.corporateLifeRepresentative" ng-disabled="status != 'Admin'">
+                <input type="checkbox" id="VE" class="pull-right" ng-model="infosUser.corporateLifeRepresentative">
             </div>
             
         </div>
@@ -88,7 +88,7 @@
 
             <div class="form-group text-center">
                 <label for="active">Actif ?</label>
-                <input type="checkbox" id="active" ng-model="infosUser.active" ng-checked="infosUser.active" ng-disabled="status != 'Admin'">
+                <input type="checkbox" id="active" ng-model="infosUser.active" ng-checked="infosUser.active">
             </div>
         </div>
     

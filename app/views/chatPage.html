@@ -39,10 +39,12 @@
                     <div ng-if="message.id1 == idReceiver && message.id2 == idSender" class="basicClassMessage sender col-lg-offset-1 col-lg-11">
                         <div class="authorMessage2">- {{message.f2}}-</div><br>
                         {{message.message}}
+                         <div class="authorMessage2">- {{message.dateMessage | date:'MM/dd/yyyy @ h:mma'}}-</div><br>
                     </div>
                     <div ng-if="message.id1 == idSender && message.id2 == idReceiver" class="basicClassMessage receiver col-lg-11">
                         <div class="authorMessage1">- {{message.f2}}-</div><br>
                         {{message.message}}
+                        <div class="authorMessage1">- {{message.dateMessage | date:'MM/dd/yyyy @ h:mma'}}-</div><br>
                     </div>
                 </div>
             </div>
