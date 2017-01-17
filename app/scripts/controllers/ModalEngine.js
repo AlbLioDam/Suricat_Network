@@ -10,6 +10,7 @@ app.controller('ModCtrl', function ($scope, LinkDBTask, LinkDBDepartment, LinkDB
         $scope.users = LinkDBBelongTo.query();
         $scope.showModal = !$scope.showModal;
         $scope.$parent.tasksOfTheTeam = LinkDBKanbanTasks.query();
+        console.log($scope.$parent.tasksOfTheTeam);
     };
   });
 
