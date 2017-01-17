@@ -185,7 +185,7 @@ app.controller('choiceOfInside', function($scope, $interval){
 	*	@memberof 	choiceOfInside
 	*	@ngdoc 		function
 	*	@param		newInside	
-	*	@description description :
+	*	@description modify page inside
 	*
 	*		modify page inside
 	*
