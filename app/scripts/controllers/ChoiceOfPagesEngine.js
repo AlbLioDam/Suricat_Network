@@ -39,8 +39,6 @@ app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
 	**/
 	$scope.modifyPage = function(newPage)
 	{
-		
-
 		//document.body.style.backgroundImage="url('/Suricat_Network/app/images/"+newPage+".jpg')";
 		//document.body.style.backgroundImage="url('/Suricat_Network/app/images/team.jpg')";
 		//document.body.style.backgroundAttachment="fixed";
