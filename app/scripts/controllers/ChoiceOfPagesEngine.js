@@ -1,5 +1,20 @@
 var app = angular.module('Suricat');
 
+
+app.run(['Idle',function(Idle){
+  Idle.watch();
+  console.log('dans le run');
+}]);
+
+app.config(function (IdleProvider, KeepaliveProvider){
+  
+  console.log("la config idle");
+  IdleProvider.idle(5);
+  IdleProvider.timeout(5);
+  KeepaliveProvider.interval(10);
+});
+
+
 // CONTROLLER : Switch between login page and main page
 /**
 *	@memberof 	Suricat
@@ -22,11 +37,39 @@ var app = angular.module('Suricat');
 *			7- modify page inside page for Aministrators
 *	
 **/
-app.controller('choiceOfPages', function($scope, $cookieStore,$mdDialog){
+app.controller('choiceOfPages', function($scope,Idle, $cookieStore,$mdDialog,Keepalive, $location,$routeParams){
 	
 	// DEFAULT PAGE
 	$scope.page = "login";
 	document.body.style.backgroundImage="url('/Suricat_Network/app/images/login.jpg')";
+	
+
+  $scope.started=false;
+  console.log('idle dans le controller');
+  $scope.$on('IdleTimeout', function($scope,newPage,$window,$location){
+    // STOP ALL REFRESHES RELATIVE TO THE CHAT
+    //$scope.stopRefreshChat();
+    //$scope.stopRefreshChatNotifications();
+
+    // REMOVE THE USER'S COOKIE
+    $cookieStore.remove('UserFirstname');
+    $cookieStore.remove('UserLastname');
+    $cookieStore.remove('UserIdUser');
+    $cookieStore.remove('UserStatus');
+    $cookieStore.remove('UserCorporatelifeRepresentative');
+    $cookieStore.remove('UserWorkCouncilRepresentative');
+
+    // RETURN ON LOGIN PAGE
+    $scope.page='login';
+    alert('DECO RAGE QUIT !');
+    console.log('jysuis');
+    
+  })
+
+
+
+
+
 	/**
 	*	@memberof 	choiceOfPages
 	*	@ngdoc 		function
@@ -183,7 +226,7 @@ app.controller('choiceOfInside', function($scope, $interval){
 	*	@memberof 	choiceOfInside
 	*	@ngdoc 		function
 	*	@param		newInside	
-	*	@description description :
+	*	@description modify page inside
 	*
 	*		modify page inside
 	*

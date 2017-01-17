@@ -18,13 +18,74 @@ var app = angular
           'ngMessages',
           'material.svgAssetsCache',
           'ui.bootstrap',
-          'ngAnimate'
+          'ngAnimate',
+          '$idle',
+          'ngIdle',          
   ]);
+
+/*
+app.controller('IdleWatch',function($scope,Idle,Keepalive, $cookieStore, $location,$routeParams){
+
+this.$inject = ['$window'];
+
+  $scope.started=false;
+ console.log('lili');
+  $scope.$on('IdleTimeout', function($scope,newPage,$window,$location){
+    // STOP ALL REFRESHES RELATIVE TO THE CHAT
+    //$scope.stopRefreshChat();
+    //$scope.stopRefreshChatNotifications();
+
+    // REMOVE THE USER'S COOKIE
+    $cookieStore.remove('UserFirstname');
+    $cookieStore.remove('UserLastname');
+    $cookieStore.remove('UserIdUser');
+    $cookieStore.remove('UserStatus');
+    $cookieStore.remove('UserCorporatelifeRepresentative');
+    $cookieStore.remove('UserWorkCouncilRepresentative');
+
+    // RETURN ON LOGIN PAGE
+    $scope.$parent.page='login';
+    alert('DECO RAGE QUIT !');
+    console.log('jysuis');
+    
+  })
+})
+
+*/
+
+/*
+app.run(function($rootScope){
+  console.log('lili');
+  $rootScope.$on('IdleTimeout', function(){
+    console.log('ici');
+    alert('t es partis :(');
+  });
+})
+console.log("oula");
+*/
+/*
+app.run(function($rootScope)
+{
+  var lastdigestrun = new Date();
+  setInterval(function()
+  {
+    var now = Date.now();
+    if(now - lastdigestrun > 5000) 
+    {
+      alert('t es partis :(');
+    }
+  }, 10000);
+  $rootScope.$watch(function()
+  {
+    lastdigestrun = new Date();
+  });
+});
+*/
 
 app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieStore', function($scope, $interval, LinkDBChat, $cookieStore)
 {
-  var refreshChat;
-  var refreshChatNotifications;
+ 
+  var refreshChat;  var refreshChatNotifications;
 
   $scope.receiver   = "";
   $scope.idReceiver = "";
