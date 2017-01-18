@@ -56,14 +56,15 @@ app.controller('taskManagementCtrl', function ($scope, LinkDBTask, LinkDBDepartm
         $scope.task.idUser = $scope.user.idUser;
 
         LinkDBTask.save($scope.task).$promise.then(function (response) {
-            
             $scope.task.idTask = response.idTask;
-            LinkDBKanbanTasks.save($scope.task);
+            LinkDBKanbanTasks.save($scope.task).$promise.then(function (response2) {
+                if ($scope.task.idUser !== ""){
+                    LinkDBAttributeTaskUser.save($scope.task).$promise.then(function (response3) {
+                        $scope.$parent.tasksOfTheTeam = LinkDBKanbanTasks.query();
+                    });
+                }
+            });
             
-            if ($scope.task.idUser !== ""){
-                LinkDBAttributeTaskUser.save($scope.task);
-            }
-            $scope.$parent.tasksOfTheTeam = LinkDBKanbanTasks.query();
             //$scope.refreshKanban();
         });
     };

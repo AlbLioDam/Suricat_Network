@@ -23,7 +23,7 @@ app.constant('Actuality', '/actuality/:idActuality');
 app.constant('Actualities', '/actuality');
 app.constant('Task', '/task');
 app.constant('Chat', '/message/:idMessage');
-app.constant('AttributeTaskToUser', '/have/:id');
+app.constant('AttributeTaskToUser', '/have');
 
 
 
