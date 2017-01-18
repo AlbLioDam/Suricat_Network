@@ -63,7 +63,9 @@
     "test": "karma start test\\karma.conf.js"
   },
   "dependencies": {
+    "angular-idle-service": "^1.0.0",
     "browser-sync": "^2.18.6",
-    "grunt-ngdocs": "^0.2.10"
+    "grunt-ngdocs": "^0.2.10",
+    "ng-idle": "^1.3.2"
   }
 }
