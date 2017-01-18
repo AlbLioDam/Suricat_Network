@@ -46,30 +46,6 @@ app.controller('choiceOfPages', function($scope,Idle, $cookieStore,$mdDialog,Kee
 
   $scope.started=false;
   console.log('idle dans le controller');
-  $scope.$on('IdleTimeout', function($scope,newPage,$window,$location){
-    // STOP ALL REFRESHES RELATIVE TO THE CHAT
-    //$scope.stopRefreshChat();
-    //$scope.stopRefreshChatNotifications();
-
-    // REMOVE THE USER'S COOKIE
-    $cookieStore.remove('UserFirstname');
-    $cookieStore.remove('UserLastname');
-    $cookieStore.remove('UserIdUser');
-    $cookieStore.remove('UserStatus');
-    $cookieStore.remove('UserCorporatelifeRepresentative');
-    $cookieStore.remove('UserWorkCouncilRepresentative');
-
-    // RETURN ON LOGIN PAGE
-    $scope.page='login';
-    alert('DECO RAGE QUIT !');
-    console.log('jysuis');
-    
-  })
-
-
-
-
-
 	/**
 	*	@memberof 	choiceOfPages
 	*	@ngdoc 		function
@@ -87,7 +63,16 @@ app.controller('choiceOfPages', function($scope,Idle, $cookieStore,$mdDialog,Kee
 		//document.body.style.backgroundAttachment="fixed";
 		$scope.page = newPage;
 
-	}
+	};
+
+  $scope.$on('IdleTimeout', function(){
+
+    // REMOVE THE USER'S COOKIE
+	$scope.disconnect('login');
+    alert('DECO RAGE QUIT !');
+    
+  })
+
 	/**
 	*	@memberof 	choiceOfPages
 	*	@ngdoc 		function
