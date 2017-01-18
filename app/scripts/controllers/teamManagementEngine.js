@@ -257,3 +257,60 @@ app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkD
 	}
 
 });
+
+
+/**
+*	@memberof 	Suricat
+*	@ngdoc 		controllers
+*	@name 		createTeam
+*	@param		{object} $scope
+*	@description
+*		Controller used for page selection
+*			this controller is used to switch inside main page between all differents options
+*			 
+*	
+**/
+app.controller('createTeam', function($scope, $cookieStore, LinkDBTeams, LinkDBBelongTo){
+
+	$scope.empty = {
+		teamName: "",
+		projectName: "",
+		projectDescription: ""
+	}
+
+	$scope.team = {
+		teamName: "",
+		projectName: "",
+		projectDescription: ""
+	}
+
+	$scope.displayBtnCreate = false;
+
+	/**
+	*	@memberof 	TeamManagementPage
+	*	@ngdoc 		function
+	*	@description
+	*		test team change
+	*
+	**/
+	$scope.testChanges = function()
+	{
+		if($scope.team.teamName != "" && $scope.team.projectName != "" && $scope.team.projectDescription != "")
+		{
+			$scope.displayBtnCreate = true;
+		}
+	}
+
+	$scope.createTheTeam = function()
+	{
+		LinkDBTeams.save($scope.team).$promise.then(function(response){
+			console.log(response);
+
+			LinkDBBelongTo.save({idUser: $cookieStore.get('UserIdUser'), idTeam: response.id}).$promise.then(function(response){
+				$scope.team = angular.copy($scope.empty);
+				$scope.modifyPageInside('team');
+			});
+		});
+	}
+
+});
