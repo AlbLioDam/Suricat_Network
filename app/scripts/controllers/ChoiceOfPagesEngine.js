@@ -62,7 +62,7 @@ app.controller('choiceOfPages', function($scope,Idle, $cookieStore,$mdDialog,Kee
 	/**
 	*	@memberof 	choiceOfPages
 	*	@ngdoc 		function
-	*	@param		
+	*		
 	*	@description description :
 	*
 	*		this function is used to detect idle timeout.
