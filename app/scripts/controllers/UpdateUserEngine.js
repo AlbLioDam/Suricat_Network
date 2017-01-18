@@ -168,7 +168,7 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 			}
 
 			document.getElementById("car").checked 			= response.car;
-			document.getElementById("carsharing").checked 	= response.carsharing;
+			document.getElementById("carsharing").checked           = response.carsharing;
 			document.getElementById("active").checked 		= response.active;
 			document.getElementById("CE").checked 			= response.corporateLifeRepresentative;
 			document.getElementById("VE").checked 			= response.workCouncilRepresentative;
@@ -203,7 +203,7 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 	$scope.recordModifications = function()
 	{
 		$scope.infosUser.car 		= document.getElementById("car").checked;
-		$scope.infosUser.carsharing = document.getElementById("carsharing").checked;
+		$scope.infosUser.carsharing     = document.getElementById("carsharing").checked;
 		$scope.infosUser.active 	= document.getElementById("active").checked;
 		$scope.infosUser.VE 		= document.getElementById("VE").checked;
 		$scope.infosUser.CE 		= document.getElementById("CE").checked;
@@ -212,7 +212,7 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 		LinkDB.updateUser($scope.infosUser).$promise.then(function(response){
 			console.log(response);
 		});
-	}
+	};
 
 	/**
 	*	@memberof 	userAdminModifications

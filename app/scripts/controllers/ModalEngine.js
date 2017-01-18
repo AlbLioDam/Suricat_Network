@@ -19,6 +19,11 @@ app.controller('ModCtrl', function ($scope, LinkDBTask, LinkDBDepartment, LinkDB
         console.log($scope.task);
         console.log($scope.attribute);
     };
+    
+    $scope.updateTaskNow = function(task){
+        $scope.taskUpdate = task;
+        console.log($scope.task);
+    };
   });
 
 app.directive('modal', function () {

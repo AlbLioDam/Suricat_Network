@@ -35,6 +35,7 @@ app.controller('Kanban', function($scope, LinkDBKanbanTasks, LinkDBAttributeTask
 			$scope.choiceOfTeam = {};
 			$scope.choiceOfTeam = selected;
 			$scope.tasksOfTheTeam = LinkDBKanbanTasks.query();
+                        console.log($scope.tasksOfTheTeam);
 		}
 	};
 	/**
