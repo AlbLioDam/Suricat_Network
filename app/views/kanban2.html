@@ -79,7 +79,7 @@
                     
                     <div class="form-group">
                         <label for="user" class="pull-left">Attribution</label>
-                        <select class="form-control" id="user" ng-model="task.lastname" ng-options="user.lastname for user in users | filter :{idTeam:selected.idTeam} | filter:{idDepartment:Department.idDepartment}" placeholder="user.lastname">
+                        <select class="form-control" id="user" ng-model="user" ng-options="user.lastname for user in users | filter :{idTeam:selected.idTeam} | filter:{idDepartment:Department.idDepartment}" placeholder="user.lastname">
                             <option value="" disable selected>{{task.lastname}}</option>
                         </select>
                     </div>
@@ -106,7 +106,7 @@
                 </form>
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary pull-right" ng-click="updateTaskNow(task)">Modifier</button>
+                    <button type="submit" class="btn btn-primary pull-right" ng-click="updateTaskNow(task,user)">Modifier</button>
                     <button class="btn btn-danger pull-left">Annuler</button>
                 </div>
     </modal>    

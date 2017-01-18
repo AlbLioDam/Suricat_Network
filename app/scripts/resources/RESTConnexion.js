@@ -49,7 +49,8 @@ app.factory('LinkDB', function ($resource, BaseURL, ConnexionUsers)
 app.factory('LinkDBTask', function ($resource, BaseURL, Task)
 {
     return $resource(BaseURL + Task, null, {
-        'post': {method: 'POST'}
+        'post': {method: 'POST'},
+        'updtate' : {method :'PUT'}
         //'update': {method:'PUT', params: {idUser: "@idUser"}},
     });
 });
@@ -72,7 +73,8 @@ app.factory('LinkDBChat', function($resource, BaseURL, Chat){
 // Connexion to Tasks's datas
 app.factory('LinkDBKanbanTasks', function ($resource, BaseURL, Kanban) {
     return $resource(BaseURL + Kanban, null, {
-        'removeTaskFromTeam': {method: 'DELETE', params: {idTask: "@idTask", idTeam: "@idTeam"}}
+        'removeTaskFromTeam': {method: 'DELETE', params: {idTask: "@idTask", idTeam: "@idTeam"}},
+        'update' : {method:'PUT'}
     });
 });
 

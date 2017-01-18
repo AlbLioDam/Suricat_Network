@@ -9,7 +9,9 @@ app.controller('ModCtrl', function ($scope, LinkDBTask, LinkDBDepartment, LinkDB
     $scope.states = ["To Do", "In Progress", "To Verify", "Done"];
     
     
+    
     $scope.toggleModal = function(task){
+        $scope.user = {};
         $scope.task = task;
         $scope.departments = LinkDBDepartment.query();
         $scope.users = LinkDBBelongTo.query();
@@ -20,9 +22,18 @@ app.controller('ModCtrl', function ($scope, LinkDBTask, LinkDBDepartment, LinkDB
         console.log($scope.attribute);
     };
     
-    $scope.updateTaskNow = function(task){
-        $scope.taskUpdate = task;
-        console.log($scope.task);
+    $scope.updateTaskNow = function(task,user){
+        
+        
+        $scope.taskUpdate = {
+          taskName:task.taskName,
+          duration:task.duration,
+          detail:task.detail,
+          idUser:user.idUser,
+          status:task.status,
+          weight:task.weight
+        };
+        console.log($scope.taskUpdate);
     };
   });
 
