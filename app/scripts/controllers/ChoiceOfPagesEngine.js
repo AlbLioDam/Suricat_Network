@@ -3,15 +3,13 @@ var app = angular.module('Suricat');
 
 app.run(['Idle',function(Idle){
   Idle.watch();
-  console.log('dans le run');
 }]);
 
-app.config(function (IdleProvider, KeepaliveProvider){
-  
-  console.log("la config idle");
-  IdleProvider.idle(5);
+app.config(function (IdleProvider, KeepaliveProvider)
+{
+  IdleProvider.idle(3*60);
   IdleProvider.timeout(5);
-  KeepaliveProvider.interval(10);
+  KeepaliveProvider.interval(3*60);
 });
 
 
@@ -37,15 +35,12 @@ app.config(function (IdleProvider, KeepaliveProvider){
 *			7- modify page inside page for Aministrators
 *	
 **/
-app.controller('choiceOfPages', function($scope,Idle, $cookieStore,$mdDialog,Keepalive, $location,$routeParams){
+app.controller('choiceOfPages', function($scope,Idle, $cookieStore,$mdDialog,Keepalive, $route,$routeParams,$window){
 	
 	// DEFAULT PAGE
 	$scope.page = "login";
 	document.body.style.backgroundImage="url('/Suricat_Network/app/images/login.jpg')";
 	
-
-  $scope.started=false;
-  console.log('idle dans le controller');
 	/**
 	*	@memberof 	choiceOfPages
 	*	@ngdoc 		function
@@ -64,12 +59,27 @@ app.controller('choiceOfPages', function($scope,Idle, $cookieStore,$mdDialog,Kee
 		$scope.page = newPage;
 
 	};
-
-  $scope.$on('IdleTimeout', function(){
-
-    // REMOVE THE USER'S COOKIE
-	$scope.disconnect('login');
+	/**
+	*	@memberof 	choiceOfPages
+	*	@ngdoc 		function
+	*		
+	*	@description description :
+	*
+	*		this function is used to detect idle timeout.
+	*		After time elapsed, user is disconnected.
+	*
+	*	1- the Angular app is restarted
+	*	2- an alert box advise user he has been disconnected	
+	*	3- then call disconnect function to route user to login page.
+	*		 
+	*		
+	*
+	**/
+  $scope.$on('IdleTimeout', function()
+  {
+ 	$window.location.reload();
     alert('DECO RAGE QUIT !');
+    $scope.disconnect('login');
     
   })
 
