@@ -14,6 +14,7 @@ var app = angular.module('Suricat');
 *		From the Login Page (index.html)
 */
 app.controller('CheckLogin',['$scope','LinkDBCheckLogin','$timeout','$cookies','$cookieStore', function($scope,LinkDBCheckLogin,$timeout,$cookies,$cookieStore){
+	
 	/**
 	*	@memberof 	CheckLogin
 	*	@ngdoc 		function
