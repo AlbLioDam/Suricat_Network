@@ -12,49 +12,49 @@
     <br>
     <div ng-controller="ModCtrl">
     <div class="row" id="rowKanban">
-    <div class="frame col-lg-3 col-md-6 col-sm-6 col-xs-12">
-        <div class="text-center status">
-            <div class="titre">
-                To Do
+        <div class="frame col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <div class="text-center status">
+                <div class="titre">
+                    To Do
+                </div>
+                <div id="ToDo" class="task" ng-repeat="task in tasksOfTheTeam | filter: {status: 'To Do', idTeam: choiceOfTeam.idTeam}">
+                    <div ng-click="toggleModal(task)">{{task.taskName}} {{task.firstname}}</div>
+                    <span id="glyph" ng-class="'fa fa-trash'" ng-click="deleteTask(task)" ng-show="access"></span>
+                </div>
             </div>
-            <div id="ToDo" class="task" ng-repeat="task in tasksOfTheTeam | filter: {status: 'To Do', idTeam: choiceOfTeam.idTeam}">
-                <div ng-click="toggleModal(task)">{{task.taskName}} {{task.firstname}}</div>
-                <span id="glyph" ng-class="'fa fa-trash'" ng-click="deleteTask(task)" ng-show="access"></span>
+            
+        </div>
+        <div class="frame col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <div class="text-center status">
+                <div class="titre">
+                    In Progress
+                </div>
+                <div id="InProgress" class="task" data-toggle="modal" data-target="#myModal" ng-repeat="task in tasksOfTheTeam | filter: {status: 'In Progress', idTeam: choiceOfTeam.idTeam}">
+                    <div ng-click="toggleModal(task)">{{task.taskName}} {{task.firstname}}</div>
+                    <span id="glyph" ng-class="'fa fa-trash'" ng-click="deleteTask(task)" ng-show="access"></span>
+                </div>
             </div>
         </div>
-        
-    </div>
-    <div class="frame col-lg-3 col-md-6 col-sm-6 col-xs-12">
-        <div class="text-center status">
-            <div class="titre">
-                In Progress
-            </div>
-            <div id="InProgress" class="task" data-toggle="modal" data-target="#myModal" ng-repeat="task in tasksOfTheTeam | filter: {status: 'In Progress', idTeam: choiceOfTeam.idTeam}">
-                <div ng-click="toggleModal(task)">{{task.taskName}} {{task.firstname}}</div>
-                <span id="glyph" ng-class="'fa fa-trash'" ng-click="deleteTask(task)" ng-show="access"></span>
-            </div>
-        </div>
-    </div>
-    <div class="frame col-lg-3 col-md-6 col-sm-6 col-xs-12">
-        <div class="text-center status">
-            <div class="titre">
-                To Verify
-            </div>
-            <div id="ToVerify" class="task" data-toggle="modal" data-target="#myModal" ng-repeat="task in tasksOfTheTeam | filter: {status: 'To Verify', idTeam: choiceOfTeam.idTeam}">
-                <div ng-click="toggleModal(task)">{{task.taskName}} {{task.firstname}}</div>
-                <span id="glyph" ng-class="'fa fa-trash'" ng-click="deleteTask(task)" ng-show="access"></span>
+        <div class="frame col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <div class="text-center status">
+                <div class="titre">
+                    To Verify
+                </div>
+                <div id="ToVerify" class="task" data-toggle="modal" data-target="#myModal" ng-repeat="task in tasksOfTheTeam | filter: {status: 'To Verify', idTeam: choiceOfTeam.idTeam}">
+                    <div ng-click="toggleModal(task)">{{task.taskName}} {{task.firstname}}</div>
+                    <span id="glyph" ng-class="'fa fa-trash'" ng-click="deleteTask(task)" ng-show="access"></span>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="frame col-lg-3 col-md-6 col-sm-6 col-xs-12">
-        <div class="text-center status">
-            <div class="titre">
-                Done
-            </div>
-            <div id="Done" class="task" data-toggle="modal" data-target="#myModal" ng-repeat="task in tasksOfTheTeam | filter: {status: 'Done', idTeam: choiceOfTeam.idTeam}">
-                <div ng-click="toggleModal(task)">{{task.taskName}} {{task.firstname}}</div>
-                <span id="glyph" ng-class="'fa fa-trash'" ng-click="deleteTask(task)" ng-show="access"></span>
-            </div>
+        <div class="frame col-lg-3 col-md-6 col-sm-6 col-xs-12">
+            <div class="text-center status">
+                <div class="titre">
+                    Done
+                </div>
+                <div id="Done" class="task" data-toggle="modal" data-target="#myModal" ng-repeat="task in tasksOfTheTeam | filter: {status: 'Done', idTeam: choiceOfTeam.idTeam}">
+                    <div ng-click="toggleModal(task)">{{task.taskName}} {{task.firstname}}</div>
+                    <span id="glyph" ng-class="'fa fa-trash'" ng-click="deleteTask(task)" ng-show="access"></span>
+                </div>
             </div>
         </div>
     </div>
@@ -80,27 +80,27 @@
                     <div class="form-group">
                         <label for="user" class="pull-left">Attribution</label>
                         <select class="form-control" id="user" ng-model="user" ng-options="user.lastname for user in users | filter :{idTeam:selected.idTeam} | filter:{idDepartment:Department.idDepartment}" placeholder="user.lastname">
-                            <option value="" disable selected>{{task.lastname}}</option>
+                            <option value="" disabled selected>{{task.lastname}}</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
                         <label for="duration" class="pull-left">Durée</label>
                         <select class="form-control" id="duration" ng-model="task.duration"  ng-options="duration for duration in durations">
-                            <option value="" disable selected>{{task.duration}}</option>
+                            <option value="" disabled selected>{{task.duration}}</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
                         <label for="weight" class="pull-left">Importance</label>
                         <select class="form-control" id="weight" ng-model="task.weight" ng-options="weight for weight in weights">
-                            <option value="" disable selected>{{task.weight}}</option>
+                            <option value="" disabled selected>{{task.weight}}</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="state" class="pull-left">Etat</label>
                         <select class="form-control" id="state" ng-model="task.status" ng-options="state for state in states">
-                            <option value="" disable selected>{{task.status}}</option>
+                            <option value="" disabled selected>{{task.status}}</option>
                         </select>
                     </div>
                 </form>

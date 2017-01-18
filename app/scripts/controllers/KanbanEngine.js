@@ -35,7 +35,7 @@ app.controller('Kanban', function($scope, LinkDBKanbanTasks, LinkDBAttributeTask
 			$scope.choiceOfTeam = {};
 			$scope.choiceOfTeam = selected;
 			$scope.tasksOfTheTeam = LinkDBKanbanTasks.query();
-                        console.log($scope.tasksOfTheTeam);
+            console.log($scope.tasksOfTheTeam);
 		}
 	};
 	/**
@@ -68,7 +68,7 @@ app.controller('Kanban', function($scope, LinkDBKanbanTasks, LinkDBAttributeTask
 			if(response.status == 0)
 			{
 				LinkDBAttributeTaskUser.removeUserFromTask({idTask: task.idTask, idTeam: task.idTeam}).$promise.then(function(resp){
-					console.log(resp);
+					console.log("resp : ", resp);
 					$scope.tasksOfTheTeam = LinkDBKanbanTasks.query();
 				});
 			}

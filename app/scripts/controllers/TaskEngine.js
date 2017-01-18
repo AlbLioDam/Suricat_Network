@@ -54,6 +54,7 @@ app.controller('taskManagementCtrl', function ($scope, LinkDBTask, LinkDBDepartm
     {
         $scope.task.idTeam = $scope.selected.idTeam;
         $scope.task.idUser = $scope.user.idUser;
+        console.log("$scope.task : ", $scope.task);
 
         LinkDBTask.save($scope.task).$promise.then(function (response) {
             $scope.task.idTask = response.idTask;

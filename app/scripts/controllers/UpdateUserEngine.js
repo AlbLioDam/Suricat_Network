@@ -123,13 +123,12 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 	**/
 	$scope.showInformations = function(user)
 	{
-/*		$scope.infosUser =
+		$scope.infosUser =
 		{
 			email: "",
 			password: "",
 			pw2: "",
-			department: "",
-			status: {},
+			status: "",
 			corporateLifeRepresentative: "",
 			workCouncilRepresentative: "",
 			active: "",
@@ -138,10 +137,11 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 			address: "",
 			city: "",
 			car: "",
+			department: "",
 			carsharing: "",
-			idDepartment: {}, 
+			idDepartment: "", 
 			idUser: ""
-		}*/
+		}
 
 		LinkDB.getUserById({idUser: user.idUser}).$promise.then(function(response){
 			var indexDepartment = 0;
@@ -154,8 +154,9 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 				}
 			}
 
-			$scope.infosUser.idDepartment = $scope.departments[indexDepartment];
-			console.log("choix dans departments : ", $scope.departments[indexDepartment]);
+			console.log("$scope.departments[indexDepartment] : ", $scope.departments[indexDepartment]);
+			console.log("$scope.infosUser.department : ", $scope.infosUser.department);
+			console.log("$scope.infosUser.idDepartment : ", $scope.infosUser.idDepartment);
 
 			var indexStatus = 0;
 			for (var i = 0; i < $scope.listOfStatus.length; i++)
@@ -168,16 +169,17 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 			}
 
 			document.getElementById("car").checked 			= response.car;
-			document.getElementById("carsharing").checked           = response.carsharing;
+			document.getElementById("carsharing").checked   = response.carsharing;
 			document.getElementById("active").checked 		= response.active;
 			document.getElementById("CE").checked 			= response.corporateLifeRepresentative;
 			document.getElementById("VE").checked 			= response.workCouncilRepresentative;
 
 			console.log("response", response);
 			$scope.infosUser = response;
-			console.log("$scope.infosUser", $scope.infosUser);
-			
+			//$scope.infosUser.department = $scope.departments[indexDepartment];
+			$scope.infosUser.idDepartment = $scope.departments[indexDepartment];
 			$scope.infosUser.status = $scope.listOfStatus[indexStatus];
+			console.log("$scope.infosUser ici : ", $scope.infosUser);
 		});
 	}
 	/**
