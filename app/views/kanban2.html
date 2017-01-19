@@ -17,7 +17,7 @@
                 <div class="titre">
                     To Do
                 </div>
-                <div id="ToDo" class="task" ng-repeat="task in tasksOfTheTeam | filter: {status: 'To Do', idTeam: choiceOfTeam.idTeam}">
+                <div id="ToDo" class="task" ng-repeat="task in tasksOfTheTeam | filter: {status: 'To Do', idTeam: choiceOfTeam.idTeam}:true">
                     <div ng-click="toggleModal(task)">{{task.taskName}} {{task.firstname}}</div>
                     <span id="glyph" ng-class="'fa fa-trash'" ng-click="deleteTask(task)" ng-show="access"></span>
                 </div>
@@ -29,7 +29,7 @@
                 <div class="titre">
                     In Progress
                 </div>
-                <div id="InProgress" class="task" data-toggle="modal" data-target="#myModal" ng-repeat="task in tasksOfTheTeam | filter: {status: 'In Progress', idTeam: choiceOfTeam.idTeam}">
+                <div id="InProgress" class="task" data-toggle="modal" data-target="#myModal" ng-repeat="task in tasksOfTheTeam | filter: {status: 'In Progress', idTeam: choiceOfTeam.idTeam}:true">
                     <div ng-click="toggleModal(task)">{{task.taskName}} {{task.firstname}}</div>
                     <span id="glyph" ng-class="'fa fa-trash'" ng-click="deleteTask(task)" ng-show="access"></span>
                 </div>
@@ -40,7 +40,7 @@
                 <div class="titre">
                     To Verify
                 </div>
-                <div id="ToVerify" class="task" data-toggle="modal" data-target="#myModal" ng-repeat="task in tasksOfTheTeam | filter: {status: 'To Verify', idTeam: choiceOfTeam.idTeam}">
+                <div id="ToVerify" class="task" data-toggle="modal" data-target="#myModal" ng-repeat="task in tasksOfTheTeam | filter: {status: 'To Verify', idTeam: choiceOfTeam.idTeam}:true">
                     <div ng-click="toggleModal(task)">{{task.taskName}} {{task.firstname}}</div>
                     <span id="glyph" ng-class="'fa fa-trash'" ng-click="deleteTask(task)" ng-show="access"></span>
                 </div>
@@ -51,7 +51,7 @@
                 <div class="titre">
                     Done
                 </div>
-                <div id="Done" class="task" data-toggle="modal" data-target="#myModal" ng-repeat="task in tasksOfTheTeam | filter: {status: 'Done', idTeam: choiceOfTeam.idTeam}">
+                <div id="Done" class="task" data-toggle="modal" data-target="#myModal" ng-repeat="task in tasksOfTheTeam | filter: {status: 'Done', idTeam: choiceOfTeam.idTeam}:true">
                     <div ng-click="toggleModal(task)">{{task.taskName}} {{task.firstname}}</div>
                     <span id="glyph" ng-class="'fa fa-trash'" ng-click="deleteTask(task)" ng-show="access"></span>
                 </div>
@@ -79,7 +79,7 @@
                     
                     <div class="form-group">
                         <label for="user" class="pull-left">Attribution</label>
-                        <select class="form-control" id="user" ng-model="user" ng-options="user.lastname for user in users | filter :{idTeam:selected.idTeam} | filter:{idDepartment:Department.idDepartment}" placeholder="user.lastname">
+                        <select class="form-control" id="user" ng-model="user" ng-options="user.lastname for user in users | filter :{idTeam:selected.idTeam}:true | filter:{idDepartment:Department.idDepartment}:true" placeholder="user.lastname">
                             <option value="" disabled selected>{{task.lastname}}</option>
                         </select>
                     </div>
