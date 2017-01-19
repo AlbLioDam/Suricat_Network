@@ -27,7 +27,7 @@
                     
                     <div class="form-group">
                         <label for="user" class="pull-left">Attribution</label>
-                        <select class="form-control" id="user" ng-model="user" ng-options="user.lastname for user in users | filter :{idTeam:selected.idTeam} | filter:{idDepartment:Department.idDepartment}" >
+                        <select class="form-control" id="user" ng-model="user" ng-options="user.lastname for user in users | filter :{idTeam:selected.idTeam} | filter:{idDepartment:Department.idDepartment}:true" >
                        
                         </select>
                     </div>
