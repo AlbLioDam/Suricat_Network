@@ -22,66 +22,21 @@ var app = angular
           '$idle',
           'ngIdle',          
   ]);
-
-/*
-app.controller('IdleWatch',function($scope,Idle,Keepalive, $cookieStore, $location,$routeParams){
-
-this.$inject = ['$window'];
-
-  $scope.started=false;
- console.log('lili');
-  $scope.$on('IdleTimeout', function($scope,newPage,$window,$location){
-    // STOP ALL REFRESHES RELATIVE TO THE CHAT
-    //$scope.stopRefreshChat();
-    //$scope.stopRefreshChatNotifications();
-
-    // REMOVE THE USER'S COOKIE
-    $cookieStore.remove('UserFirstname');
-    $cookieStore.remove('UserLastname');
-    $cookieStore.remove('UserIdUser');
-    $cookieStore.remove('UserStatus');
-    $cookieStore.remove('UserCorporatelifeRepresentative');
-    $cookieStore.remove('UserWorkCouncilRepresentative');
-
-    // RETURN ON LOGIN PAGE
-    $scope.$parent.page='login';
-    alert('DECO RAGE QUIT !');
-    console.log('jysuis');
-    
-  })
-})
-
-*/
-
-/*
-app.run(function($rootScope){
-  console.log('lili');
-  $rootScope.$on('IdleTimeout', function(){
-    console.log('ici');
-    alert('t es partis :(');
-  });
-})
-console.log("oula");
-*/
-/*
-app.run(function($rootScope)
-{
-  var lastdigestrun = new Date();
-  setInterval(function()
-  {
-    var now = Date.now();
-    if(now - lastdigestrun > 5000) 
-    {
-      alert('t es partis :(');
-    }
-  }, 10000);
-  $rootScope.$watch(function()
-  {
-    lastdigestrun = new Date();
-  });
-});
-*/
-
+/**
+*
+*   @memberof  Suricat
+*   @ngdoc    controllers
+*   @name     RefreshOverTime
+*   @param    {object} $scope
+*   @param    {object} $interval
+*   @param    {object} LinkDBChat
+*   @param    {object} $cookieStore
+*   @description
+*
+* Controller used to refresh messages in chat.
+* Used to feel and notify
+*
+**/
 app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieStore', function($scope, $interval, LinkDBChat, $cookieStore)
 {
  
@@ -93,20 +48,48 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
   $scope.messages   = {};
   $scope.messages2  = LinkDBChat.query();
 
+  /**
+  * @memberof   RefreshOverTime
+  * @ngdoc    function
+  * @param    receiver
+  * @param    idReceiver
+  * @description description :
+  *
+  *   this function is used to feel chat message
+  *   
+  *
+  **/
   $scope.fill = function(receiver, idReceiver)
   {
     $scope.receiver   = receiver;
     $scope.idReceiver = idReceiver;
     $scope.idSender   = $cookieStore.get('UserIdUser');
   }
-
+  /**
+  * @memberof   RefreshOverTime
+  * @ngdoc    function
+  * @param    response
+  * @description description :
+  *
+  *   this function is used to update chat message
+  *   
+  *
+  **/
   $scope.updateMessages = function()
   {
       LinkDBChat.query().$promise.then(function(response){
           $scope.messages = response;
       });
   }
-
+  /**
+  * @memberof   RefreshOverTime
+  * @ngdoc    function
+  * @description description :
+  *
+  *   this function is used to update chat message once
+  *   
+  *
+  **/
   $scope.updateMessagesOnce = function()
   {
             LinkDBChat.query().$promise.then(function(response){
@@ -137,6 +120,15 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
   }
 
   // START REFRESH OF CHAT
+  /**
+  * @memberof   RefreshOverTime
+  * @ngdoc    function
+  * @description description :
+  *
+  *   this function is used to start refresh chat
+  *   
+  *
+  **/
   $scope.startRefreshChat = function()
   {
       if(angular.isDefined(refreshChat)) return;
@@ -155,6 +147,15 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
   }
 
   // STOP REFRESH OF CHAT
+  /**
+  * @memberof   RefreshOverTime
+  * @ngdoc    function
+  * @description description :
+  *
+  *   this function is used to stop refresh chat
+  *   
+  *
+  **/
   $scope.stopRefreshChat = function()
   {
       if(angular.isDefined(refreshChat)) 
@@ -165,6 +166,15 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
   }
 
   // START REFRESH OF CHAT NOTIFICATIONS
+  /**
+  * @memberof   RefreshOverTime
+  * @ngdoc    function
+  * @description description :
+  *
+  *   this function is used to start refresh notification envelope of chat
+  *   
+  *
+  **/
   $scope.startRefreshChatNotifications = function()
   {
       if(angular.isDefined(refreshChatNotifications)) return;
@@ -206,6 +216,15 @@ app.controller('RefreshOverTime',['$scope', '$interval', 'LinkDBChat', '$cookieS
   }
 
   // STOP REFRESH OF CHAT NOTIFICATIONS
+  /**
+  * @memberof   RefreshOverTime
+  * @ngdoc    function
+  * @description description :
+  *
+  *   this function is used to stop refresh notification envelope of chat
+  *   
+  *
+  **/
   $scope.stopRefreshChatNotifications = function()
   {
       if(angular.isDefined(refreshChatNotifications)) 

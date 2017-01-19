@@ -122,7 +122,7 @@ app.controller('TeamActualities',function($interval, $scope, LinkDBTeamActualiti
 	$scope.postTeamActu=function(selected)
 	{
 		console.log('idTeam : ', selected.idTeam);		
-		$scope.newActu.photo = $scope.newActu.photo.base64;
+		$scope.newActu.photo =$scope.newActu.photo.base64;
 		console.log('file is : ' );
 		console.dir($scope.newActu.photo);
 
