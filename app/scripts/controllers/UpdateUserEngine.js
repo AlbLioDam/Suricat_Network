@@ -155,7 +155,6 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 			}
 
 			console.log("$scope.departments[indexDepartment] : ", $scope.departments[indexDepartment]);
-			console.log("$scope.infosUser.department : ", $scope.infosUser.department);
 			console.log("$scope.infosUser.idDepartment : ", $scope.infosUser.idDepartment);
 
 			var indexStatus = 0;
@@ -176,7 +175,6 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 
 			console.log("response", response);
 			$scope.infosUser = response;
-			//$scope.infosUser.department = $scope.departments[indexDepartment];
 			$scope.infosUser.idDepartment = $scope.departments[indexDepartment];
 			$scope.infosUser.status = $scope.listOfStatus[indexStatus];
 			console.log("$scope.infosUser ici : ", $scope.infosUser);
