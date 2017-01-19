@@ -1,6 +1,23 @@
 var app = angular.module('Suricat');
 
-
+/**
+*   @memberof   Suricat
+*   @ngdoc      controllers
+*   @name       ModCtrl
+*   @param      {object} $scope
+*   @param      {object} LinkDBTask
+*   @param      {object} LinkDBDepartment
+*   @param      {object} LinkDBBelongTo
+*   @param      {object} LinkDBKanbanTasks
+*   @param      {object} LinkDBAttributeTaskUser
+*   @description
+*       Controller used for ModalModify
+*           
+*           this controller allow :
+*            
+*           - Modify task
+*   
+**/
 app.controller('ModCtrl', function ($scope, LinkDBTask, LinkDBDepartment, LinkDBBelongTo, LinkDBKanbanTasks, LinkDBAttributeTaskUser) {
     $scope.showModal = false;
     $scope.task = {};
@@ -9,7 +26,8 @@ app.controller('ModCtrl', function ($scope, LinkDBTask, LinkDBDepartment, LinkDB
     $scope.states = ["To Do", "In Progress", "To Verify", "Done"];
     
     
-    
+ //toggleModal allows the modal to show up with a boolean true/false and pass in the scopes some info to fillup input select in kanban2.html
+ 
     $scope.toggleModal = function(task){
         $scope.user = {};
         $scope.task = task;
@@ -31,8 +49,24 @@ app.controller('ModCtrl', function ($scope, LinkDBTask, LinkDBDepartment, LinkDB
           detail:task.detail,
           idUser:user.idUser,
           status:task.status,
-          weight:task.weight
+          weight:task.weight,
+          idTask:task.idTask,
+          idTeam:task.idTeam
         };
+        
+        LinkDBTask.update($scope.taskUpdate).$promise.then(function(response){
+			console.log(response);
+		});
+        LinkDBAttributeTaskUser.update($scope.taskUpdate).$promise.then(function(response){
+            console.log(response);
+        });
+        
+        /* cette requête fait tout sauter
+         * 
+        LinkDBKanbanTasks.update($scope.taskUpdate).$promise.then(function(response){
+            console.log(response);
+        });
+        */
         console.log($scope.taskUpdate);
     };
   });

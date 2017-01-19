@@ -31,7 +31,8 @@ app.constant('AttributeTaskToUser', '/have');
 app.factory('LinkDBAttributeTaskUser', function ($resource, BaseURL, AttributeTaskToUser)
 {
     return $resource(BaseURL + AttributeTaskToUser, null, {
-        'removeUserFromTask': {method: 'PUT'}
+        'removeUserFromTask': {method: 'PUT'},
+        'update': {method: 'PUT' , params:{idTask:"@idTask"}}
     });
 });
 
@@ -50,8 +51,8 @@ app.factory('LinkDBTask', function ($resource, BaseURL, Task)
 {
     return $resource(BaseURL + Task, null, {
         'post': {method: 'POST'},
-        'updtate' : {method :'PUT'}
-        //'update': {method:'PUT', params: {idUser: "@idUser"}},
+        //'updtateTask' : {method :'PUT'},
+        'update': {method:'PUT', params: {idTask: "@idTask"}}
     });
 });
 
@@ -66,7 +67,7 @@ app.factory('LinkDBCheckLogin', function ($resource, BaseURL, CheckLogin) {
 // Connexion to messages's datas
 app.factory('LinkDBChat', function($resource, BaseURL, Chat){
 	return $resource(BaseURL + Chat, null, {
-		'updateReadStatus': {method:'PUT', params: {idMessage: "@idMessage"}},
+		'updateReadStatus': {method:'PUT', params: {idMessage: "@idMessage"}}
 	});
 });
 
@@ -74,7 +75,7 @@ app.factory('LinkDBChat', function($resource, BaseURL, Chat){
 app.factory('LinkDBKanbanTasks', function ($resource, BaseURL, Kanban) {
     return $resource(BaseURL + Kanban, null, {
         'removeTaskFromTeam': {method: 'DELETE', params: {idTask: "@idTask", idTeam: "@idTeam"}},
-        'update' : {method:'PUT'}
+        'update' : {method:'PUT', params: {idTask: "@idTask", idTeam: "@idTeam"}}
     });
 });
 
