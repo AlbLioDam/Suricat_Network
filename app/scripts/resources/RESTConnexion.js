@@ -24,8 +24,16 @@ app.constant('Actualities', '/actuality');
 app.constant('Task', '/task');
 app.constant('Chat', '/message/:idMessage');
 app.constant('AttributeTaskToUser', '/have');
+app.constant('ChangeTaskToUser', '/have/update');
 
 
+
+app.factory('LinkDBChangeTaskToUser', function($resource,BaseURL, ChangeTaskToUser)
+{
+   return $resource(BaseURL + ChangeTaskToUser, null, {
+       'update': {method: 'PUT'}
+   }); 
+});
 
 // Connexion to have datas
 app.factory('LinkDBAttributeTaskUser', function ($resource, BaseURL, AttributeTaskToUser)
@@ -75,7 +83,7 @@ app.factory('LinkDBChat', function($resource, BaseURL, Chat){
 app.factory('LinkDBKanbanTasks', function ($resource, BaseURL, Kanban) {
     return $resource(BaseURL + Kanban, null, {
         'removeTaskFromTeam': {method: 'DELETE', params: {idTask: "@idTask", idTeam: "@idTeam"}},
-        'update' : {method:'PUT', params: {idTask: "@idTask", idTeam: "@idTeam"}}
+        'update' : {method:'PUT'}
     });
 });
 
