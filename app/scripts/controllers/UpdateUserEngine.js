@@ -43,12 +43,8 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 	$scope.addAMember = function()
 	{
 		$scope.modifyUserClicked = !$scope.modifyUserClicked;
-		if($scope.infosUser.email != undefined && $scope.infosUser.password != undefined && $scope.infosUser.pw2 != "")
-		{
-			$scope.infosUser.email   = "";
-			$scope.infosUser.password= "";
-			$scope.infosUser.pw2 	 = "";
-		}	
+
+		$scope.infosUser = {};
 	}
 	/**
 	*	@memberof 	userAdminModifications
