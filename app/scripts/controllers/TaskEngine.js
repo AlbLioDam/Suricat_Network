@@ -24,9 +24,6 @@ app.controller('taskManagementCtrl', function ($scope, LinkDBTask, LinkDBDepartm
     $scope.users = LinkDBBelongTo.query();
     $scope.team = {};
     $scope.user = {};
-    //$scope.team = $scope.selected;
-    
-    //console.log($scope.users);
 
     $scope.durations = [1, 2, 3, 4, 5, 6, 7];
     $scope.weights = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -40,7 +37,7 @@ app.controller('taskManagementCtrl', function ($scope, LinkDBTask, LinkDBDepartm
                 Weight: "",
                 Status: "",
                 idTeam: "",
-                idUser: $scope.user.idUser,
+                idUser: "",
                 idTask:""
             };
     /**
@@ -53,20 +50,17 @@ app.controller('taskManagementCtrl', function ($scope, LinkDBTask, LinkDBDepartm
     $scope.createTask = function ()
     {
         $scope.task.idTeam = $scope.selected.idTeam;
-        $scope.task.idUser = $scope.user.idUser;
-        console.log("$scope.task : ", $scope.task);
 
         LinkDBTask.save($scope.task).$promise.then(function (response) {
             $scope.task.idTask = response.idTask;
             LinkDBKanbanTasks.save($scope.task).$promise.then(function (response2) {
-                if ($scope.task.idUser !== ""){
+                if ($scope.user != null && $scope.user.idUser != null)
+                {
+                    $scope.task.idUser = $scope.user.idUser;
                     LinkDBAttributeTaskUser.save($scope.task).$promise.then(function (response3) {
-                        $scope.$parent.tasksOfTheTeam = LinkDBKanbanTasks.query();
                     });
                 }
             });
-            
-            //$scope.refreshKanban();
         });
     };
 });

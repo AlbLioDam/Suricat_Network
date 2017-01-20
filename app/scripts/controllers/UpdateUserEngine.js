@@ -43,7 +43,6 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 	$scope.addAMember = function()
 	{
 		$scope.modifyUserClicked = !$scope.modifyUserClicked;
-
 		$scope.infosUser = {};
 	}
 	/**

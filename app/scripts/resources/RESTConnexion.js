@@ -23,7 +23,7 @@ app.constant('Actuality', '/actuality/:idActuality');
 app.constant('Actualities', '/actuality');
 app.constant('Task', '/task');
 app.constant('Chat', '/message/:idMessage');
-app.constant('AttributeTaskToUser', '/have');
+app.constant('AttributeTaskToUser', '/have/:idTask/:idTeam/:idUser');
 app.constant('ChangeTaskToUser', '/have/update');
 
 
@@ -39,7 +39,7 @@ app.factory('LinkDBChangeTaskToUser', function($resource,BaseURL, ChangeTaskToUs
 app.factory('LinkDBAttributeTaskUser', function ($resource, BaseURL, AttributeTaskToUser)
 {
     return $resource(BaseURL + AttributeTaskToUser, null, {
-        'removeUserFromTask': {method: 'PUT'},
+        'removeUserFromTask': {method: 'DELETE', params:{idTask:"@idTask", idTeam:"@idTeam", idUser:"@idUser"}},
         'update': {method: 'PUT' , params:{idTask:"@idTask"}}
     });
 });

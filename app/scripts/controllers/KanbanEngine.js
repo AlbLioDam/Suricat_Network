@@ -17,7 +17,7 @@ var app = angular.module('Suricat');
 *			2- refresh kanban
 *	
 **/
-app.controller('Kanban', function($scope, LinkDBKanbanTasks, LinkDBAttributeTaskUser, $cookieStore){
+app.controller('Kanban', function($scope, LinkDBKanbanTasks, LinkDBAttributeTaskUser, $cookieStore, $interval){
 	/**
 	*	@memberof 	Kanban
 	*	@ngdoc 		function
@@ -34,7 +34,6 @@ app.controller('Kanban', function($scope, LinkDBKanbanTasks, LinkDBAttributeTask
 		{
 			$scope.choiceOfTeam = {};
 			$scope.choiceOfTeam = selected;
-			$scope.tasksOfTheTeam = LinkDBKanbanTasks.query();
             console.log($scope.tasksOfTheTeam);
 		}
 	};
@@ -49,7 +48,12 @@ app.controller('Kanban', function($scope, LinkDBKanbanTasks, LinkDBAttributeTask
 	**/
 	$scope.refreshKanban = function()
 	{
-		$scope.tasksOfTheTeam = LinkDBKanbanTasks.query();
+		LinkDBKanbanTasks.query().$promise.then(function(response){
+			if(angular.equals($scope.tasksOfTheTeam, response) != true)
+			{
+				$scope.tasksOfTheTeam = response;
+			}
+		});
 	};
 
 	/**
@@ -65,13 +69,15 @@ app.controller('Kanban', function($scope, LinkDBKanbanTasks, LinkDBAttributeTask
 	{
 		LinkDBKanbanTasks.removeTaskFromTeam({idTask: task.idTask, idTeam: task.idTeam}).$promise.then(function(response){
 			console.log(response);
-			if(response.status == 0)
-			{
-				LinkDBAttributeTaskUser.removeUserFromTask({idTask: task.idTask, idTeam: task.idTeam}).$promise.then(function(resp){
-					console.log("resp : ", resp);
-					$scope.tasksOfTheTeam = LinkDBKanbanTasks.query();
-				});
-			}
+		});
+		LinkDBAttributeTaskUser.removeUserFromTask({idTask: task.idTask, idTeam: task.idTeam, idUser: task.idUser}).$promise.then(function(resp){
+			console.log("resp : ", resp);
 		});
 	}
+
+	$interval(function(){
+        setTimeout(function(){
+          $scope.refreshKanban();
+      }, 1000);
+    }, 1000);
 });

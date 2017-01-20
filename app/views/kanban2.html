@@ -63,17 +63,17 @@
        <form>
                     <div class="form-group">
                         <label for="title" class="pull-left">Intitulé</label>
-                        <input type="text" class="form-control" id="title" placeholder="Nom de la tâche" ng-model="task.taskName" id="title">
+                        <input type="text" class="form-control" id="title" placeholder="Nom de la tâche" ng-model="task.taskName" id="title" ng-disabled="!access">
                     </div>
 
                     <div class="form-group">
                         <label for="description"  class="pull-left">Description</label>
-                        <textarea type="text" ng-model="task.detail" class="form-control" id="description" placeholder="Nom de la tâche" style="resize:vertical"></textarea>
+                        <textarea type="text" ng-model="task.detail" class="form-control" id="description" placeholder="Nom de la tâche" style="resize:vertical" ng-disabled="!access"></textarea>
                     </div>
                     
                     <div class="form-group">
                         <label for="department" class="pull-left">Service</label>
-                        <select class="form-control" id="department" ng-model="Department" ng-options="department.departmentName for department in departments">
+                        <select class="form-control" id="department" ng-model="Department" ng-options="department.departmentName for department in departments" ng-disabled="!access">
                         </select>
                     </div>
                     
@@ -86,14 +86,14 @@
                     
                     <div class="form-group">
                         <label for="duration" class="pull-left">Durée</label>
-                        <select class="form-control" id="duration" ng-model="task.duration"  ng-options="duration for duration in durations">
+                        <select class="form-control" id="duration" ng-model="task.duration"  ng-options="duration for duration in durations" ng-disabled="!access">
                             <option value="" disabled selected>{{task.duration}}</option>
                         </select>
                     </div>
                     
                     <div class="form-group">
                         <label for="weight" class="pull-left">Importance</label>
-                        <select class="form-control" id="weight" ng-model="task.weight" ng-options="weight for weight in weights">
+                        <select class="form-control" id="weight" ng-model="task.weight" ng-options="weight for weight in weights" ng-disabled="!access">
                             <option value="" disabled selected>{{task.weight}}</option>
                         </select>
                     </div>

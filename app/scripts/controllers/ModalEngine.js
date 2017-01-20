@@ -35,48 +35,74 @@ app.controller('ModCtrl', function ($scope, LinkDBTask, LinkDBDepartment, LinkDB
         $scope.users = LinkDBBelongTo.query();
         $scope.attribute = LinkDBAttributeTaskUser.query();
         $scope.showModal = !$scope.showModal;
-        $scope.tasksOfTheTeam = LinkDBKanbanTasks.query();
         console.log($scope.task);
         console.log($scope.attribute);
     };
 
-    $scope.updateTaskNow = function (task, user) {
+    $scope.refreshTasks = function(){
+        $scope.tasksOfTheTeam = LinkDBKanbanTasks.query();
+    };
 
+    $scope.updateTaskNow = function (task, user) {
 
         $scope.taskUpdate = {
             taskName: task.taskName,
             duration: task.duration,
             detail: task.detail,
-            idUser: user.idUser,
+            idUser: "",
             status: task.status,
             weight: task.weight,
             idTask: task.idTask,
-            idTeam: task.idTeam
+            idTeam: task.idTeam,
+            lastname: task.lastname
         };
 
-
-
+        // UPDATE OF THE ATTRIBUTES OF THE TASK IN 'TASK' TABLE
         LinkDBTask.update($scope.taskUpdate).$promise.then(function (response) {
             console.log(response);
         });
 
-
-        if ($scope.task.idUser == null) {
-            LinkDBAttributeTaskUser.save($scope.taskUpdate).$promise.then(function (response3) {
-                console.log(response3);
-            });
-        } else {
-            LinkDBChangeTaskToUser.update($scope.taskUpdate).$promise.then(function (response) {
-                console.log(response);
-            });
-        }
-
-
-        LinkDBKanbanTasks.update($scope.taskUpdate).$promise.then(function (response) {
-            console.log(response);
+        // UPDATE OF THE PROPERTIES OF THE TASK IN 'TODO' TABLE
+        LinkDBKanbanTasks.update($scope.taskUpdate).$promise.then(function (resp) {
+            console.log(resp);
         });
-        $scope.refreshKanban();
-        console.log($scope.taskUpdate);
+
+        console.log("user : ", user);
+        console.log("$scope.task : ", $scope.task);
+
+        // CASE WHERE THE TASK HAS NO ONE ASSIGNED TO AT FIRST
+        if($scope.task.lastname == null)
+        {
+            // CASE WHERE AN USER HAS BEEN ASSIGNED TO THE TASK BY THE FORM
+            if(user != null)
+            {
+                $scope.taskUpdate.idUser = user.idUser;
+                // CREATION OF THE USER FOR THE TASK IN 'HAVE' TABLE
+                LinkDBAttributeTaskUser.save($scope.taskUpdate).$promise.then(function (response3) {
+                    console.log(response3);
+                });
+            }
+        }
+        // CASE WHERE THE TASK HAS SOMEONE ASSIGNED TO AT FIRST
+        else
+        {
+            // CASE WHERE AN USER HAS BEEN ASSIGNED TO THE TASK BY THE FORM
+            if(user != null)
+            {
+                $scope.taskUpdate.idUser = user.idUser;
+                LinkDBChangeTaskToUser.update($scope.taskUpdate).$promise.then(function (response) {
+                    console.log(response);
+                });
+            }
+            // CASE WHERE THE USER HAS BEEN REMOVED TO THE TASK BY THE FORM
+            else
+            {
+                // DELETE OF THE USER FOR THE TASK IN 'HAVE' TABLE
+                LinkDBAttributeTaskUser.removeUserFromTask({idTask: $scope.taskUpdate.idTask, idTeam: $scope.taskUpdate.idTeam}).$promise.then(function (response) {
+                    console.log(response);
+                });
+            }
+        }
     };
 });
 
