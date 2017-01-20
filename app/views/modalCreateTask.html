@@ -11,12 +11,12 @@
                 <form>
                     <div class="form-group">
                         <label for="title" class="pull-left">Intitulé</label>
-                        <input type="text" class="form-control" id="title" placeholder="Nom de la tâche" ng-model="task.taskName" id="title">
+                        <input type="text" class="form-control" id="title" placeholder="Nom de la tâche" ng-model="task.taskName" required ng-maxlenght="60">
                     </div>
 
                     <div class="form-group">
                         <label for="description"  class="pull-left">Description</label>
-                        <textarea type="text" ng-model="task.detail" class="form-control" id="description" placeholder="Nom de la tâche" style="resize:vertical"></textarea>
+                        <textarea type="text" ng-model="task.detail" class="form-control" id="description" placeholder="Nom de la tâche" style="resize:vertical" required ng-maxlenght=""></textarea>
                     </div>
                     
                     <div class="form-group">

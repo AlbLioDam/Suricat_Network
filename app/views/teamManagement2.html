@@ -1,8 +1,9 @@
 
 		<!-- Form to modify team informations -->
-		<div class="container-fluid" ng-controller="TeamManagementPage">
-			<div row class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-12">
-				<form id="formTeam">
+		<div ng-controller="TeamManagementPage">
+                    <div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-offset-2 col-sm-8 col-xs-12">
+				<form>
 					<h1 id="teamTitle">Gestion des équipes</h1>
 
 					<select ng-options="team.teamName for team in teams" ng-model="selected" class="form-control" ng-change="showTeamDetail(selected)" ng-disabled="blockedTeamChoice" ng-mouseenter="resetListOfTeams()">
@@ -26,12 +27,12 @@
 			</div>
 
 			<!-- Part to show all users available to be add to the team -->
-			<div id="userTableOthers" class="userTable col-lg-offset-1 col-lg-10 col-lg-offset-1 animated fadeInDown container-fluid" ng-show="addMember">
+			<div id="userTableOthers" class="userTable col-lg-5 col-lg-offset-1 animated fadeInDown container-fluid" ng-show="addMember">
 				<h3>Membres disponibles</h3>
 				<div class="btnAddMember">
 					<button ng-model="addMember" class="btn btn-danger btnAddMember" ng-click="endAdd()">Equipe complète !</button>
 				</div>
-				<div ng-repeat="department in departments" class="col-lg-2 col-md-6 col-sm-6 col-xs-12 department">
+				<div ng-repeat="department in departments" class="col-lg-3 col-md-6 col-sm-6 col-xs-12 department">
 					<h6>{{department.departmentName}}</h6>
 					<div ng-repeat="user in usersnotinteam | filter : {idDepartment: department.idDepartment}" class="row userinrow">
 						<button class="btn btn-default col-lg-offset-1 col-lg-8 col-xs-offset-1 col-xs-8">{{user.email}}</button>
@@ -41,7 +42,7 @@
 			</div>
 
 			<!-- Part to show all users in the team -->
-			<div id="userTable" class="userTable col-lg-offset-1 col-lg-10 col-lg-offset-1 animated fadeInDown container-fluid" ng-show="team.idTeam">
+			<div id="userTable" class="userTable col-lg-5 col-lg-offset-1 animated fadeInDown container-fluid" ng-show="team.idTeam">
 				<h3>Membres de l'équipe par service</h3>
 				<div class="btnAddMember">
 					<button ng-model="addMember" class="btn btn-primary" ng-click="showMembersNotInTheTeam()">Ajouter un membre</button>
@@ -54,4 +55,5 @@
 					</div>
 				</div>
 			</div>
+                    </div>
 		</div>
