@@ -300,7 +300,14 @@ app.controller('createTeam', function($scope, $cookieStore, LinkDBTeams, LinkDBB
 			$scope.displayBtnCreate = true;
 		}
 	}
-
+	/**
+	*	@memberof 	TeamManagementPage
+	*	@ngdoc 		function
+	*	@param 		response
+	*	@description
+	*		create team
+	*
+	**/
 	$scope.createTheTeam = function()
 	{
 		LinkDBTeams.save($scope.team).$promise.then(function(response){

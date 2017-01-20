@@ -2,21 +2,24 @@
 		<!-- Form to modify team informations -->
 		<div class="container-fluid" ng-controller="createTeam">
 			<div row class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-offset-2 col-sm-8 col-xs-12">
-				<form id="formTeam">
+				<form id="formTeam" name="createTeamForm" ng-submit="createTeamForm.$valid && createTheTeam()" ng-class="{'has-error' : createTeamForm.title.$error.maxlength || createTeamForm.projectName.$error.maxlength || createTeamForm.projectDesc.$error.maxlength }">
 					<h1 id="teamTitle">Création d'une équipe</h1>
 
 					<label class="labelFormTeam" for="teamName">Nom de l'équipe</label>
-					<input id="teamName" type="text" ng-model="team.teamName" class="form-control" ng-change="testChanges()"/>
+					<input name="title" id="teamName" ng-maxlength="30" type="text" placeholder="veuillez saisir ici le titre de l'équipe" ng-model="team.teamName" class="form-control" ng-change="testChanges()" required />
+					<span ng-show="createTeamForm.title.$error.maxlength">Titre trop long 30 caractères maximum</span><br>
 
 					<label class="labelFormTeam" for="projectName">Nom du projet</label>
-					<input  id="projectName" type="text" ng-model="team.projectName" class="form-control" ng-change="testChanges()"/>
+					<input  name="projectName" id="projectName" ng-maxlength="30" type="text" placeholder="veuillez saisir ici le nom du projet" ng-model="team.projectName" class="form-control" ng-change="testChanges()" required/>
+					<span ng-show="createTeamForm.projectName.$error.maxlength">Titre trop long 30 caractères maximum</span><br>
 
 					<label class="labelFormTeam" for="projectDescription">Description du projet</label>
-					<textarea  id="projectDescription" ng-model="team.projectDescription" class="form-control" ng-change="testChanges()"></textarea>
+					<textarea  name="projectDesc" id="projectDescription" ng-maxlength="500" placeholder="veuillez saisir ici la description du projet" ng-model="team.projectDescription" class="form-control" ng-change="testChanges()" required></textarea>
+					<span ng-show="createTeamForm.projectDesc.$error.maxlength">Description trop longue 500 caractères maximum</span><br>
 					
 					<div class="row">
 						<button class="btnChangeForm btn btn-danger col-lg-offset-1 col-lg-5" ng-click="modifyPageInside('team')">Retour</button>
-						<button class="btnChangeForm btn btn-success col-lg-5" ng-hide="!displayBtnCreate" ng-click="createTheTeam()">Créer l'équipe</button>
+						<button class="btnChangeForm btn btn-success col-lg-5" ng-show="createTeamForm.$valid">Créer l'équipe</button>
 					</div>
 				</form>
 			</div>

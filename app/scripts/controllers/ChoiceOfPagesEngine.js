@@ -7,9 +7,9 @@ app.run(['Idle',function(Idle){
 
 app.config(function (IdleProvider, KeepaliveProvider)
 {
-  IdleProvider.idle(3*60);
+  IdleProvider.idle(15*60);
   IdleProvider.timeout(5);
-  KeepaliveProvider.interval(3*60);
+  KeepaliveProvider.interval(15*60);
 });
 
 
@@ -57,7 +57,6 @@ app.controller('choiceOfPages', function($scope,Idle, $cookieStore,$mdDialog,Kee
 		//document.body.style.backgroundImage="url('/Suricat_Network/app/images/team.jpg')";
 		//document.body.style.backgroundAttachment="fixed";
 		$scope.page = newPage;
-
 	};
 	/**
 	*	@memberof 	choiceOfPages
@@ -78,9 +77,7 @@ app.controller('choiceOfPages', function($scope,Idle, $cookieStore,$mdDialog,Kee
   $scope.$on('IdleTimeout', function()
   {
  	$window.location.reload();
-    alert('DECO RAGE QUIT !');
-    $scope.disconnect('login');
-    
+    alert('Vous avez été déconnecté suite à une trop logue inactivité !');  
   })
 
 	/**
