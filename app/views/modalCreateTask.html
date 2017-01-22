@@ -19,18 +19,18 @@
                         <textarea type="text" ng-model="task.detail" class="form-control" id="description" placeholder="Nom de la tâche" style="resize:vertical"></textarea>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="department" class="pull-left">Service</label>
-                        <select class="form-control" id="department" ng-model="Department" ng-options="department.departmentName for department in departments">
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="user" class="pull-left">Attribution</label>
-                        <select class="form-control" id="user" ng-model="user" ng-options="user.lastname for user in users | filter :{idTeam:selected.idTeam}:true | filter:{idDepartment:Department.idDepartment}:true" >
-                       
-                        </select>
-                    </div>
+<!--                     <div class="form-group">
+    <label for="department" class="pull-left">Service</label>
+    <select class="form-control" id="department" ng-model="Department" ng-options="department.departmentName for department in departments">
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="user" class="pull-left">Attribution</label>
+    <select class="form-control" id="user" ng-model="user" ng-options="user.lastname for user in users | filter :{idTeam:selected.idTeam}:true | filter:{idDepartment:Department.idDepartment}:true" >
+   
+    </select>
+</div> -->
                     
                     <div class="form-group">
                         <label for="duration" class="pull-left">Durée</label>
@@ -43,11 +43,11 @@
                         <select class="form-control" id="weight" ng-model="task.Weight" ng-options="weight for weight in weights">
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="state" class="pull-left">Etat</label>
-                        <select class="form-control" id="state" ng-model="task.Status" ng-options="state for state in states">
-                        </select>
-                    </div>
+<!--                     <div class="form-group">
+    <label for="state" class="pull-left">Etat</label>
+    <select class="form-control" id="state" ng-model="task.Status" ng-options="state for state in states" ng-disabled="true">
+    </select>
+</div> -->
                 </form>
 
                 <div class="modal-footer">

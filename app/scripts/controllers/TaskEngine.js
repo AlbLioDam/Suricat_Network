@@ -50,17 +50,23 @@ app.controller('taskManagementCtrl', function ($scope, LinkDBTask, LinkDBDepartm
     $scope.createTask = function ()
     {
         $scope.task.idTeam = $scope.selected.idTeam;
+        $scope.task.Status = "To Do";
 
         LinkDBTask.save($scope.task).$promise.then(function (response) {
             $scope.task.idTask = response.idTask;
-            LinkDBKanbanTasks.save($scope.task).$promise.then(function (response2) {
-                if ($scope.user != null && $scope.user.idUser != null)
-                {
-                    $scope.task.idUser = $scope.user.idUser;
-                    LinkDBAttributeTaskUser.save($scope.task).$promise.then(function (response3) {
-                    });
-                }
-            });
+            if(response.status == 0)
+            {
+                LinkDBKanbanTasks.save($scope.task).$promise.then(function (response2) {
+/*                    if ($scope.user != null && $scope.user.idUser != null && response2.status == 0)
+                    {
+                        $scope.task.idUser = $scope.user.idUser;
+                        LinkDBAttributeTaskUser.save($scope.task).$promise.then(function (response3) {
+                        });
+                    }*/
+                });
+            }
         });
+
+        //$scope.task = {};
     };
 });
