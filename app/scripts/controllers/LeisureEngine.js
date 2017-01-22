@@ -27,17 +27,7 @@ var app = angular.module('Suricat');
 **/
 app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureActualities, LinkDBActualityId){
 	$scope.listOfLeisureActualities = LinkDBLeisureActualities.query();
-	//$scope.l = LinkDBLeisureActualities.query();
-	/*console.log($scope.l[i].length);
-	for (var i = 0; i < $scope.l.length; i++) 
-	{
-		console.log(i);
-		console.log($scope.l[i].publication);
-		$scope.l[i].publication = $scope.l[i].publication.replace(/\n/g, '<br/>');
-		console.log($scope.l[i].publication);
-  	}
 
-  	$scope.listOfLeisureActualities = $scope.l;*/
 	/*-----------------------------------------
 	 Prepare Json to Post with Team Actuality 
 	 -----------------------------------------*/
@@ -49,6 +39,10 @@ app.controller('LeisureActualities',function($interval, $scope, LinkDBLeisureAct
 			category:"",
 			idUser: $scope.idUser
 		};
+
+	$scope.cat = "";
+	$scope.categories = ['Cuisine','Sport','Covoiturage','Services'];
+
 
 	/*-----------------------------------------
 	 Here is the image management for actuality

@@ -32,8 +32,15 @@
             <!-- DISPLAY LEISURE ACTUALITIES -->
 
             <div ng-controller="refresh">
-                <center>{{message}}</center> 
-                <div id="containerTeamActualityList" class="containerTeamActuality row" ng-repeat="actu in listOfLeisureActualities">   
+                <center>{{message}}</center>   
+                <div id="containerTeamActualityList" class="containerTeamActuality" style="text-align: center">
+                    <label for="cat">Filtrer par catégorie : </label>
+                    <select id="cat" ng-model="cat" ng-options="category for category in categories">
+                        <option value=""></option>
+                    </select>
+                </div>
+
+                <div id="containerTeamActualityList" class="containerTeamActuality row" ng-repeat="actu in listOfLeisureActualities | filter : {category: cat ||undefined}">   
                     <div class="col-xs-12" id={{actu.category}}>
 
                         <div id="contain_title" class="col-xs-6">
