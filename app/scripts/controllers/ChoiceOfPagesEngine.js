@@ -212,7 +212,7 @@ app.controller('choiceOfPages', function($scope,Idle, $cookieStore,$mdDialog,Kee
 *			- modify page function inside main page between all differents options
 *	 
 **/
-app.controller('choiceOfInside', function($scope, $interval){
+app.controller('choiceOfInside', function($scope, $interval,$cookieStore){
 	$scope.inside = "team";
 	/**
 	*	@memberof 	choiceOfInside

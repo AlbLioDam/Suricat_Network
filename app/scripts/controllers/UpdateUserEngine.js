@@ -248,6 +248,27 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 	    $mdDialog.show(confirm).then(function() 
 	    {
 	      $scope.recordModifications();
+	      $scope.showValidation();
+	    }, function() 
+	    {
+	      //nothing
+	    });
+  	};
+
+  	$scope.showValidation = function(ev) 
+	{
+	    // Appending dialog to document.body to cover sidenav in docs app
+	    var confirm = $mdDialog.confirm()
+	          .title('Confirmation')
+	          .textContent('Les modifications apportées sont enregistrées')
+	          .ariaLabel('Lucky day')
+	          .targetEvent(ev)
+	          .ok('Oui');
+	          
+
+	    $mdDialog.show(confirm).then(function() 
+	    {
+	      
 	    }, function() 
 	    {
 	      //nothing
