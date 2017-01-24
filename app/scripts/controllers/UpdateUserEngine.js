@@ -43,6 +43,8 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 	**/
 	$scope.addAMember = function()
 	{
+		$scope.feel=true;
+
 		$scope.infosUser =
 		{
 			email: "",
@@ -72,6 +74,7 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 	**/
 	$scope.modifyUser = function()
 	{
+		$scope.feel=false;
 		$scope.infosUser =
 		{
 			email: "",
@@ -116,6 +119,7 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 	**/
 	$scope.showInformations = function(user)
 	{
+		$scope.feel=true;
 		$scope.infosUser =
 		{
 			email: "",

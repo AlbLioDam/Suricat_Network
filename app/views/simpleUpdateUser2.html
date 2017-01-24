@@ -1,7 +1,7 @@
 
 <div ng-controller="userAdminModifications">
 
-    <form name="updateUserForm" novalidate class="row" id="createUserAdminForm" ng-submit="updateUserForm.$valid && showConfirmation($event) && recordModifications()" ng-class="{'has-error' : updateUserForm.email.$error.minlength ||  updateUserForm.email.$error.maxlength ||  updateUserForm.password.$error.maxlength || updateUserForm.password.$error.minlength}">
+    <form  name="updateUserForm" novalidate class="row" id="createUserAdminForm" ng-submit="updateUserForm.$valid && showConfirmation($event) && recordModifications()" ng-class="{'has-error' : updateUserForm.email.$error.minlength ||  updateUserForm.email.$error.maxlength ||  updateUserForm.password.$error.maxlength || updateUserForm.password.$error.minlength}">
         <h3 class="text-center">Modification du profil</h3>
 
         <div class="col-md-offset-1 col-md-5 containerUpdateUser" id="leftWindow">

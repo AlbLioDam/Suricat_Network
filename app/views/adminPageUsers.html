@@ -13,7 +13,7 @@
                 <input class="form-control" type="text" ng-model="search" placeholder="Recherche par nom"/>
 
                 <div>
-                    <button  ng-click="showInformations(user)" class="showUser form-control" ng-repeat="user in users | filter : {idDepartment:selected.idDepartment} | filter : search">
+                    <button ng-click="showInformations(user); feel" class="showUser form-control" ng-repeat="user in users | filter : {idDepartment:selected.idDepartment} | filter : search">
                         {{user.firstname}} {{user.lastname}}
                     </button>
                 </div>
@@ -23,13 +23,13 @@
             </button>
         </div>
 
-        <div id="preview" class="col-sm-8 col-md-offset-1 col-md-8">
+        <div id="preview" class="col-sm-8 col-md-offset-1 col-md-8" >
             <div ng-switch on="insideAdminUser">
                 <div ng-switch-when="createUser">
                     <ng-include src="'views/createUser.html'"></ng-include>
                 </div>
                 <div ng-switch-when="updateUser">
-                    <ng-include src="'views/simpleUpdateUser2.html'"></ng-include>
+                    <ng-include ng-show="feel" src="'views/simpleUpdateUser2.html'" ></ng-include>
                 </div>
             </div>
         </div>
