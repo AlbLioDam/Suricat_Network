@@ -38,7 +38,6 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 		LinkDB.save(infosUser).$promise.then(function(response){
 			console.log(response);
 			$scope.showValidationCreateUser();
-			//$scope.users = LinkDB.query();
 		});
 	}
 	$scope.showValidationCreateUser = function(ev) 
@@ -56,6 +55,14 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 	    {
 	      $scope.infosUser=angular.copy($scope.empty);
 	      $scope.pw2="";
+	      $scope.modifyPageInside('team');
+ 			$timeout(function(){
+ 				$scope.modifyPageInside('adminPageUsers'); 
+/* 				$timeout(function(){
+ 					$scope.modifyUser();
+ 					$scope.modifyPageInsideAdminUsers('updateUser')}
+ 				, 100)*/;}
+ 			, 0);
 	    }, function() 
 	    {
 	      //nothing
