@@ -145,8 +145,8 @@ app.controller('choiceOfPages', function($scope,Idle, $cookieStore,$mdDialog,Kee
 	$scope.disconnect = function(newPage)
 	{
 		// STOP ALL REFRESHES RELATIVE TO THE CHAT
-		$scope.stopRefreshChat();
-		$scope.stopRefreshChatNotifications();
+		//$scope.stopRefreshChat();
+		//$scope.stopRefreshChatNotifications();
 
 		// REMOVE THE USER'S COOKIE
 		$cookieStore.remove('UserFirstname');
@@ -192,8 +192,8 @@ app.controller('choiceOfPages', function($scope,Idle, $cookieStore,$mdDialog,Kee
 		console.log("idUser : ", $scope.idUser);
 
 		// LAUNCH REFRESHES RELATIVE TO THE CHAT
-		$scope.startRefreshChat();
-		$scope.startRefreshChatNotifications();
+		//$scope.startRefreshChat();
+		//$scope.startRefreshChatNotifications();
 	}
 });
 
@@ -241,7 +241,7 @@ app.controller('choiceOfInside', function($scope, $interval){
 *	
 **/
 app.controller('choiceOfInsideAdminUsers', function($scope){
-	$scope.insideAdminUser = "updateUser";
+	$scope.insideAdminUser = "createUser";
 	/**
 	*	@memberof 	choiceOfInsideAdminUsers
 	*	@ngdoc 		function

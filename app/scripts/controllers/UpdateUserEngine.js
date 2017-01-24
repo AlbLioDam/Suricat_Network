@@ -24,9 +24,10 @@ var app = angular.module('Suricat');
 **/
 app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkDB, $cookieStore, $mdDialog){
 
-	$scope.showmsg = false;
+	//$scope.showmsg = false;
 	$scope.departments = LinkDBDepartment.query();
 	$scope.users = LinkDB.query();
+	$scope.modifyUserClicked = true;
 
 	$scope.empty = {};
 
@@ -42,8 +43,25 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 	**/
 	$scope.addAMember = function()
 	{
+		$scope.infosUser =
+		{
+			email: "",
+			password: "",
+			pw2: "",
+			department: "",
+			status: "",
+			corporateLifeRepresentative: "",
+			workCouncilRepresentative: "",
+			active: "",
+			lastname: "",
+			firstname: "",
+			address: "",
+			city: "",
+			car: "",
+			carsharing: "",
+			idDepartment: ""
+		}
 		$scope.modifyUserClicked = !$scope.modifyUserClicked;
-		$scope.infosUser = {};
 	}
 	/**
 	*	@memberof 	userAdminModifications
@@ -54,7 +72,6 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 	**/
 	$scope.modifyUser = function()
 	{
-		$scope.modifyUserClicked = !$scope.modifyUserClicked;
 		$scope.infosUser =
 		{
 			email: "",
@@ -73,9 +90,9 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 			carsharing: "",
 			idDepartment:""
 		}
-
-
+		$scope.modifyUserClicked = !$scope.modifyUserClicked;
 	}
+	
 	/**
 	*	@memberof 	userAdminModifications
 	*	@ngdoc 		function
@@ -86,31 +103,9 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 	$scope.emptyCreateUserForm = function()
 	{
 			$scope.reset();
-			$scope.pw2 = "";
+			//$scope.pw2 = "";
 	}
-	/**
-	*	@memberof 	userAdminModifications
-	*	@ngdoc 		function
-	*	@param		{object} selected
-	*	@description
-	*		verify user password
-	*
-	**/
-	$scope.verifyPass = function(selected)
-	{
-		var pw2 = $scope.pw2;
-		if($scope.infosUser.password == pw2)
-		{
-			$scope.infosUser.idDepartment = selected.idDepartment;
-			LinkDB.save($scope.infosUser);
-			$scope.reset();
-			$scope.pw2 = "";
-		}
-		else
-		{
-			$scope.showmsg = true;
-		}
-	}
+
 	/**
 	*	@memberof 	userAdminModifications
 	*	@ngdoc 		function
@@ -148,12 +143,12 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 				if($scope.departments[i].idDepartment == response.idDepartment)
 				{
 					indexDepartment = i;
-					console.log(indexDepartment);
+					//console.log(indexDepartment);
 				}
 			}
 
-			console.log("$scope.departments[indexDepartment] : ", $scope.departments[indexDepartment]);
-			console.log("$scope.infosUser.idDepartment : ", $scope.infosUser.idDepartment);
+			//console.log("$scope.departments[indexDepartment] : ", $scope.departments[indexDepartment]);
+			//console.log("$scope.infosUser.idDepartment : ", $scope.infosUser.idDepartment);
 
 			var indexStatus = 0;
 			for (var i = 0; i < $scope.listOfStatus.length; i++)
@@ -171,13 +166,14 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 			document.getElementById("CE").checked 			= response.corporateLifeRepresentative;
 			document.getElementById("VE").checked 			= response.workCouncilRepresentative;
 
-			console.log("response", response);
+			//console.log("response", response);
 			$scope.infosUser = response;
 			$scope.infosUser.idDepartment = $scope.departments[indexDepartment];
 			$scope.infosUser.status = $scope.listOfStatus[indexStatus];
-			console.log("$scope.infosUser ici : ", $scope.infosUser);
+			//console.log("$scope.infosUser ici : ", $scope.infosUser);
 		});
 	}
+
 	/**
 	*	@memberof 	userAdminModifications
 	*	@ngdoc 		function
@@ -200,15 +196,33 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 	**/
 	$scope.recordModifications = function()
 	{
-		$scope.infosUser.car 		= document.getElementById("car").checked;
+		// FILL infosUser WITH true/false RESPONSES
+		$scope.infosUser.car 			= document.getElementById("car").checked;
 		$scope.infosUser.carsharing     = document.getElementById("carsharing").checked;
-		$scope.infosUser.active 	= document.getElementById("active").checked;
-		$scope.infosUser.VE 		= document.getElementById("VE").checked;
-		$scope.infosUser.CE 		= document.getElementById("CE").checked;
+		$scope.infosUser.active 		= document.getElementById("active").checked;
+		$scope.infosUser.VE 			= document.getElementById("VE").checked;
+		$scope.infosUser.CE 			= document.getElementById("CE").checked;
 
-		console.log($scope.infosUser);
+		// UPDATE OF COOKIES
+		if($scope.infosUser.idUser == $cookieStore.get('UserIdUser'))
+		{
+			$cookieStore.put('UserFirstname', $scope.infosUser.firstname);
+			$cookieStore.put('UserLastname', $scope.infosUser.lastname);
+			$cookieStore.put('UserCorporatelifeRepresentative', $scope.infosUser.corporatelifeRepresentative);
+			$cookieStore.put('UserWorkCouncilRepresentative', $scope.infosUser.workCouncilRepresentative);
+
+			if($scope.status != $scope.infosUser.status.st)
+			{
+				$cookieStore.put('UserStatus', $scope.infosUser.status);
+			}
+
+			$scope.loadCookieInformations();
+			$scope.users = LinkDB.query();
+		}
+
+		//console.log($scope.infosUser);
 		LinkDB.updateUser($scope.infosUser).$promise.then(function(response){
-			console.log(response);
+			//console.log(response);
 		});
 	};
 
@@ -317,7 +331,7 @@ app.controller('userSelfModifications',function($scope, LinkDBDepartment, LinkDB
 		$scope.infosUser.status = $scope.listOfStatus[indexStatus];
 	});
 
-	console.log($scope.infosUser);
+	//console.log($scope.infosUser);
 	/**
 	*	@memberof 	userSelfModifications
 	*	@ngdoc 		function
@@ -333,9 +347,24 @@ app.controller('userSelfModifications',function($scope, LinkDBDepartment, LinkDB
 		$scope.infosUser.VE 		= document.getElementById("VE").checked;
 		$scope.infosUser.CE 		= document.getElementById("CE").checked;
 
-		console.log($scope.infosUser);
+		// UPDATE OF COOKIES
+		$cookieStore.put('UserIdUser', $scope.infosUser.idUser);
+		$cookieStore.put('UserFirstname', $scope.infosUser.firstname);
+		$cookieStore.put('UserLastname', $scope.infosUser.lastname);
+		$cookieStore.put('UserCorporatelifeRepresentative', $scope.infosUser.corporatelifeRepresentative);
+		$cookieStore.put('UserWorkCouncilRepresentative', $scope.infosUser.workCouncilRepresentative);
+
+		if($scope.status != $scope.infosUser.status.st)
+		{
+			$cookieStore.put('UserStatus', $scope.infosUser.status);
+		}
+
+		$scope.loadCookieInformations();
+
+		//console.log($scope.infosUser);
 		LinkDB.updateUser($scope.infosUser).$promise.then(function(response){
-			console.log(response);
+			//console.log(response);
+			$scope.modifyPageInside('team');
 		});
 	}
 	/**

@@ -21,8 +21,8 @@
                     <ul class="dropdown-menu" class="animated fadeInRight">
                       <li><a ng-click="modifyPageInside('updateUser')"> Modification de votre profil </a></li>
                       <li><a ng-click="modifyPageInside('adminPageUsers')" ng-show="status == 'Admin'"> Gestion des profils (admin)   </a></li>
-                      <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Gestion des équipes</a>
-                          <ul class="dropdown dropdown-vertical" class="animated fadeInRight">
+                      <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-show="access">Gestion des équipes</a>
+                          <ul class="dropdown dropdown-vertical" class="animated fadeInRight" ng-show="access">
                             <li><a ng-click="modifyPageInside('createTeam')">     Créer une équipe </a></li>
                             <li><a ng-click="modifyPageInside('teamManagement')"> Gestion des équipes </a></li>
                           </ul>
@@ -69,8 +69,8 @@
             <ng-include src="'views/simpleUpdateUser.html'">
             </ng-include>
           </div>
-          <div ng-switch-when="teamManagement"> 
-            <ng-include src="'views/teamManagement.html'">      
+          <div ng-switch-when="teamManagement">
+            <ng-include src="'views/teamManagement.html'">
             </ng-include>
           </div>
           <div ng-switch-when="createTeam"> 

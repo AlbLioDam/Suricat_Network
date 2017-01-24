@@ -63,14 +63,6 @@ app.controller('CheckLogin',['$scope','LinkDBCheckLogin','$timeout','$cookies','
 
 				$scope.loadCookieInformations();
 
-				/*$cookieStore.put('Useremail', response.user.email);
-				$cookieStore.put('UserCar', response.user.car);
-				$cookieStore.put('UserCarsharing', response.user.carsharing);
-				$cookieStore.put('UserActive', response.user.active);
-				$cookieStore.put('UserAddress', response.user.address);
-				$cookieStore.put('UserCity', response.user.city);
-				$cookieStore.put('UserIdDepartment', response.user.idDepartment);*/
-
 				$timeout(function()
 				{
 					$scope.modifyPage("mainPageSuricat");
@@ -83,6 +75,10 @@ app.controller('CheckLogin',['$scope','LinkDBCheckLogin','$timeout','$cookies','
 				$scope.message = "Erreur dans les identifiants";
 			}
 		});
+	}
+
+	$scope.fillCookies = function(){
+		
 	}
 }]);
 
