@@ -37,9 +37,30 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 	{
 		LinkDB.save(infosUser).$promise.then(function(response){
 			console.log(response);
+			$scope.showValidationCreateUser();
 			//$scope.users = LinkDB.query();
 		});
 	}
+	$scope.showValidationCreateUser = function(ev) 
+	{
+	    // Appending dialog to document.body to cover sidenav in docs app
+	    var confirm = $mdDialog.confirm()
+	          .title('Confirmation')
+	          .textContent('L utilisateur est créé')
+	          .ariaLabel('Lucky day')
+	          .targetEvent(ev)
+	          .ok('Oui');
+	          
+
+	    $mdDialog.show(confirm).then(function() 
+	    {
+	      $scope.infosUser=angular.copy($scope.empty);
+	      $scope.pw2="";
+	    }, function() 
+	    {
+	      //nothing
+	    });
+  	};
 
 	/**
 	*	@memberof 	userAdminModifications
@@ -50,7 +71,10 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 	**/
 	$scope.addAMember = function()
 	{
+		
 		$scope.feel=true;
+		$scope.infosUser=angular.copy($scope.empty);
+	      $scope.pw2="";
 
 		$scope.infosUser =
 		{

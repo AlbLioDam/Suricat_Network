@@ -73,7 +73,7 @@ app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkD
 	*		show team details
 	*
 	**/
-	$scope.showTeamDetail = function(selzected)
+	$scope.showTeamDetail = function(selected)
 	{
 		if(selected != null)
 		{
