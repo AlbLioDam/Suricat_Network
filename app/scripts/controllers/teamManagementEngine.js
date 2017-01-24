@@ -37,6 +37,7 @@ app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkD
 	});
 	$scope.departments 	= LinkDBDepartment.query();
 	$scope.usersbyteams = LinkDBBelongTo.query();
+	$scope.listOfStatus = [{st:"Utilisateur"}, {st:"Chef de projet"}, {st:"Admin"}];
 
 	$scope.addMember = false;
 	$scope.blockedTeamChoice = false;
@@ -72,7 +73,7 @@ app.controller('TeamManagementPage', function($scope, LinkDBTeams, LinkDB, LinkD
 	*		show team details
 	*
 	**/
-	$scope.showTeamDetail = function(selected)
+	$scope.showTeamDetail = function(selzected)
 	{
 		if(selected != null)
 		{

@@ -33,6 +33,13 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 
 	$scope.listOfStatus = [{st:"Utilisateur"}, {st:"Chef de projet"}, {st:"Admin"}];
 
+	$scope.createAnUser = function(infosUser)
+	{
+		LinkDB.save(infosUser).$promise.then(function(response){
+			console.log(response);
+			//$scope.users = LinkDB.query();
+		});
+	}
 
 	/**
 	*	@memberof 	userAdminModifications

@@ -29,14 +29,14 @@
 
             <div class="form-group">
                 <label for="status">Statut</label>
-                <select class="form-control" id="status" ng-model="infosUser.status" ng-selected="infosUser.status" ng-options="status.st for status in listOfStatus">
+                <select class="form-control" id="status" ng-model="infosUser.status" ng-selected="infosUser.status" ng-options="status.st for status in listOfStatus" required>
                     <option value="" disabled selected>{{infosUser.status.st}}</option>
                 </select>
             </div>
 
             <div class="form-group">
                 <label for="service">Service</label>
-                <select class="form-control" id="service" ng-model="infosUser.idDepartment" ng-selected="infosUser.idDepartment" ng-options="department.departmentName for department in departments">
+                <select class="form-control" id="service" ng-model="infosUser.idDepartment" ng-selected="infosUser.idDepartment" ng-options="department.departmentName for department in departments" required>
                     <option value="" disabled selected>{{infosUser.idDepartment.departmentName}}</option>
                 </select>
             </div>
@@ -56,25 +56,25 @@
         <div class="col-md-5 text-left containerUpdateUser">
             <div class="form-group">
                 <label for="lastName">Nom</label>
-                <input name="lastName" ng-maxlength="30" type="text" class="form-control" id="lastName" ng-model="infosUser.lastname" aria-describedby="emailHelp" placeholder="Enter lastname" required>
+                <input name="lastName" ng-maxlength="30" type="text" class="form-control" id="lastName" ng-model="infosUser.lastname" aria-describedby="emailHelp" placeholder="Enter lastname">
                 <span ng-show="updateUserForm.lastName.$error.maxlength">Nom de famille trop long, 30 caractères maximum</span>
             </div>
 
             <div class="form-group">
                 <label for="firstName">Prénom</label>
-                <input name="firstName" ng-maxlength="30" type="text" class="form-control" id="firstName" ng-model="infosUser.firstname" placeholder="Enter firstname" required/>
+                <input name="firstName" ng-maxlength="30" type="text" class="form-control" id="firstName" ng-model="infosUser.firstname" placeholder="Enter firstname"/>
                 <span ng-show="updateUserForm.firstname.$error.maxlength">Prénom trop long, 30 caractères maximum</span>
             </div>
 
             <div class="form-group">
                 <label for="adress">Adresse</label>
-                <input name="adress" ng-maxlength="100" type="text" class="form-control" id="address" ng-model="infosUser.address" placeholder="Enter Address" required/>
+                <input name="adress" ng-maxlength="100" type="text" class="form-control" id="address" ng-model="infosUser.address" placeholder="Enter Address"/>
                 <span ng-show="updateUserForm.adress.$error.maxlength">Adresse trop longue, 100 caractères maximum</span>
             </div>
 
             <div class="form-group">
                 <label for="city">Ville</label>
-                <input name="city" ng-maxlength="100" type="text" class="form-control" id="city" ng-model="infosUser.city" placeholder="Enter City" required/>
+                <input name="city" ng-maxlength="100" type="text" class="form-control" id="city" ng-model="infosUser.city" placeholder="Enter City"/>
                 <span ng-show="updateUserForm.city.$error.maxlength">Nom de ville trop longue, 100 caractères maximum</span>
             </div>
 
