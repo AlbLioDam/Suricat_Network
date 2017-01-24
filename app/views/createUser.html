@@ -1,5 +1,5 @@
 <div ng-controller="userAdminModifications">
-  <form name="UserCreationForm" class="row" ng-submit="UserCreationForm.$valid && postTeamActu(choiceOfTeam)" ng-class="{'has-error' : UserCreationForm.email.$error.maxlength || UserCreationForm.password.$error.maxlength || UserCreationForm.password.$error.minlength}">
+  <form name="UserCreationForm" class="row" ng-submit="UserCreationForm.$valid && createAnUser(infosUser)" ng-class="{'has-error' : UserCreationForm.email.$error.maxlength || UserCreationForm.password.$error.maxlength || UserCreationForm.password.$error.minlength}">
     <div class="col-md-offset1 col-md-12" id="createUserDiv">
       <h3 class="text-center">Création d'un profil</h3>
       <div class="form-group">
@@ -26,9 +26,16 @@
 
       <div class="form-group">
         <label for="ControlService">Service</label>
-        <select class="form-control" id="ControlService" ng-model="selected" ng-options="department.departmentName for department in departments">
+        <select class="form-control" id="ControlService" ng-model="infosUser.idDepartment" ng-options="department.departmentName for department in departments" required>
         <option value="" disabled selected>Sélectionnez un service</option>
         </select>
+      </div>
+
+      <div class="form-group">
+          <label for="status">Statut</label>
+          <select class="form-control" id="status" ng-model="infosUser.status" ng-selected="infosUser.status" ng-options="status.st for status in listOfStatus" required>
+          <option value="" disabled selected>selectionnez un statut</option>
+          </select>
       </div>
 
       <div class="">

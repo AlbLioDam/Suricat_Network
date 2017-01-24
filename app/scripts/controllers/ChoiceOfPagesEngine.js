@@ -213,7 +213,6 @@ app.controller('choiceOfPages', function($scope,Idle, $cookieStore,$mdDialog,Kee
 *	 
 **/
 app.controller('choiceOfInside', function($scope, $interval,$cookieStore){
-	$scope.inside = "team";
 	/**
 	*	@memberof 	choiceOfInside
 	*	@ngdoc 		function
@@ -226,7 +225,29 @@ app.controller('choiceOfInside', function($scope, $interval,$cookieStore){
 	$scope.modifyPageInside = function(newInside)
 	{
 		$scope.inside = newInside;
+		if(newInside != 'team')
+		{
+			document.getElementById('team').style.backgroundColor = document.getElementById('parameters').style.backgroundColor;	
+		}
+		if(newInside != 'corporatelife')
+		{
+			document.getElementById('corporatelife').style.backgroundColor = document.getElementById('parameters').style.backgroundColor;	
+		}
+		if(newInside != 'workscouncil')
+		{
+			document.getElementById('workscouncil').style.backgroundColor = document.getElementById('parameters').style.backgroundColor;	
+		}
+		if(newInside != 'leisure')
+		{
+			document.getElementById('leisure').style.backgroundColor = document.getElementById('parameters').style.backgroundColor;	
+		}
+		if(newInside == 'team' || newInside == 'corporatelife' || newInside == 'workscouncil' || newInside == 'leisure')
+		{
+			document.getElementById(newInside).style.backgroundColor = "green";
+		}
 	}
+
+	$scope.modifyPageInside("team");
 });
 
 /**

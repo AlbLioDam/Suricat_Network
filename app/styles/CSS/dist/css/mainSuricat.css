@@ -24,3 +24,7 @@ div.errorMessage
 img{
 	margin-left: 5px;
 }
+
+.colorSelected{
+	color: green;
+}
