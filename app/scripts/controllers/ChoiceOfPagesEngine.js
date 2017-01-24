@@ -227,23 +227,32 @@ app.controller('choiceOfInside', function($scope, $interval,$cookieStore){
 		$scope.inside = newInside;
 		if(newInside != 'team')
 		{
-			document.getElementById('team').style.backgroundColor = document.getElementById('parameters').style.backgroundColor;	
+			document.getElementById('team').style.backgroundColor = document.getElementById('navbar').style.backgroundColor;	
 		}
 		if(newInside != 'corporatelife')
 		{
-			document.getElementById('corporatelife').style.backgroundColor = document.getElementById('parameters').style.backgroundColor;	
+			document.getElementById('corporatelife').style.backgroundColor = document.getElementById('navbar').style.backgroundColor;	
 		}
 		if(newInside != 'workscouncil')
 		{
-			document.getElementById('workscouncil').style.backgroundColor = document.getElementById('parameters').style.backgroundColor;	
+			document.getElementById('workscouncil').style.backgroundColor = document.getElementById('navbar').style.backgroundColor;	
 		}
 		if(newInside != 'leisure')
 		{
-			document.getElementById('leisure').style.backgroundColor = document.getElementById('parameters').style.backgroundColor;	
+			document.getElementById('leisure').style.backgroundColor = document.getElementById('navbar').style.backgroundColor;	
 		}
-		if(newInside == 'team' || newInside == 'corporatelife' || newInside == 'workscouncil' || newInside == 'leisure')
+		if(newInside != 'updateUser' || newInside != 'adminPageUsers' || newInside != 'createTeam' || newInside != 'teamManagement')
+		{
+			document.getElementById('parameters').style.backgroundColor = document.getElementById('navbar').style.backgroundColor;	
+		}
+
+		if(newInside == 'team' || newInside == 'corporatelife' || newInside == 'workscouncil' || newInside == 'leisure' || newInside == 'parameters')
 		{
 			document.getElementById(newInside).style.backgroundColor = "green";
+		}
+		else if(newInside == 'updateUser' || newInside == 'adminPageUsers' || newInside == 'createTeam' || newInside == 'teamManagement')
+		{
+			document.getElementById('parameters').style.backgroundColor = "green";	
 		}
 	}
 

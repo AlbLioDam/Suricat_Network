@@ -22,7 +22,7 @@ var app = angular.module('Suricat');
 *			7- show confirmation box
 *	
 **/
-app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkDB, $cookieStore, $mdDialog){
+app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkDB, $cookieStore, $mdDialog, $timeout){
 
 	//$scope.showmsg = false;
 	$scope.departments = LinkDBDepartment.query();
@@ -258,6 +258,15 @@ app.controller('userAdminModifications',function($scope, LinkDBDepartment, LinkD
 		//console.log($scope.infosUser);
 		LinkDB.updateUser($scope.infosUser).$promise.then(function(response){
 			//console.log(response);
+			$scope.modifyPageInside('team');
+ 			$timeout(function(){
+ 				$scope.modifyPageInside('adminPageUsers'); 
+/* 				$timeout(function(){
+ 					$scope.modifyUser();
+ 					$scope.modifyPageInsideAdminUsers('updateUser')}
+ 				, 100)*/;}
+ 			, 100);
+			//$scope.users = LinkDB.query();
 		});
 	};
 
