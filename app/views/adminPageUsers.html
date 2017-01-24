@@ -8,9 +8,9 @@
                     AJOUTER UN MEMBRE
                 </button>
                 <select class="form-control" id="ControlService" ng-model="selected" ng-options="department.departmentName for department in departments">
-                    <option></option>
+                    <option value="" selected>Tous les services</option>
                 </select>
-                <input class="form-control" type="text" ng-model="search"/>
+                <input class="form-control" type="text" ng-model="search" placeholder="Recherche par nom"/>
 
                 <div>
                     <button  ng-click="showInformations(user)" class="showUser form-control" ng-repeat="user in users | filter : {idDepartment:selected.idDepartment} | filter : search">
